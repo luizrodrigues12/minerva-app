@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import useUserStore from "@/stores/userStore";
 import AlunosComp from "../home/AlunosComp";
-import PesquisaComp from "../home/PesquisaComp";
 import { AlunosObj } from "@/stores/userStore";
 import Link from "next/link";
 
@@ -74,7 +73,7 @@ const PageHome = () => {
         </Link>
       </div>
       {/* RENDERIZANDO NOMES EM ORDEM ALFABÉTICA */}
-      {alunos.length > 1 ? (
+      {alunos.length > 0 ? (
         alunos
           .filter((aluno) =>
             aluno.nome?.toLowerCase().includes(busca.toLowerCase())

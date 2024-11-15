@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const metadata: Metadata = {
-  title: "Minerva Reforço",
+  title: "Minerva",
   description: "Agilidade nos seus planejamentos.",
 };
 
