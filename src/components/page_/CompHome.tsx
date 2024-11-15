@@ -7,12 +7,14 @@ import useUserStore from "@/stores/userStore";
 import AlunosComp from "../home/AlunosComp";
 import { AlunosObj } from "@/stores/userStore";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const PageHome = () => {
   const [alunos, setAlunos] = useState(Array<AlunosObj>);
   const [username, setUsername] = useState("");
   const { setToken } = useUserStore();
   const [busca, setBusca] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     //Verificando token
@@ -47,7 +49,7 @@ const PageHome = () => {
 
   // OnClickBook
   const onClickBook = (idAluno: string) => {
-    redirect(`/student/${idAluno}`);
+    router.push(`/student/${idAluno}`);
   };
 
   return (
