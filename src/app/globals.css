@@ -2,20 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  /* INPUTS */
+  .input_email_username {
+    @apply rounded-lg p-1.5 px-3 border-2 border-roxominerva bg-inherit w-full;
   }
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  .input_password {
+    @apply border-roxominerva rounded-l-lg h-10 bg-inherit flex-grow pl-3;
+  }
+
+  .div_input_password {
+    @apply w-[100%] border-2 border-roxominerva bg-inherit rounded-lg flex justify-between items-center
+    h-10;
+  }
+
+  .btn_show_password {
+    @apply p-2 md:px-3 lg:px-3 text-zinc-400 text-sm flex-shrink;
+  }
+
+  .btn_submit_form {
+    @apply bg-roxominerva rounded-lg text-[16px] p-2 md:p-[7px] text-zinc-100;
+  }
+
+  .paragraph_form {
+    @apply text-zinc-400 self-end text-[14px] hover:text-zinc-200 pr-1;
+  }
+
+  .div_form {
+    @apply flex flex-col w-full gap-4;
+  }
+
+  .h1_form {
+    @apply text-xl font-semibold md:text-2xl md:pb-2 lg:pb-1 text-zinc-200;
+  }
+
+  .form_register {
+    @apply flex flex-col justify-center gap-2 w-full md:self-center lg:gap-2;
+  }
+
+  .form_student {
+    @apply flex flex-col justify-center gap-2 md:self-center lg:gap-3;
+  }
+
+  .form_login {
+    @apply flex flex-col justify-center gap-4 py-4 md:self-center lg:gap-4;
+  }
+
+  .form_reset_password {
+    @apply flex flex-col justify-center gap-4;
+  }
+
+  .image_persona {
+    background-image: url("../../public/images/persona-minerva.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .fundo_landing {
+    background-image: url("../../public/images/fundo-landing-minerva.jpg");
+    background-size: cover;
+  }
+
+  .container_form {
+    @apply flex flex-col border-2 border-zinc-800 shadow-xl p-5 rounded-lg self-center md:w-[400px];
+  }
+
+  .container_form_login {
+    @apply flex flex-col md:border-2 md:border-zinc-800 md:shadow-xl md:p-5 py-0 rounded-lg self-center w-[400px];
+  }
+
+  .error_form {
+    @apply text-[13px] pl-1 w-60;
+  }
+
+  .height_pattern {
+    @apply mb-auto mt-4 lg:mb-auto lg:mt-8;
+  }
+
+  .checked {
+    @apply text-zinc-500 line-through;
+  }
 }
