@@ -25,7 +25,7 @@ const PageHome = () => {
     // GET alunos
     const getAlunos = async () => {
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_HOST_API}/api/student/get_students`,
+        `https://minerva-app.netlify.app/api/student/get_students`,
         {
           method: "POST",
           body: JSON.stringify({ token: token }),

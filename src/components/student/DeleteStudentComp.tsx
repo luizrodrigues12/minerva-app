@@ -12,7 +12,7 @@ const RemoveStudentComp = ({ idAluno }: { idAluno: string }) => {
 
   const getAluno = async () => {
     const result = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_API}/api/student/get_student`,
+      `https://minerva-app.netlify.app/api/student/get_student`,
       {
         method: "POST",
         body: JSON.stringify({ idAluno: idAluno, token: token }),
@@ -29,7 +29,7 @@ const RemoveStudentComp = ({ idAluno }: { idAluno: string }) => {
   const deleteStudent = async (e: any) => {
     e.preventDefault();
     const result = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_API}/api/student/delete_student/`,
+      `https://minerva-app.netlify.app/api/student/delete_student/`,
       {
         method: "DELETE",
         body: JSON.stringify({ token: token, idAluno: idAluno }),

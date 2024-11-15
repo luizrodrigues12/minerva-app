@@ -21,7 +21,7 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
 
   const getAluno = async () => {
     const result = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_API}/api/student/get_student`,
+      `https://minerva-app.netlify.app/api/student/get_student`,
       {
         method: "POST",
         body: JSON.stringify({ idAluno: idAluno, token: token }),
@@ -34,7 +34,7 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
 
   const updateAluno = async () => {
     const result = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_API}/api/student/update_student`,
+      `https://minerva-app.netlify.app/api/student/update_student`,
       {
         method: "PUT",
         body: JSON.stringify({

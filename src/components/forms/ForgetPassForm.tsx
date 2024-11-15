@@ -18,7 +18,7 @@ const ForgetPassForm = () => {
       e.preventDefault();
       //Enviando post dos dados
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_HOST_API}/api/user/forget_password/`,
+        `https://minerva-app.netlify.app/api/user/forget_password/`,
         {
           method: "POST",
           body: JSON.stringify({ email }),

@@ -24,7 +24,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   // GET dados do aluno
   const getOneStudent = async () => {
     const result = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_API}/api/student/get_student`,
+      `https://minerva-app.netlify.app/api/student/get_student`,
       {
         method: "POST",
         body: JSON.stringify({ idAluno: idAluno, token: token }),
@@ -37,7 +37,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
 
   const toggleIsChecked = async (objMateria: any) => {
     const result = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_API}/api/student/toggle_checked`,
+      `https://minerva-app.netlify.app/api/student/toggle_checked`,
       {
         method: "PUT",
         body: JSON.stringify({ objMateria, idAluno, token, checkeds }),
@@ -77,7 +77,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
             className="hover:cursor-pointer"
             onClick={async () =>
               copy(
-                `${process.env.NEXT_PUBLIC_HOST}/parents/get_subjects/${idAluno}`
+                `https://minerva-app.netlify.app/parents/get_subjects/${idAluno}`
               )
             }
           />

@@ -22,7 +22,7 @@ const LoginForm = () => {
       e.preventDefault();
       //Enviando post dos dados
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_HOST_API}/api/user/login`,
+        `https://minerva-app.netlify.app/api/user/login`,
         {
           method: "POST",
           body: JSON.stringify(formData),

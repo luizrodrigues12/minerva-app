@@ -19,7 +19,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
   // GET todas as matérias
   const getAllSubjects = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_API}/api/subject/get_subjects`,
+      `https://minerva-app.netlify.app/api/subject/get_subjects`,
       { method: "GET" }
     );
     const { materias } = await res.json();
@@ -36,13 +36,10 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
       if (checkeds.length === 0)
         throw new Error("Selecione pelo menos uma matéria.");
       // Adicionando matérias ao aluno
-      await fetch(
-        `${process.env.NEXT_PUBLIC_HOST_API}/api/student/add_subjects`,
-        {
-          method: "PUT",
-          body: JSON.stringify({ checkeds, token, idAluno }),
-        }
-      );
+      await fetch(`https://minerva-app.netlify.app/api/student/add_subjects`, {
+        method: "PUT",
+        body: JSON.stringify({ checkeds, token, idAluno }),
+      });
       //Enviando para a home.
       router.push("/home");
     } catch (error: any) {

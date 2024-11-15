@@ -40,7 +40,7 @@ const StudentForm = () => {
     try {
       if (!nomeAluno) throw new Error("por favor, insira um nome válido.");
       const result = await fetch(
-        `${process.env.NEXT_PUBLIC_HOST_API}/api/student/add_student`,
+        `https://minerva-app.netlify.app/api/student/add_student`,
         {
           method: "POST",
           body: JSON.stringify({

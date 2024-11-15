@@ -70,7 +70,7 @@ const RegisterForm = () => {
       //Enviando post dos dados
       if (passwordTest && emailTest && usernameTest) {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_HOST_API}/api/user/cadastro`,
+          `https://minerva-app.netlify.app/api/user/cadastro`,
           {
             method: "POST",
             body: JSON.stringify(formData),

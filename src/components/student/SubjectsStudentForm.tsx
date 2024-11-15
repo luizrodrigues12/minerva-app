@@ -20,7 +20,7 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
 
   const getSubjectsStudent = async () => {
     const result = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST_API}/api/student/get_subjects`,
+      `https://minerva-app.netlify.app/api/student/get_subjects`,
       {
         method: "POST",
         body: JSON.stringify({ idAluno }),
