@@ -7,7 +7,7 @@ export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   // PEGANDO USUÁRIO
-  const result = await fetch("http:localhost:3000/api/user/get_user", {
+  const result = await fetch(`${process.env.HOST_API}/api/user/get_user`, {
     method: "POST",
     body: JSON.stringify({ token }),
   });

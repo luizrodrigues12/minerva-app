@@ -17,10 +17,13 @@ const ForgetPassForm = () => {
       if (!emailTest) throw new Error("Por favor, digite um email válido.");
       e.preventDefault();
       //Enviando post dos dados
-      const response = await fetch(`/api/user/forget_password/`, {
-        method: "POST",
-        body: JSON.stringify({ email }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_HOST_API}/api/user/forget_password/`,
+        {
+          method: "POST",
+          body: JSON.stringify({ email }),
+        }
+      );
       router.push("/login");
     } catch (error: any) {
       setError(error.message);

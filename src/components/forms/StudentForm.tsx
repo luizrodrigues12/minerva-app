@@ -39,15 +39,18 @@ const StudentForm = () => {
   const submitFormStudent = async () => {
     try {
       if (!nomeAluno) throw new Error("por favor, insira um nome válido.");
-      const result = await fetch("/api/student/add_student", {
-        method: "POST",
-        body: JSON.stringify({
-          idAluno: idStudent,
-          nome: nomeAluno.trim(),
-          preparatorio: checks,
-          token,
-        }),
-      });
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_HOST_API}/api/student/add_student`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            idAluno: idStudent,
+            nome: nomeAluno.trim(),
+            preparatorio: checks,
+            token,
+          }),
+        }
+      );
     } catch (error: any) {
       setError(error.message);
     }

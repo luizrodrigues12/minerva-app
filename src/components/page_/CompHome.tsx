@@ -24,9 +24,8 @@ const PageHome = () => {
 
     // GET alunos
     const getAlunos = async () => {
-      console.log(process.env.HOST_API);
       const result = await fetch(
-        `${process.env.HOST_API}/api/student/get_students`,
+        `${process.env.NEXT_PUBLIC_HOST_API}/api/student/get_students`,
         {
           method: "POST",
           body: JSON.stringify({ token: token }),
@@ -68,7 +67,7 @@ const PageHome = () => {
           }}
         />
         <Link
-          href={"/add_student"}
+          href={`${process.env.NEXT_PUBLIC_HOST}/add_student`}
           className=" bg-roxominerva flex items-center rounded-md p-[15px] h-10 text-zinc-100"
         >
           Adicionar

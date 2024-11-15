@@ -23,20 +23,26 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
 
   // GET dados do aluno
   const getOneStudent = async () => {
-    const result = await fetch("/api/student/get_student", {
-      method: "POST",
-      body: JSON.stringify({ idAluno: idAluno, token: token }),
-    });
+    const result = await fetch(
+      `${process.env.NEXT_PUBLIC_HOST_API}/api/student/get_student`,
+      {
+        method: "POST",
+        body: JSON.stringify({ idAluno: idAluno, token: token }),
+      }
+    );
     // Pegando aluno do return
     const { aluno } = await result.json();
     setOneStudent(aluno[0]);
   };
 
   const toggleIsChecked = async (objMateria: any) => {
-    const result = await fetch("/api/student/toggle_checked", {
-      method: "PUT",
-      body: JSON.stringify({ objMateria, idAluno, token, checkeds }),
-    });
+    const result = await fetch(
+      `${process.env.NEXT_PUBLIC_HOST_API}/api/student/toggle_checked`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ objMateria, idAluno, token, checkeds }),
+      }
+    );
   };
 
   useEffect(() => {
@@ -70,7 +76,9 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
             color="#e4e4e7"
             className="hover:cursor-pointer"
             onClick={async () =>
-              copy(`http://localhost:3000/parents/get_subjects/${idAluno}`)
+              copy(
+                `${process.env.NEXT_PUBLIC_HOST}/parents/get_subjects/${idAluno}`
+              )
             }
           />
         </div>
@@ -87,13 +95,13 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
       <div className="w-full flex gap-2">
         {/* BOTÕES */}
         <Link
-          href={`/student/update_student/${idAluno}`}
+          href={`${process.env.NEXT_PUBLIC_HOST}/student/update_student/${idAluno}`}
           className="flex items-center justify-center rounded-lg text-[13px] font-medium p-1.5 w-full md:p-[7px] text-zinc-200 bg-roxominerva tracking-wider"
         >
           EDITAR
         </Link>
         <Link
-          href={`/student/delete_student/${idAluno}`}
+          href={`${process.env.NEXT_PUBLIC_HOST}/student/delete_student/${idAluno}`}
           className="flex items-center justify-center rounded-lg text-[13px] font-medium p-1.5 w-full md:p-[7px] text-zinc-200 bg-[#961f17de] tracking-wider"
         >
           APAGAR

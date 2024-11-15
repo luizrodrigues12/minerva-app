@@ -20,25 +20,31 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
   };
 
   const getAluno = async () => {
-    const result = await fetch("/api/student/get_student", {
-      method: "POST",
-      body: JSON.stringify({ idAluno: idAluno, token: token }),
-    });
+    const result = await fetch(
+      `${process.env.NEXT_PUBLIC_HOST_API}/api/student/get_student`,
+      {
+        method: "POST",
+        body: JSON.stringify({ idAluno: idAluno, token: token }),
+      }
+    );
     // Pegando aluno do return
     const { aluno } = await result.json();
     setOneStudent(aluno[0]);
   };
 
   const updateAluno = async () => {
-    const result = await fetch("/api/student/update_student", {
-      method: "PUT",
-      body: JSON.stringify({
-        token,
-        idAluno,
-        nomeAluno: nomeAluno.trim(),
-        checks,
-      }),
-    });
+    const result = await fetch(
+      `${process.env.NEXT_PUBLIC_HOST_API}/api/student/update_student`,
+      {
+        method: "PUT",
+        body: JSON.stringify({
+          token,
+          idAluno,
+          nomeAluno: nomeAluno.trim(),
+          checks,
+        }),
+      }
+    );
   };
 
   useEffect(() => {

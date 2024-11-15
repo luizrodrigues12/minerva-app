@@ -21,10 +21,13 @@ const LoginForm = () => {
     try {
       e.preventDefault();
       //Enviando post dos dados
-      const response = await fetch("/api/user/login", {
-        method: "POST",
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_HOST_API}/api/user/login`,
+        {
+          method: "POST",
+          body: JSON.stringify(formData),
+        }
+      );
 
       const json = await response.json();
       if (response.status !== 200) {
@@ -113,10 +116,16 @@ const LoginForm = () => {
           Login
         </button>
         <div className="flex justify-between items-center">
-          <Link href={"/register"} className="paragraph_form">
+          <Link
+            href={`${process.env.NEXT_PUBLIC_HOST}/register`}
+            className="paragraph_form"
+          >
             Crie sua conta.
           </Link>
-          <Link href={"/forget_pass"} className="paragraph_form">
+          <Link
+            href={`${process.env.NEXT_PUBLIC_HOST}/forget_pass`}
+            className="paragraph_form"
+          >
             Esqueceu sua senha?
           </Link>
         </div>

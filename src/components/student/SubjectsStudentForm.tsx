@@ -19,10 +19,13 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
   }, []);
 
   const getSubjectsStudent = async () => {
-    const result = await fetch("/api/student/get_subjects", {
-      method: "POST",
-      body: JSON.stringify({ idAluno }),
-    });
+    const result = await fetch(
+      `${process.env.NEXT_PUBLIC_HOST_API}/api/student/get_subjects`,
+      {
+        method: "POST",
+        body: JSON.stringify({ idAluno }),
+      }
+    );
     const { aluno } = await result.json();
     setOneStudent(aluno);
   };

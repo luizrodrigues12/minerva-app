@@ -19,7 +19,7 @@ const NavHeader = () => {
           <ul className="flex gap-5 md:gap-7 lg:gap-8 xl:gap-12 lg:text-[22px] xl:text-2xl">
             <li>
               <Link
-                href="/login"
+                href={`${process.env.NEXT_PUBLIC_HOST}/login`}
                 className="hover:text-zinc-300 hover:shadow-sm"
               >
                 Entrar
@@ -27,7 +27,7 @@ const NavHeader = () => {
             </li>
             <li>
               <Link
-                href="/register"
+                href={`${process.env.NEXT_PUBLIC_HOST}/register`}
                 className="hover:text-zinc-300 hover:shadow-sm"
               >
                 Registrar
@@ -37,7 +37,7 @@ const NavHeader = () => {
         </div>
       ) : (
         <div>
-          <Link href={"/profile"}>
+          <Link href={`${process.env.NEXT_PUBLIC_HOST}/profile`}>
             <UserCircle size={40} color={"rgb(228 228 231)"} />
           </Link>
         </div>

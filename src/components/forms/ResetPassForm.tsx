@@ -30,10 +30,13 @@ const ForgetPassForm = () => {
     try {
       e.preventDefault();
       //Enviando post dos dados
-      const response = await fetch("/api/user/reset_password/", {
-        method: "PUT",
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_HOST_API}/api/user/reset_password/`,
+        {
+          method: "PUT",
+          body: JSON.stringify(formData),
+        }
+      );
 
       setFinalizado(true);
     } catch (error: any) {
@@ -92,7 +95,7 @@ const ForgetPassForm = () => {
         <div className="flex justify-center items-center pt-20">
           {" "}
           <Link
-            href={"/login"}
+            href={`${process.env.NEXT_PUBLIC_HOST}/login`}
             className=" bg-roxominerva rounded-lg p-2 text-2xl"
           >
             Fazer Login

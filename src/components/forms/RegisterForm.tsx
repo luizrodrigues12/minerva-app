@@ -69,10 +69,13 @@ const RegisterForm = () => {
       }
       //Enviando post dos dados
       if (passwordTest && emailTest && usernameTest) {
-        const response = await fetch("/api/user/cadastro", {
-          method: "POST",
-          body: JSON.stringify(formData),
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_HOST_API}/api/user/cadastro`,
+          {
+            method: "POST",
+            body: JSON.stringify(formData),
+          }
+        );
         const json = await response.json();
         if (response.status !== 201) {
           throw new Error(json.error);
@@ -164,7 +167,10 @@ const RegisterForm = () => {
         <button type="submit" className="btn_submit_form">
           Registrar
         </button>
-        <Link href={"/login"} className="paragraph_form">
+        <Link
+          href={`${process.env.NEXT_PUBLIC_HOST}/login`}
+          className="paragraph_form"
+        >
           Já tem uma conta?
         </Link>
       </form>
