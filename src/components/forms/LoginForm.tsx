@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Link from "next/link";
 import useUserStore from "@/stores/userStore";
 import { getCookie } from "cookies-next";
@@ -107,7 +107,10 @@ const LoginForm = () => {
           className="btn_submit_form"
           onClick={async (e) => {
             await handleForm(e)
-              .then(() => router.push("/home"))
+              .then(() => {
+                console.log("Certo");
+                redirect("/home");
+              })
               .catch((err) => console.log(err));
           }}
         >

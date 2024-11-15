@@ -1,15 +1,14 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { deleteCookie, getCookie } from "cookies-next";
 
 type Props = { username: string; email: string };
-const router = useRouter();
 const token = getCookie("authorization");
 const logoutFunction = () => {
   deleteCookie("authorization");
   deleteCookie("username");
-  router.push("/login");
+  redirect("/login");
 };
 
 const removerConta = async (e: any) => {
@@ -19,7 +18,7 @@ const removerConta = async (e: any) => {
     method: "POST",
     body: JSON.stringify({ token: token }),
   });
-  router.push("/login");
+  redirect("/login");
 };
 
 const UserDataComp = ({ email, username }: Props) => {
