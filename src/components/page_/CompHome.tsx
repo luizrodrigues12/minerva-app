@@ -24,10 +24,14 @@ const PageHome = () => {
 
     // GET alunos
     const getAlunos = async () => {
-      const result = await fetch("/api/student/get_students", {
-        method: "POST",
-        body: JSON.stringify({ token: token }),
-      });
+      console.log(process.env.HOST_API);
+      const result = await fetch(
+        `${process.env.HOST_API}/api/student/get_students`,
+        {
+          method: "POST",
+          body: JSON.stringify({ token: token }),
+        }
+      );
 
       const { alunos } = await result.json();
       setAlunos(alunos);
