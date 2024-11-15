@@ -6,6 +6,16 @@ export async function middleware(request: NextRequest) {
   const token = request.cookies.get("authorization")?.value;
   const path = request.nextUrl.pathname;
 
+  request.headers.append("Access-Control-Allow-Origin", "*");
+  request.headers.append(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
+  request.headers.append(
+    "'Access-Control-Allow-Headers'",
+    "Content-Type, Authorization"
+  );
+
   // PEGANDO USUÁRIO
   const result = await fetch(
     `${process.env.NEXT_PUBLIC_HOST_API}/api/user/get_user`,
