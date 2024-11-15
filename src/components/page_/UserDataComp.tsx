@@ -1,11 +1,24 @@
 "use client";
 
 import { redirect } from "next/navigation";
-import { deleteCookie } from "cookies-next";
+import { deleteCookie, getCookie } from "cookies-next";
 
 type Props = { username: string; email: string };
-
+const token = getCookie("authorization");
 const logoutFunction = () => {
+  deleteCookie("authorization");
+  deleteCookie("username");
+  redirect("/login");
+};
+
+const removerConta = async (e: any) => {
+  e.preventDefault();
+
+  await fetch("https://minerva-app.netlify.app/api/user/delete_user", {
+    method: "POST",
+    body: JSON.stringify({ token: token }),
+  });
+
   deleteCookie("authorization");
   deleteCookie("username");
   redirect("/login");
@@ -21,7 +34,15 @@ const UserDataComp = ({ email, username }: Props) => {
       </div>
       <hr className="bg-zinc-800 h-0.5 my-2 border-none" />
       <div className="flex flex-col gap-2 ">
-        <h3 className="text-[1rem]">Username</h3>
+        <div className="flex justify-between">
+          <h3 className="text-[1rem]">Username</h3>
+          <h3
+            className="text-[0.9rem] text-red-700 hover:text-red-500"
+            onClick={(e) => removerConta(e)}
+          >
+            Excluir conta
+          </h3>
+        </div>
         <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg">{username}</div>
         <h3 className="text-[1rem]">Email</h3>
         <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg">{email}</div>
