@@ -37,7 +37,7 @@ const UserDataComp = ({ email, username }: Props) => {
         <div className="flex justify-between">
           <h3 className="text-[1rem]">Username</h3>
           <h3
-            className="text-[0.9rem] text-red-700 hover:text-red-500"
+            className="text-[0.9rem] text-red-700 hover:text-red-500 hover:cursor-pointer"
             onClick={(e) => removerConta(e)}
           >
             Excluir conta
