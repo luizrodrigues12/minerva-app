@@ -39,7 +39,6 @@ export async function POST(req: NextRequest) {
       //Salvando alunos no Zustand
       const alunos = await user.alunos; // ALUNOS NO BANCO DE DADOS
     }
-
     return NextResponse.json({ loggedUser: true }, { status: 200 });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 400 });

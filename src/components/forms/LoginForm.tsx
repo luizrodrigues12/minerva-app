@@ -29,13 +29,7 @@ const LoginForm = () => {
         }
       );
 
-      const json = await response.json();
-      if (response.status !== 200) {
-        throw new Error(json.error);
-      }
       //Enviando para a home.
-
-      router.push("/home");
     } catch (err: any) {
       setError(err.message);
     }
@@ -60,11 +54,7 @@ const LoginForm = () => {
 
   return (
     <div className="px-8 md:self-center rounded-lg md:px-6 md:w-[400px] md:border-zinc-800 md:border-2">
-      <form
-        method="POST"
-        onSubmit={handleForm}
-        className="flex flex-col gap-2 my-4"
-      >
+      <form method="POST" className="flex flex-col gap-2 my-4">
         <h1 className="text-zinc-200 text-2xl font-medium mb-1">Fazer login</h1>
         <div className="flex flex-col gap-2">
           <input
@@ -112,7 +102,15 @@ const LoginForm = () => {
           </div>
         </div>
         {error && <p>{error}</p>}
-        <button type="submit" className="btn_submit_form">
+        <button
+          type="submit"
+          className="btn_submit_form"
+          onClick={async (e) => {
+            await handleForm(e)
+              .then(() => router.push("home"))
+              .catch((err) => console.log(err));
+          }}
+        >
           Login
         </button>
         <div className="flex justify-between items-center">
