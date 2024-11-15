@@ -95,7 +95,7 @@ const ForgetPassForm = () => {
         <div className="flex justify-center items-center pt-20">
           {" "}
           <Link
-            href={`${process.env.NEXT_PUBLIC_HOST}/login`}
+            href="/login"
             className=" bg-roxominerva rounded-lg p-2 text-2xl"
           >
             Fazer Login

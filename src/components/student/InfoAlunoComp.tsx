@@ -95,13 +95,13 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
       <div className="w-full flex gap-2">
         {/* BOTÕES */}
         <Link
-          href={`${process.env.NEXT_PUBLIC_HOST}/student/update_student/${idAluno}`}
+          href={`/student/update_student/${idAluno}`}
           className="flex items-center justify-center rounded-lg text-[13px] font-medium p-1.5 w-full md:p-[7px] text-zinc-200 bg-roxominerva tracking-wider"
         >
           EDITAR
         </Link>
         <Link
-          href={`${process.env.NEXT_PUBLIC_HOST}/student/delete_student/${idAluno}`}
+          href={`/student/delete_student/${idAluno}`}
           className="flex items-center justify-center rounded-lg text-[13px] font-medium p-1.5 w-full md:p-[7px] text-zinc-200 bg-[#961f17de] tracking-wider"
         >
           APAGAR

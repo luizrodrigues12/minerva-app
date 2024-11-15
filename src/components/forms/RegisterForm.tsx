@@ -167,10 +167,7 @@ const RegisterForm = () => {
         <button type="submit" className="btn_submit_form">
           Registrar
         </button>
-        <Link
-          href={`${process.env.NEXT_PUBLIC_HOST}/login`}
-          className="paragraph_form"
-        >
+        <Link href="/login" className="paragraph_form">
           Já tem uma conta?
         </Link>
       </form>

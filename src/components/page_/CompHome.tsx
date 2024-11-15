@@ -67,7 +67,7 @@ const PageHome = () => {
           }}
         />
         <Link
-          href={`${process.env.NEXT_PUBLIC_HOST}/add_student`}
+          href="/add_student"
           className=" bg-roxominerva flex items-center rounded-md p-[15px] h-10 text-zinc-100"
         >
           Adicionar

@@ -116,16 +116,10 @@ const LoginForm = () => {
           Login
         </button>
         <div className="flex justify-between items-center">
-          <Link
-            href={`${process.env.NEXT_PUBLIC_HOST}/register`}
-            className="paragraph_form"
-          >
+          <Link href="/register" className="paragraph_form">
             Crie sua conta.
           </Link>
-          <Link
-            href={`${process.env.NEXT_PUBLIC_HOST}/forget_pass`}
-            className="paragraph_form"
-          >
+          <Link href="/forget_pass" className="paragraph_form">
             Esqueceu sua senha?
           </Link>
         </div>
