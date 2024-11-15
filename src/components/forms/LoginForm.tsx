@@ -107,7 +107,7 @@ const LoginForm = () => {
           className="btn_submit_form"
           onClick={async (e) => {
             await handleForm(e)
-              .then(() => router.push("home"))
+              .then(() => router.push("/home"))
               .catch((err) => console.log(err));
           }}
         >
