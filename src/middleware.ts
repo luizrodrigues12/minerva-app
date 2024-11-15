@@ -1,21 +1,9 @@
 import { NextResponse, NextRequest } from "next/server";
-import { jwtVerify } from "jose";
 
 export async function middleware(request: NextRequest) {
   const secretKey = new TextEncoder().encode(process.env.JWT_SECRET as string);
   const token = request.cookies.get("authorization")?.value;
   const path = request.nextUrl.pathname;
-
-  const res = NextResponse.next();
-  res.headers.set("Access-Control-Allow-Origin", "*");
-  res.headers.set(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS"
-  );
-  res.headers.set(
-    "'Access-Control-Allow-Headers'",
-    "Content-Type, Authorization"
-  );
 
   // PEGANDO USUÁRIO
   const result = await fetch(
