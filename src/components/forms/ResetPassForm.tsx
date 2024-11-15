@@ -2,7 +2,7 @@
 
 import { getCookie } from "cookies-next";
 import Link from "next/link";
-import { redirect, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const ForgetPassForm = () => {

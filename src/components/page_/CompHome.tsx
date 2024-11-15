@@ -1,7 +1,6 @@
 "use client";
 
 import { getCookie } from "cookies-next";
-import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import useUserStore from "@/stores/userStore";
 import AlunosComp from "../home/AlunosComp";
@@ -20,7 +19,7 @@ const PageHome = () => {
     //Verificando token
     const token = getCookie("authorization");
     if (!token) {
-      redirect("/login");
+      router.push("/login");
     }
 
     // GET alunos
@@ -44,7 +43,7 @@ const PageHome = () => {
       usernameCookie.split("")[0].toUpperCase() + usernameCookie.slice(1)
     );
     // Setando Token ZUSTAND
-    setToken(token);
+    setToken(token!);
   }, []);
 
   // OnClickBook

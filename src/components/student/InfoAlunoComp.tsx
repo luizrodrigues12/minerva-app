@@ -4,13 +4,14 @@ import { getCookie } from "cookies-next";
 import { useEffect, useState } from "react";
 import { AlunosObj } from "@/stores/userStore";
 import MateriaComp from "./MateriaComp";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, FileCopy } from "flowbite-react-icons/outline";
 
 import copy from "clipboard-copy";
 
 const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
+  const router = useRouter();
   const [oneStudent, setOneStudent] = useState<AlunosObj>();
   const [checkeds, setCheckeds] = useState(Array<string>);
   const [sextoPort, setSextoPort] = useState(false);
@@ -56,7 +57,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
         <ArrowLeft
           size={22}
           color={"#e4e4e7"}
-          onClick={() => redirect("/home")}
+          onClick={() => router.push("/home")}
         />
       </div>
       {/* NOME DO ALUNO */}
@@ -159,7 +160,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                               onClick={async () => {
                                 // Setando checked nos box
                                 await toggleIsChecked(objMateria);
-                                redirect(
+                                router.push(
                                   `/student/update_route_student/${idAluno}`
                                 );
                               }}
@@ -201,7 +202,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                             onClick={async () => {
                               // Setando checked nos box
                               await toggleIsChecked(objMateria);
-                              redirect(
+                              router.push(
                                 `/student/update_route_student/${idAluno}`
                               );
                             }}
@@ -248,7 +249,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                               onClick={async () => {
                                 // Setando checked nos box
                                 await toggleIsChecked(objMateria);
-                                redirect(
+                                router.push(
                                   `/student/update_route_student/${idAluno}`
                                 );
                               }}
@@ -293,7 +294,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                             onClick={async () => {
                               // Setando checked nos box
                               await toggleIsChecked(objMateria);
-                              redirect(
+                              router.push(
                                 `/student/update_route_student/${idAluno}`
                               );
                             }}

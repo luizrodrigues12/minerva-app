@@ -3,7 +3,7 @@
 import { AlunosObj } from "@/stores/userStore";
 import { getCookie } from "cookies-next";
 import { useEffect, useState } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const RemoveStudentComp = ({ idAluno }: { idAluno: string }) => {
   const router = useRouter();
@@ -23,7 +23,7 @@ const RemoveStudentComp = ({ idAluno }: { idAluno: string }) => {
     setOneStudent(aluno[0]);
 
     // Verificando se o aluno pertence ao professor
-    if (!aluno[0]) redirect("/home");
+    if (!aluno[0]) router.push("/home");
   };
 
   const deleteStudent = async (e: any) => {

@@ -1,7 +1,6 @@
 "use client";
 
 import { validateEmail } from "@/utils/regex";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
