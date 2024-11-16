@@ -18,10 +18,6 @@ const PageHome = () => {
   useEffect(() => {
     //Verificando token
     const token = getCookie("authorization");
-    if (!token) {
-      router.push("/login");
-    }
-
     // GET alunos
     const getAlunos = async () => {
       const result = await fetch(
