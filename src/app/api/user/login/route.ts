@@ -3,7 +3,6 @@ import UserModel from "@/models/userModel";
 import connectDB from "@/dbConfig/dbConfig";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
-import useUserStore from "@/stores/userStore";
 import bcrypt from "bcrypt";
 
 connectDB();

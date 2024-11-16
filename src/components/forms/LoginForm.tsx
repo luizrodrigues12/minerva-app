@@ -27,8 +27,10 @@ const LoginForm = () => {
         body: JSON.stringify(formData),
       });
       //Enviando para a home.
-
-      router.push("/home");
+      setTimeout(() => {
+        console.log("Acabou");
+        router.push("/home");
+      }, 2000);
     } catch (err: any) {
       setError(err.message);
     }
