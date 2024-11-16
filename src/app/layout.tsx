@@ -23,7 +23,13 @@ export default function RootLayout({
         <Header />
 
         <div className="min-h-screen w-screen flex flex-col justify-center items-center">
-          <NextTopLoader color="#e4e4e7" speed={1000} crawlSpeed={1000} />
+          <NextTopLoader
+            color="#e4e4e7"
+            speed={300}
+            crawlSpeed={300}
+            showSpinner={false}
+            shadow={false}
+          />
           {children}
         </div>
         <Footer />
