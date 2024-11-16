@@ -15,29 +15,27 @@ const PageHome = () => {
   const [busca, setBusca] = useState("");
   const router = useRouter();
 
+  //Verificando token
+  const token = getCookie("authorization");
+
+  // GET alunos
+  const getAlunos = async () => {
+    const result = await fetch(`${process.env.HOST}/api/student/get_students`, {
+      method: "POST",
+      body: JSON.stringify({ token: token }),
+    });
+    const { alunos } = await result.json();
+    setAlunos(alunos);
+  };
+
+  //Pegando o username dos cookies
+  const usernameCookie = getCookie("username") as string;
+  setUsername(
+    usernameCookie.split("")[0].toUpperCase() + usernameCookie.slice(1)
+  );
+
   useEffect(() => {
-    //Verificando token
-    const token = getCookie("authorization");
-    // GET alunos
-    const getAlunos = async () => {
-      const result = await fetch(
-        `${process.env.HOST}/api/student/get_students`,
-        {
-          method: "POST",
-          body: JSON.stringify({ token: token }),
-        }
-      );
-
-      const { alunos } = await result.json();
-      setAlunos(alunos);
-    };
     getAlunos();
-
-    //Pegando o username dos cookies
-    const usernameCookie = getCookie("username") as string;
-    setUsername(
-      usernameCookie.split("")[0].toUpperCase() + usernameCookie.slice(1)
-    );
     // Setando Token ZUSTAND
     setToken(token!);
   }, []);
