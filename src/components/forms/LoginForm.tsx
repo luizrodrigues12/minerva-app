@@ -18,18 +18,17 @@ const LoginForm = () => {
 
   // Manipulando submit do formulário
   const handleForm = async (e: any) => {
-    e.preventDefault();
     try {
-      console.log("Longe da push");
+      e.preventDefault();
+
       //Enviando post dos dados
       await fetch(`${process.env.HOST}/api/user/login`, {
         method: "POST",
         body: JSON.stringify(formData),
-      }).then(() => console.log("sucesso no post"));
-
+      });
       //Enviando para a home.
+
       router.push("/home");
-      console.log("Perto da push");
     } catch (err: any) {
       setError(err.message);
     }
@@ -53,7 +52,11 @@ const LoginForm = () => {
 
   return (
     <div className="px-8 md:self-center rounded-lg md:px-6 md:w-[400px] md:border-zinc-800 md:border-2">
-      <form method="POST" className="flex flex-col gap-2 my-4">
+      <form
+        method="POST"
+        className="flex flex-col gap-2 my-4"
+        onSubmit={handleForm}
+      >
         <h1 className="text-zinc-200 text-2xl font-medium mb-1">Fazer login</h1>
         <div className="flex flex-col gap-2">
           <input
@@ -101,12 +104,7 @@ const LoginForm = () => {
           </div>
         </div>
         {error && <p>{error}</p>}
-        <button
-          className="btn_submit_form"
-          onClick={(e) => {
-            handleForm(e);
-          }}
-        >
+        <button className="btn_submit_form" type="submit">
           Login
         </button>
         <div className="flex justify-between items-center">
