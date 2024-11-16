@@ -1,11 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 import useUserStore from "@/stores/userStore";
 import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
+  const router = useRouter();
+
   // State com os dados
   const [formData, setFormData] = useState({
     email: "",
@@ -27,6 +29,7 @@ const LoginForm = () => {
       );
 
       //Enviando para a home.
+      router.push("/home");
     } catch (err: any) {
       setError(err.message);
     }
@@ -106,7 +109,6 @@ const LoginForm = () => {
             await handleForm(e)
               .then(() => {
                 console.log("Certo");
-                redirect("/home");
               })
               .catch((err) => console.log(err));
           }}
