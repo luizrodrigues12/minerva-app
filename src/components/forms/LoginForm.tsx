@@ -6,6 +6,7 @@ import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
+  const token = getCookie("authorization");
   const router = useRouter();
 
   // State com os dados
@@ -17,14 +18,16 @@ const LoginForm = () => {
 
   // Manipulando submit do formulário
   const handleForm = async (e: any) => {
+    e.preventDefault();
     try {
-      e.preventDefault();
+      console.log("Longe da push");
       //Enviando post dos dados
-      const response = await fetch(`${process.env.HOST}/api/user/login`, {
+      await fetch(`${process.env.HOST}/api/user/login`, {
         method: "POST",
         body: JSON.stringify(formData),
-      });
+      }).then(() => console.log("sucesso no post"));
 
+      console.log("Perto da push");
       //Enviando para a home.
       router.push("/home");
     } catch (err: any) {
@@ -45,8 +48,7 @@ const LoginForm = () => {
   // Setando Token ZUSTAND
   const { setToken } = useUserStore();
   useEffect(() => {
-    const token = getCookie("authorization");
-    setToken(token as string);
+    setToken(token!);
   }, []);
 
   return (
