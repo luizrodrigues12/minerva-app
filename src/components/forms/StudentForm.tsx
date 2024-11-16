@@ -40,7 +40,7 @@ const StudentForm = () => {
     try {
       if (!nomeAluno) throw new Error("por favor, insira um nome válido.");
       const result = await fetch(
-        `https://minerva-59e5p21u6-luiz-rodrigues-projects-e7c245fb.vercel.app/api/student/add_student`,
+        `https://minerva-app-nu.vercel.app/api/student/add_student`,
         {
           method: "POST",
           body: JSON.stringify({

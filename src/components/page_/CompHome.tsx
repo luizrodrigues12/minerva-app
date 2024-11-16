@@ -25,7 +25,7 @@ const PageHome = () => {
     // GET alunos
     const getAlunos = async () => {
       const result = await fetch(
-        `https://minerva-59e5p21u6-luiz-rodrigues-projects-e7c245fb.vercel.app/api/student/get_students`,
+        `https://minerva-app-nu.vercel.app/api/student/get_students`,
         {
           method: "POST",
           body: JSON.stringify({ token: token }),

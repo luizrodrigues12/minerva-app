@@ -70,7 +70,7 @@ const RegisterForm = () => {
       //Enviando post dos dados
       if (passwordTest && emailTest && usernameTest) {
         const response = await fetch(
-          `https://minerva-59e5p21u6-luiz-rodrigues-projects-e7c245fb.vercel.app/api/user/cadastro`,
+          `https://minerva-app-nu.vercel.app/api/user/cadastro`,
           {
             method: "POST",
             body: JSON.stringify(formData),

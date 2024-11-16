@@ -19,7 +19,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
   // GET todas as matérias
   const getAllSubjects = async () => {
     const res = await fetch(
-      `https://minerva-59e5p21u6-luiz-rodrigues-projects-e7c245fb.vercel.app/api/subject/get_subjects`,
+      `https://minerva-app-nu.vercel.app/api/subject/get_subjects`,
       { method: "GET" }
     );
     const { materias } = await res.json();
@@ -37,7 +37,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
         throw new Error("Selecione pelo menos uma matéria.");
       // Adicionando matérias ao aluno
       await fetch(
-        `https://minerva-59e5p21u6-luiz-rodrigues-projects-e7c245fb.vercel.app/api/student/add_subjects`,
+        `https://minerva-app-nu.vercel.app/api/student/add_subjects`,
         {
           method: "PUT",
           body: JSON.stringify({ checkeds, token, idAluno }),

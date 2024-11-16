@@ -31,7 +31,7 @@ const ForgetPassForm = () => {
       e.preventDefault();
       //Enviando post dos dados
       const response = await fetch(
-        `https://minerva-59e5p21u6-luiz-rodrigues-projects-e7c245fb.vercel.app/api/user/reset_password/`,
+        `https://minerva-app-nu.vercel.app/api/user/reset_password/`,
         {
           method: "PUT",
           body: JSON.stringify(formData),
