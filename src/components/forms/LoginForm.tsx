@@ -20,15 +20,13 @@ const LoginForm = () => {
     try {
       e.preventDefault();
       //Enviando post dos dados
-      const response = await fetch(
-        `https://minerva-app-nu.vercel.app/api/user/login`,
-        {
-          method: "POST",
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch(`${process.env.HOST}/api/user/login`, {
+        method: "POST",
+        body: JSON.stringify(formData),
+      });
 
       //Enviando para a home.
+      router.push("/home");
     } catch (err: any) {
       setError(err.message);
     }
@@ -104,8 +102,7 @@ const LoginForm = () => {
         <button
           type="submit"
           className="btn_submit_form"
-          onClick={async (e) => {
-            router.push("/home");
+          onClick={(e) => {
             handleForm(e);
           }}
         >

@@ -19,13 +19,10 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
   }, []);
 
   const getSubjectsStudent = async () => {
-    const result = await fetch(
-      `https://minerva-app-nu.vercel.app/api/student/get_subjects`,
-      {
-        method: "POST",
-        body: JSON.stringify({ idAluno }),
-      }
-    );
+    const result = await fetch(`${process.env.HOST}/api/student/get_subjects`, {
+      method: "POST",
+      body: JSON.stringify({ idAluno }),
+    });
     const { aluno } = await result.json();
     setOneStudent(aluno);
   };

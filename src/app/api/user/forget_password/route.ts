@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
         <h3>Redefina sua senha:</h3>
         <p style="font-size: 14px;">
         Clique <a style="text-decoration: none; color: #4f47a8" href="${`${
-          process.env.NEXT_PUBLIC_HOST as string
+          process.env.HOST as string
         }/reset_password/_id=${idUser}`}">aqui</a> para redefinir sua senha.
         </p>
       </div>`,

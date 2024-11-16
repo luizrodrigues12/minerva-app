@@ -24,13 +24,10 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
 
   // GET dados do aluno
   const getOneStudent = async () => {
-    const result = await fetch(
-      `https://minerva-app-nu.vercel.app/api/student/get_student`,
-      {
-        method: "POST",
-        body: JSON.stringify({ idAluno: idAluno, token: token }),
-      }
-    );
+    const result = await fetch(`${process.env.HOST}/api/student/get_student`, {
+      method: "POST",
+      body: JSON.stringify({ idAluno: idAluno, token: token }),
+    });
     // Pegando aluno do return
     const { aluno } = await result.json();
     setOneStudent(aluno[0]);
@@ -38,7 +35,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
 
   const toggleIsChecked = async (objMateria: any) => {
     const result = await fetch(
-      `https://minerva-app-nu.vercel.app/api/student/toggle_checked`,
+      `${process.env.HOST}/api/student/toggle_checked`,
       {
         method: "PUT",
         body: JSON.stringify({ objMateria, idAluno, token, checkeds }),
@@ -77,9 +74,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
             color="#e4e4e7"
             className="hover:cursor-pointer"
             onClick={async () =>
-              copy(
-                `https://minerva-app-nu.vercel.app/parents/get_subjects/${idAluno}`
-              )
+              copy(`${process.env.HOST}/parents/get_subjects/${idAluno}`)
             }
           />
         </div>

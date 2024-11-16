@@ -25,7 +25,7 @@ const PageHome = () => {
     // GET alunos
     const getAlunos = async () => {
       const result = await fetch(
-        `https://minerva-app-nu.vercel.app/api/student/get_students`,
+        `${process.env.HOST}/api/student/get_students`,
         {
           method: "POST",
           body: JSON.stringify({ token: token }),
@@ -74,7 +74,7 @@ const PageHome = () => {
         </Link>
       </div>
       {/* RENDERIZANDO NOMES EM ORDEM ALFABÉTICA */}
-      {alunos.length > 0 ? (
+      {alunos.length !== 0 ? (
         alunos
           .filter((aluno) =>
             aluno.nome?.toLowerCase().includes(busca.toLowerCase())

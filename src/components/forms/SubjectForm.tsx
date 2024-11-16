@@ -18,10 +18,9 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
   const token = getCookie("authorization");
   // GET todas as matérias
   const getAllSubjects = async () => {
-    const res = await fetch(
-      `https://minerva-app-nu.vercel.app/api/subject/get_subjects`,
-      { method: "GET" }
-    );
+    const res = await fetch(`${process.env.HOST}/api/subject/get_subjects`, {
+      method: "GET",
+    });
     const { materias } = await res.json();
     setSubjects(materias);
   };
@@ -36,13 +35,10 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
       if (checkeds.length === 0)
         throw new Error("Selecione pelo menos uma matéria.");
       // Adicionando matérias ao aluno
-      await fetch(
-        `https://minerva-app-nu.vercel.app/api/student/add_subjects`,
-        {
-          method: "PUT",
-          body: JSON.stringify({ checkeds, token, idAluno }),
-        }
-      );
+      await fetch(`${process.env.HOST}/api/student/add_subjects`, {
+        method: "PUT",
+        body: JSON.stringify({ checkeds, token, idAluno }),
+      });
       //Enviando para a home.
       router.push("/home");
     } catch (error: any) {

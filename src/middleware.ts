@@ -6,13 +6,10 @@ export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   // PEGANDO USUÁRIO
-  const result = await fetch(
-    `${process.env.NEXT_PUBLIC_HOST_API}/api/user/get_user`,
-    {
-      method: "POST",
-      body: JSON.stringify({ token }),
-    }
-  );
+  const result = await fetch(`${process.env.HOST}/api/user/get_user`, {
+    method: "POST",
+    body: JSON.stringify({ token }),
+  });
   const { user } = await result.json();
 
   if (!user) {

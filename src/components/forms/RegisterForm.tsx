@@ -69,13 +69,10 @@ const RegisterForm = () => {
       }
       //Enviando post dos dados
       if (passwordTest && emailTest && usernameTest) {
-        const response = await fetch(
-          `https://minerva-app-nu.vercel.app/api/user/cadastro`,
-          {
-            method: "POST",
-            body: JSON.stringify(formData),
-          }
-        );
+        const response = await fetch(`${process.env.HOST}/api/user/cadastro`, {
+          method: "POST",
+          body: JSON.stringify(formData),
+        });
         const json = await response.json();
         if (response.status !== 201) {
           throw new Error(json.error);

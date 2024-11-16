@@ -20,13 +20,10 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
   };
 
   const getAluno = async () => {
-    const result = await fetch(
-      `https://minerva-app-nu.vercel.app/api/student/get_student`,
-      {
-        method: "POST",
-        body: JSON.stringify({ idAluno: idAluno, token: token }),
-      }
-    );
+    const result = await fetch(`${process.env.HOST}/api/student/get_student`, {
+      method: "POST",
+      body: JSON.stringify({ idAluno: idAluno, token: token }),
+    });
     // Pegando aluno do return
     const { aluno } = await result.json();
     setOneStudent(aluno[0]);
@@ -34,7 +31,7 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
 
   const updateAluno = async () => {
     const result = await fetch(
-      `https://minerva-app-nu.vercel.app/api/student/update_student`,
+      `${process.env.HOST}/api/student/update_student`,
       {
         method: "PUT",
         body: JSON.stringify({

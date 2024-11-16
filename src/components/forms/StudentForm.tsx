@@ -40,7 +40,7 @@ const StudentForm = () => {
     try {
       if (!nomeAluno) throw new Error("por favor, insira um nome válido.");
       const result = await fetch(
-        `https://minerva-app-nu.vercel.app/api/student/add_student`,
+        `${process.env.HOST}/api/student/add_student`,
         {
           method: "POST",
           body: JSON.stringify({

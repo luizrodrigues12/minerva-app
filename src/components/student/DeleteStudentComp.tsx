@@ -11,13 +11,10 @@ const RemoveStudentComp = ({ idAluno }: { idAluno: string }) => {
   const token = getCookie("authorization");
 
   const getAluno = async () => {
-    const result = await fetch(
-      `https://minerva-app-nu.vercel.app/api/student/get_student`,
-      {
-        method: "POST",
-        body: JSON.stringify({ idAluno: idAluno, token: token }),
-      }
-    );
+    const result = await fetch(`${process.env.HOST}/api/student/get_student`, {
+      method: "POST",
+      body: JSON.stringify({ idAluno: idAluno, token: token }),
+    });
     // Pegando aluno do return
     const { aluno } = await result.json();
     setOneStudent(aluno[0]);
@@ -29,7 +26,7 @@ const RemoveStudentComp = ({ idAluno }: { idAluno: string }) => {
   const deleteStudent = async (e: any) => {
     e.preventDefault();
     const result = await fetch(
-      `https://minerva-app-nu.vercel.app/api/student/delete_student/`,
+      `${process.env.HOST}/api/student/delete_student/`,
       {
         method: "DELETE",
         body: JSON.stringify({ token: token, idAluno: idAluno }),

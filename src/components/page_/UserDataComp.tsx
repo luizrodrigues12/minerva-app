@@ -17,10 +17,12 @@ const UserDataComp = ({ email, username }: Props) => {
   const removerConta = async (e: any) => {
     e.preventDefault();
 
-    await fetch("https://minerva-app-nu.vercel.app/api/user/delete_user", {
+    await fetch(`${process.env.HOST}/api/user/delete_user`, {
       method: "POST",
       body: JSON.stringify({ token: token }),
     });
+    deleteCookie("authorization");
+    deleteCookie("username");
     redirect("/login");
   };
 
@@ -36,7 +38,7 @@ const UserDataComp = ({ email, username }: Props) => {
         <div className="flex justify-between">
           <h3 className="text-[1rem]">Username</h3>
           <h3
-            className="text-[0.9rem] text-red-700 hover:text-red-500 hover:cursor"
+            className="text-[0.9rem] text-red-700 hover:text-red-500 hover:cursor-pointer"
             onClick={(e) => removerConta(e)}
           >
             Excluir conta
