@@ -8,9 +8,13 @@ type Props = { username: string; email: string };
 
 const UserDataComp = ({ email, username }: Props) => {
   const token = getCookie("authorization");
-  const logoutFunction = () => {
+
+  const logoutFunction = (e: any) => {
+    e.preventDefault();
+
     deleteCookie("authorization");
     deleteCookie("username");
+
     redirect("/login");
   };
 
@@ -51,7 +55,7 @@ const UserDataComp = ({ email, username }: Props) => {
       </div>
       <button
         className="bg-roxominerva w-full rounded-lg text-[16px] md:p-[7px] text-zinc-100; h-10 flex justify-center items-center"
-        onClick={logoutFunction}
+        onClick={(e) => logoutFunction(e)}
       >
         Logout
       </button>
