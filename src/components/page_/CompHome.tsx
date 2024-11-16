@@ -46,11 +46,6 @@ const PageHome = () => {
     setToken(token!);
   }, []);
 
-  // OnClickBook
-  const onClickBook = (idAluno: string) => {
-    router.push(`/student/${idAluno}`);
-  };
-
   return (
     <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 flex flex-col gap-2">
       {/* SISTEMA DE BUSCA */}
@@ -84,7 +79,7 @@ const PageHome = () => {
             if (aluno.nome && !(aluno.materias?.length === 0))
               return (
                 <AlunosComp
-                  onClick={() => onClickBook(aluno.idAluno!)}
+                  idAluno={aluno.idAluno!}
                   key={i}
                   text={aluno.nome!}
                 />
