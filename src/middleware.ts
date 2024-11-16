@@ -17,7 +17,7 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  if (user && (path === "/register" || path === "/login")) {
+  if (user && (path === "/register" || path === "/login" || path === "/")) {
     return NextResponse.redirect(new URL("/home", request.url));
   }
 }
@@ -31,5 +31,6 @@ export const config = {
     "/add_student/:path*",
     "/login",
     "/register",
+    "/",
   ],
 };
