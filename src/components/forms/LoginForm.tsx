@@ -29,7 +29,6 @@ const LoginForm = () => {
       );
 
       //Enviando para a home.
-      router.push("/home");
     } catch (err: any) {
       setError(err.message);
     }
@@ -108,7 +107,7 @@ const LoginForm = () => {
           onClick={async (e) => {
             await handleForm(e)
               .then(() => {
-                console.log("Certo");
+                router.push("/home");
               })
               .catch((err) => console.log(err));
           }}
