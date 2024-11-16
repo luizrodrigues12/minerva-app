@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import useUserStore from "@/stores/userStore";
 import { getCookie } from "cookies-next";
@@ -12,9 +12,6 @@ const LoginForm = () => {
     password: "",
   });
   const [error, setError] = useState("");
-
-  // Call useRouter
-  const router = useRouter();
 
   // Manipulando submit do formulário
   const handleForm = async (e: any) => {
