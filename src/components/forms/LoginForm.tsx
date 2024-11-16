@@ -27,9 +27,9 @@ const LoginForm = () => {
         body: JSON.stringify(formData),
       }).then(() => console.log("sucesso no post"));
 
-      console.log("Perto da push");
       //Enviando para a home.
       router.push("/home");
+      console.log("Perto da push");
     } catch (err: any) {
       setError(err.message);
     }
@@ -102,7 +102,6 @@ const LoginForm = () => {
         </div>
         {error && <p>{error}</p>}
         <button
-          type="submit"
           className="btn_submit_form"
           onClick={(e) => {
             handleForm(e);
