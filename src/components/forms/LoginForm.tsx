@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import useUserStore from "@/stores/userStore";
 import { getCookie } from "cookies-next";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const token = getCookie("authorization");
+  const router = useRouter();
 
   // State com os dados
   const [formData, setFormData] = useState({
@@ -26,8 +27,7 @@ const LoginForm = () => {
         body: JSON.stringify(formData),
       });
       //Enviando para a home.
-
-      redirect("/home");
+      router.refresh();
     } catch (err: any) {
       setError(err.message);
     }
