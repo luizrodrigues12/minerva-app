@@ -36,8 +36,6 @@ export async function POST(req: NextRequest) {
       // Salvando token existente nos cookies
       (await cookies()).set("authorization", user.token);
       (await cookies()).set("username", user.username);
-      //Salvando alunos no Zustand
-      const alunos = await user.alunos; // ALUNOS NO BANCO DE DADOS
     }
     return NextResponse.json({ loggedUser: true }, { status: 200 });
   } catch (error: any) {
