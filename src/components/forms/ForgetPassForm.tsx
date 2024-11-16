@@ -17,7 +17,7 @@ const ForgetPassForm = () => {
       e.preventDefault();
       //Enviando post dos dados
       const response = await fetch(
-        `https://minerva-app.netlify.app/api/user/forget_password/`,
+        `https://minerva-59e5p21u6-luiz-rodrigues-projects-e7c245fb.vercel.app/api/user/forget_password/`,
         {
           method: "POST",
           body: JSON.stringify({ email }),

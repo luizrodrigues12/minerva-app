@@ -20,7 +20,7 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
 
   const getSubjectsStudent = async () => {
     const result = await fetch(
-      `https://minerva-app.netlify.app/api/student/get_subjects`,
+      `https://minerva-59e5p21u6-luiz-rodrigues-projects-e7c245fb.vercel.app/api/student/get_subjects`,
       {
         method: "POST",
         body: JSON.stringify({ idAluno }),

@@ -25,7 +25,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   // GET dados do aluno
   const getOneStudent = async () => {
     const result = await fetch(
-      `https://minerva-app.netlify.app/api/student/get_student`,
+      `https://minerva-59e5p21u6-luiz-rodrigues-projects-e7c245fb.vercel.app/api/student/get_student`,
       {
         method: "POST",
         body: JSON.stringify({ idAluno: idAluno, token: token }),
@@ -38,7 +38,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
 
   const toggleIsChecked = async (objMateria: any) => {
     const result = await fetch(
-      `https://minerva-app.netlify.app/api/student/toggle_checked`,
+      `https://minerva-59e5p21u6-luiz-rodrigues-projects-e7c245fb.vercel.app/api/student/toggle_checked`,
       {
         method: "PUT",
         body: JSON.stringify({ objMateria, idAluno, token, checkeds }),
@@ -78,7 +78,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
             className="hover:cursor-pointer"
             onClick={async () =>
               copy(
-                `https://minerva-app.netlify.app/parents/get_subjects/${idAluno}`
+                `https://minerva-59e5p21u6-luiz-rodrigues-projects-e7c245fb.vercel.app/parents/get_subjects/${idAluno}`
               )
             }
           />

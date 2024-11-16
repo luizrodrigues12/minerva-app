@@ -17,10 +17,13 @@ const UserDataComp = ({ email, username }: Props) => {
   const removerConta = async (e: any) => {
     e.preventDefault();
 
-    await fetch("https://minerva-app.netlify.app/api/user/delete_user", {
-      method: "POST",
-      body: JSON.stringify({ token: token }),
-    });
+    await fetch(
+      "https://minerva-59e5p21u6-luiz-rodrigues-projects-e7c245fb.vercel.app/api/user/delete_user",
+      {
+        method: "POST",
+        body: JSON.stringify({ token: token }),
+      }
+    );
     redirect("/login");
   };
 
