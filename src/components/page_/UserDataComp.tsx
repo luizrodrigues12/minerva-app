@@ -2,26 +2,28 @@
 
 import { redirect } from "next/navigation";
 import { deleteCookie, getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 
 type Props = { username: string; email: string };
-const token = getCookie("authorization");
-const logoutFunction = () => {
-  deleteCookie("authorization");
-  deleteCookie("username");
-  redirect("/login");
-};
-
-const removerConta = async (e: any) => {
-  e.preventDefault();
-
-  await fetch("https://minerva-app.netlify.app/api/user/delete_user", {
-    method: "POST",
-    body: JSON.stringify({ token: token }),
-  });
-  redirect("/login");
-};
 
 const UserDataComp = ({ email, username }: Props) => {
+  const token = getCookie("authorization");
+  const logoutFunction = () => {
+    deleteCookie("authorization");
+    deleteCookie("username");
+    redirect("/login");
+  };
+
+  const removerConta = async (e: any) => {
+    e.preventDefault();
+
+    await fetch("https://minerva-app.netlify.app/api/user/delete_user", {
+      method: "POST",
+      body: JSON.stringify({ token: token }),
+    });
+    redirect("/login");
+  };
+
   return (
     <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2">
       <div className="flex items-center justify-center gap-3">
