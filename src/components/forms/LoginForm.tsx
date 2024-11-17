@@ -27,7 +27,8 @@ const LoginForm = () => {
         body: JSON.stringify(formData),
       });
       //Enviando para a home.
-      router.refresh();
+      router.prefetch("/home");
+      router.push("/home");
     } catch (err: any) {
       setError(err.message);
     }

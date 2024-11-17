@@ -34,7 +34,7 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
         <Refresh
           size={22}
           color={"#e4e4e7"}
-          onClick={() => redirect(`/update_route_student_subjects/${idAluno}`)}
+          onClick={() => window.location.reload()}
         />
       </div>
       <div className="flex flex-col gap-2">

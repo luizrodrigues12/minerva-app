@@ -106,6 +106,7 @@ const StudentForm = () => {
         ) : (
           <></>
         )}
+
         <button
           type="submit"
           className="btn_submit_form"
@@ -120,7 +121,7 @@ const StudentForm = () => {
                 throw new Error("Escolha ao menos um preparatório.");
               await submitFormStudent();
 
-              router.push(`/add_student/subjects/${idStudent}`);
+              window.location.replace(`/add_student/subjects/${idStudent}`);
             } catch (error: any) {
               setError(error.message);
             }

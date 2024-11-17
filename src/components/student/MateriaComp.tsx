@@ -4,7 +4,7 @@ import { CheckCircle as CheckCircleSolid } from "flowbite-react-icons/solid";
 type Props = {
   text: string;
   isChecked: boolean;
-  onClick?: () => void;
+  onClick?: any;
   id: string;
 };
 

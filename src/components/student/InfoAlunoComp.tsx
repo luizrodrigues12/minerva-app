@@ -33,7 +33,8 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
     setOneStudent(aluno[0]);
   };
 
-  const toggleIsChecked = async (objMateria: any) => {
+  const toggleIsChecked = async (objMateria: any, e: any) => {
+    e.preventDefault();
     const result = await fetch(
       `${process.env.HOST}/api/student/toggle_checked`,
       {
@@ -41,6 +42,8 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
         body: JSON.stringify({ objMateria, idAluno, token, checkeds }),
       }
     );
+
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -152,12 +155,9 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                               text={objMateria.nome.toUpperCase()}
                               isChecked={objMateria.isChecked}
                               id={objMateria._id}
-                              onClick={async () => {
+                              onClick={(e: any) => {
                                 // Setando checked nos box
-                                await toggleIsChecked(objMateria);
-                                router.push(
-                                  `/student/update_route_student/${idAluno}`
-                                );
+                                toggleIsChecked(objMateria, e);
                               }}
                             />
                           );
@@ -194,12 +194,9 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                             text={objMateria.nome.toUpperCase()}
                             isChecked={objMateria.isChecked}
                             id={objMateria._id}
-                            onClick={async () => {
+                            onClick={(e: any) => {
                               // Setando checked nos box
-                              await toggleIsChecked(objMateria);
-                              router.push(
-                                `/student/update_route_student/${idAluno}`
-                              );
+                              toggleIsChecked(objMateria, e);
                             }}
                           />
                         );
@@ -241,12 +238,9 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                               text={objMateria.nome.toUpperCase()}
                               isChecked={objMateria.isChecked}
                               id={objMateria._id}
-                              onClick={async () => {
+                              onClick={(e: any) => {
                                 // Setando checked nos box
-                                await toggleIsChecked(objMateria);
-                                router.push(
-                                  `/student/update_route_student/${idAluno}`
-                                );
+                                toggleIsChecked(objMateria, e);
                               }}
                             />
                           );
@@ -286,12 +280,9 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                             text={objMateria.nome.toUpperCase()}
                             isChecked={objMateria.isChecked}
                             id={objMateria._id}
-                            onClick={async () => {
+                            onClick={(e: any) => {
                               // Setando checked nos box
-                              await toggleIsChecked(objMateria);
-                              router.push(
-                                `/student/update_route_student/${idAluno}`
-                              );
+                              toggleIsChecked(objMateria, e);
                             }}
                           />
                         );

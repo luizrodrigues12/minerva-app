@@ -40,7 +40,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
         body: JSON.stringify({ checkeds, token, idAluno }),
       });
       //Enviando para a home.
-      router.push("/home");
+      window.location.replace("/home");
     } catch (error: any) {
       setError(error.message);
     }
