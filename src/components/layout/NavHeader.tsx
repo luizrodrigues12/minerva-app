@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 const NavHeader = () => {
   const tokenCookie = getCookie("authorization");
   const [token, setToken] = useState("");
-  const path = window.location.pathname;
+  const path = usePathname();
 
   const getUser = async () => {
     try {
