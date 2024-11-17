@@ -5,18 +5,26 @@ import Link from "next/link";
 import useUserStore from "@/stores/userStore";
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
+import { usePathname } from "next/navigation";
+
 const NavHeader = () => {
   const tokenCookie = getCookie("authorization");
   const [token, setToken] = useState("");
+  const path = window.location.pathname;
 
   const getUser = async () => {
-    const res = await fetch(`${process.env.HOST}/api/user/get_user`, {
-      method: "POST",
-      body: JSON.stringify({ token: tokenCookie }),
-    });
-    const { user } = await res.json();
+    try {
+      const res = await fetch(`${process.env.HOST}/api/user/get_user`, {
+        method: "POST",
+        body: JSON.stringify({ token: tokenCookie }),
+      });
+      const { user } = await res.json();
+      if (!user) throw new Error("Usuário não encontrado");
 
-    setToken(user.token);
+      setToken(user.token);
+    } catch (error) {
+      setToken("");
+    }
   };
 
   useEffect(() => {
@@ -25,7 +33,11 @@ const NavHeader = () => {
 
   return (
     <>
-      {token ? (
+      {!(
+        path === "/login" ||
+        path === "/register" ||
+        path === "/forget_pass"
+      ) ? (
         <div>
           <div onClick={() => (window.location.href = "/profile")}>
             <UserCircle size={40} color={"rgb(228 228 231)"} />
