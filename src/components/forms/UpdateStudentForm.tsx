@@ -107,7 +107,7 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
             e.preventDefault();
             await getChecks();
             await updateAluno();
-            router.push(`/student/${idAluno}`);
+            window.location.replace(`/student/${idAluno}`);
           }}
         >
           Salvar

@@ -53,11 +53,7 @@ const ForgetPassForm = () => {
     <>
       {!finalizado ? (
         <div className="px-8 md:self-center rounded-lg md:px-6 md:py-4 my-2 md:w-[400px] md:border-zinc-800 md:border-2">
-          <form
-            method="POST"
-            onSubmit={handleForm}
-            className="form_reset_password"
-          >
+          <form method="POST" className="form_reset_password">
             <h1 className="h1_form">Redefinir Senha</h1>
             <div className="div_form">
               <div className="div_input_password">
@@ -86,7 +82,14 @@ const ForgetPassForm = () => {
                 </button>
               </div>
             </div>
-            <button type="submit" className="btn_submit_form">
+            <button
+              type="submit"
+              className="btn_submit_form"
+              onClick={async (e) => {
+                await handleForm(e);
+                window.location.replace("/login");
+              }}
+            >
               Redefinir
             </button>
           </form>

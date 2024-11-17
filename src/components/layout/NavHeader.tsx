@@ -18,28 +18,28 @@ const NavHeader = () => {
         <div>
           <ul className="flex gap-5 md:gap-7 lg:gap-8 xl:gap-12 lg:text-[22px] xl:text-2xl">
             <li>
-              <Link
-                href="/login"
-                className="hover:text-zinc-300 hover:shadow-sm"
+              <div
+                onClick={() => window.location.replace("/login")}
+                className="hover:text-zinc-300 hover:shadow-sm hover:cursor-pointer"
               >
                 Entrar
-              </Link>
+              </div>
             </li>
             <li>
-              <Link
-                href="/register"
-                className="hover:text-zinc-300 hover:shadow-sm"
+              <div
+                onClick={() => window.location.replace("/register")}
+                className="hover:text-zinc-300 hover:shadow-sm hover:cursor-pointer"
               >
                 Registrar
-              </Link>
+              </div>
             </li>
           </ul>
         </div>
       ) : (
         <div>
-          <Link href="/profile">
+          <div onClick={() => window.location.replace("/profile")}>
             <UserCircle size={40} color={"rgb(228 228 231)"} />
-          </Link>
+          </div>
         </div>
       )}
     </>

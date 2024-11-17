@@ -1,5 +1,6 @@
+"use client";
+
 import { Book } from "flowbite-react-icons/outline";
-import Link from "next/link";
 
 const AlunosComp = ({ text, idAluno }: { text: string; idAluno: string }) => {
   return (
@@ -9,9 +10,9 @@ const AlunosComp = ({ text, idAluno }: { text: string; idAluno: string }) => {
           {text}
         </p>
         <div className="options flex gap-3">
-          <Link href={`/student/${idAluno}`}>
+          <div onClick={() => window.location.replace(`/student/${idAluno}`)}>
             <Book color="#FAA139" />
-          </Link>
+          </div>
           {/* #4F47A8 */}
         </div>
       </div>

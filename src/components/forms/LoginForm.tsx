@@ -107,12 +107,18 @@ const LoginForm = () => {
           Login
         </button>
         <div className="flex justify-between items-center">
-          <Link href="/register" className="paragraph_form">
+          <div
+            className="paragraph_form"
+            onClick={() => window.location.replace("/register")}
+          >
             Crie sua conta.
-          </Link>
-          <Link href="/forget_pass" className="paragraph_form">
+          </div>
+          <div
+            className="paragraph_form"
+            onClick={() => window.location.replace("/forget_pass")}
+          >
             Esqueceu sua senha?
-          </Link>
+          </div>
         </div>
       </form>
     </div>
