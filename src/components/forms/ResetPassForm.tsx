@@ -87,7 +87,7 @@ const ForgetPassForm = () => {
               className="btn_submit_form"
               onClick={async (e) => {
                 await handleForm(e);
-                window.location.replace("/login");
+                window.location.href = "/login";
               }}
             >
               Redefinir

@@ -121,7 +121,7 @@ const StudentForm = () => {
                 throw new Error("Escolha ao menos um preparatório.");
               await submitFormStudent();
 
-              window.location.replace(`/add_student/subjects/${idStudent}`);
+              window.location.href = `/add_student/subjects/${idStudent}`;
             } catch (error: any) {
               setError(error.message);
             }

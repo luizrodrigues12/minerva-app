@@ -166,7 +166,7 @@ const RegisterForm = () => {
         </button>
         <div
           className="paragraph_form"
-          onClick={() => window.location.replace("/login")}
+          onClick={() => (window.location.href = "/login")}
         >
           Já tem uma conta?
         </div>

@@ -95,7 +95,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
         {/* BOTÕES */}
         <div
           onClick={() =>
-            window.location.replace(`/student/update_student/${idAluno}`)
+            (window.location.href = `/student/update_student/${idAluno}`)
           }
           className="flex items-center justify-center rounded-lg text-[13px] font-medium p-1.5 w-full md:p-[7px] text-zinc-200 bg-roxominerva tracking-wider"
         >
@@ -103,7 +103,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
         </div>
         <div
           onClick={() =>
-            window.location.replace(`/student/delete_student/${idAluno}`)
+            (window.location.href = `/student/delete_student/${idAluno}`)
           }
           className="flex items-center justify-center rounded-lg text-[13px] font-medium p-1.5 w-full md:p-[7px] text-zinc-200 bg-[#961f17de] tracking-wider"
         >

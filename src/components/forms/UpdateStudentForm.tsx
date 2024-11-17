@@ -107,7 +107,7 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
             e.preventDefault();
             await getChecks();
             await updateAluno();
-            window.location.replace(`/student/${idAluno}`);
+            window.location.href = `/student/${idAluno}`;
           }}
         >
           Salvar

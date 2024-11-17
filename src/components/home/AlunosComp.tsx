@@ -10,7 +10,7 @@ const AlunosComp = ({ text, idAluno }: { text: string; idAluno: string }) => {
           {text}
         </p>
         <div className="options flex gap-3">
-          <div onClick={() => window.location.replace(`/student/${idAluno}`)}>
+          <div onClick={() => (window.location.href = `/student/${idAluno}`)}>
             <Book color="#FAA139" />
           </div>
           {/* #4F47A8 */}

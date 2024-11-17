@@ -109,13 +109,13 @@ const LoginForm = () => {
         <div className="flex justify-between items-center">
           <div
             className="paragraph_form"
-            onClick={() => window.location.replace("/register")}
+            onClick={() => (window.location.href = "/register")}
           >
             Crie sua conta.
           </div>
           <div
             className="paragraph_form"
-            onClick={() => window.location.replace("/forget_pass")}
+            onClick={() => (window.location.href = "/forget_pass")}
           >
             Esqueceu sua senha?
           </div>

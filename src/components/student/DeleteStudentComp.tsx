@@ -32,7 +32,7 @@ const RemoveStudentComp = ({ idAluno }: { idAluno: string }) => {
         body: JSON.stringify({ token: token, idAluno: idAluno }),
       }
     );
-    window.location.replace("/home");
+    window.location.href = "/home";
   };
 
   useEffect(() => {

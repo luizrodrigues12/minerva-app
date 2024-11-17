@@ -30,10 +30,6 @@ const PageHome = () => {
 
       const { alunos } = await result.json();
       setAlunos(alunos);
-
-      setTimeout(() => {
-        router.refresh();
-      }, 1000);
     };
     getAlunos();
 
