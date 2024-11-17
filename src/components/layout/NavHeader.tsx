@@ -25,7 +25,7 @@ const NavHeader = () => {
 
   return (
     <>
-      {!token ? (
+      {token ? (
         <div>
           <div onClick={() => (window.location.href = "/profile")}>
             <UserCircle size={40} color={"rgb(228 228 231)"} />
