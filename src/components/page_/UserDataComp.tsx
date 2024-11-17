@@ -15,7 +15,7 @@ const UserDataComp = ({ email, username }: Props) => {
     deleteCookie("authorization");
     deleteCookie("username");
 
-    router.push("/login");
+    window.location.replace("/login");
   };
 
   const removerConta = async (e: any) => {
@@ -27,7 +27,7 @@ const UserDataComp = ({ email, username }: Props) => {
     });
     deleteCookie("authorization");
     deleteCookie("username");
-    router.push("/login");
+    window.location.replace("/login");
   };
 
   return (
