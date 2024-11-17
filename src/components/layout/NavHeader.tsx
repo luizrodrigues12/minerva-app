@@ -27,6 +27,12 @@ const NavHeader = () => {
     <>
       {!token ? (
         <div>
+          <div onClick={() => (window.location.href = "/profile")}>
+            <UserCircle size={40} color={"rgb(228 228 231)"} />
+          </div>
+        </div>
+      ) : (
+        <div>
           <ul className="flex gap-5 md:gap-7 lg:gap-8 xl:gap-12 lg:text-[22px] xl:text-2xl">
             <li>
               <div
@@ -45,12 +51,6 @@ const NavHeader = () => {
               </div>
             </li>
           </ul>
-        </div>
-      ) : (
-        <div>
-          <div onClick={() => (window.location.href = "/profile")}>
-            <UserCircle size={40} color={"rgb(228 228 231)"} />
-          </div>
         </div>
       )}
     </>
