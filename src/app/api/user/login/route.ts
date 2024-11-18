@@ -24,8 +24,16 @@ export async function POST(req: NextRequest) {
         { expiresIn: "90d" }
       );
       // Salvando token nos cookies
-      (await cookies()).set("authorization", token);
-      (await cookies()).set("username", user.username);
+      (await cookies()).set("authorization", token, {
+        maxAge: 86400 * 90,
+        secure: true,
+        sameSite: "strict",
+      });
+      (await cookies()).set("username", user.username, {
+        maxAge: 86400 * 90,
+        secure: true,
+        sameSite: "strict",
+      });
 
       //Salvando alunos no Zustand
       const alunos = await user.alunos; // ALUNOS NO BANCO DE DADOS
