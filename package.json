@@ -9,20 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/mongoose": "^5.11.97",
     "bcrypt": "^5.1.1",
     "clipboard-copy": "^4.0.1",
     "cookies-next": "^4.3.0",
     "flowbite-react": "^0.10.2",
     "flowbite-react-icons": "^1.1.0",
     "jose": "^5.9.6",
-    "json-web-token": "^3.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.10.0",
     "mongoose": "^8.8.0",
     "next": "15.0.2",
-    "next-auth": "^4.24.10",
-    "nextjs-toploader": "^3.7.15",
     "nodemailer": "^6.9.16",
     "npm": "^10.9.0",
     "react": "19.0.0-rc-02c0e824-20241028",
@@ -34,6 +30,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.7",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.16",
     "@types/react": "^18",

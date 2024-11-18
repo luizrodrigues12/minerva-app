@@ -10,12 +10,26 @@ import copy from "clipboard-copy";
 import MateriasPortugues from "./MateriasPortugues";
 import MateriasMatematica from "./MateriasMatematica";
 import NomePreparatorio from "./NomePreparatorio";
+import useSWR from "swr";
 
 const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   const [oneStudent, setOneStudent] = useState<AlunosObj>();
   const [checkeds, setCheckeds] = useState(Array<string>);
   const [busca, setBusca] = useState("");
   const token = getCookie("authorization");
+  const fetcher = (url: string) =>
+    fetch(`${process.env.HOST}/api/student/get_student`, {
+      method: "POST",
+      body: JSON.stringify({ idAluno: idAluno, token: token }),
+    }).then(async (res) => {
+      const { aluno } = await res.json();
+      return aluno[0];
+    });
+
+  const { data: umEstudante, mutate } = useSWR(
+    `${process.env.HOST}/api/student/get_student`,
+    fetcher
+  );
 
   // GET dados do aluno
   const getOneStudent = async () => {
@@ -38,7 +52,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
       }
     );
 
-    window.location.reload();
+    mutate(`${process.env.HOST}/api/student/toggle_checked`);
   };
 
   useEffect(() => {
@@ -51,7 +65,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
         <h1 className="h1_form">Matérias</h1>
       </div>
       {/* NOME DO ALUNO */}
-      <NomePreparatorio idAluno={idAluno} oneStudent={oneStudent!} />
+      <NomePreparatorio idAluno={idAluno} oneStudent={umEstudante!} />
       <div className="w-full flex gap-2">
         {/* BOTÕES */}
         <div
@@ -90,7 +104,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
             </div>
 
             {/* RENDERIZAÇÃO CONDICIONAL DO SEXTO ANO */}
-            {oneStudent?.materias?.filter((materia: any) => {
+            {umEstudante?.materias?.filter((materia: any) => {
               if (materia.materia === "português") return materia.ordem <= 10;
             }).length === 0 ? (
               ""
@@ -98,13 +112,13 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
               <MateriasPortugues
                 busca={busca}
                 materiaAno="port6"
-                oneStudent={oneStudent!}
+                oneStudent={umEstudante!}
                 toggleIsChecked={toggleIsChecked}
               />
             )}
 
             {/* RENDERIZAÇÃO CONDICIONAL*/}
-            {oneStudent?.materias?.filter((materia: any) => {
+            {umEstudante?.materias?.filter((materia: any) => {
               if (materia.materia === "português") return materia.ordem > 10;
             }).length === 0 ? (
               ""
@@ -112,13 +126,13 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
               <MateriasPortugues
                 busca={busca}
                 materiaAno="port1"
-                oneStudent={oneStudent!}
+                oneStudent={umEstudante!}
                 toggleIsChecked={toggleIsChecked}
               />
             )}
 
             {/* RENDERIZAÇÃO CONDICIONAL DO SEXTO ANO */}
-            {oneStudent?.materias?.filter((materia: any) => {
+            {umEstudante?.materias?.filter((materia: any) => {
               if (materia.materia === "matemática") return materia.ordem <= 15;
             }).length === 0 ? (
               ""
@@ -126,13 +140,13 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
               <MateriasMatematica
                 busca={busca}
                 materiaAno="mat6"
-                oneStudent={oneStudent!}
+                oneStudent={umEstudante!}
                 toggleIsChecked={toggleIsChecked}
               />
             )}
 
             {/* RENDERIZAÇÃO CONDICIONAL DO PRIMEIRO ANO */}
-            {oneStudent?.materias?.filter((materia: any) => {
+            {umEstudante?.materias?.filter((materia: any) => {
               if (materia.materia === "matemática") {
                 return materia.ordem > 15;
               }
@@ -142,7 +156,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
               <MateriasMatematica
                 busca={busca}
                 materiaAno="mat1"
-                oneStudent={oneStudent!}
+                oneStudent={umEstudante!}
                 toggleIsChecked={toggleIsChecked}
               />
             )}
