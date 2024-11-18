@@ -3,7 +3,6 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import dotenv from "dotenv";
-import NextTopLoader from "nextjs-toploader";
 
 dotenv.config();
 
