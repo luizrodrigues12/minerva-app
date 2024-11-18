@@ -1,19 +1,18 @@
 "use client";
 
 import { getCookie } from "cookies-next";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useDeferredValue } from "react";
 import useUserStore from "@/stores/userStore";
 import AlunosComp from "../home/AlunosComp";
 import { AlunosObj } from "@/stores/userStore";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 const PageHome = () => {
   const [alunos, setAlunos] = useState(Array<AlunosObj>);
   const [username, setUsername] = useState("");
   const { setToken } = useUserStore();
   const [busca, setBusca] = useState("");
-  const router = useRouter();
+  const buscaDeferred = useDeferredValue(busca);
 
   useEffect(() => {
     //Verificando token
@@ -68,7 +67,7 @@ const PageHome = () => {
       {alunos.length !== 0 ? (
         alunos
           .filter((aluno) =>
-            aluno.nome?.toLowerCase().includes(busca.toLowerCase())
+            aluno.nome?.toLowerCase().includes(buscaDeferred.toLowerCase())
           )
           ?.sort((a, b) => (a.nome! < b.nome! ? -1 : a.nome! > b.nome! ? 1 : 0))
           .map((aluno, i) => {
