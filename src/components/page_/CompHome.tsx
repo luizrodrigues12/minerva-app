@@ -18,6 +18,7 @@ const PageHome = () => {
   //Verificando token
   const token = getCookie("authorization");
 
+  // PEGANDO ALUNOS
   const fetcher = (url: string) =>
     fetch(`${process.env.HOST}/api/student/get_students`, {
       method: "POST",
@@ -32,6 +33,21 @@ const PageHome = () => {
     fetcher
   );
 
+  // APAGANDO ALUNOS EM BRANCO
+  const fetcherClean = (url: string) =>
+    fetch(`${process.env.HOST}/api/student/get_students`, {
+      method: "PUT",
+      body: JSON.stringify({ token: token }),
+    }).then(async (res) => {
+      const { alunos } = await res.json();
+      return alunos;
+    });
+
+  const { data, mutate: mutateClean } = useSWR<Array<AlunosObj>>(
+    `${process.env.HOST}/api/student/get_students`,
+    fetcherClean
+  );
+
   useEffect(() => {
     //Pegando o username dos cookies
     const usernameCookie = getCookie("username") as string;
@@ -39,6 +55,7 @@ const PageHome = () => {
       usernameCookie.split("")[0].toUpperCase() + usernameCookie.slice(1)
     );
     mutate();
+    mutateClean();
     // Setando Token ZUSTAND
     setToken(token!);
   }, []);
