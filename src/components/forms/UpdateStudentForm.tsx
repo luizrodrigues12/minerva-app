@@ -57,8 +57,8 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
 
   return (
     <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2">
-      {!oneStudent ? (
-        <div className="flex flex-col justify-center items-center py-20">
+      {!oneStudent?.nome ? (
+        <div className="flex flex-col justify-center items-center py-5">
           <Spinner />
         </div>
       ) : (
