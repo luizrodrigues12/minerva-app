@@ -39,8 +39,8 @@ const PageHome = () => {
       method: "PUT",
       body: JSON.stringify({ token: token }),
     }).then(async (res) => {
-      const { alunos } = await res.json();
-      return alunos;
+      const data = await res.json();
+      return data;
     });
 
   const { data, mutate: mutateClean } = useSWR<Array<AlunosObj>>(
@@ -54,8 +54,8 @@ const PageHome = () => {
     setUsername(
       usernameCookie.split("")[0].toUpperCase() + usernameCookie.slice(1)
     );
-    mutateClean();
     mutate();
+    mutateClean();
     // Setando Token ZUSTAND
     setToken(token!);
   }, []);
