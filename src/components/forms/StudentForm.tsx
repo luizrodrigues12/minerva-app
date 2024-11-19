@@ -63,7 +63,6 @@ const StudentForm = () => {
       onChangeInput();
       if (checks.length === 0)
         throw new Error("Escolha ao menos um preparatório.");
-      mutate();
     } catch (error: any) {
       setError(error.message);
     }
@@ -133,6 +132,7 @@ const StudentForm = () => {
               if (checks.length === 0)
                 throw new Error("Escolha ao menos um preparatório.");
               submitFormStudent(e);
+              mutate();
               router.push(`/add_student/subjects/${idStudent}`);
             } catch (error: any) {
               setError(error.message);
