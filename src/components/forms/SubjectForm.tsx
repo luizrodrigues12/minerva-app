@@ -6,41 +6,56 @@ import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import useUserStore from "@/stores/userStore";
+import useSWR from "swr";
 
 const SubjectForm = ({ idAluno }: { idAluno: string }) => {
   const useUser = useUserStore();
   const router = useRouter();
-  const [subjects, setSubjects] = useState(Array<MateriaType>);
   const [checkeds, setCheckeds] = useState(Array<String>);
   const [isChecked, setIsChecked] = useState(false);
   const [AllCheckeds, setAllCheckeds] = useState(false);
   const [error, setError] = useState();
   const token = getCookie("authorization");
+
   // GET todas as matérias
-  const getAllSubjects = async () => {
-    const res = await fetch(`${process.env.HOST}/api/subject/get_subjects`, {
+  const fetcher = (url: string) =>
+    fetch(`${process.env.HOST}/api/subject/get_subjects`, {
       method: "GET",
-    });
-    const { materias } = await res.json();
-    setSubjects(materias);
-  };
-  useEffect(() => {
-    getAllSubjects();
-  }, []);
+    })
+      .then(async (res) => {
+        const { materias } = await res.json();
+        return materias;
+      })
+      .catch((err) => setError(err.message));
+
+  const { data: subjects, mutate: mutateGetAllSubjects } = useSWR<
+    Array<MateriaType>
+  >(`${process.env.HOST}/api/subject/get_subjects`, fetcher);
+
+  // ADD SUBJECTS
+  const fetcherAddSubjects = (url: string) =>
+    fetch(`${process.env.HOST}/api/student/add_subjects`, {
+      method: "PUT",
+      body: JSON.stringify({ checkeds, token, idAluno }),
+    })
+      .then(async (res) => {
+        return res;
+      })
+      .catch((err) => setError(err.message));
+
+  const { data, mutate: mutateAddSubjects } = useSWR(
+    `${process.env.HOST}/api/student/add_subjects`,
+    fetcherAddSubjects
+  );
 
   // Enviar materias para o user
-  const postMaterias = async () => {
+  const postMaterias = () => {
     try {
       // Verificando se pelo menos uma matéria foi selecionada
       if (checkeds.length === 0)
         throw new Error("Selecione pelo menos uma matéria.");
-      // Adicionando matérias ao aluno
-      await fetch(`${process.env.HOST}/api/student/add_subjects`, {
-        method: "PUT",
-        body: JSON.stringify({ checkeds, token, idAluno }),
-      });
-      //Enviando para a home.
-      window.location.href = "/home";
+      mutateAddSubjects();
+      router.push("/home");
     } catch (error: any) {
       setError(error.message);
     }
@@ -84,7 +99,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
               6° Ano
             </p>
             {subjects
-              .sort((a, b) =>
+              ?.sort((a, b) =>
                 a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
               )
               .map((materia, i) => {
@@ -111,7 +126,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
               1° Ano
             </p>
             {subjects
-              .sort((a, b) =>
+              ?.sort((a, b) =>
                 a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
               )
               .map((materia, i) => {
@@ -141,7 +156,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
               6° Ano
             </p>
             {subjects
-              .sort((a, b) =>
+              ?.sort((a, b) =>
                 a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
               )
               .map((materia, i) => {
@@ -168,7 +183,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
               1° Ano
             </p>
             {subjects
-              .sort((a, b) =>
+              ?.sort((a, b) =>
                 a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
               )
               .map((materia, i) => {

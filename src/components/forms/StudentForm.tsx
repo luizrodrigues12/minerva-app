@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import CheckComp from "../addStudent/CheckComp";
 import { v4 as uuidv4 } from "uuid";
-import useUserStore from "@/stores/userStore";
 import { useRouter } from "next/navigation";
 import { getCookie } from "cookies-next";
+import useSWR from "swr";
 
 const StudentForm = () => {
   const [checks, setChecks] = useState(Array<string>);
@@ -13,8 +13,27 @@ const StudentForm = () => {
   const idStudent = uuidv4();
   // HOOKS
   const router = useRouter();
-  const useUser = useUserStore();
   const [nomeAluno, setNomeAluno] = useState("");
+
+  const fetcher = (url: string) =>
+    fetch(`${process.env.HOST}/api/student/add_student`, {
+      method: "POST",
+      body: JSON.stringify({
+        idAluno: idStudent,
+        nome: nomeAluno.trim(),
+        preparatorio: checks,
+        token,
+      }),
+    })
+      .then(async (res) => {
+        return res;
+      })
+      .catch((err) => setError(err.message));
+
+  const { data, mutate } = useSWR(
+    `${process.env.HOST}/api/student/add_student`,
+    fetcher
+  );
 
   //zerando
   useEffect(() => setChecks([]), []);
@@ -23,7 +42,7 @@ const StudentForm = () => {
   const onChangeInput = () => {
     try {
       document.getElementsByName("checkItem").forEach((check: any) => {
-        if (check.checked) {
+        if (check.checked && !checks.includes(check.value)) {
           checks.push(check.value);
         }
       });
@@ -36,21 +55,16 @@ const StudentForm = () => {
   const token = getCookie("authorization");
 
   // FUNÇÃO QUE FAZ O POST
-  const submitFormStudent = async () => {
+  const submitFormStudent = (e: any) => {
+    e.preventDefault();
     try {
+      // Verificações
       if (!nomeAluno) throw new Error("por favor, insira um nome válido.");
-      const result = await fetch(
-        `${process.env.HOST}/api/student/add_student`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            idAluno: idStudent,
-            nome: nomeAluno.trim(),
-            preparatorio: checks,
-            token,
-          }),
-        }
-      );
+      onChangeInput();
+      if (checks.length === 0)
+        throw new Error("Escolha ao menos um preparatório.");
+      mutate();
+      router.push(`/add_student/subjects/${idStudent}`);
     } catch (error: any) {
       setError(error.message);
     }
@@ -110,7 +124,7 @@ const StudentForm = () => {
         <button
           type="submit"
           className="btn_submit_form"
-          onClick={async (e) => {
+          onClick={(e: any) => {
             e.preventDefault();
             try {
               // Verificações
@@ -119,9 +133,7 @@ const StudentForm = () => {
               onChangeInput();
               if (checks.length === 0)
                 throw new Error("Escolha ao menos um preparatório.");
-              await submitFormStudent();
-
-              window.location.href = `/add_student/subjects/${idStudent}`;
+              submitFormStudent(e);
             } catch (error: any) {
               setError(error.message);
             }

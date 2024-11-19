@@ -2,11 +2,6 @@
 
 import { getCookie } from "cookies-next";
 import { useEffect, useState } from "react";
-import { AlunosObj } from "@/stores/userStore";
-import MateriaComp from "./MateriaComp";
-import { FileCopy } from "flowbite-react-icons/outline";
-
-import copy from "clipboard-copy";
 import MateriasPortugues from "./MateriasPortugues";
 import MateriasMatematica from "./MateriasMatematica";
 import NomePreparatorio from "./NomePreparatorio";
@@ -34,6 +29,11 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
     fetcher
   );
 
+  useEffect(() => {
+    mutate();
+  }, []);
+
+  // Alterando marcado ou não
   const toggleIsChecked = async (objMateria: any, e: any) => {
     e.preventDefault();
     const result = await fetch(
@@ -49,52 +49,48 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
 
   return (
     <div className="flex flex-col px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 gap-3 mb-3">
-      {!aluno ? (
-        <div className="flex flex-col justify-center items-center w-full h-screen">
-          <Spinner />
+      <div className="flex flex-col gap-3">
+        <div className="flex items-center justify-between">
+          <h1 className="h1_form">Matérias</h1>
         </div>
-      ) : (
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center justify-between">
-            <h1 className="h1_form">Matérias</h1>
-          </div>
-          {/* NOME DO ALUNO */}
-          <NomePreparatorio idAluno={idAluno} oneStudent={aluno!} />
-          <div className="w-full flex gap-2">
-            {/* BOTÕES */}
-            <Link
-              prefetch
-              href={`/student/update_student/${idAluno}`}
-              className="flex items-center justify-center rounded-lg text-[13px] font-medium p-1.5 w-full md:p-[7px] text-zinc-200 bg-roxominerva tracking-wider"
-            >
-              EDITAR
-            </Link>
-            <Link
-              prefetch
-              href={`/student/delete_student/${idAluno}`}
-              className="flex items-center justify-center rounded-lg text-[13px] font-medium p-1.5 w-full md:p-[7px] text-zinc-200 bg-[#961f17de] tracking-wider"
-            >
-              <div>APAGAR</div>
-            </Link>
-          </div>
-          <div className="flex flex-col gap-0">
-            <hr className="bg-zinc-800 border-none h-0.5 my-1" />
-            <form action="">
-              <div className="flex flex-col">
-                <div className="flex gap-2 justify-center">
-                  <input
-                    type="text"
-                    id="buscar"
-                    className="rounded-lg p-1.5 px-3 border-2 border-roxominerva bg-inherit w-full my-1"
-                    placeholder="Pesquisar"
-                    value={busca}
-                    onChange={(e) => {
-                      e.preventDefault();
-                      setBusca(e.target.value);
-                    }}
-                  />
-                </div>
+        {/* NOME DO ALUNO */}
+        <NomePreparatorio idAluno={idAluno} oneStudent={aluno!} />
+        <div className="w-full flex gap-2">
+          {/* BOTÕES */}
+          <Link
+            prefetch
+            href={`/student/update_student/${idAluno}`}
+            className="flex items-center justify-center rounded-lg text-[13px] font-medium p-1.5 w-full md:p-[7px] text-zinc-200 bg-roxominerva tracking-wider"
+          >
+            EDITAR
+          </Link>
+          <Link
+            prefetch
+            href={`/student/delete_student/${idAluno}`}
+            className="flex items-center justify-center rounded-lg text-[13px] font-medium p-1.5 w-full md:p-[7px] text-zinc-200 bg-[#961f17de] tracking-wider"
+          >
+            <div>APAGAR</div>
+          </Link>
+        </div>
+        <div className="flex flex-col gap-0">
+          <hr className="bg-zinc-800 border-none h-0.5 my-1" />
+          <form action="">
+            <div className="flex flex-col">
+              <div className="flex gap-2 justify-center">
+                <input
+                  type="text"
+                  id="buscar"
+                  className="rounded-lg p-1.5 px-3 border-2 border-roxominerva bg-inherit w-full my-1"
+                  placeholder="Pesquisar"
+                  value={busca}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setBusca(e.target.value);
+                  }}
+                />
+              </div>
 
+              <div>
                 {/* RENDERIZAÇÃO CONDICIONAL DO SEXTO ANO */}
                 {aluno?.materias?.filter((materia: any) => {
                   if (materia.materia === "português")
@@ -109,7 +105,6 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                     toggleIsChecked={toggleIsChecked}
                   />
                 )}
-
                 {/* RENDERIZAÇÃO CONDICIONAL*/}
                 {aluno?.materias?.filter((materia: any) => {
                   if (materia.materia === "português")
@@ -124,7 +119,6 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                     toggleIsChecked={toggleIsChecked}
                   />
                 )}
-
                 {/* RENDERIZAÇÃO CONDICIONAL DO SEXTO ANO */}
                 {aluno?.materias?.filter((materia: any) => {
                   if (materia.materia === "matemática")
@@ -139,7 +133,6 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                     toggleIsChecked={toggleIsChecked}
                   />
                 )}
-
                 {/* RENDERIZAÇÃO CONDICIONAL DO PRIMEIRO ANO */}
                 {aluno?.materias?.filter((materia: any) => {
                   if (materia.materia === "matemática") {
@@ -156,10 +149,10 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                   />
                 )}
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
-      )}
+      </div>
     </div>
   );
 };

@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const token = getCookie("authorization");
-  const router = useRouter();
 
   // State com os dados
   const [formData, setFormData] = useState({
@@ -107,18 +106,12 @@ const LoginForm = () => {
           Login
         </button>
         <div className="flex justify-between items-center">
-          <div
-            className="paragraph_form"
-            onClick={() => (window.location.href = "/register")}
-          >
+          <Link href={"/register"} prefetch={true} className="paragraph_form">
             Crie sua conta.
-          </div>
-          <div
-            className="paragraph_form"
-            onClick={() => (window.location.href = "/forget_pass")}
-          >
+          </Link>
+          <Link href={"/forget_pass"} prefetch className="paragraph_form">
             Esqueceu sua senha?
-          </div>
+          </Link>
         </div>
       </form>
     </div>

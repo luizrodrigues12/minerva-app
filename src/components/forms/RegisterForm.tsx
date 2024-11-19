@@ -164,12 +164,9 @@ const RegisterForm = () => {
         <button type="submit" className="btn_submit_form">
           Registrar
         </button>
-        <div
-          className="paragraph_form"
-          onClick={() => (window.location.href = "/login")}
-        >
+        <Link href={"/login"} className="paragraph_form">
           Já tem uma conta?
-        </div>
+        </Link>
       </form>
     </div>
   );

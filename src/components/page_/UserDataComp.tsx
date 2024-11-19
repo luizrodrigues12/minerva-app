@@ -22,8 +22,6 @@ const UserDataComp = () => {
     fetcher
   );
 
-  console.log(user);
-
   const logoutFunction = (e: any) => {
     e.preventDefault();
 

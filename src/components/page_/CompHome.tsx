@@ -33,21 +33,6 @@ const PageHome = () => {
   );
 
   useEffect(() => {
-    // GET alunos
-    const getAlunos = async () => {
-      const result = await fetch(
-        `${process.env.HOST}/api/student/get_students`,
-        {
-          method: "POST",
-          body: JSON.stringify({ token: token }),
-        }
-      );
-
-      const { alunos } = await result.json();
-      setAlunos(alunos);
-    };
-    getAlunos();
-
     //Pegando o username dos cookies
     const usernameCookie = getCookie("username") as string;
     setUsername(
