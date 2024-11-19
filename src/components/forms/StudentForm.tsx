@@ -64,7 +64,6 @@ const StudentForm = () => {
       if (checks.length === 0)
         throw new Error("Escolha ao menos um preparatório.");
       mutate();
-      router.push(`/add_student/subjects/${idStudent}`);
     } catch (error: any) {
       setError(error.message);
     }
@@ -122,7 +121,6 @@ const StudentForm = () => {
         )}
 
         <button
-          type="submit"
           className="btn_submit_form"
           onClick={(e: any) => {
             e.preventDefault();
@@ -134,6 +132,7 @@ const StudentForm = () => {
               if (checks.length === 0)
                 throw new Error("Escolha ao menos um preparatório.");
               submitFormStudent(e);
+              router.push(`/add_student/subjects/${idStudent}`);
             } catch (error: any) {
               setError(error.message);
             }
