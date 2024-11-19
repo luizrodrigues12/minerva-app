@@ -44,7 +44,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
       }
     );
 
-    mutate(data?.materias);
+    mutate();
   };
 
   return (
@@ -90,71 +90,65 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                 />
               </div>
 
-              {!data?.materias ? (
-                <div className="flex flex-col justify-center items-center pt-10">
-                  <Spinner />
-                </div>
-              ) : (
-                <div>
-                  {/* RENDERIZAÇÃO CONDICIONAL DO SEXTO ANO */}
-                  {data?.materias?.filter((materia: any) => {
-                    if (materia.materia === "português")
-                      return materia.ordem <= 10;
-                  }).length === 0 ? (
-                    ""
-                  ) : (
-                    <MateriasPortugues
-                      busca={busca}
-                      materiaAno="port6"
-                      oneStudent={data?.aluno!}
-                      toggleIsChecked={toggleIsChecked}
-                    />
-                  )}
-                  {/* RENDERIZAÇÃO CONDICIONAL*/}
-                  {data?.materias?.filter((materia: any) => {
-                    if (materia.materia === "português")
-                      return materia.ordem > 10;
-                  }).length === 0 ? (
-                    ""
-                  ) : (
-                    <MateriasPortugues
-                      busca={busca}
-                      materiaAno="port1"
-                      oneStudent={data?.aluno!}
-                      toggleIsChecked={toggleIsChecked}
-                    />
-                  )}
-                  {/* RENDERIZAÇÃO CONDICIONAL DO SEXTO ANO */}
-                  {data?.materias?.filter((materia: any) => {
-                    if (materia.materia === "matemática")
-                      return materia.ordem <= 15;
-                  }).length === 0 ? (
-                    ""
-                  ) : (
-                    <MateriasMatematica
-                      busca={busca}
-                      materiaAno="mat6"
-                      oneStudent={data?.aluno!}
-                      toggleIsChecked={toggleIsChecked}
-                    />
-                  )}
-                  {/* RENDERIZAÇÃO CONDICIONAL DO PRIMEIRO ANO */}
-                  {data?.materias?.filter((materia: any) => {
-                    if (materia.materia === "matemática") {
-                      return materia.ordem > 15;
-                    }
-                  }).length === 0 ? (
-                    ""
-                  ) : (
-                    <MateriasMatematica
-                      busca={busca}
-                      materiaAno="mat1"
-                      oneStudent={data?.aluno!}
-                      toggleIsChecked={toggleIsChecked}
-                    />
-                  )}
-                </div>
-              )}
+              <div>
+                {/* RENDERIZAÇÃO CONDICIONAL DO SEXTO ANO */}
+                {data?.materias?.filter((materia: any) => {
+                  if (materia.materia === "português")
+                    return materia.ordem <= 10;
+                }).length === 0 ? (
+                  ""
+                ) : (
+                  <MateriasPortugues
+                    busca={busca}
+                    materiaAno="port6"
+                    oneStudent={data?.aluno!}
+                    toggleIsChecked={toggleIsChecked}
+                  />
+                )}
+                {/* RENDERIZAÇÃO CONDICIONAL*/}
+                {data?.materias?.filter((materia: any) => {
+                  if (materia.materia === "português")
+                    return materia.ordem > 10;
+                }).length === 0 ? (
+                  ""
+                ) : (
+                  <MateriasPortugues
+                    busca={busca}
+                    materiaAno="port1"
+                    oneStudent={data?.aluno!}
+                    toggleIsChecked={toggleIsChecked}
+                  />
+                )}
+                {/* RENDERIZAÇÃO CONDICIONAL DO SEXTO ANO */}
+                {data?.materias?.filter((materia: any) => {
+                  if (materia.materia === "matemática")
+                    return materia.ordem <= 15;
+                }).length === 0 ? (
+                  ""
+                ) : (
+                  <MateriasMatematica
+                    busca={busca}
+                    materiaAno="mat6"
+                    oneStudent={data?.aluno!}
+                    toggleIsChecked={toggleIsChecked}
+                  />
+                )}
+                {/* RENDERIZAÇÃO CONDICIONAL DO PRIMEIRO ANO */}
+                {data?.materias?.filter((materia: any) => {
+                  if (materia.materia === "matemática") {
+                    return materia.ordem > 15;
+                  }
+                }).length === 0 ? (
+                  ""
+                ) : (
+                  <MateriasMatematica
+                    busca={busca}
+                    materiaAno="mat1"
+                    oneStudent={data?.aluno!}
+                    toggleIsChecked={toggleIsChecked}
+                  />
+                )}
+              </div>
             </div>
           </form>
         </div>
