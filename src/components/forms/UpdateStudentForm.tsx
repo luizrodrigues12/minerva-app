@@ -5,11 +5,12 @@ import CheckComp from "../addStudent/CheckComp";
 import { AlunosObj } from "@/stores/userStore";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import useSWR from "swr";
+import { Spinner } from "flowbite-react";
 
 const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
   const router = useRouter();
   const [nomeAluno, setNomeAluno] = useState("");
-  const [oneStudent, setOneStudent] = useState<AlunosObj>();
   const [checks, setChecks] = useState(Array<string>);
   const token = getCookie("authorization");
 
@@ -19,15 +20,20 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
     });
   };
 
-  const getAluno = async () => {
-    const result = await fetch(`${process.env.HOST}/api/student/get_student`, {
+  // Pegando dados do aluno
+  const fetcher = (url: string) =>
+    fetch(`${process.env.HOST}/api/student/get_student`, {
       method: "POST",
       body: JSON.stringify({ idAluno: idAluno, token: token }),
+    }).then(async (res) => {
+      const { aluno } = await res.json();
+      return aluno[0];
     });
-    // Pegando aluno do return
-    const { aluno } = await result.json();
-    setOneStudent(aluno[0]);
-  };
+
+  const { data: oneStudent, mutate } = useSWR(
+    `${process.env.HOST}/api/student/get_student`,
+    fetcher
+  );
 
   const updateAluno = async () => {
     const result = await fetch(
@@ -45,74 +51,81 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
   };
 
   useEffect(() => {
-    getAluno();
     setChecks([]);
+    mutate();
   }, []);
 
   return (
     <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2">
-      <form method="POST" className="form_student 2xl:h-[350px] ">
-        <h2 className="h1_form">Atualizar Dados</h2>
-        <div className="container_check flex flex-col gap-2">
-          <input
-            type="text"
-            name="nome"
-            id="nome_aluno"
-            placeholder={oneStudent?.nome!}
-            autoComplete="off"
-            className="input_email_username font-medium text-zinc-200"
-            value={nomeAluno}
-            onChange={(e) => {
-              e.preventDefault();
-              setNomeAluno(e.target.value);
-            }}
-          />
-
-          <h2 className="text-xl font-medium tracking-wide py-1 px-1 text-zinc-200">
-            Preparatório
-          </h2>
-          <CheckComp
-            text="Aplicação"
-            name="checkItem"
-            id="aplicacao"
-            htmlFor="aplicacao"
-            value="aplicação"
-          />
-          <CheckComp
-            text="CPM"
-            name="checkItem"
-            id="cpm"
-            htmlFor="cpm"
-            value="cpm"
-          />
-          <CheckComp
-            text="CEMAM"
-            name="checkItem"
-            id="cemam"
-            htmlFor="cemam"
-            value="cemam"
-          />
+      {!oneStudent ? (
+        <div className="flex flex-col justify-center items-center py-20">
+          <Spinner />
         </div>
-        {/* {error ? (
+      ) : (
+        <form method="POST" className="form_student 2xl:h-[350px] ">
+          <h2 className="h1_form">Atualizar Dados</h2>
+
+          <div className="container_check flex flex-col gap-2">
+            <input
+              type="text"
+              name="nome"
+              id="nome_aluno"
+              placeholder={oneStudent?.nome!}
+              autoComplete="off"
+              className="input_email_username font-medium text-zinc-200"
+              value={nomeAluno}
+              onChange={(e) => {
+                e.preventDefault();
+                setNomeAluno(e.target.value);
+              }}
+            />
+
+            <h2 className="text-xl font-medium tracking-wide py-1 px-1 text-zinc-200">
+              Preparatório
+            </h2>
+            <CheckComp
+              text="Aplicação"
+              name="checkItem"
+              id="aplicacao"
+              htmlFor="aplicacao"
+              value="aplicação"
+            />
+            <CheckComp
+              text="CPM"
+              name="checkItem"
+              id="cpm"
+              htmlFor="cpm"
+              value="cpm"
+            />
+            <CheckComp
+              text="CEMAM"
+              name="checkItem"
+              id="cemam"
+              htmlFor="cemam"
+              value="cemam"
+            />
+          </div>
+          {/* {error ? (
           <p className="text-[14px] py-0.5 bg-zinc-900 text-center text-[#FAA139]">
             {error}
           </p>
         ) : (
           <></>
         )} */}
-        <button
-          type="submit"
-          className="btn_submit_form"
-          onClick={async (e) => {
-            e.preventDefault();
-            await getChecks();
-            await updateAluno();
-            window.location.href = `/student/${idAluno}`;
-          }}
-        >
-          Salvar
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="btn_submit_form"
+            onClick={async (e) => {
+              e.preventDefault();
+              await getChecks();
+              await updateAluno();
+              window.location.href = `/student/${idAluno}`;
+            }}
+          >
+            Salvar
+          </button>
+        </form>
+      )}
     </div>
   );
 };
