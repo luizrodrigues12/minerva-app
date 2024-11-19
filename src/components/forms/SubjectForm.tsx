@@ -7,6 +7,7 @@ import { getCookie } from "cookies-next";
 import useUserStore from "@/stores/userStore";
 import useSWR from "swr";
 import { Spinner } from "flowbite-react";
+import { useRouter } from "nextjs-toploader/app";
 
 const SubjectForm = ({ idAluno }: { idAluno: string }) => {
   const useUser = useUserStore();
@@ -15,6 +16,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
   const [AllCheckeds, setAllCheckeds] = useState(false);
   const [error, setError] = useState();
   const token = getCookie("authorization");
+  const router = useRouter();
 
   // GET todas as matérias
   const fetcher = (url: string) =>
@@ -31,15 +33,30 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
     Array<MateriaType>
   >(`${process.env.HOST}/api/subject/get_subjects`, fetcher);
 
+  // ADD SUBJECTS
+  const fetcherAddSubjects = (url: string) =>
+    fetch(`${process.env.HOST}/api/student/add_subjects`, {
+      method: "PUT",
+      body: JSON.stringify({ checkeds, token, idAluno }),
+    })
+      .then(async (res) => {
+        return res;
+      })
+      .catch((err) => setError(err.message));
+
+  const { data, mutate: mutateAddSubjects } = useSWR(
+    `${process.env.HOST}/api/student/add_subjects`,
+    fetcherAddSubjects
+  );
+
   // ENVIANDO MATÉRIAS PARA OS ALUNOS
   const postMaterias = async () => {
     try {
       if (checkeds.length === 0)
         throw new Error("Selecione pelo menos uma matéria.");
-
       // POSTANDO MATÉRIAS NOS ALUNOS
       await fetch(`${process.env.HOST}/api/student/add_subjects`, {
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify({ checkeds, token, idAluno }),
       })
         .then(async (res) => {
@@ -52,13 +69,12 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
   };
 
   // Função pra saber quais estão marcados
-  const onClickInput = () => {
+  const onClickInput = async () => {
     document.getElementsByName("subject").forEach((subject: any) => {
       if (subject.checked) checkeds.push(subject.value);
     });
-    postMaterias();
-
-    window.location.href = `${process.env.HOST}/home`;
+    await postMaterias();
+    router.push("/home");
   };
 
   const checkAll = (e: any) => {
