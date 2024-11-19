@@ -4,14 +4,12 @@ import { MateriaType } from "@/models/MateriasModel";
 import CheckComp from "@/components/addStudent/CheckComp";
 import { useState } from "react";
 import { getCookie } from "cookies-next";
-import { useRouter } from "nextjs-toploader/app";
 import useUserStore from "@/stores/userStore";
 import useSWR from "swr";
 import { Spinner } from "flowbite-react";
 
 const SubjectForm = ({ idAluno }: { idAluno: string }) => {
   const useUser = useUserStore();
-  const router = useRouter();
   const [checkeds, setCheckeds] = useState(Array<String>);
   const [isChecked, setIsChecked] = useState(false);
   const [AllCheckeds, setAllCheckeds] = useState(false);
@@ -33,29 +31,22 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
     Array<MateriaType>
   >(`${process.env.HOST}/api/subject/get_subjects`, fetcher);
 
-  // ADD SUBJECTS
-  const fetcherAddSubjects = (url: string) =>
-    fetch(`${process.env.HOST}/api/student/add_subjects`, {
-      method: "PUT",
-      body: JSON.stringify({ checkeds, token, idAluno }),
-    })
-      .then(async (res) => {
-        return res;
-      })
-      .catch((err) => setError(err.message));
-
-  const { data, mutate: mutateAddSubjects } = useSWR(
-    `${process.env.HOST}/api/student/add_subjects`,
-    fetcherAddSubjects
-  );
-
-  // Enviar materias para o user
-  const postMaterias = () => {
+  // ENVIANDO MATÉRIAS PARA OS ALUNOS
+  const postMaterias = async () => {
     try {
-      // Verificando se pelo menos uma matéria foi selecionada
+      // VERIFICANDO SE MATÉRIA FOI SELECIONADA
       if (checkeds.length === 0)
         throw new Error("Selecione pelo menos uma matéria.");
-      mutateAddSubjects();
+
+      // POSTANDO MATÉRIAS NOS ALUNOS
+      await fetch(`${process.env.HOST}/api/student/add_subjects`, {
+        method: "PUT",
+        body: JSON.stringify({ checkeds, token, idAluno }),
+      })
+        .then(async (res) => {
+          return res;
+        })
+        .catch((err) => setError(err.message));
     } catch (error: any) {
       setError(error.message);
     }
@@ -86,7 +77,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
       <form method="POST" className="form_register">
         <h2 className="h1_form text-center">Selecione as Matérias</h2>
         <hr className="bg-zinc-800 h-0.5 border-0" />
-        {!data ? (
+        {!subjects ? (
           <div className="flex flex-col justify-center items-center py-10">
             <Spinner />
           </div>
