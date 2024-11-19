@@ -33,21 +33,6 @@ const PageHome = () => {
     fetcher
   );
 
-  // APAGANDO ALUNOS EM BRANCO
-  const fetcherClean = (url: string) =>
-    fetch(`${process.env.HOST}/api/student/get_students`, {
-      method: "PUT",
-      body: JSON.stringify({ token: token }),
-    }).then(async (res) => {
-      const data = await res.json();
-      return data;
-    });
-
-  const { data, mutate: mutateClean } = useSWR<Array<AlunosObj>>(
-    `${process.env.HOST}/api/student/get_students`,
-    fetcherClean
-  );
-
   useEffect(() => {
     //Pegando o username dos cookies
     const usernameCookie = getCookie("username") as string;
