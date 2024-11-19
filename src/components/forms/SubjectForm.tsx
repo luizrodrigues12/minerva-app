@@ -57,7 +57,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
       if (checkeds.length === 0)
         throw new Error("Selecione pelo menos uma matéria.");
       mutateAddSubjects();
-      router.push("/home");
+      window.location.href = `${process.env.HOST}/home`;
     } catch (error: any) {
       setError(error.message);
     }
