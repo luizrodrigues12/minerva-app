@@ -41,8 +41,16 @@ export async function POST(req: NextRequest) {
       await UserModel.updateOne({ email: email }, { token: token });
     } else {
       // Salvando token existente nos cookies
-      (await cookies()).set("authorization", user.token);
-      (await cookies()).set("username", user.username);
+      (await cookies()).set("authorization", user.token, {
+        maxAge: 86400 * 90,
+        secure: true,
+        sameSite: "strict",
+      });
+      (await cookies()).set("username", user.username, {
+        maxAge: 86400 * 90,
+        secure: true,
+        sameSite: "strict",
+      });
     }
     return NextResponse.json({ loggedUser: true }, { status: 200 });
   } catch (error: any) {

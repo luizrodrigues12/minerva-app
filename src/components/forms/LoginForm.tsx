@@ -19,7 +19,6 @@ const LoginForm = () => {
   const handleForm = async (e: any) => {
     try {
       e.preventDefault();
-
       //Enviando post dos dados
       await fetch(`${process.env.HOST}/api/user/login`, {
         method: "POST",

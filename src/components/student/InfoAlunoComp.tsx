@@ -21,14 +21,15 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
       body: JSON.stringify({ idAluno: idAluno, token: token }),
     }).then(async (res) => {
       const { aluno } = await res.json();
-      return aluno[0];
+      return { aluno: aluno[0], materias: aluno[0].materias };
     });
 
-  const { data: aluno, mutate } = useSWR(
+  const { data, mutate } = useSWR(
     `${process.env.HOST}/api/student/get_student`,
     fetcher
   );
 
+  console.log(data?.materias);
   useEffect(() => {
     mutate();
   }, []);
@@ -44,7 +45,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
       }
     );
 
-    mutate(`${process.env.HOST}/api/student/toggle_checked`);
+    mutate();
   };
 
   return (
@@ -54,7 +55,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
           <h1 className="h1_form">Matérias</h1>
         </div>
         {/* NOME DO ALUNO */}
-        <NomePreparatorio idAluno={idAluno} oneStudent={aluno!} />
+        <NomePreparatorio idAluno={idAluno} oneStudent={data?.aluno!} />
         <div className="w-full flex gap-2">
           {/* BOTÕES */}
           <Link
@@ -92,7 +93,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
 
               <div>
                 {/* RENDERIZAÇÃO CONDICIONAL DO SEXTO ANO */}
-                {aluno?.materias?.filter((materia: any) => {
+                {data?.materias?.filter((materia: any) => {
                   if (materia.materia === "português")
                     return materia.ordem <= 10;
                 }).length === 0 ? (
@@ -101,12 +102,12 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                   <MateriasPortugues
                     busca={busca}
                     materiaAno="port6"
-                    oneStudent={aluno!}
+                    oneStudent={data?.aluno!}
                     toggleIsChecked={toggleIsChecked}
                   />
                 )}
                 {/* RENDERIZAÇÃO CONDICIONAL*/}
-                {aluno?.materias?.filter((materia: any) => {
+                {data?.materias?.filter((materia: any) => {
                   if (materia.materia === "português")
                     return materia.ordem > 10;
                 }).length === 0 ? (
@@ -115,12 +116,12 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                   <MateriasPortugues
                     busca={busca}
                     materiaAno="port1"
-                    oneStudent={aluno!}
+                    oneStudent={data?.aluno!}
                     toggleIsChecked={toggleIsChecked}
                   />
                 )}
                 {/* RENDERIZAÇÃO CONDICIONAL DO SEXTO ANO */}
-                {aluno?.materias?.filter((materia: any) => {
+                {data?.materias?.filter((materia: any) => {
                   if (materia.materia === "matemática")
                     return materia.ordem <= 15;
                 }).length === 0 ? (
@@ -129,12 +130,12 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                   <MateriasMatematica
                     busca={busca}
                     materiaAno="mat6"
-                    oneStudent={aluno!}
+                    oneStudent={data?.aluno!}
                     toggleIsChecked={toggleIsChecked}
                   />
                 )}
                 {/* RENDERIZAÇÃO CONDICIONAL DO PRIMEIRO ANO */}
-                {aluno?.materias?.filter((materia: any) => {
+                {data?.materias?.filter((materia: any) => {
                   if (materia.materia === "matemática") {
                     return materia.ordem > 15;
                   }
@@ -144,7 +145,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                   <MateriasMatematica
                     busca={busca}
                     materiaAno="mat1"
-                    oneStudent={aluno!}
+                    oneStudent={data?.aluno!}
                     toggleIsChecked={toggleIsChecked}
                   />
                 )}
