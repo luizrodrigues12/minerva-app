@@ -6,6 +6,7 @@ import useUserStore from "@/stores/userStore";
 import AlunosComp from "../home/AlunosComp";
 import { AlunosObj } from "@/stores/userStore";
 import Link from "next/link";
+import useSWR from "swr";
 
 const PageHome = () => {
   const [alunos, setAlunos] = useState(Array<AlunosObj>);
@@ -14,9 +15,26 @@ const PageHome = () => {
   const [busca, setBusca] = useState("");
   const buscaDeferred = useDeferredValue(busca);
 
+  //Verificando token
+  const token = getCookie("authorization");
+
+  const fetcher = (url: string) =>
+    fetch(`${process.env.HOST}/api/student/get_students`, {
+      method: "POST",
+      body: JSON.stringify({ token: token }),
+    }).then(async (res) => {
+      const { alunos } = await res.json();
+      return alunos;
+    });
+
+  const { data: alunosData, mutate } = useSWR<Array<AlunosObj>>(
+    `${process.env.HOST}/api/student/get_students`,
+    fetcher
+  );
+
+  console.log(alunosData);
+
   useEffect(() => {
-    //Verificando token
-    const token = getCookie("authorization");
     // GET alunos
     const getAlunos = async () => {
       const result = await fetch(
@@ -64,9 +82,9 @@ const PageHome = () => {
         </Link>
       </div>
       {/* RENDERIZANDO NOMES EM ORDEM ALFABÉTICA */}
-      {alunos.length !== 0 ? (
-        alunos
-          .filter((aluno) =>
+      {alunosData?.length !== 0 ? (
+        alunosData
+          ?.filter((aluno) =>
             aluno.nome?.toLowerCase().includes(buscaDeferred.toLowerCase())
           )
           ?.sort((a, b) => (a.nome! < b.nome! ? -1 : a.nome! > b.nome! ? 1 : 0))

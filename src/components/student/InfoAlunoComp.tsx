@@ -17,6 +17,8 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   const [checkeds, setCheckeds] = useState(Array<string>);
   const [busca, setBusca] = useState("");
   const token = getCookie("authorization");
+
+  // Pegando dados do aluno
   const fetcher = (url: string) =>
     fetch(`${process.env.HOST}/api/student/get_student`, {
       method: "POST",
@@ -31,17 +33,6 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
     fetcher
   );
 
-  // GET dados do aluno
-  const getOneStudent = async () => {
-    const result = await fetch(`${process.env.HOST}/api/student/get_student`, {
-      method: "POST",
-      body: JSON.stringify({ idAluno: idAluno, token: token }),
-    });
-    // Pegando aluno do return
-    const { aluno } = await result.json();
-    setOneStudent(aluno[0]);
-  };
-
   const toggleIsChecked = async (objMateria: any, e: any) => {
     e.preventDefault();
     const result = await fetch(
@@ -54,10 +45,6 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
 
     mutate(`${process.env.HOST}/api/student/toggle_checked`);
   };
-
-  useEffect(() => {
-    getOneStudent();
-  }, []);
 
   return (
     <div className="flex flex-col px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 gap-3 mb-3">
