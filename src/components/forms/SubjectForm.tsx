@@ -34,13 +34,12 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
   // ENVIANDO MATÉRIAS PARA OS ALUNOS
   const postMaterias = async () => {
     try {
-      // VERIFICANDO SE MATÉRIA FOI SELECIONADA
       if (checkeds.length === 0)
         throw new Error("Selecione pelo menos uma matéria.");
 
       // POSTANDO MATÉRIAS NOS ALUNOS
       await fetch(`${process.env.HOST}/api/student/add_subjects`, {
-        method: "PUT",
+        method: "POST",
         body: JSON.stringify({ checkeds, token, idAluno }),
       })
         .then(async (res) => {
