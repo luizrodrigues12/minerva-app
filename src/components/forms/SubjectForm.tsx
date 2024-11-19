@@ -40,6 +40,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
       body: JSON.stringify({ checkeds, token, idAluno }),
     })
       .then(async (res) => {
+        console.log(res);
         return res;
       })
       .catch((err) => setError(err.message));

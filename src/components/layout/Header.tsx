@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <header className="bg-roxominerva h-16 pl-5 pr-5 text-lg md:px-6 w-screen md:h-20 md:text-2xl lg:h-[72px] xl:h-[72px] flex justify-center">
       <div className="flex flex-row justify-between items-center md:w-[80vw] lg:w-[90vw] xl:w-[95vw] w-screen  ">
-        <Link href={"/home"} prefetch>
+        <Link href={"/home"}>
           <Image
             src={"/images/logo.png"}
             width={50}
