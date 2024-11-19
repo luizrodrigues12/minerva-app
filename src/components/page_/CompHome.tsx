@@ -55,7 +55,6 @@ const PageHome = () => {
       usernameCookie.split("")[0].toUpperCase() + usernameCookie.slice(1)
     );
     mutate();
-    mutateClean();
     // Setando Token ZUSTAND
     setToken(token!);
   }, []);
