@@ -4,7 +4,7 @@ import { MateriaType } from "@/models/MateriasModel";
 import CheckComp from "@/components/addStudent/CheckComp";
 import { useState } from "react";
 import { getCookie } from "cookies-next";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import useUserStore from "@/stores/userStore";
 import useSWR from "swr";
 import { Spinner } from "flowbite-react";
@@ -68,7 +68,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
     });
     postMaterias();
 
-    window.location.href = `${process.env.HOST}/home`;
+    router.push(`${process.env.HOST}/home`);
   };
 
   const checkAll = (e: any) => {

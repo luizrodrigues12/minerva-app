@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import CheckComp from "../addStudent/CheckComp";
 import { v4 as uuidv4 } from "uuid";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { getCookie } from "cookies-next";
 import useSWR from "swr";
 
@@ -36,7 +36,10 @@ const StudentForm = () => {
   );
 
   //zerando
-  useEffect(() => setChecks([]), []);
+  useEffect(() => {
+    setChecks([]);
+    router.prefetch(`/add_student/subjects/${idStudent}`);
+  }, []);
 
   // Salvando checkbox marcados nos states
   const onChangeInput = () => {
