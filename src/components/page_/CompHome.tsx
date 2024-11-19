@@ -9,7 +9,6 @@ import Link from "next/link";
 import useSWR from "swr";
 
 const PageHome = () => {
-  const [alunos, setAlunos] = useState(Array<AlunosObj>);
   const [username, setUsername] = useState("");
   const { setToken } = useUserStore();
   const [busca, setBusca] = useState("");

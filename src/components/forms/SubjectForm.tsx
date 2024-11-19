@@ -40,7 +40,6 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
       body: JSON.stringify({ checkeds, token, idAluno }),
     })
       .then(async (res) => {
-        console.log(res);
         return res;
       })
       .catch((err) => setError(err.message));
@@ -57,7 +56,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
       if (checkeds.length === 0)
         throw new Error("Selecione pelo menos uma matéria.");
       mutateAddSubjects();
-      window.location.href = `${process.env.HOST}/home`;
+      router.push("/home");
     } catch (error: any) {
       setError(error.message);
     }
@@ -69,6 +68,8 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
       if (subject.checked) checkeds.push(subject.value);
     });
     postMaterias();
+
+    setTimeout(() => router.push("/home"), 500);
   };
 
   const checkAll = (e: any) => {
