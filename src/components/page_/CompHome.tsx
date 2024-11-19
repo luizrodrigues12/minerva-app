@@ -32,8 +32,6 @@ const PageHome = () => {
     fetcher
   );
 
-  console.log(alunosData);
-
   useEffect(() => {
     // GET alunos
     const getAlunos = async () => {

@@ -2,7 +2,6 @@
 
 import { UserCircle } from "flowbite-react-icons/outline";
 import Link from "next/link";
-import useUserStore from "@/stores/userStore";
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import { usePathname } from "next/navigation";
@@ -39,9 +38,9 @@ const NavHeader = () => {
         path === "/forget_pass"
       ) ? (
         <div>
-          <div onClick={() => (window.location.href = "/profile")}>
+          <Link href={"/profile"} prefetch>
             <UserCircle size={40} color={"rgb(228 228 231)"} />
-          </div>
+          </Link>
         </div>
       ) : (
         <div>

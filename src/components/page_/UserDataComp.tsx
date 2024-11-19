@@ -1,13 +1,28 @@
 "use client";
 
 import { deleteCookie, getCookie } from "cookies-next";
-import { useRouter } from "next/navigation";
+import { Spinner } from "flowbite-react";
+import useSWR from "swr";
 
-type Props = { username: string; email: string };
-
-const UserDataComp = ({ email, username }: Props) => {
+const UserDataComp = () => {
   const token = getCookie("authorization");
-  const router = useRouter();
+
+  // Pegando usuário da API
+  const fetcher = (url: string) =>
+    fetch(`${process.env.HOST}/api/user/get_user`, {
+      method: "POST",
+      body: JSON.stringify({ token: token }),
+    }).then(async (res) => {
+      const data = await res.json();
+      return data.user;
+    });
+
+  const { data: user } = useSWR(
+    `${process.env.HOST}/api/user/get_user`,
+    fetcher
+  );
+
+  console.log(user);
 
   const logoutFunction = (e: any) => {
     e.preventDefault();
@@ -38,21 +53,32 @@ const UserDataComp = ({ email, username }: Props) => {
         </h2>
       </div>
       <hr className="bg-zinc-800 h-0.5 my-2 border-none" />
-      <div className="flex flex-col gap-2 ">
-        <div className="flex justify-between">
-          <h3 className="text-[1rem]">Username</h3>
-          <h3
-            className="text-[0.9rem] text-red-700 hover:text-red-500 hover:cursor-pointer"
-            onClick={(e) => removerConta(e)}
-          >
-            Excluir conta
-          </h3>
+      {!user ? (
+        <div className="flex flex-col justify-center items-center py-[3.7rem]">
+          <Spinner />
         </div>
-        <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg">{username}</div>
-        <h3 className="text-[1rem]">Email</h3>
-        <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg">{email}</div>
-        <hr className="bg-zinc-800 h-0.5 mb-1.5 md:mt-2 md:mb-2 border-none" />
-      </div>
+      ) : (
+        <div className="flex flex-col gap-2 ">
+          <div className="flex justify-between">
+            <h3 className="text-[1rem]">Username</h3>
+            <h3
+              className="text-[0.9rem] text-red-700 hover:text-red-500 hover:cursor-pointer"
+              onClick={(e) => removerConta(e)}
+            >
+              Excluir conta
+            </h3>
+          </div>
+          <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg">
+            {user.username}
+          </div>
+          <h3 className="text-[1rem]">Email</h3>
+          <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg">
+            {user.email}
+          </div>
+        </div>
+      )}
+      <hr className="bg-zinc-800 h-0.5 mb-2 mt-2 md:mt-2 md:mb-2 border-none" />
+
       <button
         className="bg-roxominerva w-full rounded-lg text-[16px] md:p-[7px] text-zinc-100; h-10 flex justify-center items-center"
         onClick={(e) => logoutFunction(e)}
