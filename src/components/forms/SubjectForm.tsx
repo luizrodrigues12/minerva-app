@@ -68,7 +68,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
     });
     postMaterias();
 
-    router.push(`${process.env.HOST}/home`);
+    window.location.href = `${process.env.HOST}/home`;
   };
 
   const checkAll = (e: any) => {
