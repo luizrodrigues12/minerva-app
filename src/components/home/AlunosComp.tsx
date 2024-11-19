@@ -11,7 +11,7 @@ const AlunosComp = ({ text, idAluno }: { text: string; idAluno: string }) => {
           {text}
         </p>
         <div className="options flex gap-3">
-          <Link href={`/student/${idAluno}`}>
+          <Link href={`/student/${idAluno}`} prefetch={true}>
             <Book color="#FAA139" />
           </Link>
           {/* #4F47A8 */}

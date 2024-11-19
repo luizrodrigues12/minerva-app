@@ -6,7 +6,6 @@ import MateriasPortugues from "./MateriasPortugues";
 import MateriasMatematica from "./MateriasMatematica";
 import NomePreparatorio from "./NomePreparatorio";
 import useSWR from "swr";
-import { Spinner } from "flowbite-react";
 import Link from "next/link";
 
 const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {

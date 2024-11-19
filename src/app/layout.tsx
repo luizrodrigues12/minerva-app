@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import dotenv from "dotenv";
+import NextTopLoader from "nextjs-toploader";
 
 dotenv.config();
 
@@ -22,13 +23,13 @@ export default function RootLayout({
         <Header />
 
         <div className="min-h-screen w-screen flex flex-col justify-center items-center">
-          {/* <NextTopLoader
+          <NextTopLoader
             color="#e4e4e7"
             speed={500}
             crawlSpeed={500}
             showSpinner={false}
             shadow={false}
-          /> */}
+          />
           {children}
         </div>
         <Footer />

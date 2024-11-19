@@ -4,24 +4,25 @@ import { AlunosObj } from "@/stores/userStore";
 import { getCookie } from "cookies-next";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import useSWR from "swr";
 
 const RemoveStudentComp = ({ idAluno }: { idAluno: string }) => {
   const router = useRouter();
-  const [oneStudent, setOneStudent] = useState<AlunosObj>();
   const token = getCookie("authorization");
 
-  const getAluno = async () => {
-    const result = await fetch(`${process.env.HOST}/api/student/get_student`, {
+  const fetcher = (url: string) =>
+    fetch(`${process.env.HOST}/api/student/get_student`, {
       method: "POST",
       body: JSON.stringify({ idAluno: idAluno, token: token }),
+    }).then(async (res) => {
+      const { aluno } = await res.json();
+      return aluno[0];
     });
-    // Pegando aluno do return
-    const { aluno } = await result.json();
-    setOneStudent(aluno[0]);
 
-    // Verificando se o aluno pertence ao professor
-    if (!aluno[0]) router.push("/home");
-  };
+  const { data: oneStudent, mutate } = useSWR(
+    `${process.env.HOST}/api/subject/get_subjects`,
+    fetcher
+  );
 
   const deleteStudent = async (e: any) => {
     e.preventDefault();
@@ -35,9 +36,7 @@ const RemoveStudentComp = ({ idAluno }: { idAluno: string }) => {
     window.location.href = "/home";
   };
 
-  useEffect(() => {
-    getAluno();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2">
@@ -56,7 +55,7 @@ const RemoveStudentComp = ({ idAluno }: { idAluno: string }) => {
 
           <h3 className="text-[1rem]">Preparatório(s)</h3>
           <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg flex gap-1 border-2 border-[#961f17de]">
-            {oneStudent?.preparatorio?.map((prep, i) =>
+            {oneStudent?.preparatorio?.map((prep: any, i: any) =>
               prep == "aplicação" ? (
                 <p key={i}>{prep[0].toUpperCase() + prep.substring(1)} </p>
               ) : (
