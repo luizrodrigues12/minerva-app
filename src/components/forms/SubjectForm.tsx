@@ -56,7 +56,6 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
       if (checkeds.length === 0)
         throw new Error("Selecione pelo menos uma matéria.");
       mutateAddSubjects();
-      window.location.href = `${process.env.HOST}/home`;
     } catch (error: any) {
       setError(error.message);
     }
@@ -68,6 +67,8 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
       if (subject.checked) checkeds.push(subject.value);
     });
     postMaterias();
+
+    window.location.href = `${process.env.HOST}/home`;
   };
 
   const checkAll = (e: any) => {

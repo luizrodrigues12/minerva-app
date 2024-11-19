@@ -121,6 +121,7 @@ const StudentForm = () => {
         )}
 
         <button
+          type="submit"
           className="btn_submit_form"
           onClick={(e: any) => {
             e.preventDefault();
