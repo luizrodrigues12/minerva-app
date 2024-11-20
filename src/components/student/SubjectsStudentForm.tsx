@@ -1,10 +1,8 @@
 "use client";
 
 import { AlunosObj } from "@/stores/userStore";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MateriaComp from "./MateriaComp";
-import { Refresh } from "flowbite-react-icons/outline";
-import { redirect } from "next/navigation";
 import useSWR from "swr";
 import { Spinner } from "flowbite-react";
 
@@ -40,14 +38,8 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
         <div>
           <div className="flex items-center justify-between pb-2">
             <h1 className="h1_form ">Matérias</h1>
-            <Refresh
-              size={22}
-              color={"#e4e4e7"}
-              onClick={() => mutate()}
-              className="hover:cursor-pointer"
-            />
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 mb-1">
             <p className="w-full bg-zinc-800 pl-2.5 h-9 rounded-lg flex flex-col justify-center items-start ">
               {
                 oneStudent?.nome
