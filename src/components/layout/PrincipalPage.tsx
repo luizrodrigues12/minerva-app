@@ -59,7 +59,7 @@ const PrincipalPage = () => {
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.9 }}
-            className="mt-2"
+            className="mt-2 border-2 border-[#ffffff6e] rounded-lg"
           >
             <Image
               src={"/images/minerva-01.jpg"}
@@ -69,7 +69,7 @@ const PrincipalPage = () => {
               id="foto-minerva"
               width={800}
               height={800}
-              className="rounded-lg box-foto-minerva border-2 border-[#ffffff6e] w-[340px] md:w-[480px]"
+              className="rounded-md box-foto-minerva w-[340px] md:w-[480px]"
             />
           </motion.div>
 
