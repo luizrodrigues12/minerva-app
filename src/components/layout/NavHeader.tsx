@@ -37,9 +37,13 @@ const NavHeader = () => {
         path === "/register" ||
         path === "/forget_pass"
       ) ? (
-        <div>
+        <div className="w-full">
           <Link href={"/profile"} prefetch>
-            <UserCircle size={40} color={"rgb(228 228 231)"} />
+            <UserCircle
+              size={40}
+              color={"rgb(228 228 231)"}
+              className="size-[40px] md:size-[60px] lg:size-[55px]"
+            />
           </Link>
         </div>
       ) : (

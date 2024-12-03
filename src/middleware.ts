@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
   const { user } = await result.json();
 
   if (!user) {
-    if (!(path == "/login" || path == "/register"))
+    if (!(path == "/login" || path == "/register" || path == "/"))
       return NextResponse.redirect(new URL("/login", request.url));
   }
 

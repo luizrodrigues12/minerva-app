@@ -10,6 +10,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        parkinsans: ["parkinsans", "serif"],
+        "parkinsans-normal": ["parkinsans-regular", "serif"],
+        handlee: ["handlee", "serif"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

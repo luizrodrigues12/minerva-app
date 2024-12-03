@@ -18,11 +18,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" className="bg-zinc-900 min-h-full text-zinc-100">
+    <html lang="pt-br" className="bg-zinc-900 text-zinc-100">
       <body className="flex flex-col justify-center items-center min-h-screen">
         <Header />
-
-        <div className="min-h-screen w-screen flex flex-col justify-center items-center">
+        <div className="min-h-screen w-full flex flex-col justify-center items-center">
           <NextTopLoader
             color="#e4e4e7"
             speed={500}
