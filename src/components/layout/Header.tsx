@@ -16,6 +16,8 @@ const Header = () => {
               width={50}
               height={50}
               alt="Logo minerva"
+              blurDataURL="/images/logo.png"
+              placeholder="blur"
               priority
               className="hover:brightness-75 w-12 h-12 md:w-16 md:h-16 lg:w-[4.0rem] lg:h-[4.0rem] xl:w-[60px] xl:h-[60px]"
             />
