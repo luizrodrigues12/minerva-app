@@ -56,8 +56,8 @@ const PrincipalPage = () => {
             </motion.div>
           </div>
           <motion.div
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.9 }}
             className="mt-2 border-2 border-[#ffffff6e] rounded-lg"
           >
@@ -76,7 +76,7 @@ const PrincipalPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.9 }}
+            transition={{ duration: 0.3, delay: 1.2 }}
             className="self-center flex w-[340px] justify-center items-center gap-2 px-0.5 pb-6 md:hidden"
           >
             <motion.div
