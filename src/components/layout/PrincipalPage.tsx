@@ -34,13 +34,14 @@ const PrincipalPage = () => {
             <motion.div
               initial={{ opacity: 0, y: 5 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.9 }}
+              transition={{ duration: 0.4, delay: 0.9 }}
               className="hidden self-start md:w-[234px] flex-col justify-center items-center gap-2 px-0.5 pb-6 md:flex lg:flex-col lg:w-full"
             >
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 1 }}
-                className="w-full p-2 rounded-lg bg-[#4f47a8ea] text-zinc-200 text-center border-2 border-[#ffffff88] hover:bg-[#4f47a8] hover:cursor-pointer"
+                style={{ boxShadow: "0 0 10px #00000040" }}
+                className="w-full p-2 rounded-lg bg-[#4f47a8ea] text-zinc-200 text-center hover:cursor-pointer hover:bg-[#4f47a8]"
                 onClick={() => router.push("/login")}
               >
                 Entrar
@@ -48,7 +49,8 @@ const PrincipalPage = () => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 1 }}
-                className="w-full p-2 rounded-lg bg-[#4f47a8ea] text-zinc-200 text-center border-2 border-[#ffffff88] hover:bg-[#4f47a8] hover:cursor-pointer"
+                style={{ boxShadow: "0 0 10px #00000040" }}
+                className="w-full p-2 rounded-lg bg-[#4f47a8ea] text-zinc-200 text-center hover:cursor-pointer hover:bg-[#4f47a8]"
                 onClick={() => router.push("/register")}
               >
                 Criar Conta
@@ -59,7 +61,7 @@ const PrincipalPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.9 }}
-            className="mt-2 border-2 border-[#ffffff6e] rounded-lg"
+            className="mt-2 rounded-lg"
           >
             <Image
               src={"/images/minerva-01.jpg"}
@@ -69,20 +71,21 @@ const PrincipalPage = () => {
               id="foto-minerva"
               width={800}
               height={800}
-              className="rounded-md box-foto-minerva w-[340px] md:w-[480px]"
+              className="rounded-lg box-foto-minerva w-[340px] md:w-[480px]"
             />
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 1.2 }}
-            className="self-center flex w-[340px] justify-center items-center gap-2 px-0.5 pb-6 md:hidden"
+            transition={{ duration: 0.4, delay: 1.2 }}
+            className="self-center flex w-[340px] justify-center items-center gap-2 px-0.5 pb-6 pt-2 md:hidden"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 1 }}
-              className="w-full p-2 rounded-lg bg-[#4f47a8ea] text-zinc-200 text-center border-2 border-[#ffffff88] hover:bg-[#4f47a8] hover:cursor-pointer"
+              style={{ boxShadow: "0 0 10px #00000040" }}
+              className="w-full p-2 rounded-lg bg-[#4f47a8ea] text-zinc-200 text-center hover:cursor-pointer hover:bg-[#4f47a8]"
               onClick={() => router.push("/login")}
             >
               Entrar
@@ -90,7 +93,8 @@ const PrincipalPage = () => {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 1 }}
-              className="w-full p-2 rounded-lg bg-[#4f47a8ea] text-zinc-200 text-center border-2 border-[#ffffff88] hover:bg-[#4f47a8] hover:cursor-pointer"
+              style={{ boxShadow: "0 0 10px #00000040" }}
+              className="w-full p-2 rounded-lg bg-[#4f47a8ea] text-zinc-200 text-center hover:cursor-pointer hover:bg-[#4f47a8]"
               onClick={() => router.push("/register")}
             >
               Criar Conta
