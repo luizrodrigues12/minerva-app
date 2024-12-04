@@ -20,10 +20,13 @@ const LoginForm = () => {
     try {
       e.preventDefault();
       //Enviando post dos dados
-      await fetch(`${process.env.HOST}/api/user/login`, {
+      const res = await fetch(`${process.env.HOST}/api/user/login`, {
         method: "POST",
         body: JSON.stringify(formData),
       });
+      //Mostrando error
+      const { error } = await res.json();
+      if (error) throw new Error(error);
       //Enviando para a home.
       window.location.reload();
     } catch (err: any) {
@@ -52,7 +55,7 @@ const LoginForm = () => {
       <form
         method="POST"
         className="flex flex-col gap-2 my-4"
-        onSubmit={handleForm}
+        onSubmit={(e) => handleForm(e)}
       >
         <h1 className="text-zinc-200 text-2xl font-medium mb-1">Fazer login</h1>
         <div className="flex flex-col gap-2">
