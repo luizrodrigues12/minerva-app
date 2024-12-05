@@ -66,8 +66,6 @@ const PrincipalPage = () => {
             <Image
               src={"/images/minerva-01.jpg"}
               alt="Foto minerva"
-              blurDataURL="/images/minerva-01.jpg"
-              placeholder="blur"
               id="foto-minerva"
               width={800}
               height={800}
