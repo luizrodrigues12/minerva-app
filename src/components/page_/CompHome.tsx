@@ -15,34 +15,24 @@ const PageHome = () => {
   const { setToken } = useUserStore();
   const [busca, setBusca] = useState("");
   const buscaDeferred = useDeferredValue(busca);
-  const [dadosAlunos, setDadosAlunos] = useState<Array<AlunosObj>>();
 
   //Verificando token
   const token = getCookie("authorization");
 
-  const getAlunos = async () => {
-    const res = await fetch(`${process.env.HOST}/api/student/get_students`, {
+  // PEGANDO ALUNOS
+  const fetcher = (url: string) =>
+    fetch(`${process.env.HOST}/api/student/get_students`, {
       method: "POST",
       body: JSON.stringify({ token: token }),
+    }).then(async (res) => {
+      const { alunos } = await res.json();
+      return alunos;
     });
-    const { alunos } = await res.json();
-    setDadosAlunos(alunos);
-  };
 
-  // PEGANDO ALUNOS
-  // const fetcher = (url: string) =>
-  //   fetch(`${process.env.HOST}/api/student/get_students`, {
-  //     method: "POST",
-  //     body: JSON.stringify({ token: token }),
-  //   }).then(async (res) => {
-  //     const { alunos } = await res.json();
-  //     return alunos;
-  //   });
-
-  // const { data: alunosData, mutate } = useSWR<Array<AlunosObj>>(
-  //   `${process.env.HOST}/api/student/get_students`,
-  //   fetcher
-  // );
+  const { data: alunosData, mutate } = useSWR<Array<AlunosObj>>(
+    `${process.env.HOST}/api/student/get_students`,
+    fetcher
+  );
 
   useEffect(() => {
     //Pegando o username dos cookies
@@ -50,22 +40,21 @@ const PageHome = () => {
     setUsername(
       usernameCookie.split("")[0].toUpperCase() + usernameCookie.slice(1)
     );
-    // mutate(); RETIRAR SE DER ERRADO
+    mutate();
     // Setando Token ZUSTAND
     setToken(token!);
-    getAlunos();
   }, []);
 
   return (
     <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 flex flex-col gap-2">
-      {!dadosAlunos ? (
+      {!alunosData ? (
         <div className="flex flex-col justify-center items-center py-10">
           <Spinner />
         </div>
       ) : (
         <motion.div
           animate={{ opacity: [0, 1] }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.25, delay: 0.1 }}
           className="flex flex-col gap-2"
         >
           {/* SISTEMA DE BUSCA */}
@@ -89,8 +78,8 @@ const PageHome = () => {
             </Link>
           </div>
           {/* RENDERIZANDO NOMES EM ORDEM ALFABÉTICA */}
-          {dadosAlunos?.length !== 0 ? (
-            dadosAlunos
+          {alunosData.length !== 0 ? (
+            alunosData
               ?.filter((aluno) =>
                 aluno.nome?.toLowerCase().includes(buscaDeferred.toLowerCase())
               )
