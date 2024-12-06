@@ -28,7 +28,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
       return { aluno: aluno[0], materias: aluno[0].materias };
     });
 
-  const { data, mutate } = useSWR(
+  const { data, mutate, isValidating } = useSWR(
     `${process.env.HOST}/api/student/get_student`,
     fetcher
   );
@@ -53,7 +53,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
 
   return (
     <div className="flex flex-col px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 gap-3 mb-3">
-      {!data ? (
+      {isValidating ? (
         <div className="flex justify-center items-center py-5">
           <Spinner />
         </div>
