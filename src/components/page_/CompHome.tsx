@@ -52,11 +52,7 @@ const PageHome = () => {
           <Spinner />
         </div>
       ) : (
-        <motion.div
-          animate={{ opacity: [0, 1] }}
-          transition={{ duration: 0.25, delay: 0.1 }}
-          className="flex flex-col gap-2"
-        >
+        <div className="flex flex-col gap-2">
           {/* SISTEMA DE BUSCA */}
           <div className="flex gap-2 justify-center items-center">
             <input
@@ -99,7 +95,7 @@ const PageHome = () => {
               Nenhum aluno cadastrado.
             </p>
           )}
-        </motion.div>
+        </div>
       )}
     </div>
   );
