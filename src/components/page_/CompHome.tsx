@@ -63,7 +63,11 @@ const PageHome = () => {
           <Spinner />
         </div>
       ) : (
-        <div className="flex flex-col gap-2">
+        <motion.div
+          animate={{ opacity: [0, 1] }}
+          transition={{ duration: 0.3 }}
+          className="flex flex-col gap-2"
+        >
           {/* SISTEMA DE BUSCA */}
           <div className="flex gap-2 justify-center items-center">
             <input
@@ -96,13 +100,9 @@ const PageHome = () => {
               .map((aluno, i) => {
                 if (aluno.nome && !(aluno.materias?.length === 0))
                   return (
-                    <motion.div
-                      animate={{ opacity: [0, 1] }}
-                      transition={{ duration: 0.3, delay: i * 0.06 }}
-                      key={i}
-                    >
+                    <div key={i}>
                       <AlunosComp idAluno={aluno.idAluno!} text={aluno.nome!} />
-                    </motion.div>
+                    </div>
                   );
               })
           ) : (
@@ -110,7 +110,7 @@ const PageHome = () => {
               Nenhum aluno cadastrado.
             </p>
           )}
-        </div>
+        </motion.div>
       )}
     </div>
   );
