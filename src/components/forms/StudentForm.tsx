@@ -93,6 +93,8 @@ const StudentForm = () => {
             Preparatório
           </h2>
           <CheckComp
+            animateComp={{ opacity: [0, 1] }}
+            delay={0}
             text="Aplicação"
             name="checkItem"
             id="aplicacao"
@@ -100,6 +102,8 @@ const StudentForm = () => {
             value="aplicação"
           />
           <CheckComp
+            animateComp={{ opacity: [0, 1] }}
+            delay={0.2}
             text="CPM"
             name="checkItem"
             id="cpm"
@@ -107,6 +111,8 @@ const StudentForm = () => {
             value="cpm"
           />
           <CheckComp
+            animateComp={{ opacity: [0, 1] }}
+            delay={0.4}
             text="CEMAM"
             name="checkItem"
             id="cemam"

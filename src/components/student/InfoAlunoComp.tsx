@@ -8,6 +8,7 @@ import NomePreparatorio from "./NomePreparatorio";
 import useSWR from "swr";
 import Link from "next/link";
 import { Spinner } from "flowbite-react";
+import { motion } from "motion/react";
 
 const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   const [checkeds, setCheckeds] = useState(Array<string>);
@@ -48,13 +49,20 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   };
 
   return (
-    <div className="flex flex-col px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 gap-3 mb-3">
+    <motion.div
+      animate={{ opacity: [0, 1] }}
+      transition={{ duration: 0.2, delay: 0.5 }}
+      className="flex flex-col px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 gap-3 mb-3"
+    >
       {!data ? (
         <div className="flex justify-center items-center py-5">
           <Spinner />
         </div>
       ) : (
-        <div>
+        <motion.div
+          animate={{ opacity: [0, 1] }}
+          transition={{ duration: 0.3 }}
+        >
           <div className="flex flex-col gap-3">
             <div className="flex items-center justify-between">
               <h1 className="h1_form">Matérias</h1>
@@ -159,9 +167,9 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
               </form>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

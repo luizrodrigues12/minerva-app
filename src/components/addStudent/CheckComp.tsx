@@ -1,3 +1,10 @@
+import {
+  AnimationControls,
+  motion,
+  TargetAndTransition,
+  VariantLabels,
+} from "motion/react";
+
 type Props = {
   htmlFor: string;
   text: string;
@@ -7,6 +14,13 @@ type Props = {
   isChecked?: boolean;
   onChange?: () => void;
   onClick?: () => void;
+  delay?: number;
+  animateComp?:
+    | boolean
+    | AnimationControls
+    | TargetAndTransition
+    | VariantLabels
+    | undefined;
 };
 
 const CheckComp = ({
@@ -18,9 +32,15 @@ const CheckComp = ({
   isChecked,
   onChange,
   onClick,
+  delay,
+  animateComp,
 }: Props) => {
   return (
-    <div className="checkbox flex justify-between items-center p-3 px-4 bg-zinc-950 w-full rounded-lg shadow-md">
+    <motion.div
+      animate={animateComp ? animateComp : { opacity: [0, 1], y: [-10, 0] }}
+      transition={{ duration: 0.3, delay: delay }}
+      className="checkbox flex justify-between items-center p-3 px-4 bg-zinc-950 w-full rounded-lg shadow-md"
+    >
       <label
         htmlFor={htmlFor}
         className="font-medium text-zinc-200 tracking-widest"
@@ -36,7 +56,7 @@ const CheckComp = ({
         onChange={onChange}
         onClick={onClick}
       />
-    </div>
+    </motion.div>
   );
 };
 

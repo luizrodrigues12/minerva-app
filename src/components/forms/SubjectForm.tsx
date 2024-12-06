@@ -8,6 +8,7 @@ import useUserStore from "@/stores/userStore";
 import useSWR from "swr";
 import { Spinner } from "flowbite-react";
 import { useRouter } from "nextjs-toploader/app";
+import { motion } from "motion/react";
 
 const SubjectForm = ({ idAluno }: { idAluno: string }) => {
   const useUser = useUserStore();
@@ -99,19 +100,32 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
         ) : (
           <div className="flex flex-col gap-2 text-[13.5px]">
             <div className="flex items-center justify-between">
-              <h3 className="font-medium text-zinc-200 text-[1.18rem] pl-0.5">
+              <motion.h3
+                animate={{ opacity: [0, 1], y: [-5, 0] }}
+                transition={{ duration: 0.3 }}
+                className="font-medium text-zinc-200 text-[1.18rem] pl-0.5"
+              >
                 Português
-              </h3>
-              <button onClick={(e) => checkAll(e)} className="text-zinc-200">
+              </motion.h3>
+              <motion.button
+                animate={{ opacity: [0, 1], y: [-5, 0] }}
+                transition={{ duration: 0.3 }}
+                onClick={(e) => checkAll(e)}
+                className="text-zinc-200"
+              >
                 {AllCheckeds ? "desmarcar tudo" : "selecionar tudo"}
-              </button>
+              </motion.button>
             </div>
-            <div>
+            <div className="flex flex-col gap-2">
               {/* PORTUGUÊS DO 6 ANO  */}
               <div className="flex flex-col gap-2 rounded-lg p-2 border-2 border-zinc-800">
-                <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
+                <motion.p
+                  animate={{ opacity: [0, 1], y: [-5, 0] }}
+                  transition={{ duration: 0.3 }}
+                  className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2"
+                >
                   6° Ano
-                </p>
+                </motion.p>
                 {subjects
                   ?.sort((a, b) =>
                     a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
@@ -121,13 +135,13 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
                       if (materia.materia === "português") {
                         return (
                           <CheckComp
+                            delay={i * 0.03}
                             key={i}
                             text={materia.nome}
                             name="subject"
                             id={materia._id!}
                             htmlFor={materia.nome}
                             value={materia._id!}
-                            isChecked={isChecked}
                           />
                         );
                       }
@@ -148,6 +162,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
                       if (materia.materia === "português") {
                         return (
                           <CheckComp
+                            delay={i * 0.03}
                             key={i}
                             text={materia.nome}
                             name="subject"
@@ -178,6 +193,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
                       if (materia.materia === "matemática") {
                         return (
                           <CheckComp
+                            delay={i * 0.08}
                             key={i}
                             text={materia.nome}
                             name="subject"
@@ -205,6 +221,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
                       if (materia.materia === "matemática") {
                         return (
                           <CheckComp
+                            delay={(i - 15) * 0.08}
                             key={i}
                             text={materia.nome}
                             name="subject"
