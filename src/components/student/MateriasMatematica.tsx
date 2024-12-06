@@ -40,13 +40,14 @@ const MateriasMatematica = ({
               ) {
                 if (objMateria.materia === "matemática")
                   return (
-                    <MateriaComp
-                      key={i}
-                      text={objMateria.nome.toUpperCase()}
-                      isChecked={objMateria.isChecked}
-                      id={objMateria._id}
-                      onClick={(e: any) => toggleIsChecked(objMateria, e)}
-                    />
+                    <div key={i}>
+                      <MateriaComp
+                        text={objMateria.nome.toUpperCase()}
+                        isChecked={objMateria.isChecked}
+                        id={objMateria._id}
+                        onClick={(e: any) => toggleIsChecked(objMateria, e)}
+                      />
+                    </div>
                   );
               }
             })}

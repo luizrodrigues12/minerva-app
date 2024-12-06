@@ -5,6 +5,7 @@ import { useState } from "react";
 import MateriaComp from "./MateriaComp";
 import useSWR from "swr";
 import { Spinner } from "flowbite-react";
+import { motion } from "motion/react";
 
 type Props = {
   idAluno: string;
@@ -108,12 +109,20 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                           if (objMateria.ordem <= 10) {
                             if (objMateria.materia === "português")
                               return (
-                                <MateriaComp
+                                <motion.div
+                                  animate={{ opacity: [0, 1] }}
+                                  transition={{
+                                    duration: 0.3,
+                                    delay: i * 0.03,
+                                  }}
                                   key={i}
-                                  text={objMateria.nome.toUpperCase()}
-                                  isChecked={objMateria.isChecked}
-                                  id={objMateria._id}
-                                />
+                                >
+                                  <MateriaComp
+                                    text={objMateria.nome.toUpperCase()}
+                                    isChecked={objMateria.isChecked}
+                                    id={objMateria._id}
+                                  />
+                                </motion.div>
                               );
                           }
                         })}
@@ -143,12 +152,20 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                         if (objMateria.ordem > 10) {
                           if (objMateria.materia === "português")
                             return (
-                              <MateriaComp
+                              <motion.div
+                                animate={{ opacity: [0, 1] }}
+                                transition={{
+                                  duration: 0.3,
+                                  delay: i * 0.03,
+                                }}
                                 key={i}
-                                text={objMateria.nome.toUpperCase()}
-                                isChecked={objMateria.isChecked}
-                                id={objMateria._id}
-                              />
+                              >
+                                <MateriaComp
+                                  text={objMateria.nome.toUpperCase()}
+                                  isChecked={objMateria.isChecked}
+                                  id={objMateria._id}
+                                />
+                              </motion.div>
                             );
                         }
                       })}
@@ -183,12 +200,20 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                           if (objMateria.ordem <= 15) {
                             if (objMateria.materia === "matemática")
                               return (
-                                <MateriaComp
+                                <motion.div
+                                  animate={{ opacity: [0, 1] }}
+                                  transition={{
+                                    duration: 0.3,
+                                    delay: i * 0.03,
+                                  }}
                                   key={i}
-                                  text={objMateria.nome.toUpperCase()}
-                                  isChecked={objMateria.isChecked}
-                                  id={objMateria._id}
-                                />
+                                >
+                                  <MateriaComp
+                                    text={objMateria.nome.toUpperCase()}
+                                    isChecked={objMateria.isChecked}
+                                    id={objMateria._id}
+                                  />
+                                </motion.div>
                               );
                           }
                         })}
@@ -219,12 +244,20 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                         if (objMateria.ordem > 15) {
                           if (objMateria.materia === "matemática")
                             return (
-                              <MateriaComp
+                              <motion.div
+                                animate={{ opacity: [0, 1] }}
+                                transition={{
+                                  duration: 0.3,
+                                  delay: i * 0.03,
+                                }}
                                 key={i}
-                                text={objMateria.nome.toUpperCase()}
-                                isChecked={objMateria.isChecked}
-                                id={objMateria._id}
-                              />
+                              >
+                                <MateriaComp
+                                  text={objMateria.nome.toUpperCase()}
+                                  isChecked={objMateria.isChecked}
+                                  id={objMateria._id}
+                                />
+                              </motion.div>
                             );
                         }
                       })}

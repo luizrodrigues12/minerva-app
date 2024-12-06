@@ -1,6 +1,5 @@
 import { AlunosObj } from "@/stores/userStore";
 import MateriaComp from "./MateriaComp";
-import { motion } from "motion/react";
 
 type Props = {
   oneStudent: AlunosObj;
@@ -41,14 +40,14 @@ const MateriasPortugues = ({
               ) {
                 if (objMateria.materia === "português")
                   return (
-                    <motion.div key={i}>
+                    <div key={i}>
                       <MateriaComp
                         text={objMateria.nome.toUpperCase()}
                         isChecked={objMateria.isChecked}
                         id={objMateria._id}
                         onClick={(e: any) => toggleIsChecked(objMateria, e)}
                       />
-                    </motion.div>
+                    </div>
                   );
               }
             })}

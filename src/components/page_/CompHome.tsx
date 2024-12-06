@@ -8,6 +8,7 @@ import { AlunosObj } from "@/stores/userStore";
 import Link from "next/link";
 import useSWR from "swr";
 import { Spinner } from "flowbite-react";
+import { motion } from "motion/react";
 
 const PageHome = () => {
   const [username, setUsername] = useState("");
@@ -84,11 +85,13 @@ const PageHome = () => {
               .map((aluno, i) => {
                 if (aluno.nome && !(aluno.materias?.length === 0))
                   return (
-                    <AlunosComp
-                      idAluno={aluno.idAluno!}
+                    <motion.div
+                      animate={{ opacity: [0, 1] }}
+                      transition={{ duration: 0.3, delay: i * 0.06 }}
                       key={i}
-                      text={aluno.nome!}
-                    />
+                    >
+                      <AlunosComp idAluno={aluno.idAluno!} text={aluno.nome!} />
+                    </motion.div>
                   );
               })
           ) : (
