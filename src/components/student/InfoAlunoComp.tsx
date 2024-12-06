@@ -51,7 +51,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   return (
     <motion.div
       animate={{ opacity: [0, 1] }}
-      transition={{ duration: 0.2, delay: 0.5 }}
+      transition={{ duration: 0.2, delay: 0.8 }}
       className="flex flex-col px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 gap-3 mb-3"
     >
       {!data ? (
