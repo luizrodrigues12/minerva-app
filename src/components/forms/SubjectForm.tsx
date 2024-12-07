@@ -6,7 +6,6 @@ import { useState } from "react";
 import { getCookie } from "cookies-next";
 import useUserStore from "@/stores/userStore";
 import useSWR from "swr";
-import { Spinner } from "flowbite-react";
 import { useRouter } from "nextjs-toploader/app";
 import { motion } from "motion/react";
 import Loading from "../layout/Loading";
