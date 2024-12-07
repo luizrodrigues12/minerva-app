@@ -98,7 +98,7 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 mb-3"
+          className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 mb-3 w-full"
         >
           <form method="POST" className="form_register">
             <h2 className="h1_form text-center">Selecione as Matérias</h2>

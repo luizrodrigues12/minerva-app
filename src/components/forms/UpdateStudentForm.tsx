@@ -63,7 +63,7 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2 }}
-          className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2"
+          className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 w-full"
         >
           <form method="POST" className="form_student 2xl:h-[350px] ">
             <h2 className="h1_form">Atualizar Dados</h2>
