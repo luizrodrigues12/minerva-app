@@ -46,7 +46,7 @@ const PageHome = () => {
   }, []);
 
   return (
-    <div className="height_pattern">
+    <div className="flex flex-col justify-center items-center height_pattern w-full">
       {!alunosData ? (
         <div className="flex flex-col justify-center items-center">
           <Loading />
