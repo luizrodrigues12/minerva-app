@@ -5,11 +5,7 @@ import SectionComp from "@/components/page_/SectionComp";
 import { dataMongoUser } from "@/models/userModel";
 
 const page = async () => {
-  return (
-    <SectionComp>
-      <UserDataComp></UserDataComp>
-    </SectionComp>
-  );
+  return <UserDataComp />;
 };
 
 export default page;

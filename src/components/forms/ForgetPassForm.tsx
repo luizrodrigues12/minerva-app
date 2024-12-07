@@ -1,7 +1,7 @@
 "use client";
 
 import { validateEmail } from "@/utils/regex";
-import { useRouter } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { useState } from "react";
 
 const ForgetPassForm = () => {
@@ -30,37 +30,43 @@ const ForgetPassForm = () => {
   };
 
   return (
-    <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2">
-      <form method="POST" onSubmit={handleForm} className="form_login_register">
-        <div className="flex flex-col gap-2">
-          <h1 className="h1_form">Redefinir Senha</h1>
+    <div className="flex flex-col justify-center items-center w-full height_pattern">
+      <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2">
+        <form
+          method="POST"
+          onSubmit={handleForm}
+          className="form_login_register"
+        >
+          <div className="flex flex-col gap-2">
+            <h1 className="h1_form">Redefinir Senha</h1>
 
-          <p className="text-sm lg:text-[16px] leading-5 w-[100%]">
-            Caso exista uma conta com esse email, você receberá um link para
-            alterar sua senha.
-          </p>
+            <p className="text-sm lg:text-[16px] leading-5 w-[100%]">
+              Caso exista uma conta com esse email, você receberá um link para
+              alterar sua senha.
+            </p>
 
-          <div className="div_form">
-            <input
-              type="email"
-              name="email"
-              id=""
-              placeholder="Email"
-              className="input_email_username"
-              value={email}
-              onChange={(e) => {
-                e.preventDefault();
-                setEmail(e.target.value);
-              }}
-              required
-            />
+            <div className="div_form">
+              <input
+                type="email"
+                name="email"
+                id=""
+                placeholder="Email"
+                className="input_email_username"
+                value={email}
+                onChange={(e) => {
+                  e.preventDefault();
+                  setEmail(e.target.value);
+                }}
+                required
+              />
+            </div>
+            {error ? <p>{error}</p> : <></>}
+            <button type="submit" className="btn_submit_form">
+              Enviar Email
+            </button>
           </div>
-          {error ? <p>{error}</p> : <></>}
-          <button type="submit" className="btn_submit_form">
-            Enviar Email
-          </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import useUserStore from "@/stores/userStore";
 import { getCookie } from "cookies-next";
-import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const token = getCookie("authorization");
@@ -51,7 +50,7 @@ const LoginForm = () => {
   }, []);
 
   return (
-    <div className="px-8 md:self-center rounded-lg md:px-6 md:w-[400px] md:border-zinc-800 md:border-2">
+    <div className="w-full px-8 md:self-center rounded-lg md:px-6 md:w-[400px] md:border-zinc-800 md:border-2 height_pattern">
       <form
         method="POST"
         className="flex flex-col gap-2 my-4"

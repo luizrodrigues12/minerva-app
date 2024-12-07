@@ -7,7 +7,8 @@ import MateriasMatematica from "./MateriasMatematica";
 import NomePreparatorio from "./NomePreparatorio";
 import useSWR from "swr";
 import Link from "next/link";
-import { Spinner } from "flowbite-react";
+import Loading from "../layout/Loading";
+import { motion } from "motion/react";
 
 const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   const [checkeds, setCheckeds] = useState(Array<string>);
@@ -52,13 +53,16 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   };
 
   return (
-    <div className="flex flex-col px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 gap-3 mb-3">
+    <div className="flex flex-col justify-center w-full height_pattern">
       {isValidating ? (
-        <div className="flex justify-center items-center py-5">
-          <Spinner />
-        </div>
+        <Loading />
       ) : (
-        <div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
+          className="flex flex-col px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 gap-3 mb-3 "
+        >
           <div className="flex flex-col gap-3">
             <div className="flex items-center justify-between">
               <h1 className="h1_form">Matérias</h1>
@@ -163,7 +167,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
               </form>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );

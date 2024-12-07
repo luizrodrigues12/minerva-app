@@ -72,85 +72,87 @@ const StudentForm = () => {
   };
 
   return (
-    <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2">
-      <form method="POST" className="form_student">
-        <h2 className="h1_form">Adicionar Aluno</h2>
-        <div className="container_check flex flex-col gap-2">
-          <input
-            type="text"
-            name="nome"
-            id="nome_aluno"
-            placeholder="Nome do aluno"
-            className="input_email_username"
-            autoComplete="off"
-            onChange={(e) => {
+    <div className="w-full height_pattern flex flex-col justify-center">
+      <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2">
+        <form method="POST" className="form_student">
+          <h2 className="h1_form">Adicionar Aluno</h2>
+          <div className="container_check flex flex-col gap-2">
+            <input
+              type="text"
+              name="nome"
+              id="nome_aluno"
+              placeholder="Nome do aluno"
+              className="input_email_username"
+              autoComplete="off"
+              onChange={(e) => {
+                e.preventDefault();
+                setNomeAluno(e.target.value);
+              }}
+            />
+
+            <h2 className="text-xl font-medium tracking-wide py-1 px-1 text-zinc-200">
+              Preparatório
+            </h2>
+            <CheckComp
+              animateComp={{ opacity: [0, 1] }}
+              transition={{ duration: 0 }}
+              text="Aplicação"
+              name="checkItem"
+              id="aplicacao"
+              htmlFor="aplicacao"
+              value="aplicação"
+            />
+            <CheckComp
+              animateComp={{ opacity: [0, 1] }}
+              transition={{ duration: 0 }}
+              text="CPM"
+              name="checkItem"
+              id="cpm"
+              htmlFor="cpm"
+              value="cpm"
+            />
+            <CheckComp
+              animateComp={{ opacity: [0, 1] }}
+              transition={{ duration: 0 }}
+              text="CEMAM"
+              name="checkItem"
+              id="cemam"
+              htmlFor="cemam"
+              value="cemam"
+            />
+          </div>
+          {error ? (
+            <p className="text-[14px] py-0.5 bg-zinc-900 text-center text-[#FAA139]">
+              {error}
+            </p>
+          ) : (
+            <></>
+          )}
+
+          <button
+            type="submit"
+            className="btn_submit_form"
+            onClick={(e: any) => {
               e.preventDefault();
-              setNomeAluno(e.target.value);
+              try {
+                // Verificações
+                if (!nomeAluno)
+                  throw new Error("por favor, insira um nome válido.");
+                onChangeInput();
+                if (checks.length === 0)
+                  throw new Error("Escolha ao menos um preparatório.");
+                submitFormStudent(e);
+                mutate();
+                router.push(`/add_student/subjects/${idStudent}`);
+              } catch (error: any) {
+                setError(error.message);
+              }
             }}
-          />
-
-          <h2 className="text-xl font-medium tracking-wide py-1 px-1 text-zinc-200">
-            Preparatório
-          </h2>
-          <CheckComp
-            animateComp={{ opacity: [0, 1] }}
-            delay={0}
-            text="Aplicação"
-            name="checkItem"
-            id="aplicacao"
-            htmlFor="aplicacao"
-            value="aplicação"
-          />
-          <CheckComp
-            animateComp={{ opacity: [0, 1] }}
-            delay={0.2}
-            text="CPM"
-            name="checkItem"
-            id="cpm"
-            htmlFor="cpm"
-            value="cpm"
-          />
-          <CheckComp
-            animateComp={{ opacity: [0, 1] }}
-            delay={0.4}
-            text="CEMAM"
-            name="checkItem"
-            id="cemam"
-            htmlFor="cemam"
-            value="cemam"
-          />
-        </div>
-        {error ? (
-          <p className="text-[14px] py-0.5 bg-zinc-900 text-center text-[#FAA139]">
-            {error}
-          </p>
-        ) : (
-          <></>
-        )}
-
-        <button
-          type="submit"
-          className="btn_submit_form"
-          onClick={(e: any) => {
-            e.preventDefault();
-            try {
-              // Verificações
-              if (!nomeAluno)
-                throw new Error("por favor, insira um nome válido.");
-              onChangeInput();
-              if (checks.length === 0)
-                throw new Error("Escolha ao menos um preparatório.");
-              submitFormStudent(e);
-              mutate();
-              router.push(`/add_student/subjects/${idStudent}`);
-            } catch (error: any) {
-              setError(error.message);
-            }
-          }}
-        >
-          Avançar
-        </button>
-      </form>
+          >
+            Avançar
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -7,8 +7,8 @@ import AlunosComp from "../home/AlunosComp";
 import { AlunosObj } from "@/stores/userStore";
 import Link from "next/link";
 import useSWR from "swr";
-import { Spinner } from "flowbite-react";
 import { motion } from "motion/react";
+import Loading from "../layout/Loading";
 
 const PageHome = () => {
   const [username, setUsername] = useState("");
@@ -46,13 +46,17 @@ const PageHome = () => {
   }, []);
 
   return (
-    <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 flex flex-col gap-2">
+    <div className="height_pattern">
       {!alunosData ? (
-        <div className="flex flex-col justify-center items-center py-10">
-          <Spinner />
+        <div className="flex flex-col justify-center items-center">
+          <Loading />
         </div>
       ) : (
-        <div className="flex flex-col gap-2">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 flex flex-col gap-2 mb-auto "
+        >
           {/* SISTEMA DE BUSCA */}
           <div className="flex gap-2 justify-center items-center">
             <input
@@ -95,7 +99,7 @@ const PageHome = () => {
               Nenhum aluno cadastrado.
             </p>
           )}
-        </div>
+        </motion.div>
       )}
     </div>
   );

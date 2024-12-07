@@ -9,6 +9,7 @@ import useSWR from "swr";
 import { Spinner } from "flowbite-react";
 import { useRouter } from "nextjs-toploader/app";
 import { motion } from "motion/react";
+import Loading from "../layout/Loading";
 
 const SubjectForm = ({ idAluno }: { idAluno: string }) => {
   const useUser = useUserStore();
@@ -89,174 +90,171 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
   };
 
   return (
-    <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 mb-3">
-      <form method="POST" className="form_register">
-        <h2 className="h1_form text-center">Selecione as Matérias</h2>
-        <hr className="bg-zinc-800 h-0.5 border-0" />
-        {!subjects ? (
-          <div className="flex flex-col justify-center items-center py-10">
-            <Spinner />
-          </div>
-        ) : (
-          <div className="flex flex-col gap-2 text-[13.5px]">
-            <div className="flex items-center justify-between">
-              <motion.h3
-                animate={{ opacity: [0, 1], y: [-5, 0] }}
-                transition={{ duration: 0.3 }}
-                className="font-medium text-zinc-200 text-[1.18rem] pl-0.5"
-              >
-                Português
-              </motion.h3>
-              <motion.button
-                animate={{ opacity: [0, 1], y: [-5, 0] }}
-                transition={{ duration: 0.3 }}
-                onClick={(e) => checkAll(e)}
-                className="text-zinc-200"
-              >
-                {AllCheckeds ? "desmarcar tudo" : "selecionar tudo"}
-              </motion.button>
-            </div>
-            <div className="flex flex-col gap-2">
-              {/* PORTUGUÊS DO 6 ANO  */}
-              <div className="flex flex-col gap-2 rounded-lg p-2 border-2 border-zinc-800">
-                <motion.p
-                  animate={{ opacity: [0, 1], y: [-5, 0] }}
-                  transition={{ duration: 0.3 }}
-                  className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2"
-                >
-                  6° Ano
-                </motion.p>
-                {subjects
-                  ?.sort((a, b) =>
-                    a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
-                  )
-                  .map((materia, i) => {
-                    if (materia.ordem <= 10) {
-                      if (materia.materia === "português") {
-                        return (
-                          <CheckComp
-                            delay={i * 0.03}
-                            key={i}
-                            text={materia.nome}
-                            name="subject"
-                            id={materia._id!}
-                            htmlFor={materia.nome}
-                            value={materia._id!}
-                          />
-                        );
-                      }
-                    }
-                  })}
-              </div>
-              {/* PORTUGUÊS DO 1 ANO */}
-              <div className="flex flex-col gap-2 rounded-lg p-2 border-2 border-zinc-800">
-                <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
-                  1° Ano
-                </p>
-                {subjects
-                  ?.sort((a, b) =>
-                    a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
-                  )
-                  .map((materia, i) => {
-                    if (materia.ordem > 10) {
-                      if (materia.materia === "português") {
-                        return (
-                          <CheckComp
-                            delay={i * 0.03}
-                            key={i}
-                            text={materia.nome}
-                            name="subject"
-                            id={materia._id!}
-                            htmlFor={materia.nome}
-                            value={materia._id!}
-                            isChecked={isChecked}
-                          />
-                        );
-                      }
-                    }
-                  })}
-              </div>
-              <h3 className="font-medium text-zinc-200 text-[1.18rem] pl-0.5">
-                Matemática
-              </h3>
-              {/* MATEMÁTICA DO 6 ANO */}
-              <div className="flex flex-col gap-2 rounded-lg p-2 border-2 border-zinc-800">
-                <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
-                  6° Ano
-                </p>
-                {subjects
-                  ?.sort((a, b) =>
-                    a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
-                  )
-                  .map((materia, i) => {
-                    if (materia.ordem <= 15) {
-                      if (materia.materia === "matemática") {
-                        return (
-                          <CheckComp
-                            delay={i * 0.08}
-                            key={i}
-                            text={materia.nome}
-                            name="subject"
-                            id={materia._id!}
-                            htmlFor={materia.nome}
-                            value={materia._id!}
-                            isChecked={isChecked}
-                          />
-                        );
-                      }
-                    }
-                  })}
-              </div>
-              {/* MATEMÁTICA DO 1 ANO */}
-              <div className="flex flex-col gap-2 rounded-lg p-2 border-2 border-zinc-800">
-                <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
-                  1° Ano
-                </p>
-                {subjects
-                  ?.sort((a, b) =>
-                    a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
-                  )
-                  .map((materia, i) => {
-                    if (materia.ordem > 15) {
-                      if (materia.materia === "matemática") {
-                        return (
-                          <CheckComp
-                            delay={(i - 15) * 0.08}
-                            key={i}
-                            text={materia.nome}
-                            name="subject"
-                            id={materia._id!}
-                            htmlFor={materia.nome}
-                            value={materia._id!}
-                            isChecked={isChecked}
-                          />
-                        );
-                      }
-                    }
-                  })}
-              </div>
-            </div>
-            {error ? (
-              <p className="text-[14px] py-0.5 bg-zinc-900 text-center text-[#FAA139]">
-                {error}
-              </p>
-            ) : (
-              ""
-            )}
-          </div>
-        )}
-
-        <button
-          className="btn_submit_form"
-          onClick={(e) => {
-            e.preventDefault();
-            onClickInput();
-            useUser.emptyStateChecks();
-          }}
+    <div className="w-full flex flex-col justify-center items-center height_pattern">
+      {!subjects ? (
+        <Loading />
+      ) : (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 mb-3"
         >
-          Salvar
-        </button>
-      </form>
+          <form method="POST" className="form_register">
+            <h2 className="h1_form text-center">Selecione as Matérias</h2>
+            <hr className="bg-zinc-800 h-0.5 border-0" />
+            {/*  */}
+            <div className="flex flex-col gap-2 text-[13.5px]">
+              <div className="flex items-center justify-between">
+                <h3 className="font-medium text-zinc-200 text-[1.18rem] pl-0.5">
+                  Português
+                </h3>
+                <button onClick={(e) => checkAll(e)} className="text-zinc-200">
+                  {AllCheckeds ? "desmarcar tudo" : "selecionar tudo"}
+                </button>
+              </div>
+              <div className="flex flex-col gap-2">
+                {/* PORTUGUÊS DO 6 ANO  */}
+                <div className="flex flex-col gap-2 rounded-lg p-2 border-2 border-zinc-800">
+                  <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
+                    6° Ano
+                  </p>
+                  {subjects
+                    ?.sort((a, b) =>
+                      a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
+                    )
+                    .map((materia, i) => {
+                      if (materia.ordem <= 10) {
+                        if (materia.materia === "português") {
+                          return (
+                            <CheckComp
+                              animateComp={{ opacity: [0, 1] }}
+                              transition={{ delay: i * 0.01 }}
+                              key={i}
+                              text={materia.nome}
+                              name="subject"
+                              id={materia._id!}
+                              htmlFor={materia.nome}
+                              value={materia._id!}
+                            />
+                          );
+                        }
+                      }
+                    })}
+                </div>
+                {/* PORTUGUÊS DO 1 ANO */}
+                <div className="flex flex-col gap-2 rounded-lg p-2 border-2 border-zinc-800">
+                  <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
+                    1° Ano
+                  </p>
+                  {subjects
+                    ?.sort((a, b) =>
+                      a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
+                    )
+                    .map((materia, i) => {
+                      if (materia.ordem > 10) {
+                        if (materia.materia === "português") {
+                          return (
+                            <CheckComp
+                              animateComp={{ opacity: [0, 1] }}
+                              transition={{ delay: i * 0.01 }}
+                              key={i}
+                              text={materia.nome}
+                              name="subject"
+                              id={materia._id!}
+                              htmlFor={materia.nome}
+                              value={materia._id!}
+                              isChecked={isChecked}
+                            />
+                          );
+                        }
+                      }
+                    })}
+                </div>
+                <h3 className="font-medium text-zinc-200 text-[1.18rem] pl-0.5">
+                  Matemática
+                </h3>
+                {/* MATEMÁTICA DO 6 ANO */}
+                <div className="flex flex-col gap-2 rounded-lg p-2 border-2 border-zinc-800">
+                  <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
+                    6° Ano
+                  </p>
+                  {subjects
+                    ?.sort((a, b) =>
+                      a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
+                    )
+                    .map((materia, i) => {
+                      if (materia.ordem <= 15) {
+                        if (materia.materia === "matemática") {
+                          return (
+                            <CheckComp
+                              animateComp={{ opacity: [0, 1] }}
+                              transition={{ delay: i * 0.01 }}
+                              key={i}
+                              text={materia.nome}
+                              name="subject"
+                              id={materia._id!}
+                              htmlFor={materia.nome}
+                              value={materia._id!}
+                              isChecked={isChecked}
+                            />
+                          );
+                        }
+                      }
+                    })}
+                </div>
+                {/* MATEMÁTICA DO 1 ANO */}
+                <div className="flex flex-col gap-2 rounded-lg p-2 border-2 border-zinc-800">
+                  <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
+                    1° Ano
+                  </p>
+                  {subjects
+                    ?.sort((a, b) =>
+                      a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
+                    )
+                    .map((materia, i) => {
+                      if (materia.ordem > 15) {
+                        if (materia.materia === "matemática") {
+                          return (
+                            <CheckComp
+                              animateComp={{ opacity: [0, 1] }}
+                              transition={{ delay: i * 0.01 }}
+                              key={i}
+                              text={materia.nome}
+                              name="subject"
+                              id={materia._id!}
+                              htmlFor={materia.nome}
+                              value={materia._id!}
+                              isChecked={isChecked}
+                            />
+                          );
+                        }
+                      }
+                    })}
+                </div>
+              </div>
+              {error ? (
+                <p className="text-[14px] py-0.5 bg-zinc-900 text-center text-[#FAA139]">
+                  {error}
+                </p>
+              ) : (
+                ""
+              )}
+            </div>
+
+            <button
+              className="btn_submit_form"
+              onClick={(e) => {
+                e.preventDefault();
+                onClickInput();
+                useUser.emptyStateChecks();
+              }}
+            >
+              Salvar
+            </button>
+          </form>
+        </motion.div>
+      )}
     </div>
   );
 };

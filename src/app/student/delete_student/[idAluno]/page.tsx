@@ -5,11 +5,7 @@ const page = async ({ params }: { params: Promise<{ idAluno: string }> }) => {
   const parametros = await params;
   const idAluno = (await params).idAluno;
 
-  return (
-    <SectionComp>
-      <DeleteStudentComp idAluno={idAluno} />
-    </SectionComp>
-  );
+  return <DeleteStudentComp idAluno={idAluno} />;
 };
 
 export default page;
