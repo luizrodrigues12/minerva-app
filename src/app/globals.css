@@ -111,7 +111,7 @@
 
   .foto-professora {
     background-image: linear-gradient(90deg, #18181b, rgba(0, 0, 0, 0) 140%),
-      url("../../public/images/background-xl.jpg");
+      url("https://i.ibb.co/ZVzgBb3/background-xl.jpg");
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -119,14 +119,14 @@
   @media (max-width: 1280px) {
     .foto-professora {
       background-image: linear-gradient(90deg, #18181b, rgba(0, 0, 0, 0) 140%),
-        url("../../public/images/background-xl.jpg");
+        url("https://i.ibb.co/ZVzgBb3/background-xl.jpg");
     }
   }
 
   @media (max-width: 1024px) {
     .foto-professora {
       background-image: linear-gradient(90deg, #18181b, rgba(0, 0, 0, 0) 140%),
-        url("../../public/images/background-xl.jpg");
+        url("https://i.ibb.co/ZVzgBb3/background-xl.jpg");
       background-position: top;
       background-attachment: 50%;
     }
@@ -135,7 +135,7 @@
   @media (max-width: 767px) {
     .foto-professora {
       background-image: linear-gradient(90deg, #18181b, rgba(0, 0, 0, 0) 220%),
-        url("../../public/images/fundo-sm.jpg");
+        url("https://i.ibb.co/KNdPHTF/fundo-sm.jpg");
       background-size: cover;
       background-position: top left;
     }

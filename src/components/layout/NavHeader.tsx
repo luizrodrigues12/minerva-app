@@ -40,7 +40,7 @@ const NavHeader = () => {
         <Link href={"/profile"} prefetch>
           <UserCircle
             color={"rgb(228 228 231)"}
-            className="mt-[2px] size-[45px] md:size-[55px] lg:size-[57px] stroke-[0.7] tracking-tighter"
+            className="mt-[2px] size-[45px] md:size-[55px] lg:size-[57px] stroke-[0.8] tracking-tighter"
           />
         </Link>
       ) : (
