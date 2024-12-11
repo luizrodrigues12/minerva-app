@@ -14,7 +14,6 @@ const AlunosComp = ({ text, idAluno }: { text: string; idAluno: string }) => {
           <Link href={`/student/${idAluno}`} prefetch={true}>
             <Book color="#FAA139" />
           </Link>
-          {/* #4F47A8 */}
         </div>
       </div>
     </div>
