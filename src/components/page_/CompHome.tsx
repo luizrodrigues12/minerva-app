@@ -42,7 +42,7 @@ const PageHome = () => {
     );
     mutate();
     // Setando Token ZUSTAND
-    setToken(token!);
+    setToken(token as string);
   }, []);
 
   return (
