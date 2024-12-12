@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     ],
   },
   env: {
-    HOST: "https://minerva-app.netlify.app",
+    HOST: "http://localhost:3000",
   },
   /* config options here */
 };
