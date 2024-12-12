@@ -46,7 +46,7 @@ const LoginForm = () => {
   // Setando Token ZUSTAND
   const { setToken } = useUserStore();
   useEffect(() => {
-    setToken(token!);
+    setToken(token?.toString()!);
   }, []);
 
   return (

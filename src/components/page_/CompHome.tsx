@@ -32,7 +32,7 @@ const PageHome = () => {
       usernameCookie.split("")[0].toUpperCase() + usernameCookie.slice(1)
     );
     // Setando Token ZUSTAND
-    setToken(token!);
+    setToken(token?.toString()!);
     // RECARREGANDO GRAPHQL
     refetch();
   }, []);
