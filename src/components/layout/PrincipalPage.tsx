@@ -64,7 +64,8 @@ const PrincipalPage = () => {
             className="mt-2 rounded-lg"
           >
             <Image
-              src={"/images/minerva-01.jpg"}
+              src={"https://i.ibb.co/MBhvJ1D/minerva-01.jpg"}
+              quality={80}
               alt="Foto minerva"
               id="foto-minerva"
               width={800}
