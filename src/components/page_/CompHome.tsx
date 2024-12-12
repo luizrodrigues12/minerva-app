@@ -6,9 +6,10 @@ import useUserStore from "@/stores/userStore";
 import AlunosComp from "../home/AlunosComp";
 import { AlunosObj } from "@/stores/userStore";
 import Link from "next/link";
-import useSWR from "swr";
 import { motion } from "motion/react";
 import Loading from "../layout/Loading";
+import { GET_ALL_STUDENTS } from "@/app/api/graphql/queries";
+import { useQuery } from "@apollo/client";
 
 const PageHome = () => {
   const [username, setUsername] = useState("");
@@ -20,19 +21,9 @@ const PageHome = () => {
   const token = getCookie("authorization");
 
   // PEGANDO ALUNOS
-  const fetcher = (url: string) =>
-    fetch(`${process.env.HOST}/api/student/get_students`, {
-      method: "POST",
-      body: JSON.stringify({ token: token }),
-    }).then(async (res) => {
-      const { alunos } = await res.json();
-      return alunos;
-    });
-
-  const { data: alunosData, mutate } = useSWR<Array<AlunosObj>>(
-    `${process.env.HOST}/api/student/get_students`,
-    fetcher
-  );
+  const { data, refetch } = useQuery(GET_ALL_STUDENTS, {
+    variables: { token },
+  });
 
   useEffect(() => {
     //Pegando o username dos cookies
@@ -40,14 +31,15 @@ const PageHome = () => {
     setUsername(
       usernameCookie.split("")[0].toUpperCase() + usernameCookie.slice(1)
     );
-    mutate();
     // Setando Token ZUSTAND
     setToken(token!);
+    // RECARREGANDO GRAPHQL
+    refetch();
   }, []);
 
   return (
     <div className="flex flex-col justify-center items-center height_pattern w-full">
-      {!alunosData ? (
+      {!data ? (
         <div className="flex flex-col justify-center items-center">
           <Loading />
         </div>
@@ -78,15 +70,15 @@ const PageHome = () => {
             </Link>
           </div>
           {/* RENDERIZANDO NOMES EM ORDEM ALFABÉTICA */}
-          {alunosData.length !== 0 ? (
-            alunosData
-              ?.filter((aluno) =>
+          {data.alunos.length !== 0 ? (
+            data.alunos
+              ?.filter((aluno: AlunosObj) =>
                 aluno.nome?.toLowerCase().includes(buscaDeferred.toLowerCase())
               )
-              ?.sort((a, b) =>
+              ?.sort((a: any, b: any) =>
                 a.nome! < b.nome! ? -1 : a.nome! > b.nome! ? 1 : 0
               )
-              .map((aluno, i) => {
+              .map((aluno: AlunosObj, i: number) => {
                 if (aluno.nome && !(aluno.materias?.length === 0))
                   return (
                     <div key={i}>

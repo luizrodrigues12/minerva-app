@@ -5,56 +5,50 @@ import { useEffect, useState } from "react";
 import MateriasPortugues from "./MateriasPortugues";
 import MateriasMatematica from "./MateriasMatematica";
 import NomePreparatorio from "./NomePreparatorio";
-import useSWR from "swr";
 import Link from "next/link";
 import Loading from "../layout/Loading";
 import { motion } from "motion/react";
+import { useMutation, useQuery } from "@apollo/client";
+import { TOGGLE_IS_CHECKED } from "@/app/api/graphql/mutations";
+import { GET_ONE_STUDENT } from "@/app/api/graphql/queries";
+import { MateriaType } from "@/models/MateriasModel";
 
 const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
-  const [checkeds, setCheckeds] = useState(Array<string>);
   const [busca, setBusca] = useState("");
+  const [materiaState, setMateriaState] = useState<MateriaType>();
   const token = getCookie("authorization");
 
-  const atualizarDados = () => {
-    mutate();
-  };
-
   // Pegando dados do aluno
-  const fetcher = (url: string) =>
-    fetch(`${process.env.HOST}/api/student/get_student`, {
-      method: "POST",
-      body: JSON.stringify({ idAluno: idAluno, token: token }),
-    }).then(async (res) => {
-      const { aluno } = await res.json();
-      return { aluno: aluno[0], materias: aluno[0].materias };
-    });
+  const { data, loading, refetch } = useQuery(GET_ONE_STUDENT, {
+    variables: { token, idAluno },
+  });
 
-  const { data, mutate, isValidating } = useSWR(
-    `${process.env.HOST}/api/student/get_student`,
-    fetcher
-  );
+  // Alterando checkeds
+  const [toggleChecked, {}] = useMutation(TOGGLE_IS_CHECKED, {});
 
   useEffect(() => {
-    mutate();
+    refetch();
   }, []);
 
   // Alterando marcado ou não
-  const toggleIsChecked = async (objMateria: any, e: any) => {
+  const toggleIsChecked = async (objMateria: MateriaType, e: any) => {
     e.preventDefault();
-    const result = await fetch(
-      `${process.env.HOST}/api/student/toggle_checked`,
-      {
-        method: "PUT",
-        body: JSON.stringify({ objMateria, idAluno, token, checkeds }),
-      }
-    );
 
-    mutate();
+    const objMateriaGraph: MateriaType = {
+      _id: objMateria._id,
+      nome: objMateria.nome,
+      isChecked: objMateria.isChecked,
+      materia: objMateria.materia,
+      ordem: objMateria.ordem,
+    };
+    toggleChecked({
+      variables: { token, idAluno, objMateria: objMateriaGraph },
+    });
   };
 
   return (
     <div className="flex flex-col justify-center w-full height_pattern">
-      {isValidating ? (
+      {loading ? (
         <Loading />
       ) : (
         <motion.div
@@ -106,7 +100,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
 
                   <div>
                     {/* RENDERIZAÇÃO CONDICIONAL DO SEXTO ANO */}
-                    {data?.materias?.filter((materia: any) => {
+                    {data?.aluno.materias?.filter((materia: any) => {
                       if (materia.materia === "português")
                         return materia.ordem <= 10;
                     }).length === 0 ? (
@@ -120,7 +114,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       />
                     )}
                     {/* RENDERIZAÇÃO CONDICIONAL*/}
-                    {data?.materias?.filter((materia: any) => {
+                    {data?.aluno.materias?.filter((materia: any) => {
                       if (materia.materia === "português")
                         return materia.ordem > 10;
                     }).length === 0 ? (
@@ -134,7 +128,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       />
                     )}
                     {/* RENDERIZAÇÃO CONDICIONAL DO SEXTO ANO */}
-                    {data?.materias?.filter((materia: any) => {
+                    {data?.aluno.materias?.filter((materia: any) => {
                       if (materia.materia === "matemática")
                         return materia.ordem <= 15;
                     }).length === 0 ? (
@@ -148,7 +142,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       />
                     )}
                     {/* RENDERIZAÇÃO CONDICIONAL DO PRIMEIRO ANO */}
-                    {data?.materias?.filter((materia: any) => {
+                    {data?.aluno.materias?.filter((materia: any) => {
                       if (materia.materia === "matemática") {
                         return materia.ordem > 15;
                       }

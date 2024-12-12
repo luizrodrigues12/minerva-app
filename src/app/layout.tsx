@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import dotenv from "dotenv";
 import NextTopLoader from "nextjs-toploader";
+import Providers from "@/components/layout/Providers";
 
 dotenv.config();
 
@@ -29,7 +30,7 @@ export default function RootLayout({
             showSpinner={false}
             shadow={false}
           />
-          {children}
+          <Providers>{children}</Providers>
         </div>
         <Footer />
       </body>
