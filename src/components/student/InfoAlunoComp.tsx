@@ -5,56 +5,35 @@ import { useEffect, useState } from "react";
 import MateriasPortugues from "./MateriasPortugues";
 import MateriasMatematica from "./MateriasMatematica";
 import NomePreparatorio from "./NomePreparatorio";
-import useSWR from "swr";
 import Link from "next/link";
 import Loading from "../layout/Loading";
 import { motion } from "motion/react";
+import { useAlunoData } from "@/hooks/useAlunoData";
+import { useChecksMutate } from "@/hooks/useChecksMutate";
 
 const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
-  const [checkeds, setCheckeds] = useState(Array<string>);
   const [busca, setBusca] = useState("");
   const token = getCookie("authorization");
-
-  const atualizarDados = () => {
-    mutate();
-  };
-
-  // Pegando dados do aluno
-  const fetcher = (url: string) =>
-    fetch(`${process.env.HOST}/api/student/get_student`, {
-      method: "POST",
-      body: JSON.stringify({ idAluno: idAluno, token: token }),
-    }).then(async (res) => {
-      const { aluno } = await res.json();
-      return { aluno: aluno[0], materias: aluno[0].materias };
-    });
-
-  const { data, mutate, isValidating } = useSWR(
-    `${process.env.HOST}/api/student/get_student`,
-    fetcher
+  const [objMateria, setObjMateria] = useState<any>();
+  const { data, isLoading, isFetching, refetch } = useAlunoData(
+    idAluno,
+    token as string
   );
-
-  useEffect(() => {
-    mutate();
-  }, []);
+  const { mutate } = useChecksMutate(objMateria, idAluno, token);
 
   // Alterando marcado ou não
   const toggleIsChecked = async (objMateria: any, e: any) => {
     e.preventDefault();
-    const result = await fetch(
-      `${process.env.HOST}/api/student/toggle_checked`,
-      {
-        method: "PUT",
-        body: JSON.stringify({ objMateria, idAluno, token, checkeds }),
-      }
-    );
+    setObjMateria(objMateria);
 
-    mutate();
+    mutate({ idAluno, objMateria, token });
   };
+
+  useEffect(() => {}, []);
 
   return (
     <div className="flex flex-col justify-center w-full height_pattern">
-      {isValidating ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <motion.div
@@ -68,7 +47,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
               <h1 className="h1_form">Matérias</h1>
             </div>
             {/* NOME DO ALUNO */}
-            <NomePreparatorio idAluno={idAluno} oneStudent={data?.aluno!} />
+            <NomePreparatorio idAluno={idAluno} oneStudent={data} />
             <div className="w-full flex gap-2">
               {/* BOTÕES */}
               <Link
@@ -115,7 +94,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       <MateriasPortugues
                         busca={busca}
                         materiaAno="port6"
-                        oneStudent={data?.aluno!}
+                        oneStudent={data}
                         toggleIsChecked={toggleIsChecked}
                       />
                     )}
@@ -129,7 +108,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       <MateriasPortugues
                         busca={busca}
                         materiaAno="port1"
-                        oneStudent={data?.aluno!}
+                        oneStudent={data}
                         toggleIsChecked={toggleIsChecked}
                       />
                     )}
@@ -143,7 +122,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       <MateriasMatematica
                         busca={busca}
                         materiaAno="mat6"
-                        oneStudent={data?.aluno!}
+                        oneStudent={data}
                         toggleIsChecked={toggleIsChecked}
                       />
                     )}
@@ -158,7 +137,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       <MateriasMatematica
                         busca={busca}
                         materiaAno="mat1"
-                        oneStudent={data?.aluno!}
+                        oneStudent={data}
                         toggleIsChecked={toggleIsChecked}
                       />
                     )}

@@ -39,7 +39,12 @@ export async function PUT(req: NextRequest) {
         }
       );
     }
-    return NextResponse.json({ sucess: true });
+
+    const user = await UserModel.findOne({ token: token });
+    const alunos = await user.alunos;
+    const aluno = alunos.filter((aluno: any) => aluno.idAluno === idAluno);
+
+    return NextResponse.json({ aluno: aluno[0] });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
   }

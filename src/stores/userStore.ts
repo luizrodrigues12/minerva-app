@@ -5,7 +5,7 @@ export type AlunosObj = {
   idAluno?: string;
   nome?: string;
   preparatorio?: Array<String>;
-  materias?: Array<string>;
+  materias?: Array<MateriaType>;
 };
 
 type State = {

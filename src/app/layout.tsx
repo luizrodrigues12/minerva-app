@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import dotenv from "dotenv";
 import NextTopLoader from "nextjs-toploader";
+import Providers from "@/components/layout/Providers";
 
 dotenv.config();
 
@@ -20,18 +21,20 @@ export default function RootLayout({
   return (
     <html lang="pt-br" className="bg-zinc-900 text-zinc-100">
       <body className="flex flex-col justify-center items-center min-h-screen">
-        <Header />
-        <div className="min-h-screen w-full flex flex-col justify-center items-center">
-          <NextTopLoader
-            color="#e4e4e7"
-            speed={500}
-            crawlSpeed={500}
-            showSpinner={false}
-            shadow={false}
-          />
-          {children}
-        </div>
-        <Footer />
+        <Providers>
+          <Header />
+          <div className="min-h-screen w-full flex flex-col justify-center items-center">
+            <NextTopLoader
+              color="#e4e4e7"
+              speed={500}
+              crawlSpeed={500}
+              showSpinner={false}
+              shadow={false}
+            />
+            {children}
+          </div>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

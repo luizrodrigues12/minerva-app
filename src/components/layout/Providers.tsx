@@ -1,14 +1,10 @@
 "use client";
 
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+const client = new QueryClient();
 const Providers = ({ children }: { children: React.ReactNode }) => {
-  const client = new ApolloClient({
-    uri: `${process.env.HOST}/api/graphql`,
-    cache: new InMemoryCache(),
-  });
-
-  return <ApolloProvider client={client}>{children}</ApolloProvider>;
+  return <QueryClientProvider client={client}>{children}</QueryClientProvider>;
 };
 
 export default Providers;

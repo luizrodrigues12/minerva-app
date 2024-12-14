@@ -45,7 +45,10 @@ const MateriasPortugues = ({
                         text={objMateria.nome.toUpperCase()}
                         isChecked={objMateria.isChecked}
                         id={objMateria._id}
-                        onClick={(e: any) => toggleIsChecked(objMateria, e)}
+                        onClick={(e: any) => {
+                          e.preventDefault();
+                          toggleIsChecked(objMateria, e);
+                        }}
                       />
                     </div>
                   );
