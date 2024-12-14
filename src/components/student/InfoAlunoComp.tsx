@@ -15,10 +15,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   const [busca, setBusca] = useState("");
   const token = getCookie("authorization");
   const [objMateria, setObjMateria] = useState<any>();
-  const { data, isLoading, isFetching, refetch } = useAlunoData(
-    idAluno,
-    token as string
-  );
+  const { data, isFetching } = useAlunoData(idAluno, token as string);
   const { mutate } = useChecksMutate(objMateria, idAluno, token);
 
   // Alterando marcado ou não
@@ -33,7 +30,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
 
   return (
     <div className="flex flex-col justify-center w-full height_pattern">
-      {isLoading ? (
+      {isFetching ? (
         <Loading />
       ) : (
         <motion.div
