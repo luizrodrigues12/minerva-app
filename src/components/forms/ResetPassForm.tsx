@@ -1,9 +1,8 @@
 "use client";
 
-import { getCookie } from "cookies-next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const ForgetPassForm = () => {
   const [finalizado, setFinalizado] = useState(false);
@@ -52,7 +51,7 @@ const ForgetPassForm = () => {
   return (
     <>
       {!finalizado ? (
-        <div className="px-8 md:self-center rounded-lg md:px-6 md:py-4 my-2 md:w-[400px] md:border-zinc-800 md:border-2">
+        <div className="px-8 md:self-center rounded-lg md:px-6 md:py-4 my-2 md:w-[400px] md:border-zinc-800 md:border-2 height_pattern w-full">
           <form method="POST" className="form_reset_password">
             <h1 className="h1_form">Redefinir Senha</h1>
             <div className="div_form">
