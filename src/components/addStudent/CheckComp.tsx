@@ -31,7 +31,6 @@ const CheckComp = ({
   name,
   id,
   value,
-  isChecked,
   onChange,
   onClick,
   delay,

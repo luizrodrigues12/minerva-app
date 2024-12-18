@@ -1,9 +1,9 @@
-import { AlunosObj } from "@/stores/userStore";
+import { AlunoObj } from "@/models/userModel";
 import { FileCopy } from "flowbite-react-icons/outline";
 import copy from "clipboard-copy";
 
 type Props = {
-  oneStudent: AlunosObj;
+  oneStudent: AlunoObj;
   idAluno: string;
 };
 

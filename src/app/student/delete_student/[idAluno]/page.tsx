@@ -1,5 +1,5 @@
 import DeleteStudentComp from "@/components/student/DeleteStudentComp";
-import SectionComp from "@/components/page_/SectionComp";
+import SectionComp from "@/components/pages/SectionComp";
 
 const page = async ({ params }: { params: Promise<{ idAluno: string }> }) => {
   const parametros = await params;

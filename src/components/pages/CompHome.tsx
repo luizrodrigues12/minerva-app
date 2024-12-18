@@ -1,53 +1,22 @@
 "use client";
 
 import { getCookie } from "cookies-next";
-import { useEffect, useState, useDeferredValue } from "react";
-import useUserStore from "@/stores/userStore";
+import { useState, useDeferredValue } from "react";
 import AlunosComp from "../home/AlunosComp";
-import { AlunosObj } from "@/stores/userStore";
 import Link from "next/link";
-import useSWR from "swr";
 import { motion } from "motion/react";
 import Loading from "../layout/Loading";
+import useGetAlunos from "@/hooks/useGetAlunos";
 
 const PageHome = () => {
-  const [username, setUsername] = useState("");
-  const { setToken } = useUserStore();
   const [busca, setBusca] = useState("");
   const buscaDeferred = useDeferredValue(busca);
-
-  //Verificando token
   const token = getCookie("authorization");
-
-  // PEGANDO ALUNOS
-  const fetcher = (url: string) =>
-    fetch(`${process.env.HOST}/api/student/get_students`, {
-      method: "POST",
-      body: JSON.stringify({ token: token }),
-    }).then(async (res) => {
-      const { alunos } = await res.json();
-      return alunos;
-    });
-
-  const { data: alunosData, mutate } = useSWR<Array<AlunosObj>>(
-    `${process.env.HOST}/api/student/get_students`,
-    fetcher
-  );
-
-  useEffect(() => {
-    //Pegando o username dos cookies
-    const usernameCookie = getCookie("username") as string;
-    setUsername(
-      usernameCookie.split("")[0].toUpperCase() + usernameCookie.slice(1)
-    );
-    mutate();
-    // Setando Token ZUSTAND
-    setToken(token as string);
-  }, []);
+  const { data: alunosData, isFetching } = useGetAlunos(token as string);
 
   return (
     <div className="flex flex-col justify-center items-center height_pattern w-full">
-      {!alunosData ? (
+      {isFetching ? (
         <div className="flex flex-col justify-center items-center">
           <Loading />
         </div>
@@ -78,7 +47,7 @@ const PageHome = () => {
             </Link>
           </div>
           {/* RENDERIZANDO NOMES EM ORDEM ALFABÉTICA */}
-          {alunosData.length !== 0 ? (
+          {alunosData?.length !== 0 ? (
             alunosData
               ?.filter((aluno) =>
                 aluno.nome?.toLowerCase().includes(buscaDeferred.toLowerCase())

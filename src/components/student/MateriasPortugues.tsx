@@ -1,8 +1,8 @@
-import { AlunosObj } from "@/stores/userStore";
+import { AlunoObj } from "@/models/userModel";
 import MateriaComp from "./MateriaComp";
 
 type Props = {
-  oneStudent: AlunosObj;
+  oneStudent: AlunoObj;
   busca: string;
   materiaAno: "port6" | "port1";
   toggleIsChecked: (objMateria: any, e: any) => Promise<void>;

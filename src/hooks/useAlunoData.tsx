@@ -1,10 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 
-interface AlunoDataProps {
-  idAluno: string;
-  token: string;
-}
-
 export function useAlunoData(idAluno: string, token: string) {
   const getAlunoData = async () => {
     const data = await fetch(`${process.env.HOST}/api/student/get_student`, {

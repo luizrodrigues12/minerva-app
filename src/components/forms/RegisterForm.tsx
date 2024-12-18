@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import useUserStore from "@/stores/userStore";
 import { getCookie } from "cookies-next";
 import {
   validateEmail,
@@ -44,11 +43,7 @@ const RegisterForm = () => {
   const usernameTest = validateUsername.test(formData.username);
 
   // Setando Token ZUSTAND
-  const { setToken } = useUserStore();
-  useEffect(() => {
-    const token = getCookie("authorization");
-    setToken(token as string);
-  }, []);
+  useEffect(() => {}, []);
 
   const handleForm = async (e: any) => {
     try {

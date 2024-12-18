@@ -1,5 +1,5 @@
 import ResetPassForm from "@/components/forms/ResetPassForm";
-import SectionComp from "@/components/page_/SectionComp";
+import SectionComp from "@/components/pages/SectionComp";
 
 const page = async ({ params }: any) => {
   const { userId } = await params;

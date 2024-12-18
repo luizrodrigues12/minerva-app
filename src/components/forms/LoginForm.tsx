@@ -1,7 +1,7 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import useUserStore from "@/stores/userStore";
 import { getCookie } from "cookies-next";
 
 const LoginForm = () => {
@@ -44,10 +44,7 @@ const LoginForm = () => {
   };
 
   // Setando Token ZUSTAND
-  const { setToken } = useUserStore();
-  useEffect(() => {
-    setToken(token as string);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="w-full px-8 md:self-center rounded-lg md:px-6 md:w-[400px] md:border-zinc-800 md:border-2 height_pattern">

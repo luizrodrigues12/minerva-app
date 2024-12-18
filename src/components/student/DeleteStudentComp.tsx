@@ -1,8 +1,7 @@
 "use client";
 
-import { AlunosObj } from "@/stores/userStore";
 import { getCookie } from "cookies-next";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
 import { motion } from "motion/react";

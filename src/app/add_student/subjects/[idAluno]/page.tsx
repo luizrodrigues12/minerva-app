@@ -1,4 +1,4 @@
-import SectionComp from "@/components/page_/SectionComp";
+import SectionComp from "@/components/pages/SectionComp";
 import SubjectForm from "@/components/forms/SubjectForm";
 
 const page = async ({ params }: { params: Promise<{ idAluno: string }> }) => {

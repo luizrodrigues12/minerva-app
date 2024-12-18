@@ -4,20 +4,20 @@ import { MateriaType } from "./MateriasModel";
 
 connectDB();
 
+export type AlunoObj = {
+  idAluno?: string;
+  nome?: string;
+  preparatorio?: Array<String>;
+  materias?: Array<MateriaType>;
+};
+
 export interface dataMongoUser {
   username: string;
   email: string;
   password: string;
   token: string;
   isVerified: boolean;
-  alunos?: [
-    {
-      idAluno: string;
-      nome: string;
-      preparatorio: Array<String>;
-      materias: Array<MateriaType>;
-    }
-  ];
+  alunos?: [AlunoObj];
 }
 
 const userSchema = new Schema<dataMongoUser>(

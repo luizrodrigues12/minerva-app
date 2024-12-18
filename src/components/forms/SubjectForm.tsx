@@ -4,16 +4,13 @@ import { MateriaType } from "@/models/MateriasModel";
 import CheckComp from "@/components/addStudent/CheckComp";
 import { useState } from "react";
 import { getCookie } from "cookies-next";
-import useUserStore from "@/stores/userStore";
 import useSWR from "swr";
 import { useRouter } from "nextjs-toploader/app";
 import { motion } from "motion/react";
 import Loading from "../layout/Loading";
 
 const SubjectForm = ({ idAluno }: { idAluno: string }) => {
-  const useUser = useUserStore();
   const [checkeds, setCheckeds] = useState(Array<String>);
-  const [isChecked, setIsChecked] = useState(false);
   const [AllCheckeds, setAllCheckeds] = useState(false);
   const [error, setError] = useState();
   const token = getCookie("authorization");
@@ -163,7 +160,6 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
                               id={materia._id!}
                               htmlFor={materia.nome}
                               value={materia._id!}
-                              isChecked={isChecked}
                             />
                           );
                         }
@@ -195,7 +191,6 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
                               id={materia._id!}
                               htmlFor={materia.nome}
                               value={materia._id!}
-                              isChecked={isChecked}
                             />
                           );
                         }
@@ -224,7 +219,6 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
                               id={materia._id!}
                               htmlFor={materia.nome}
                               value={materia._id!}
-                              isChecked={isChecked}
                             />
                           );
                         }
@@ -246,7 +240,6 @@ const SubjectForm = ({ idAluno }: { idAluno: string }) => {
               onClick={(e) => {
                 e.preventDefault();
                 onClickInput();
-                useUser.emptyStateChecks();
               }}
             >
               Salvar

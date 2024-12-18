@@ -1,6 +1,6 @@
 "use client";
 
-import { AlunosObj } from "@/stores/userStore";
+import { AlunoObj } from "@/models/userModel";
 import { useState } from "react";
 import MateriaComp from "./MateriaComp";
 import useSWR from "swr";
@@ -28,7 +28,7 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
     data: oneStudent,
     mutate,
     isValidating,
-  } = useSWR<AlunosObj>(`${process.env.HOST}/api/student/get_student`, fetcher);
+  } = useSWR<AlunoObj>(`${process.env.HOST}/api/student/get_student`, fetcher);
 
   return (
     <div className="flex flex-col w-full justify-center items-center height_pattern">
