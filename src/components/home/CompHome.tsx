@@ -2,7 +2,7 @@
 
 import { getCookie } from "cookies-next";
 import { useState, useDeferredValue } from "react";
-import AlunosComp from "../home/AlunosComp";
+import AlunosComp from "./AlunosComp";
 import Link from "next/link";
 import { motion } from "motion/react";
 import Loading from "../layout/Loading";
@@ -24,7 +24,7 @@ const PageHome = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 flex flex-col gap-2 mb-auto "
+          className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 flex flex-col gap-2 mb-auto w-full"
         >
           {/* SISTEMA DE BUSCA */}
           <div className="flex gap-2 justify-center items-center">

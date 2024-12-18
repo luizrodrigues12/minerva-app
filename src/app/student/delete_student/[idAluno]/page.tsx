@@ -1,8 +1,6 @@
-import DeleteStudentComp from "@/components/student/DeleteStudentComp";
-import SectionComp from "@/components/pages/SectionComp";
+import DeleteStudentComp from "@/components/student/delete_student/DeleteStudentComp";
 
 const page = async ({ params }: { params: Promise<{ idAluno: string }> }) => {
-  const parametros = await params;
   const idAluno = (await params).idAluno;
 
   return <DeleteStudentComp idAluno={idAluno} />;

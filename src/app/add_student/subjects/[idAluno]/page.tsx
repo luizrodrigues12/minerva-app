@@ -1,13 +1,8 @@
-import SectionComp from "@/components/pages/SectionComp";
-import SubjectForm from "@/components/forms/SubjectForm";
+import SubjectForm from "@/components/add_student/subjects/SubjectForm";
 
 const page = async ({ params }: { params: Promise<{ idAluno: string }> }) => {
   const idAluno = (await params).idAluno;
-  return (
-    <SectionComp>
-      <SubjectForm idAluno={idAluno} />
-    </SectionComp>
-  );
+  return <SubjectForm idAluno={idAluno} />;
 };
 
 export default page;

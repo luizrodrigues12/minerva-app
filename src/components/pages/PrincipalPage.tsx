@@ -3,7 +3,6 @@
 import Container from "@/components/layout/Container";
 import Image from "next/image";
 import { motion } from "motion/react";
-import Link from "next/link";
 import { useRouter } from "nextjs-toploader/app";
 
 const PrincipalPage = () => {

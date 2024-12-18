@@ -2,10 +2,10 @@
 
 import { AlunoObj } from "@/models/userModel";
 import { useState } from "react";
-import MateriaComp from "./MateriaComp";
+import MateriaComp from "../../student/MateriaComp";
 import useSWR from "swr";
 import { motion } from "motion/react";
-import Loading from "../layout/Loading";
+import Loading from "../../layout/Loading";
 
 type Props = {
   idAluno: string;
@@ -35,7 +35,7 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
       {isValidating ? (
         <Loading />
       ) : (
-        <div className="flex flex-col px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 mb-3">
+        <div className="flex flex-col px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 mb-3 w-full">
           <div>
             <div className="flex items-center justify-between pb-2">
               <h1 className="h1_form ">Matérias</h1>

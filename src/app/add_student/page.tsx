@@ -1,4 +1,4 @@
-import StudentForm from "@/components/forms/StudentForm";
+import StudentForm from "@/components/add_student/StudentForm";
 
 const addStudent = () => {
   return <StudentForm />;

@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import CheckComp from "../addStudent/CheckComp";
+import CheckComp from "../../add_student/CheckComp";
 import { getCookie } from "cookies-next";
 import useSWR from "swr";
-import Loading from "../layout/Loading";
+import Loading from "../../layout/Loading";
 import { motion } from "motion/react";
 
 const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {

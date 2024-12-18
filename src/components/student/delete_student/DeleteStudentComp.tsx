@@ -5,9 +5,9 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
 import { motion } from "motion/react";
-import Loading from "../layout/Loading";
+import Loading from "@/components/layout/Loading";
 
-const RemoveStudentComp = ({ idAluno }: { idAluno: string }) => {
+const DeleteStudentComp = ({ idAluno }: { idAluno: string }) => {
   const router = useRouter();
   const token = getCookie("authorization");
 
@@ -93,4 +93,4 @@ const RemoveStudentComp = ({ idAluno }: { idAluno: string }) => {
   );
 };
 
-export default RemoveStudentComp;
+export default DeleteStudentComp;

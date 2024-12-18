@@ -1,13 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import RegisterForm from "@/components/forms/RegisterForm";
-import SectionRegComp from "@/components/pages/SectionRegComp";
+import RegisterForm from "@/components/register/RegisterForm";
 
 const Page = () => {
-  return (
-    <SectionRegComp>
-      <RegisterForm />
-    </SectionRegComp>
-  );
+  return <RegisterForm />;
 };
 
 export default Page;

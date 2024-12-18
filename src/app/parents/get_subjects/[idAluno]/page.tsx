@@ -1,5 +1,4 @@
-import SubjectsStudentForm from "@/components/student/SubjectsStudentForm";
-import React from "react";
+import SubjectsStudentForm from "@/components/parents/get_subjects/SubjectsStudentForm";
 
 type Params = { token: string; idAluno: string };
 

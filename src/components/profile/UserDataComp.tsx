@@ -1,7 +1,6 @@
 "use client";
 
 import { deleteCookie, getCookie } from "cookies-next";
-import { Spinner } from "flowbite-react";
 import useSWR from "swr";
 import Loading from "../layout/Loading";
 

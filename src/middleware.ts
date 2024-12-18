@@ -1,7 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
-  const secretKey = new TextEncoder().encode(process.env.JWT_SECRET as string);
   const token = request.cookies.get("authorization")?.value;
   const path = request.nextUrl.pathname;
 

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import NavHeader from "./NavHeader";
 import Link from "next/link";
-import Container from "./Container";
+import Container from "../layout/Container";
 
 const Header = () => {
   return (

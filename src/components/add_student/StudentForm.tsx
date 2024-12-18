@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import CheckComp from "../addStudent/CheckComp";
+import CheckComp from "./CheckComp";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "nextjs-toploader/app";
 import { getCookie } from "cookies-next";

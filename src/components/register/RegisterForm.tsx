@@ -80,7 +80,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="px-8 md:self-center rounded-lg md:px-6 md:w-[400px] md:border-zinc-800 md:border-2">
+    <div className="px-8 md:self-center rounded-lg md:px-6 md:w-[400px] md:border-zinc-800 md:border-2 w-full flex flex-col justify-center height_pattern">
       <form
         method="POST"
         onSubmit={handleForm}

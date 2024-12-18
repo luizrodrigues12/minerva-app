@@ -2,11 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { getCookie } from "cookies-next";
 
 const LoginForm = () => {
-  const token = getCookie("authorization");
-
   // State com os dados
   const [formData, setFormData] = useState({
     email: "",

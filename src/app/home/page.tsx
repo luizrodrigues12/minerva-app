@@ -1,4 +1,4 @@
-import PageHome from "@/components/pages/CompHome";
+import PageHome from "@/components/home/CompHome";
 
 const page = async () => {
   return <PageHome />;

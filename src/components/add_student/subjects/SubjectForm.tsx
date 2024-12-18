@@ -1,13 +1,13 @@
 "use client";
 
 import { MateriaType } from "@/models/MateriasModel";
-import CheckComp from "@/components/addStudent/CheckComp";
+import CheckComp from "@/components/add_student/CheckComp";
 import { useState } from "react";
 import { getCookie } from "cookies-next";
 import useSWR from "swr";
 import { useRouter } from "nextjs-toploader/app";
 import { motion } from "motion/react";
-import Loading from "../layout/Loading";
+import Loading from "../../layout/Loading";
 
 const SubjectForm = ({ idAluno }: { idAluno: string }) => {
   const [checkeds, setCheckeds] = useState(Array<String>);
