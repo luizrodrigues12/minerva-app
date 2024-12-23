@@ -34,6 +34,10 @@ export function useAddStudent(
 
   const mutate = useMutation({
     mutationFn: postStudent,
+
+    onSuccess(data, variables, context) {
+      queryClient.invalidateQueries({ queryKey: ["alunos-data"] });
+    },
     retry: 2,
   });
 
