@@ -67,12 +67,12 @@ const PageHome = () => {
             </Link>
           </div>
           {/* RENDERIZANDO NOMES EM ORDEM ALFABÉTICA */}
-          {alunosData?.length !== 0 ? (
+          {alunosData?.length ? (
             getAlunosOrdenados()
           ) : (
-            <p className=" w-full p-2 border-2 border-zinc-800 flex  rounded-lg text-zinc-500  justify-center items-center">
-              Nenhum aluno cadastrado.
-            </p>
+            <div className="py-3 border-2 border-zinc-800 rounded-lg text-center flex flex-col justify-center items-center gap-1.5">
+              <p className="w-full text-[#bbbbbe]">Nenhum aluno cadastrado.</p>
+            </div>
           )}
         </motion.div>
       )}

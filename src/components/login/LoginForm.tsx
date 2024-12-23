@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "nextjs-toploader/app";
 
 const LoginForm = () => {
   // State com os dados
@@ -10,6 +11,7 @@ const LoginForm = () => {
     password: "",
   });
   const [error, setError] = useState("");
+  const router = useRouter();
 
   // Manipulando submit do formulário
   const handleForm = async (e: any) => {
@@ -24,7 +26,7 @@ const LoginForm = () => {
       const { error } = await res.json();
       if (error) throw new Error(error);
       //Enviando para a home.
-      window.location.reload();
+      router.push("/home");
     } catch (err: any) {
       setError(err.message);
     }
