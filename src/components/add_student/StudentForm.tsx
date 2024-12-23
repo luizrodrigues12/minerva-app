@@ -3,8 +3,7 @@
 import { useState } from "react";
 import CheckComp from "./CheckComp";
 import { v4 as uuidv4 } from "uuid";
-import { useRouter } from "nextjs-toploader/app";
-import SubjectForm from "./subjects/SubjectForm";
+import SubjectForm from "./SubjectForm";
 import { useGetSubjects } from "@/hooks/useGetSubjects";
 import Loading from "../layout/Loading";
 import { motion } from "motion/react";
@@ -26,7 +25,7 @@ const StudentForm = () => {
         >
           <form method="POST" className="form_student text-[14px]">
             <h2 className="h1_form">Adicionar Aluno</h2>
-            <div className="container_check flex flex-col gap-2">
+            <div className="container_check flex flex-col gap-1.5">
               <input
                 type="text"
                 name="nome"
@@ -45,7 +44,7 @@ const StudentForm = () => {
               </h2>
               <CheckComp
                 animateComp={{ opacity: [0, 1] }}
-                transition={{ duration: 0 }}
+                transition={{ duration: 0.1 }}
                 text="Aplicação"
                 name="checkItem"
                 id="aplicacao"

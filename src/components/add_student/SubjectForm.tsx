@@ -98,7 +98,7 @@ const SubjectForm = ({ idAluno, nomeAluno, subjects }: Props) => {
           </div>
           {/*  */}
           <div className="flex flex-col gap-2 text-[14px]">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-3">
               {/* PORTUGUÊS DO 6 ANO  */}
               <div className="flex flex-col gap-2 rounded-lg p-2 border-2 border-zinc-800">
                 <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
@@ -226,7 +226,7 @@ const SubjectForm = ({ idAluno, nomeAluno, subjects }: Props) => {
           </div>
 
           <button
-            className="btn_submit_form"
+            className="bg-roxominerva rounded-lg text-[16px] p-2 my-2 md:p-[7px] text-zinc-100;"
             onClick={(e) => {
               e.preventDefault();
               onClickInput();
