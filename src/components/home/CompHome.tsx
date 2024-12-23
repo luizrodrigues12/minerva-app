@@ -14,6 +14,26 @@ const PageHome = () => {
   const token = getCookie("authorization");
   const { data: alunosData, isFetching } = useGetAlunos(token as string);
 
+  const getAlunosOrdenados = () => {
+    const arrayFinal = alunosData
+      ?.filter((aluno) =>
+        aluno.nome?.toLowerCase().includes(buscaDeferred.toLowerCase())
+      )
+      // Ordem alfabética
+      ?.sort((a, b) => (a.nome! < b.nome! ? -1 : a.nome! > b.nome! ? 1 : 0))
+      // Mapeando
+      .map((aluno, i) => {
+        if (aluno.nome && !(aluno.materias?.length === 0))
+          return (
+            <div key={i}>
+              <AlunosComp idAluno={aluno.idAluno!} text={aluno.nome!} />
+            </div>
+          );
+      });
+
+    return arrayFinal;
+  };
+
   return (
     <div className="flex flex-col justify-center items-center height_pattern w-full">
       {isFetching ? (
@@ -48,21 +68,7 @@ const PageHome = () => {
           </div>
           {/* RENDERIZANDO NOMES EM ORDEM ALFABÉTICA */}
           {alunosData?.length !== 0 ? (
-            alunosData
-              ?.filter((aluno) =>
-                aluno.nome?.toLowerCase().includes(buscaDeferred.toLowerCase())
-              )
-              ?.sort((a, b) =>
-                a.nome! < b.nome! ? -1 : a.nome! > b.nome! ? 1 : 0
-              )
-              .map((aluno, i) => {
-                if (aluno.nome && !(aluno.materias?.length === 0))
-                  return (
-                    <div key={i}>
-                      <AlunosComp idAluno={aluno.idAluno!} text={aluno.nome!} />
-                    </div>
-                  );
-              })
+            getAlunosOrdenados()
           ) : (
             <p className=" w-full p-2 border-2 border-zinc-800 flex  rounded-lg text-zinc-500  justify-center items-center">
               Nenhum aluno cadastrado.

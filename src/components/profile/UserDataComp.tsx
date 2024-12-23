@@ -1,46 +1,34 @@
 "use client";
 
 import { deleteCookie, getCookie } from "cookies-next";
-import useSWR from "swr";
 import Loading from "../layout/Loading";
+import { useRouter } from "nextjs-toploader/app";
+import { useUserData } from "@/hooks/useUserData";
 
 const UserDataComp = () => {
   const token = getCookie("authorization");
+  const router = useRouter();
+  const { data: user } = useUserData();
 
-  // Pegando usuário da API
-  const fetcher = (url: string) =>
-    fetch(`${process.env.HOST}/api/user/get_user`, {
-      method: "POST",
-      body: JSON.stringify({ token: token }),
-    }).then(async (res) => {
-      const data = await res.json();
-      return data.user;
-    });
-
-  const { data: user } = useSWR(
-    `${process.env.HOST}/api/user/get_user`,
-    fetcher
-  );
+  const deleteCookies = () => {
+    deleteCookie("authorization");
+    deleteCookie("username");
+  };
 
   const logoutFunction = (e: any) => {
     e.preventDefault();
-
-    deleteCookie("authorization");
-    deleteCookie("username");
-
-    window.location.href = "/login";
+    deleteCookies();
+    router.push("/login");
   };
 
   const removerConta = async (e: any) => {
     e.preventDefault();
-
     await fetch(`${process.env.HOST}/api/user/delete_user`, {
       method: "POST",
       body: JSON.stringify({ token: token }),
     });
-    deleteCookie("authorization");
-    deleteCookie("username");
-    window.location.href = "/login";
+    deleteCookies();
+    router.push("/login");
   };
 
   return (
@@ -55,7 +43,7 @@ const UserDataComp = () => {
             </h2>
           </div>
           <hr className="bg-zinc-800 h-0.5 my-2 border-none" />
-          <div className="flex flex-col gap-2 ">
+          <div className="flex flex-col gap-2 pb-1">
             <div className="flex justify-between">
               <h3 className="text-[1rem]">Username</h3>
               <h3
@@ -65,11 +53,11 @@ const UserDataComp = () => {
                 Excluir conta
               </h3>
             </div>
-            <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg">
+            <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg text-zinc-300">
               {user.username}
             </div>
             <h3 className="text-[1rem]">Email</h3>
-            <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg">
+            <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg text-zinc-300">
               {user.email}
             </div>
           </div>

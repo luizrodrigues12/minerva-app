@@ -1,19 +1,31 @@
+import MateriasModel, { MateriaType } from "@/models/MateriasModel";
 import UserModel from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
 
-type bodyReq = {
+type bodyType = {
   idAluno: string;
   nome: string;
   preparatorio: Array<string>;
   token: string;
+  checkeds: Array<string>;
 };
 
 export async function POST(req: NextRequest) {
   try {
+    const arrayMaterias: Array<MateriaType> = [];
     // Pegando body da requisição
     const bodyReq = await req.json();
-    const { idAluno, nome, preparatorio, token } = bodyReq;
-    console.log(preparatorio);
+    const { idAluno, nome, preparatorio, token, checkeds }: bodyType = bodyReq;
+
+    checkeds.map(async (idMateria) => {
+      // Pegando matérias do DB pelo ID
+      const materiaDB = await MateriasModel.findOne<MateriaType>({
+        _id: idMateria,
+      });
+      arrayMaterias.push(materiaDB as MateriaType);
+      return arrayMaterias;
+    });
+
     // Identificando usuário
     const user = await UserModel.findOne({ token: token });
     // Adicionando aluno
@@ -26,13 +38,15 @@ export async function POST(req: NextRequest) {
             idAluno: idAluno,
             nome: nome,
             preparatorio: preparatorio,
+            materias: arrayMaterias,
           },
         ],
       }
     );
+
     user.save();
 
-    return NextResponse.json({ sucess: "aluno adicionado!" });
+    return NextResponse.json({ alunos: user.alunos });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
   }
