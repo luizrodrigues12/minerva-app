@@ -42,9 +42,6 @@ const RegisterForm = () => {
   const passwordTest = validatePassword.test(formData.password);
   const usernameTest = validateUsername.test(formData.username);
 
-  // Setando Token ZUSTAND
-  useEffect(() => {}, []);
-
   const handleForm = async (e: any) => {
     try {
       e.preventDefault();

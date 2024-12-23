@@ -4,11 +4,12 @@ import { deleteCookie, getCookie } from "cookies-next";
 import Loading from "../layout/Loading";
 import { useRouter } from "nextjs-toploader/app";
 import { useUserData } from "@/hooks/useUserData";
+import { useEffect } from "react";
 
 const UserDataComp = () => {
   const token = getCookie("authorization");
   const router = useRouter();
-  const { data: user } = useUserData();
+  const { data: user, isFetching, refetch } = useUserData();
 
   const deleteCookies = () => {
     deleteCookie("authorization");
@@ -31,9 +32,13 @@ const UserDataComp = () => {
     router.push("/login");
   };
 
+  useEffect(() => {
+    refetch();
+  }, []);
+
   return (
     <div className="flex flex-col w-full h-screen">
-      {!user ? (
+      {isFetching ? (
         <Loading />
       ) : (
         <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 height_pattern">

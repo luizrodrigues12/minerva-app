@@ -42,9 +42,6 @@ const LoginForm = () => {
     }
   };
 
-  // Setando Token ZUSTAND
-  useEffect(() => {}, []);
-
   return (
     <div className="w-full px-8 md:self-center rounded-lg md:px-6 md:w-[400px] md:border-zinc-800 md:border-2 height_pattern">
       <form
