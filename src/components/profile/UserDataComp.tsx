@@ -5,11 +5,14 @@ import Loading from "../layout/Loading";
 import { useRouter } from "nextjs-toploader/app";
 import { useUserData } from "@/hooks/useUserData";
 import { useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 const UserDataComp = () => {
   const token = getCookie("authorization");
   const router = useRouter();
-  const { data: user, isFetching, refetch } = useUserData();
+  const queryClient = useQueryClient();
+
+  const { data: user, isFetching } = useUserData();
 
   const deleteCookies = () => {
     deleteCookie("authorization");
@@ -33,7 +36,7 @@ const UserDataComp = () => {
   };
 
   useEffect(() => {
-    refetch();
+    queryClient.invalidateQueries({ queryKey: ["data-usuario"] });
   }, []);
 
   return (

@@ -13,7 +13,7 @@ export function useUserData() {
     return user;
   };
 
-  const query = useQuery({ queryFn: getUserData, queryKey: ["user-data"] });
+  const query = useQuery({ queryFn: getUserData, queryKey: ["data-usuario"] });
 
   return query;
 }

@@ -26,8 +26,6 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
     mutate({ idAluno, objMateria, token });
   };
 
-  useEffect(() => {}, []);
-
   return (
     <div className="flex flex-col justify-center w-full height_pattern">
       {isFetching ? (
