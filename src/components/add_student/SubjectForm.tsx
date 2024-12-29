@@ -100,10 +100,12 @@ const SubjectForm = ({ idAluno, nomeAluno, subjects }: Props) => {
           <div className="flex flex-col gap-2 text-[14px]">
             <div className="flex flex-col gap-3">
               {/* PORTUGUÊS DO 6 ANO  */}
+
               <div className="flex flex-col gap-2 rounded-lg p-2 border-2 border-zinc-800">
-                <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
-                  6° Ano
-                </p>
+                <div className="flex justify-between items-center font-medium text-zinc-200">
+                  <p className=" text-[1rem] md:text-[0.9rem] pl-2">6° Ano</p>
+                  <p className="text-[0.9rem] pr-1.5">Português</p>
+                </div>
 
                 {subjects
                   ?.sort((a, b) =>
@@ -130,9 +132,10 @@ const SubjectForm = ({ idAluno, nomeAluno, subjects }: Props) => {
               </div>
               {/* PORTUGUÊS DO 1 ANO */}
               <div className="flex flex-col gap-2 rounded-lg p-2 border-2 border-zinc-800">
-                <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
-                  1° Ano
-                </p>
+                <div className="flex justify-between items-center font-medium text-zinc-200">
+                  <p className=" text-[1rem] md:text-[0.9rem] pl-2">1° Ano</p>
+                  <p className="text-[0.9rem] pr-1.5">Português</p>
+                </div>
                 {subjects
                   ?.sort((a, b) =>
                     a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
@@ -156,14 +159,12 @@ const SubjectForm = ({ idAluno, nomeAluno, subjects }: Props) => {
                     }
                   })}
               </div>
-              <h3 className="font-medium text-zinc-200 text-[1.18rem] pl-0.5">
-                Matemática
-              </h3>
               {/* MATEMÁTICA DO 6 ANO */}
               <div className="flex flex-col gap-2 rounded-lg p-2 border-2 border-zinc-800">
-                <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
-                  6° Ano
-                </p>
+                <div className="flex justify-between items-center font-medium text-zinc-200">
+                  <p className=" text-[1rem] md:text-[0.9rem] pl-2">6° Ano</p>
+                  <p className="text-[0.9rem] pr-1.5">Matemática</p>
+                </div>
                 {subjects
                   ?.sort((a, b) =>
                     a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
@@ -189,9 +190,10 @@ const SubjectForm = ({ idAluno, nomeAluno, subjects }: Props) => {
               </div>
               {/* MATEMÁTICA DO 1 ANO */}
               <div className="flex flex-col gap-2 rounded-lg p-2 border-2 border-zinc-800">
-                <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
-                  1° Ano
-                </p>
+                <div className="flex justify-between items-center font-medium text-zinc-200">
+                  <p className=" text-[1rem] md:text-[0.9rem] pl-2">1° Ano</p>
+                  <p className="text-[0.9rem] pr-1.5">Matemática</p>
+                </div>
                 {subjects
                   ?.sort((a, b) =>
                     a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0

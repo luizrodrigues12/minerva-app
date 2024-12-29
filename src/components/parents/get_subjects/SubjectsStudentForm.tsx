@@ -6,6 +6,7 @@ import MateriaComp from "../../student/MateriaComp";
 import useSWR from "swr";
 import { motion } from "motion/react";
 import Loading from "../../layout/Loading";
+import YearAndSubject from "@/components/layout/YearAndSubject";
 
 type Props = {
   idAluno: string;
@@ -24,11 +25,10 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
       return aluno;
     });
 
-  const {
-    data: oneStudent,
-    mutate,
-    isValidating,
-  } = useSWR<AlunoObj>(`${process.env.HOST}/api/student/get_student`, fetcher);
+  const { data: oneStudent, isValidating } = useSWR<AlunoObj>(
+    `${process.env.HOST}/api/student/get_student`,
+    fetcher
+  );
 
   return (
     <div className="flex flex-col w-full justify-center items-center height_pattern">
@@ -71,7 +71,7 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                       type="text"
                       id="buscar"
                       className="rounded-lg p-1.5 px-3 pb-[6.5px] border-2 border-roxominerva bg-inherit w-full my-1 
-                flex flex-col justify-center items-center"
+                      flex flex-col justify-center items-center mb-2"
                       placeholder="Pesquisar"
                       value={busca}
                       onChange={(e) => {
@@ -89,13 +89,8 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                     ""
                   ) : (
                     <div>
-                      <h2 className="font-medium text-zinc-200 text-[1.18rem] pl-0.5 py-1.5">
-                        Português
-                      </h2>
                       <div className="flex flex-col rounded-lg p-2 border-2 border-zinc-800 mb-3">
-                        <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
-                          6° Ano
-                        </p>
+                        <YearAndSubject subject="português" year={6} />
                         {oneStudent?.materias
                           ?.filter((materia: any) =>
                             materia.nome
@@ -138,9 +133,7 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                     ""
                   ) : (
                     <div className="flex flex-col rounded-lg p-2 border-2 border-zinc-800 mb-3">
-                      <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
-                        1° Ano
-                      </p>
+                      <YearAndSubject subject="português" year={1} />
                       {oneStudent?.materias
                         ?.filter((materia: any) =>
                           materia.nome
@@ -182,13 +175,8 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                     ""
                   ) : (
                     <div>
-                      <h2 className="font-medium text-zinc-200 text-[1.18rem] pl-0.5 py-1.5">
-                        Matemática
-                      </h2>
                       <div className="flex flex-col rounded-lg p-2 border-2 border-zinc-800 mb-3">
-                        <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
-                          6° Ano
-                        </p>
+                        <YearAndSubject subject="matemática" year={6} />
                         {oneStudent?.materias
                           ?.filter((materia: any) =>
                             materia.nome
@@ -232,9 +220,7 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                     ""
                   ) : (
                     <div className="flex flex-col rounded-lg p-2 border-2 border-zinc-800 mb-3">
-                      <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
-                        1° Ano
-                      </p>
+                      <YearAndSubject subject="matemática" year={1} />
                       {oneStudent?.materias
                         ?.filter((materia: any) =>
                           materia.nome

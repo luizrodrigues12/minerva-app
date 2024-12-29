@@ -1,5 +1,6 @@
 import { AlunoObj } from "@/models/userModel";
 import MateriaComp from "./MateriaComp";
+import YearAndSubject from "../layout/YearAndSubject";
 
 type Props = {
   oneStudent: AlunoObj;
@@ -18,13 +19,13 @@ const MateriasMatematica = ({
     <div>
       <div>
         {/* PORTUGUÊS DO SEXTO ANO */}
-        <h2 className="font-medium text-zinc-200 text-[1.18rem] pl-0.5 py-1.5">
-          Matemática
-        </h2>
-        <div className="flex flex-col rounded-lg p-2 border-2 border-zinc-800 mb-3">
-          <p className="font-medium text-zinc-200 text-[1rem] md:text-[0.9rem] pl-2">
-            {materiaAno === "mat6" ? "6° Ano" : "1° Ano"}
-          </p>
+
+        <div className="flex flex-col rounded-lg p-2 border-2 border-zinc-800  mb-3">
+          <YearAndSubject
+            subject="matemática"
+            year={materiaAno === "mat6" ? 6 : 1}
+          />
+
           {oneStudent?.materias
             ?.filter((materia: any) =>
               materia.nome.toLowerCase().includes(busca.toLowerCase())
