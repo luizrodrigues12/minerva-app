@@ -145,7 +145,7 @@ const RegisterForm = () => {
             />
             <button
               type="button"
-              className="btn_show_password"
+              className="btn_show_password hover:text-zinc-300"
               onClick={showPassFunction}
             >
               mostrar
@@ -153,7 +153,10 @@ const RegisterForm = () => {
           </div>
         </div>
         {error && <p className="error_form">{error}</p>}
-        <button type="submit" className="btn_submit_form">
+        <button
+          type="submit"
+          className="btn_submit_form hover:bg-[#453e92] text-zinc-300"
+        >
           Registrar
         </button>
         <Link href={"/login"} className="paragraph_form">

@@ -88,7 +88,7 @@ const LoginForm = () => {
             />
             <button
               type="button"
-              className="btn_show_password"
+              className="btn_show_password hover:text-zinc-300"
               onClick={showPassFunction}
             >
               mostrar
@@ -96,7 +96,10 @@ const LoginForm = () => {
           </div>
         </div>
         {error && <p>{error}</p>}
-        <button className="btn_submit_form" type="submit">
+        <button
+          className="btn_submit_form hover:bg-[#453e92] text-zinc-300"
+          type="submit"
+        >
           Login
         </button>
         <div className="flex justify-between items-center">
