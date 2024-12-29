@@ -5,8 +5,11 @@ import Loading from "../layout/Loading";
 import { useRouter } from "nextjs-toploader/app";
 import { useEffect, useState } from "react";
 import { dataMongoUser } from "@/models/userModel";
+import { useUserData } from "@/hooks/useUserData";
+import { unstable_noStore as noStore } from "next/cache";
 
 const UserDataComp = () => {
+  noStore();
   const token = getCookie("authorization");
   const router = useRouter();
   const [user, setUser] = useState<dataMongoUser>();
@@ -42,7 +45,7 @@ const UserDataComp = () => {
   };
 
   useEffect(() => {
-    if (!user?.username) getUserData();
+    getUserData();
   }, []);
 
   return (
