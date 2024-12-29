@@ -3,16 +3,22 @@
 import { deleteCookie, getCookie } from "cookies-next";
 import Loading from "../layout/Loading";
 import { useRouter } from "nextjs-toploader/app";
-import { useUserData } from "@/hooks/useUserData";
-import { useEffect } from "react";
-import { useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { dataMongoUser } from "@/models/userModel";
 
 const UserDataComp = () => {
   const token = getCookie("authorization");
   const router = useRouter();
-  const queryClient = useQueryClient();
+  const [user, setUser] = useState<dataMongoUser>();
 
-  const { data: user, isFetching } = useUserData();
+  const getUserData = async () => {
+    const res = await fetch(`${process.env.HOST}/api/user/get_user`, {
+      method: "POST",
+      body: JSON.stringify({ token: token }),
+    });
+    const { user } = await res.json();
+    setUser(user);
+  };
 
   const deleteCookies = () => {
     deleteCookie("authorization");
@@ -36,12 +42,12 @@ const UserDataComp = () => {
   };
 
   useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: ["data-usuario"] });
+    if (!user?.username) getUserData();
   }, []);
 
   return (
     <div className="flex flex-col w-full h-screen">
-      {isFetching ? (
+      {!user ? (
         <Loading />
       ) : (
         <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 height_pattern">

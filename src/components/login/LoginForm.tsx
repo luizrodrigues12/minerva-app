@@ -26,7 +26,7 @@ const LoginForm = () => {
       const { error } = await res.json();
       if (error) throw new Error(error);
       //Enviando para a home.
-      window.location.assign("/home");
+      router.push("/home");
     } catch (err: any) {
       setError(err.message);
     }

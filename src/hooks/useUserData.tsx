@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { getCookie } from "cookies-next";
 
 const token = getCookie("authorization");
@@ -13,7 +13,10 @@ export function useUserData() {
     return user;
   };
 
-  const query = useQuery({ queryFn: getUserData, queryKey: ["data-usuario"] });
+  const query = useQuery({
+    queryFn: getUserData,
+    queryKey: ["data-usuario"],
+  });
 
   return query;
 }
