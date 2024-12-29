@@ -7,8 +7,10 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import Loading from "../layout/Loading";
 import useGetAlunos from "@/hooks/useGetAlunos";
+import { unstable_noStore as noStore } from "next/cache";
 
 const PageHome = () => {
+  noStore();
   const [busca, setBusca] = useState("");
   const buscaDeferred = useDeferredValue(busca);
   const token = getCookie("authorization");
