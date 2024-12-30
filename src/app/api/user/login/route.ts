@@ -9,16 +9,18 @@ connectDB();
 
 export async function POST(req: NextRequest) {
   try {
+    const cookieStore = await cookies();
     // Pegando o body da requisiçã
     const { email, password } = await req.json();
+    // Pegando User
     const user = await UserModel.findOne({ email: email });
     if (!user) throw new Error("Usuário não encontrado.");
-    const cookieStore = await cookies();
 
     if (!(await bcrypt.compare(password, user.password)))
       throw new Error("Senha inválida.");
+
     if (!user.token) {
-      // Criando token e verificando se já existe token
+      // Criando token
       const token = jwt.sign(
         { _id: user._id },
         process.env.JWT_SECRET as string,
