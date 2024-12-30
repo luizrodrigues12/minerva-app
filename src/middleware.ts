@@ -1,7 +1,9 @@
 import { NextResponse, NextRequest } from "next/server";
+import { cookies } from "next/headers";
 
 export async function middleware(request: NextRequest) {
-  const token = request.cookies.get("authorization")?.value;
+  const cookieStore = await cookies();
+  const token = cookieStore.get("authorization")?.value;
   const path = request.nextUrl.pathname;
 
   // PEGANDO USUÁRIO
