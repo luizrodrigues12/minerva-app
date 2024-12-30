@@ -62,10 +62,6 @@
     @apply flex flex-col justify-center gap-2 w-full md:self-center lg:gap-2;
   }
 
-  .form_student {
-    @apply flex flex-col justify-center gap-2 md:self-center lg:gap-3;
-  }
-
   .form_login {
     @apply flex flex-col justify-center gap-4 py-4 md:self-center lg:gap-4;
   }
