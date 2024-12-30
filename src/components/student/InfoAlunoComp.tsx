@@ -10,6 +10,10 @@ import Loading from "../layout/Loading";
 import { motion } from "motion/react";
 import { useAlunoData } from "@/hooks/useAlunoData";
 import { useChecksMutate } from "@/hooks/useChecksMutate";
+import Accordion from "../layout/Accordion";
+import MateriaComp from "./MateriaComp";
+import { dataMongoUser } from "@/models/userModel";
+import { MateriaType } from "@/models/MateriasModel";
 
 const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   const [busca, setBusca] = useState("");
@@ -24,6 +28,16 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
     setObjMateria(objMateria);
 
     mutate({ idAluno, objMateria, token });
+  };
+
+  const materiaFilterAndSorted = () => {
+    return data.materias
+      .sort((a: any, b: any) =>
+        a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
+      )
+      .filter((materia: any) =>
+        materia.nome.toLowerCase().includes(busca.toLowerCase())
+      );
   };
 
   return (
@@ -79,62 +93,141 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                   </div>
 
                   <div>
-                    {/* RENDERIZAÇÃO CONDICIONAL DO SEXTO ANO */}
-                    {data?.materias?.filter((materia: any) => {
-                      if (materia.materia === "português")
-                        return materia.ordem <= 10;
-                    }).length === 0 ? (
+                    {data.materias.filter(
+                      (materia: any) =>
+                        materia.materia === "português" && materia.ordem <= 10
+                    ).length === 0 ? (
                       ""
                     ) : (
-                      <MateriasPortugues
-                        busca={busca}
-                        materiaAno="port6"
-                        oneStudent={data}
-                        toggleIsChecked={toggleIsChecked}
-                      />
+                      <Accordion
+                        textLeft="Português"
+                        textRight="6° Ano"
+                        className="mb-2"
+                        classNameContent="flex-col px-2 mt-1 "
+                      >
+                        {materiaFilterAndSorted().map(
+                          (materia: MateriaType, i: number) => {
+                            if (
+                              materia.ordem <= 10 &&
+                              materia.materia === "português"
+                            )
+                              return (
+                                <MateriaComp
+                                  key={i}
+                                  text={materia.nome.toUpperCase()}
+                                  id={materia._id!}
+                                  isChecked={materia.isChecked}
+                                  onClick={(e: any) =>
+                                    toggleIsChecked(materia, e)
+                                  }
+                                />
+                              );
+                          }
+                        )}
+                      </Accordion>
                     )}
-                    {/* RENDERIZAÇÃO CONDICIONAL*/}
-                    {data?.materias?.filter((materia: any) => {
-                      if (materia.materia === "português")
-                        return materia.ordem > 10;
-                    }).length === 0 ? (
+
+                    {data.materias.filter(
+                      (materia: any) =>
+                        materia.materia === "português" && materia.ordem > 10
+                    ).length === 0 ? (
                       ""
                     ) : (
-                      <MateriasPortugues
-                        busca={busca}
-                        materiaAno="port1"
-                        oneStudent={data}
-                        toggleIsChecked={toggleIsChecked}
-                      />
+                      <Accordion
+                        textLeft="Português"
+                        textRight="1° Ano"
+                        className="mb-2"
+                        classNameContent="flex-col px-2 mt-1 "
+                      >
+                        {materiaFilterAndSorted().map(
+                          (materia: MateriaType, i: number) => {
+                            if (
+                              materia.ordem > 10 &&
+                              materia.materia === "português"
+                            )
+                              return (
+                                <MateriaComp
+                                  key={i}
+                                  text={materia.nome.toUpperCase()}
+                                  id={materia._id!}
+                                  isChecked={materia.isChecked}
+                                  onClick={(e: any) =>
+                                    toggleIsChecked(materia, e)
+                                  }
+                                />
+                              );
+                          }
+                        )}
+                      </Accordion>
                     )}
-                    {/* RENDERIZAÇÃO CONDICIONAL DO SEXTO ANO */}
-                    {data?.materias?.filter((materia: any) => {
-                      if (materia.materia === "matemática")
-                        return materia.ordem <= 15;
-                    }).length === 0 ? (
+
+                    {data.materias.filter(
+                      (materia: any) =>
+                        materia.materia === "matemática" && materia.ordem <= 15
+                    ).length === 0 ? (
                       ""
                     ) : (
-                      <MateriasMatematica
-                        busca={busca}
-                        materiaAno="mat6"
-                        oneStudent={data}
-                        toggleIsChecked={toggleIsChecked}
-                      />
+                      <Accordion
+                        textLeft="matemática"
+                        textRight="6° Ano"
+                        className="mb-2"
+                        classNameContent="flex-col px-2 mt-1 "
+                      >
+                        {materiaFilterAndSorted().map(
+                          (materia: MateriaType, i: number) => {
+                            if (
+                              materia.ordem <= 15 &&
+                              materia.materia === "matemática"
+                            )
+                              return (
+                                <MateriaComp
+                                  key={i}
+                                  text={materia.nome.toUpperCase()}
+                                  id={materia._id!}
+                                  isChecked={materia.isChecked}
+                                  onClick={(e: any) =>
+                                    toggleIsChecked(materia, e)
+                                  }
+                                />
+                              );
+                          }
+                        )}
+                      </Accordion>
                     )}
-                    {/* RENDERIZAÇÃO CONDICIONAL DO PRIMEIRO ANO */}
-                    {data?.materias?.filter((materia: any) => {
-                      if (materia.materia === "matemática") {
-                        return materia.ordem > 15;
-                      }
-                    }).length === 0 ? (
+
+                    {/* MAT 1 ANO */}
+                    {data.materias.filter(
+                      (materia: any) =>
+                        materia.materia === "matemática" && materia.ordem > 15
+                    ).length === 0 ? (
                       ""
                     ) : (
-                      <MateriasMatematica
-                        busca={busca}
-                        materiaAno="mat1"
-                        oneStudent={data}
-                        toggleIsChecked={toggleIsChecked}
-                      />
+                      <Accordion
+                        textLeft="matemática"
+                        textRight="1° Ano"
+                        className="mb-2"
+                        classNameContent="flex-col px-2 mt-1 "
+                      >
+                        {materiaFilterAndSorted().map(
+                          (materia: MateriaType, i: number) => {
+                            if (
+                              materia.ordem > 15 &&
+                              materia.materia === "matemática"
+                            )
+                              return (
+                                <MateriaComp
+                                  key={i}
+                                  text={materia.nome.toUpperCase()}
+                                  id={materia._id!}
+                                  isChecked={materia.isChecked}
+                                  onClick={(e: any) =>
+                                    toggleIsChecked(materia, e)
+                                  }
+                                />
+                              );
+                          }
+                        )}
+                      </Accordion>
                     )}
                   </div>
                 </div>
