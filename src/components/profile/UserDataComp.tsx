@@ -1,18 +1,19 @@
 "use client";
 
-import { deleteCookie, getCookie } from "cookies-next";
+import { deleteCookie, getCookie } from "cookies-next/client";
 import Loading from "../layout/Loading";
 import { useRouter } from "nextjs-toploader/app";
 import { useEffect, useState } from "react";
 import { dataMongoUser } from "@/models/userModel";
-import { useUserData } from "@/hooks/useUserData";
 import { unstable_noStore as noStore } from "next/cache";
+import { POST } from "@/app/api/student/add_student/route";
 
 const UserDataComp = () => {
-  noStore();
   const token = getCookie("authorization");
   const router = useRouter();
   const [user, setUser] = useState<dataMongoUser>();
+
+  noStore();
 
   const getUserData = async () => {
     const res = await fetch(`${process.env.HOST}/api/user/get_user`, {
@@ -28,10 +29,15 @@ const UserDataComp = () => {
     deleteCookie("username");
   };
 
-  const logoutFunction = (e: any) => {
+  const logoutFunction = async (e: any) => {
     e.preventDefault();
-    deleteCookies();
-    router.push("/login");
+
+    const res = await fetch(`${process.env.HOST}/api/user/logout`, {
+      method: "GET",
+    });
+    const { redirect } = await res.json();
+
+    if (redirect) router.push("/login");
   };
 
   const removerConta = async (e: any) => {
