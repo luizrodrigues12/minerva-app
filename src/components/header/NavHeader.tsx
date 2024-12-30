@@ -45,7 +45,7 @@ const NavHeader = () => {
         </Link>
       ) : (
         <div>
-          <ul className="flex gap-5 md:gap-7 lg:gap-8 xl:gap-12 lg:text-[22px] xl:text-2xl">
+          <ul className="flex gap-5 md:gap-7 lg:gap-8 xl:gap-9 lg:text-[22px] xl:text-[1.2rem]">
             <li>
               <Link
                 href={"/login"}
