@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "nextjs-toploader/app";
 
@@ -14,7 +14,7 @@ const LoginForm = () => {
   const router = useRouter();
 
   // Manipulando submit do formulário
-  const handleForm = async (e: any) => {
+  const handleLogin = async (e: any) => {
     try {
       e.preventDefault();
       //Enviando post dos dados
@@ -44,18 +44,14 @@ const LoginForm = () => {
 
   return (
     <div className="w-full px-8 md:self-center rounded-lg md:px-6 md:w-[400px] md:border-zinc-800 md:border-2 height_pattern">
-      <form
-        method="POST"
-        className="flex flex-col gap-2 my-4"
-        onSubmit={(e) => handleForm(e)}
-      >
+      <form method="POST" className="flex flex-col gap-2 my-4">
         <h1 className="text-zinc-200 text-2xl font-medium mb-1">Fazer login</h1>
         <div className="flex flex-col gap-2">
           <input
             type="email"
             name="email"
             id=""
-            autoComplete="off"
+            autoComplete="email"
             placeholder="Email"
             className="input_email_username"
             value={formData.email}
@@ -99,6 +95,7 @@ const LoginForm = () => {
         <button
           className="btn_submit_form hover:bg-[#453e92] text-zinc-300"
           type="submit"
+          onClick={(e) => handleLogin(e)}
         >
           Login
         </button>
