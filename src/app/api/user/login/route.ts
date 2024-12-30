@@ -9,10 +9,11 @@ connectDB();
 
 export async function POST(req: NextRequest) {
   try {
-    // Pegando o body da requisição
+    // Pegando o body da requisiçã
     const { email, password } = await req.json();
     const user = await UserModel.findOne({ email: email });
     if (!user) throw new Error("Usuário não encontrado.");
+    const cookieStore = await cookies();
 
     if (!(await bcrypt.compare(password, user.password)))
       throw new Error("Senha inválida.");
@@ -24,12 +25,12 @@ export async function POST(req: NextRequest) {
         { expiresIn: "90d" }
       );
       // Salvando token nos cookies
-      (await cookies()).set("authorization", token, {
+      cookieStore.set("authorization", token, {
         maxAge: 86400 * 90,
         secure: true,
         sameSite: "strict",
       });
-      (await cookies()).set("username", user.username, {
+      cookieStore.set("username", user.username, {
         maxAge: 86400 * 90,
         secure: true,
         sameSite: "strict",
@@ -41,12 +42,12 @@ export async function POST(req: NextRequest) {
       await UserModel.updateOne({ email: email }, { token: token });
     } else {
       // Salvando token existente nos cookies
-      (await cookies()).set("authorization", user.token, {
+      cookieStore.set("authorization", user.token, {
         maxAge: 86400 * 90,
         secure: true,
         sameSite: "strict",
       });
-      (await cookies()).set("username", user.username, {
+      cookieStore.set("username", user.username, {
         maxAge: 86400 * 90,
         secure: true,
         sameSite: "strict",
