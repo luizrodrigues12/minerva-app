@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     ],
   },
   env: {
-    HOST: "https://minerva-app.netlify.app",
+    HOST: "https://minerva-gamma.vercel.app",
   },
   /* config options here */
 };
