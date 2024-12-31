@@ -35,7 +35,7 @@ const SubjectForm = ({ subjects, error }: Props) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="md:self-center rounded-lg md:w-[400px] mb-3 w-full md:px-[26px]"
+        className="md:self-center rounded-lg md:w-[400px] mb-2 w-full md:px-[26px]"
       >
         <div className="form_register">
           <div className="flex justify-between my-2 mt-3">

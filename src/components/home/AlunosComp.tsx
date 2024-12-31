@@ -11,11 +11,11 @@ const AlunosComp = ({ text, idAluno }: { text: string; idAluno: string }) => {
     <div className="container_alunos">
       <div className=" flex p-2 pb-1.5 px-3 rounded-lg border-2 border-zinc-800 shadow-lg justify-between items-center">
         <motion.div
-          whileHover={{ scale: 1.03 }}
+          whileHover={{ scale: 1.01 }}
           transition={{ duration: 0.1 }}
           whileTap={{ scale: 1 }}
           onClick={() => router.push(`/student/${idAluno}`)}
-          className="text-[17px] tracking-wide text-zinc-300 hover:text-zinc-200 cursor-pointer"
+          className="text-[17px] tracking-wide text-zinc-300  cursor-pointer hover:underline underline-offset-[3px] hover:text-zinc-200"
         >
           {text}
         </motion.div>

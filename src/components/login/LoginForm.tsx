@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "nextjs-toploader/app";
+import { motion } from "motion/react";
 
 const LoginForm = () => {
   // State com os dados
@@ -11,7 +11,6 @@ const LoginForm = () => {
     password: "",
   });
   const [error, setError] = useState("");
-  const router = useRouter();
 
   // Manipulando submit do formulário
   const handleLogin = async (e: any) => {
@@ -54,7 +53,7 @@ const LoginForm = () => {
             id=""
             autoComplete="email"
             placeholder="Email"
-            className="input_email_username"
+            className="input_email_username !bg-zinc-800 !border-0"
             value={formData.email}
             onChange={(e) => {
               e.preventDefault();
@@ -65,14 +64,14 @@ const LoginForm = () => {
             }}
             required
           />
-          <div className="div_input_password">
+          <div className="div_input_password !bg-backButtonHover !border-0">
             <input
               type="password"
               name="password"
               autoComplete="off"
               id="input-password"
               placeholder="Senha"
-              className="input_password"
+              className="input_password !bg-backButtonHover !border-0"
               value={formData.password}
               required
               onChange={(e) => {
@@ -85,7 +84,7 @@ const LoginForm = () => {
             />
             <button
               type="button"
-              className="btn_show_password hover:text-zinc-300"
+              className="btn_show_password hover:text-zinc-300 !border-l-2 !border-zinc-700"
               onClick={showPassFunction}
             >
               mostrar
@@ -93,14 +92,18 @@ const LoginForm = () => {
           </div>
         </div>
         {error && <p>{error}</p>}
-        <button
-          className="btn_submit_form hover:bg-[#453e92] text-zinc-300"
+        <motion.button
+          whileHover={{ scale: 1.01 }}
+          whileTap={{ scale: 1 }}
+          transition={{ duration: 0.02 }}
+          className="btn_submit_form !bg-roxominerva hover:!bg-[#403988] hover:text-zinc-200 text-zinc-300
+          "
           type="submit"
           onClick={(e) => handleLogin(e)}
         >
           Login
-        </button>
-        <div className="flex justify-between items-center">
+        </motion.button>
+        <div className="flex justify-between items-center px-1">
           <Link href={"/register"} prefetch={true} className="paragraph_form">
             Crie sua conta.
           </Link>

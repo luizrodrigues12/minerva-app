@@ -6,7 +6,7 @@ import { useRouter } from "nextjs-toploader/app";
 import { useEffect, useState } from "react";
 import { dataMongoUser } from "@/models/userModel";
 import { unstable_noStore as noStore } from "next/cache";
-import { POST } from "@/app/api/student/add_student/route";
+import { motion } from "motion/react";
 
 const UserDataComp = () => {
   const token = getCookie("authorization");
@@ -59,9 +59,9 @@ const UserDataComp = () => {
       {!user ? (
         <Loading />
       ) : (
-        <div className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 height_pattern">
+        <div className="px-8 md:self-center rounded-lg md:px-6 md:p-5 md:w-[400px] md:border-zinc-800 md:border-2 height_pattern">
           <div className="flex items-center justify-center gap-3">
-            <h2 className="font-medium text-xl w-[270px] text-zinc-200 text-center pt-1 pb-1.5 md:pt-0 md:pb-2">
+            <h2 className="text-xl w-[270px] text-zinc-200 text-center pt-1 pb-1.5 md:pt-0 md:pb-3">
               Meus Dados
             </h2>
           </div>
@@ -87,12 +87,15 @@ const UserDataComp = () => {
 
           <hr className="bg-zinc-800 h-0.5 mb-2 mt-2 md:mt-2 md:mb-2 border-none" />
 
-          <button
-            className="bg-roxominerva w-full rounded-lg text-[16px] md:p-[7px] text-zinc-200; h-10 flex justify-center items-center hover:bg-[#474097] hover:text-zinc-300"
+          <motion.button
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 1 }}
+            transition={{ duration: 0.01 }}
+            className="bg-roxominerva w-full rounded-lg text-[16px] md:p-[7px] text-textButton h-10 flex justify-center items-center hover:bg-[#484199] hover:text-textButtonHover"
             onClick={(e) => logoutFunction(e)}
           >
             Logout
-          </button>
+          </motion.button>
         </div>
       )}
     </div>

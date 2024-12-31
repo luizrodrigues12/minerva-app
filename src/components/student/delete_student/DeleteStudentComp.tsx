@@ -60,12 +60,12 @@ const DeleteStudentComp = ({ idAluno }: { idAluno: string }) => {
             <hr className="bg-zinc-800 h-0.5 mt-2 mb-1 border-none" />
             <div className="flex flex-col gap-1.5">
               <h3 className="text-[1rem]">Username</h3>
-              <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg border-2 border-[#961f17de]">
+              <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg border-2 border-zinc-800">
                 {oneStudent?.nome}
               </div>
 
               <h3 className="text-[1rem]">Preparatório(s)</h3>
-              <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg flex gap-1 border-2 border-[#961f17de]">
+              <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg flex gap-1 border-2 border-zinc-800">
                 {oneStudent?.preparatorio?.map((prep: any, i: any) =>
                   prep == "aplicação" ? (
                     <p key={i}>{prep[0].toUpperCase() + prep.substring(1)} </p>
@@ -75,14 +75,14 @@ const DeleteStudentComp = ({ idAluno }: { idAluno: string }) => {
                 )}
               </div>
             </div>
-            <hr className="bg-zinc-800 h-0.5 my-2 border-none" />
-            <div className="bg-zinc-900 p-1.5 pl-2.5 rounded-lg flex gap-1 border-2 border-[#961f17de] mb-2 text-zinc-100">
+
+            <div className="bg-zinc-900 p-1.5 mt-2 pl-2.5 rounded-lg flex gap-1 border-2 border-zinc-800 mb-2 text-zinc-100">
               Certifique-se de que realmente desejas remover esse aluno, pois
               essa ação é irreversível.
             </div>
             <button
               onClick={(e) => deleteStudent(e)}
-              className="flex items-center justify-center rounded-lg text-[14px] p-2 py-2.5 w-full text-zinc-200 bg-[#961f17de] tracking-wider hover:bg-[#961f17ad]"
+              className="flex items-center justify-center rounded-lg text-[15px] p-2 py-2 w-full text-zinc-200 bg-[#961f17de] tracking-wider hover:bg-[#961f17ad]"
             >
               Remover Aluno
             </button>

@@ -1,25 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "nextjs-toploader/app";
 import Link from "next/link";
-import { getCookie } from "cookies-next";
 import {
   validateEmail,
   validatePassword,
   validateUsername,
 } from "@/utils/regex";
+import { motion } from "motion/react";
 
 const RegisterForm = () => {
   const router = useRouter();
-
-  // Redirecionando caso haja token
-  useEffect(() => {
-    //Verificando token
-    const token = getCookie("authorization");
-  });
-
-  // State com os dados
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -91,7 +83,7 @@ const RegisterForm = () => {
             name="username"
             id="username"
             placeholder="Usuário"
-            className="input_email_username"
+            className="input_email_username !bg-backButtonHover !border-0"
             required
             autoComplete="off"
             value={formData.username}
@@ -111,7 +103,7 @@ const RegisterForm = () => {
             name="email"
             id="email"
             placeholder="Email"
-            className="input_email_username"
+            className="input_email_username !bg-backButtonHover !border-0"
             required
             autoComplete="off"
             value={formData.email}
@@ -126,13 +118,13 @@ const RegisterForm = () => {
               setError("");
             }}
           />
-          <div className="div_input_password">
+          <div className="div_input_password !bg-backButtonHover !border-0">
             <input
               type="password"
               name="password"
               id="input-password"
               placeholder="Senha"
-              className="input_password"
+              className="input_password !bg-backButtonHover !border-0"
               autoComplete="off"
               required
               value={formData.password}
@@ -145,7 +137,7 @@ const RegisterForm = () => {
             />
             <button
               type="button"
-              className="btn_show_password hover:text-zinc-300"
+              className="btn_show_password hover:text-zinc-300 !border-l-2 !border-zinc-700 w-[80px]"
               onClick={showPassFunction}
             >
               mostrar
@@ -153,12 +145,15 @@ const RegisterForm = () => {
           </div>
         </div>
         {error && <p className="error_form">{error}</p>}
-        <button
+        <motion.button
+          whileHover={{ scale: 1.01 }}
+          whileTap={{ scale: 1 }}
+          transition={{ duration: 0.02 }}
           type="submit"
           className="btn_submit_form hover:bg-[#453e92] text-zinc-300"
         >
           Registrar
-        </button>
+        </motion.button>
         <Link href={"/login"} className="paragraph_form">
           Já tem uma conta?
         </Link>

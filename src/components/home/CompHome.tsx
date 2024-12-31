@@ -64,10 +64,11 @@ const PageHome = () => {
               }}
             />
             <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.1 }}
+              whileHover={{ scale: 1.01 }}
+              transition={{ duration: 0.01 }}
+              whileTap={{ scale: 1 }}
               onClick={() => router.push("/add_student")}
-              className="btn_submit_form h-full !bg-zinc-800 !font-normal !text-zinc-200  !p-[8.1px] flex justify-center items-center !w-[46%] hover:!bg-[#232325] cursor-pointer"
+              className="btn_submit_form h-full !bg-backButtonHover !font-normal !text-zinc-200  !p-[8.1px] flex justify-center items-center !w-[46%] hover:!bg-backButton cursor-pointer"
             >
               Adicionar
             </motion.div>

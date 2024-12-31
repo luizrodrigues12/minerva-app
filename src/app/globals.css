@@ -26,11 +26,11 @@
 @layer utilities {
   /* INPUTS */
   .input_email_username {
-    @apply rounded-lg p-1.5 px-3 border-2 border-roxominerva bg-inherit w-full;
+    @apply rounded-lg p-1.5 px-3 border-2 border-roxominerva bg-inherit w-full placeholder:text-zinc-400;
   }
 
   .input_password {
-    @apply border-roxominerva rounded-l-lg h-10 bg-inherit flex-grow pl-3;
+    @apply border-roxominerva rounded-l-lg h-10 bg-inherit flex-grow pl-3 placeholder:text-zinc-400;
   }
 
   .div_input_password {

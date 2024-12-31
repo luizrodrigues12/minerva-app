@@ -83,7 +83,7 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
                 id="nome_aluno"
                 placeholder={oneStudent?.nome!}
                 autoComplete="off"
-                className="input_email_username !border-zinc-800 mt-2 placeholder:text-zinc-400 text-zinc-200 focus:border-zinc-800"
+                className="input_email_username !border-zinc-800 mt-2 text-zinc-200 focus:border-zinc-800"
                 value={nomeAluno}
                 onChange={(e) => {
                   e.preventDefault();
@@ -124,16 +124,17 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
               />
 
               {error ? (
-                <p className="text-[14px] tracking-wide bg-zinc-900 py-2 pb-1 text-center text-red-500">
+                <p className="text-[14px] tracking-wide bg-zinc-900 mt-2 text-center text-red-500">
                   {error}
                 </p>
               ) : (
                 <></>
               )}
               <motion.button
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02, transition: { duration: 0.05 } }}
+                whileTap={{ scale: 1 }}
                 type="submit"
-                className="btn_submit_form mt-1"
+                className="btn_submit_form !bg-backButton hover:!bg-backButtonHover !text-textButton hover:!text-textButtonHover !py-2.5"
                 onClick={async (e) => {
                   e.preventDefault();
                   await getChecks();
