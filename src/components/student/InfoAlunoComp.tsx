@@ -11,6 +11,7 @@ import { useChecksMutate } from "@/hooks/useChecksMutate";
 import Accordion from "../layout/Accordion";
 import MateriaComp from "./MateriaComp";
 import { MateriaType } from "@/models/MateriasModel";
+import InfoAlunoButtons from "./InfoAlunoButtons";
 
 const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   const [busca, setBusca] = useState("");
@@ -51,23 +52,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
           <div className="flex flex-col gap-3">
             {/* NOME DO ALUNO */}
             <NomePreparatorio idAluno={idAluno} oneStudent={data} />
-            <div className="w-full flex gap-2">
-              {/* BOTÕES */}
-              <Link
-                prefetch
-                href={`/student/update_student/${idAluno}`}
-                className="flex items-center justify-center rounded-lg text-[13px] font-medium p-1.5 w-full md:p-[7px] text-zinc-300 bg-roxominerva tracking-wider"
-              >
-                EDITAR
-              </Link>
-              <Link
-                prefetch
-                href={`/student/delete_student/${idAluno}`}
-                className="flex items-center justify-center rounded-lg text-[13px] font-medium p-1.5 w-full md:p-[7px] text-zinc-300 bg-[#961f17de] tracking-wider"
-              >
-                <div>APAGAR</div>
-              </Link>
-            </div>
+
             <div className="flex flex-col gap-0">
               <form action="">
                 <div className="flex flex-col">
@@ -95,7 +80,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       <Accordion
                         textLeft="Português"
                         textRight="6° Ano"
-                        classNameContent="flex flex-col px-2 bg-zinc-900 border-[6px] border-t-0 border-[#00000075] py-2 rounded-[0.6rem] gap-2"
+                        classNameContent="flex flex-col px-2 bg-zinc-900 border-t-0 border-[6px] border-zinc-800 py-2 rounded-[0.6rem] gap-2"
                       >
                         {materiaFilterAndSorted().map(
                           (materia: MateriaType, i: number) => {
@@ -128,7 +113,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       <Accordion
                         textLeft="Português"
                         textRight="1° Ano"
-                        classNameContent="flex flex-col px-2 bg-zinc-900 border-[6px] border-t-0 border-[#00000075] py-2 rounded-[0.6rem] gap-2"
+                        classNameContent="flex flex-col px-2 bg-zinc-900 border-t-0 border-[6px] border-zinc-800 py-2 rounded-[0.6rem] gap-2"
                       >
                         {materiaFilterAndSorted().map(
                           (materia: MateriaType, i: number) => {
@@ -161,7 +146,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       <Accordion
                         textLeft="matemática"
                         textRight="6° Ano"
-                        classNameContent="flex flex-col px-2 bg-zinc-900 border-[6px] border-t-0 border-[#00000075] py-2 rounded-[0.6rem] gap-2"
+                        classNameContent="flex flex-col px-2 bg-zinc-900 border-t-0 border-[6px] border-zinc-800 py-2 rounded-[0.6rem] gap-2"
                       >
                         {materiaFilterAndSorted().map(
                           (materia: MateriaType, i: number) => {
@@ -195,7 +180,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       <Accordion
                         textLeft="matemática"
                         textRight="1° Ano"
-                        classNameContent="flex flex-col px-2 bg-zinc-900 border-[6px] border-t-0 border-[#00000075] py-2 rounded-[0.6rem] gap-2"
+                        classNameContent="flex flex-col px-2 bg-zinc-900 border-t-0 border-[6px] border-zinc-800 py-2 rounded-[0.6rem] gap-2"
                       >
                         {materiaFilterAndSorted().map(
                           (materia: MateriaType, i: number) => {

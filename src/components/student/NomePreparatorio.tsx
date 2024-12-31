@@ -9,8 +9,8 @@ type Props = {
 
 const NomePreparatorio = ({ oneStudent, idAluno }: Props) => {
   return (
-    <div className="flex flex-col gap-2 text-zinc-200 w-full">
-      <div className="w-full bg-[#00000050] py-5 px-2.5 h-[36px] rounded-lg flex justify-between items-center">
+    <div className="flex flex-col gap-2 text-textwhite w-full">
+      <div className="w-full bg-zinc-800 py-5 px-2.5 h-[36px] rounded-lg flex justify-between items-center">
         <p id="nome_do_aluno">
           {
             oneStudent?.nome
@@ -29,7 +29,7 @@ const NomePreparatorio = ({ oneStudent, idAluno }: Props) => {
           }
         />
       </div>
-      <div className="flex gap-1 w-full items-center bg-[#00000050] py-5 h-[36px] pl-2.5 rounded-lg tracking-wide ">
+      <div className="flex gap-1 w-full items-center bg-zinc-800 py-5 h-[36px] pl-2.5 rounded-lg tracking-wide ">
         {oneStudent?.preparatorio?.map((prep, i) =>
           prep == "aplicação" ? (
             <p key={i}>{prep[0].toUpperCase() + prep.substring(1)} </p>

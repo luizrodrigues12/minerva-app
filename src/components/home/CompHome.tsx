@@ -3,17 +3,18 @@
 import { getCookie } from "cookies-next";
 import { useState, useDeferredValue } from "react";
 import AlunosComp from "./AlunosComp";
-import Link from "next/link";
 import { motion } from "motion/react";
 import Loading from "../layout/Loading";
 import useGetAlunos from "@/hooks/useGetAlunos";
 import { unstable_noStore as noStore } from "next/cache";
+import { useRouter } from "nextjs-toploader/app";
 
 const PageHome = () => {
   noStore();
   const [busca, setBusca] = useState("");
   const buscaDeferred = useDeferredValue(busca);
   const token = getCookie("authorization");
+  const router = useRouter();
   const { data: alunosData, isFetching } = useGetAlunos(token as string);
 
   const getAlunosOrdenados = () => {
@@ -62,12 +63,14 @@ const PageHome = () => {
                 setBusca(e.target.value);
               }}
             />
-            <Link
-              href="/add_student"
-              className="btn_submit_form h-full !font-normal !text-zinc-200  !p-[8.1px] flex justify-center items-center !w-[46%]"
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.1 }}
+              onClick={() => router.push("/add_student")}
+              className="btn_submit_form h-full !bg-zinc-800 !font-normal !text-zinc-200  !p-[8.1px] flex justify-center items-center !w-[46%] hover:!bg-[#232325] cursor-pointer"
             >
               Adicionar
-            </Link>
+            </motion.div>
           </div>
           {/* RENDERIZANDO NOMES EM ORDEM ALFABÉTICA */}
           {alunosData?.length ? (

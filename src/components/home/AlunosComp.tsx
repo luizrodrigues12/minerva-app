@@ -1,17 +1,43 @@
 "use client";
 
-import { Book } from "flowbite-react-icons/outline";
+import { Edit, TrashBin } from "flowbite-react-icons/outline";
+import { useRouter } from "nextjs-toploader/app";
 import Link from "next/link";
+import { motion } from "motion/react";
 
 const AlunosComp = ({ text, idAluno }: { text: string; idAluno: string }) => {
+  const router = useRouter();
   return (
     <div className="container_alunos">
       <div className=" flex p-2 pb-1.5 px-3 rounded-lg border-2 border-zinc-800 shadow-lg justify-between items-center">
-        <p className="text-[17px] tracking-wide text-zinc-300 ">{text}</p>
+        <motion.div
+          whileHover={{ scale: 1.03 }}
+          transition={{ duration: 0.1 }}
+          whileTap={{ scale: 1 }}
+          onClick={() => router.push(`/student/${idAluno}`)}
+          className="text-[17px] tracking-wide text-zinc-300 hover:text-zinc-200 cursor-pointer"
+        >
+          {text}
+        </motion.div>
         <div className="options flex gap-3">
-          <Link href={`/student/${idAluno}`} prefetch={true}>
-            <Book color="#FAA139" />
-          </Link>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.1 }}
+            whileTap={{ scale: 1 }}
+            onClick={() => router.push(`/student/update_student/${idAluno}`)}
+            className="cursor-pointer"
+          >
+            <Edit className="text-zinc-400 hover:text-zinc-200" />
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.1 }}
+            whileTap={{ scale: 1 }}
+            onClick={() => router.push(`/student/delete_student/${idAluno}`)}
+            className="cursor-pointer"
+          >
+            <TrashBin className="text-zinc-400 hover:text-zinc-200" />
+          </motion.div>
         </div>
       </div>
     </div>
