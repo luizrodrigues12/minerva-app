@@ -11,6 +11,7 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
   const [nomeAluno, setNomeAluno] = useState("");
   const [checks, setChecks] = useState(Array<string>);
   const token = getCookie("authorization");
+  const [error, setError] = useState<string>();
 
   const getChecks = async () => {
     document.getElementsByName("checkItem").forEach((checkBox: any) => {
@@ -35,18 +36,26 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
   } = useSWR(`${process.env.HOST}/api/student/get_student`, fetcher);
 
   const updateAluno = async () => {
-    const result = await fetch(
-      `${process.env.HOST}/api/student/update_student`,
-      {
-        method: "PUT",
-        body: JSON.stringify({
-          token,
-          idAluno,
-          nomeAluno: nomeAluno.trim(),
-          checks,
-        }),
-      }
-    );
+    try {
+      if (checks.length === 0 && nomeAluno.trim().length === 0)
+        throw new Error("Faça alguma mudança antes de atualizar!");
+      const result = await fetch(
+        `${process.env.HOST}/api/student/update_student`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            token,
+            idAluno,
+            nomeAluno: nomeAluno.trim(),
+            checks,
+          }),
+        }
+      );
+
+      window.location.href = `/student/${idAluno}`;
+    } catch (error: any) {
+      setError(error.message);
+    }
   };
 
   useEffect(() => {
@@ -74,15 +83,16 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
                 id="nome_aluno"
                 placeholder={oneStudent?.nome!}
                 autoComplete="off"
-                className="input_email_username font-medium text-zinc-200"
+                className="input_email_username !border-zinc-800 mt-2 placeholder:text-zinc-400 text-zinc-200 focus:border-zinc-800"
                 value={nomeAluno}
                 onChange={(e) => {
                   e.preventDefault();
                   setNomeAluno(e.target.value);
                 }}
+                onFocus={() => setError("")}
               />
 
-              <h2 className="text-xl font-medium tracking-wide py-1 px-1 text-zinc-200">
+              <h2 className="text-xl tracking-wide py-1 px-1 text-zinc-200">
                 Preparatório
               </h2>
               <CheckComp
@@ -112,26 +122,27 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
                 htmlFor="cemam"
                 value="cemam"
               />
+
+              {error ? (
+                <p className="text-[14px] tracking-wide bg-zinc-900 py-2 pb-1 text-center text-red-500">
+                  {error}
+                </p>
+              ) : (
+                <></>
+              )}
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                type="submit"
+                className="btn_submit_form mt-1"
+                onClick={async (e) => {
+                  e.preventDefault();
+                  await getChecks();
+                  await updateAluno();
+                }}
+              >
+                ATUALIZAR
+              </motion.button>
             </div>
-            {/* {error ? (
-          <p className="text-[14px] py-0.5 bg-zinc-900 text-center text-[#FAA139]">
-            {error}
-          </p>
-        ) : (
-          <></>
-        )} */}
-            <button
-              type="submit"
-              className="btn_submit_form"
-              onClick={async (e) => {
-                e.preventDefault();
-                await getChecks();
-                await updateAluno();
-                window.location.href = `/student/${idAluno}`;
-              }}
-            >
-              Salvar
-            </button>
           </form>
         </motion.div>
       )}

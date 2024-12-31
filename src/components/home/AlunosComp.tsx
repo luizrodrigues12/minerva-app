@@ -6,7 +6,7 @@ import Link from "next/link";
 const AlunosComp = ({ text, idAluno }: { text: string; idAluno: string }) => {
   return (
     <div className="container_alunos">
-      <div className=" flex p-2 pb-1.5 px-3 rounded-lg border-2 border-roxominerva shadow-lg justify-between items-center">
+      <div className=" flex p-2 pb-1.5 px-3 rounded-lg border-2 border-zinc-800 shadow-lg justify-between items-center">
         <p className="font-medium text-[17px] tracking-wide text-zinc-300 ">
           {text}
         </p>

@@ -1,6 +1,6 @@
 import { MateriaType } from "@/models/MateriasModel";
 import { AngleDown, AngleUp } from "flowbite-react-icons/outline";
-import CheckComp from "../add_student/CheckComp";
+import { motion } from "motion/react";
 import { ReactNode, useState } from "react";
 
 interface Props {
@@ -22,10 +22,10 @@ const Accordion = ({
 
   return (
     <div
-      className={`w-full border-2 py-3 border-zinc-800 rounded-lg font-medium ${className}`}
+      className={`w-full bg-[#111111] rounded-lg tracking-wide ${className}`}
     >
-      <div className="flex justify-between">
-        <div className="text-zinc-200 text-[16px] flex w-full px-3">
+      <div className="flex justify-between py-3">
+        <div className=" text-textwhite text-[16px] flex w-full px-3">
           <p
             className="pr-2 cursor-pointer "
             onClick={() => setIsOpen(!isOpen)}
@@ -50,16 +50,9 @@ const Accordion = ({
         )}
       </div>
 
-      <hr
-        id="horizontal-line"
-        className={`border-0 bg-zinc-800 p-[1px] mt-3.5 ${
-          isOpen ? "block" : "hidden"
-        }`}
-      />
-
       <div
         id="component-accordion"
-        className={`${isOpen ? "flex" : "hidden"} ${classNameContent}`}
+        className={`${isOpen ? "flex" : "hidden"}  ${classNameContent}`}
       >
         {children}
       </div>

@@ -43,7 +43,8 @@
   }
 
   .btn_submit_form {
-    @apply bg-roxominerva rounded-lg text-[16px] p-2 md:p-[7px] text-zinc-100;
+    @apply bg-roxominerva w-full rounded-lg text-[16px] tracking-wider p-2 md:p-[7px] text-zinc-200 
+    hover:text-zinc-300 hover:bg-[#443d8f];
   }
 
   .paragraph_form {
@@ -55,7 +56,7 @@
   }
 
   .h1_form {
-    @apply text-xl font-semibold md:text-2xl md:pb-2 lg:pb-1 text-zinc-200;
+    @apply text-xl  md:pb-2 lg:pb-1 text-zinc-200;
   }
 
   .form_register {

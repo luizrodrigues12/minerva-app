@@ -11,7 +11,7 @@ type Props = {
 const MateriaComp = ({ text, onClick, isChecked, id }: Props) => {
   return (
     <div
-      className="checkbox flex justify-between items-center p-3 px-4 bg-zinc-950 w-full rounded-lg font-medium text-zinc-200 tracking-widest text-[13.5px] my-[4px] shadow-md"
+      className="checkbox flex justify-between items-center p-3 px-4 bg-[#111111] w-full rounded-lg text-zinc-200 tracking-widest text-[13.5px] shadow-md"
       id={id}
     >
       <p className={isChecked ? "checked" : "text-zinc-300"}>{text}</p>

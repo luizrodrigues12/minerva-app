@@ -97,7 +97,7 @@ const StudentForm = () => {
                 name="nome"
                 id="nome_aluno"
                 placeholder="Nome do aluno"
-                className="input_email_username"
+                className="input_email_username !border-zinc-800 placeholder:text-zinc-400 "
                 autoComplete="off"
                 onChange={(e) => {
                   e.preventDefault();
@@ -105,7 +105,7 @@ const StudentForm = () => {
                 }}
               />
 
-              <h2 className="text-xl font-medium tracking-wide py-1 px-1 text-zinc-200">
+              <h2 className="text-xl tracking-wide py-2 px-1 text-zinc-200">
                 Preparatório
               </h2>
               <CheckComp
@@ -144,17 +144,16 @@ const StudentForm = () => {
               error={error}
             />
 
-            <div className="p-2 py-0 w-full">
+            <div className="py-0 w-full">
               <motion.button
-                whileTap={{ scale: 1 }}
-                whileHover={{ scale: 1.02 }}
-                className="bg-roxominerva rounded-lg text-[16px] p-2 md:p-[7px] text-zinc-100 w-full hover:bg-[#484199]"
+                whileTap={{ scale: 0.95 }}
+                className="bg-roxominerva rounded-lg tracking-wide text-[16px] p-2 text-zinc-300 w-full hover:bg-[#484199] hover:text-zinc-200"
                 onClick={(e) => {
                   e.preventDefault();
                   onClickInput(e);
                 }}
               >
-                Salvar
+                ADICIONAR
               </motion.button>
             </div>
           </form>

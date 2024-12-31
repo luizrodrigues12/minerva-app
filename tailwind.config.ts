@@ -19,6 +19,7 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         roxominerva: "#4f47a8",
+        textwhite: "#ffffffce",
       },
     },
     screens: {

@@ -35,15 +35,14 @@ const SubjectForm = ({ subjects, error }: Props) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        className="md:self-center rounded-lg md:w-[400px] mb-3 w-full md:px-8"
+        className="md:self-center rounded-lg md:w-[400px] mb-3 w-full md:px-[26px]"
       >
-        <hr className="bg-zinc-800 border-0 h-0.5 my-2" />
         <div className="form_register">
-          <div className="flex justify-between">
-            <h2 className="text-xl font-medium tracking-wide py-1 px-1 text-zinc-200">
+          <div className="flex justify-between my-2 mt-3">
+            <h2 className="text-xl tracking-wide text-zinc-200 pl-1">
               Matérias
             </h2>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between pr-1">
               <button onClick={(e) => checkAll(e)} className="text-zinc-200">
                 {AllCheckeds ? "desmarcar tudo" : "selecionar tudo"}
               </button>
@@ -56,7 +55,7 @@ const SubjectForm = ({ subjects, error }: Props) => {
               <Accordion
                 textLeft="português"
                 textRight="6° Ano"
-                classNameContent="flex flex-col gap-2 mt-2 px-2"
+                classNameContent="flex flex-col gap-2 px-2 bg-zinc-900 border-[6px] border-t-0 border-[#111111] py-2 rounded-[0.6rem]"
               >
                 {subjectsSorted.map((materia, i) => {
                   if (materia.ordem <= 10 && materia.materia === "português") {
@@ -70,6 +69,7 @@ const SubjectForm = ({ subjects, error }: Props) => {
                         id={materia._id!}
                         htmlFor={materia.nome}
                         value={materia._id!}
+                        className="shadow-lg"
                       />
                     );
                   }
@@ -79,7 +79,7 @@ const SubjectForm = ({ subjects, error }: Props) => {
               <Accordion
                 textLeft="português"
                 textRight="1° Ano"
-                classNameContent="flex flex-col gap-2 mt-2 px-2"
+                classNameContent="flex flex-col gap-2 px-2 bg-zinc-900 border-[6px] border-t-0 border-[#111111] py-2 rounded-[0.6rem]"
               >
                 {subjectsSorted.map((materia, i) => {
                   if (materia.ordem > 10 && materia.materia === "português") {
@@ -102,7 +102,7 @@ const SubjectForm = ({ subjects, error }: Props) => {
               <Accordion
                 textLeft="matemática"
                 textRight="6° Ano"
-                classNameContent="flex flex-col gap-2 mt-2 px-2"
+                classNameContent="flex flex-col gap-2 px-2 bg-zinc-900 border-[6px] border-t-0 border-[#111111] py-2 rounded-[0.6rem]"
               >
                 {subjectsSorted.map((materia, i) => {
                   if (materia.ordem <= 15 && materia.materia === "matemática") {
@@ -125,7 +125,7 @@ const SubjectForm = ({ subjects, error }: Props) => {
               <Accordion
                 textLeft="Matemática"
                 textRight="1° Ano"
-                classNameContent="flex flex-col gap-2 mt-2 px-2"
+                classNameContent="flex flex-col gap-2 px-2 bg-zinc-900 border-[6px] border-t-0 border-[#111111] py-2 rounded-[0.6rem]"
               >
                 {subjectsSorted.map((materia, i) => {
                   if (materia.ordem > 15 && materia.materia == "matemática") {

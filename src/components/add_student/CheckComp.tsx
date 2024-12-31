@@ -23,6 +23,7 @@ type Props = {
     | TargetAndTransition
     | VariantLabels
     | undefined;
+  className?: string;
 };
 
 const CheckComp = ({
@@ -36,6 +37,7 @@ const CheckComp = ({
   delay,
   animateComp,
   transition,
+  className,
 }: Props) => {
   return (
     <motion.div
@@ -43,17 +45,14 @@ const CheckComp = ({
       transition={
         transition ? transition : { duration: 0.3, delay: delay ? delay : 0 }
       }
-      className="checkbox flex justify-between items-center p-3 px-4 bg-zinc-950 w-full rounded-lg shadow-md"
+      className={`checkbox flex justify-between items-center p-3 px-4 bg-[#111111] w-full rounded-lg shadow-md ${className}`}
     >
-      <label
-        htmlFor={htmlFor}
-        className="font-medium text-zinc-200 tracking-widest"
-      >
+      <label htmlFor={htmlFor} className="text-textwhite tracking-widest">
         {text.toUpperCase()}
       </label>
       <input
         type="checkbox"
-        className="bg-inherit border-2 border-roxominerva rounded-full"
+        className="bg-inherit border-2 border-roxominerva rounded-full cursor-pointer"
         name={name}
         id={id}
         value={value}

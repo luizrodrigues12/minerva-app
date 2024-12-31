@@ -46,14 +46,15 @@ const PageHome = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 flex flex-col gap-2 mb-auto w-full"
+          className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 flex flex-col gap-2 w-full"
         >
           {/* SISTEMA DE BUSCA */}
           <div className="flex gap-2 justify-center items-center">
             <input
               type="text"
               id="buscar"
-              className="rounded-lg p-1.5 px-3 border-2 border-roxominerva bg-inherit w-full mt-0"
+              className="rounded-lg p-[7.5px] px-3 border-2 border-zinc-800 bg-inherit w-full mt-0 
+              placeholder:text-zinc-400 focus:border-zinc-800"
               placeholder="Pesquisar"
               value={busca}
               onChange={(e) => {
@@ -63,7 +64,7 @@ const PageHome = () => {
             />
             <Link
               href="/add_student"
-              className=" bg-roxominerva flex items-center rounded-md p-[15px] h-10 text-zinc-100"
+              className="btn_submit_form h-full !font-normal !text-zinc-200  !p-[8.1px] flex justify-center items-center !w-[46%]"
             >
               Adicionar
             </Link>
