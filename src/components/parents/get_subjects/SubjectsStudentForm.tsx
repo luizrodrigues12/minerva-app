@@ -7,6 +7,7 @@ import Accordion from "@/components/layout/Accordion";
 import { useAlunoData } from "@/hooks/useAlunoData";
 import { getCookie } from "cookies-next/client";
 import { MateriaType } from "@/models/MateriasModel";
+import { useParentsData } from "@/hooks/useParentsData";
 
 type Props = {
   idAluno: string;
@@ -15,7 +16,7 @@ type Props = {
 const SubjectsStudentForm = ({ idAluno }: Props) => {
   const token = getCookie("authorization");
   const [busca, setBusca] = useState("");
-  const { data, isFetching } = useAlunoData(idAluno, token as string);
+  const { data, isFetching } = useParentsData(idAluno);
 
   const materiaFilterAndSorted = () => {
     return data?.materias
