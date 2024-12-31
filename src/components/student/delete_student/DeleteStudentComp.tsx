@@ -82,7 +82,7 @@ const DeleteStudentComp = ({ idAluno }: { idAluno: string }) => {
             </div>
             <button
               onClick={(e) => deleteStudent(e)}
-              className="flex items-center justify-center rounded-lg text-[14px] font-medium p-2 w-full md:p-[7px] text-zinc-200 bg-[#961f17de] tracking-wider"
+              className="flex items-center justify-center rounded-lg text-[14px] p-2 py-2.5 w-full text-zinc-200 bg-[#961f17de] tracking-wider hover:bg-[#961f17ad]"
             >
               Remover Aluno
             </button>

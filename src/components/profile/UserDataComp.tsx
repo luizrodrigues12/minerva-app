@@ -88,7 +88,7 @@ const UserDataComp = () => {
           <hr className="bg-zinc-800 h-0.5 mb-2 mt-2 md:mt-2 md:mb-2 border-none" />
 
           <button
-            className="bg-roxominerva w-full rounded-lg text-[16px] md:p-[7px] text-zinc-100; h-10 flex justify-center items-center"
+            className="bg-roxominerva w-full rounded-lg text-[16px] md:p-[7px] text-zinc-200; h-10 flex justify-center items-center hover:bg-[#474097] hover:text-zinc-300"
             onClick={(e) => logoutFunction(e)}
           >
             Logout
