@@ -43,7 +43,7 @@
   }
 
   .btn_submit_form {
-    @apply bg-roxominerva w-full rounded-lg text-[16px] tracking-wider p-2 md:p-[7px] text-zinc-200 
+    @apply bg-roxominerva w-full rounded-lg text-[16px] tracking-wider p-2 text-zinc-200 
     hover:text-zinc-300 hover:bg-[#443d8f];
   }
 

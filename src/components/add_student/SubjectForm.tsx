@@ -55,7 +55,7 @@ const SubjectForm = ({ subjects, error }: Props) => {
               <Accordion
                 textLeft="português"
                 textRight="6° Ano"
-                classNameContent="flex flex-col gap-2 px-2 bg-zinc-900 border-[6px] border-t-0 py-2 rounded-[0.6rem]"
+                classNameContent="flex flex-col gap-2 px-2 bg-zinc-900 border-[6px] border-t-0 border-zinc-800 py-2 rounded-[0.6rem]"
               >
                 {subjectsSorted.map((materia, i) => {
                   if (materia.ordem <= 10 && materia.materia === "português") {
@@ -79,7 +79,7 @@ const SubjectForm = ({ subjects, error }: Props) => {
               <Accordion
                 textLeft="português"
                 textRight="1° Ano"
-                classNameContent="flex flex-col gap-2 px-2 bg-zinc-900 border-[6px] border-t-0 py-2 rounded-[0.6rem]"
+                classNameContent="flex flex-col gap-2 px-2 bg-zinc-900 border-[6px] border-t-0 border-zinc-800 py-2 rounded-[0.6rem]"
               >
                 {subjectsSorted.map((materia, i) => {
                   if (materia.ordem > 10 && materia.materia === "português") {
@@ -102,7 +102,7 @@ const SubjectForm = ({ subjects, error }: Props) => {
               <Accordion
                 textLeft="matemática"
                 textRight="6° Ano"
-                classNameContent="flex flex-col gap-2 px-2 bg-zinc-900 border-[6px] border-t-0 py-2 rounded-[0.6rem]"
+                classNameContent="flex flex-col gap-2 px-2 bg-zinc-900 border-[6px] border-t-0 border-zinc-800 py-2 rounded-[0.6rem]"
               >
                 {subjectsSorted.map((materia, i) => {
                   if (materia.ordem <= 15 && materia.materia === "matemática") {
@@ -125,7 +125,7 @@ const SubjectForm = ({ subjects, error }: Props) => {
               <Accordion
                 textLeft="Matemática"
                 textRight="1° Ano"
-                classNameContent="flex flex-col gap-2 px-2 bg-zinc-900 border-[6px] border-t-0 py-2 rounded-[0.6rem]"
+                classNameContent="flex flex-col gap-2 px-2 bg-zinc-900 border-[6px] border-t-0 border-zinc-800 py-2 rounded-[0.6rem]"
               >
                 {subjectsSorted.map((materia, i) => {
                   if (materia.ordem > 15 && materia.materia == "matemática") {
@@ -147,7 +147,7 @@ const SubjectForm = ({ subjects, error }: Props) => {
             </div>
 
             {error && (
-              <p className="text-[14px] py-0.5 bg-zinc-900 text-center text-[#FAA139]">
+              <p className="text-[14px] py-0.5 bg-zinc-900 text-center text-red-500">
                 {error}
               </p>
             )}

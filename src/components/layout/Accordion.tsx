@@ -21,9 +21,7 @@ const Accordion = ({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div
-      className={`w-full bg-[#00000030] rounded-lg tracking-wide ${className}`}
-    >
+    <div className={`w-full bg-zinc-800 rounded-lg tracking-wide ${className}`}>
       <div className="flex justify-between py-3">
         <div className="text-textwhite text-[16px] flex w-full px-3">
           <p

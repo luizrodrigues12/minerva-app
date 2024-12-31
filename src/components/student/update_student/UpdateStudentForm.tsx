@@ -74,7 +74,7 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
           transition={{ duration: 0.2 }}
           className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 w-full"
         >
-          <form method="POST" className="form_student 2xl:h-[350px] ">
+          <form method="POST" className="form_student 2xl:min-h-[350px] ">
             <h2 className="h1_form">Atualizar Dados</h2>
             <div className="container_check flex flex-col gap-2">
               <input
@@ -124,17 +124,18 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
               />
 
               {error ? (
-                <p className="text-[14px] tracking-wide bg-zinc-900 mt-2 text-center text-red-500">
+                <p className="text-[14px] tracking-wide bg-zinc-900 my-2 text-center text-red-500">
                   {error}
                 </p>
               ) : (
                 <></>
               )}
+
               <motion.button
-                whileHover={{ scale: 1.02, transition: { duration: 0.05 } }}
+                whileHover={{ scale: 1.01, transition: { duration: 0.01 } }}
                 whileTap={{ scale: 1 }}
                 type="submit"
-                className="btn_submit_form !bg-backButton hover:!bg-backButtonHover !text-textButton hover:!text-textButtonHover !py-2.5"
+                className="btn_submit_form !bg-backButtonHover hover:!bg-backButton !text-textButton hover:!text-textButtonHover !py-2.5"
                 onClick={async (e) => {
                   e.preventDefault();
                   await getChecks();

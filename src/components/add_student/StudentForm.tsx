@@ -147,8 +147,8 @@ const StudentForm = () => {
             <div className="py-0 w-full">
               <motion.button
                 whileTap={{ scale: 1 }}
-                whileHover={{ scale: 1.02, transition: { duration: 0.02 } }}
-                className="bg-backButton rounded-lg tracking-wide text-[16px] p-2 text-textButton w-full hover:bg-backButtonHover hover:text-textButtonHover py-2.5"
+                whileHover={{ scale: 1.01, transition: { duration: 0.02 } }}
+                className="bg-backButtonHover rounded-lg tracking-wide text-[16px] p-2 text-textButton w-full hover:bg-backButton hover:text-textButtonHover py-2.5"
                 onClick={(e) => {
                   e.preventDefault();
                   onClickInput(e);

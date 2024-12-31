@@ -45,7 +45,7 @@ const CheckComp = ({
       transition={
         transition ? transition : { duration: 0.3, delay: delay ? delay : 0 }
       }
-      className={`checkbox flex justify-between items-center p-3 px-4 bg-[#00000030] w-full rounded-lg shadow-md ${className}`}
+      className={`checkbox flex justify-between items-center p-3 px-4 bg-zinc-800 w-full rounded-lg shadow-md ${className}`}
     >
       <label htmlFor={htmlFor} className="text-textwhite tracking-widest">
         {text.toUpperCase()}
@@ -54,7 +54,7 @@ const CheckComp = ({
         whileHover={{ scale: 1.1 }}
         transition={{ duration: 0.02 }}
         type="checkbox"
-        className="bg-transparent border-2 p-[7px] border-roxominerva rounded-full cursor-pointer checked:bg-roxominerva"
+        className="bg-transparent border-2 p-[7px] border-zinc-300 rounded-full cursor-pointer checked:bg-zinc-900"
         name={name}
         id={id}
         value={value}
