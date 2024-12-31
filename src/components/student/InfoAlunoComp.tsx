@@ -60,7 +60,8 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                     <input
                       type="text"
                       id="buscar"
-                      className="rounded-lg p-1.5 px-3 border-2 border-zinc-800 bg-inherit w-full mb-[12px] focus:border-zinc-800"
+                      className="rounded-lg p-1.5 px-3 border-2 border-zinc-800 bg-inherit w-full 
+                      placeholder:text-zinc-400 mb-[12px] focus:border-zinc-800"
                       placeholder="Pesquisar"
                       value={busca}
                       onChange={(e) => {

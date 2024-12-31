@@ -1,58 +1,58 @@
 "use client";
 
-import { AlunoObj } from "@/models/userModel";
 import { useState } from "react";
 import MateriaComp from "../../student/MateriaComp";
-import useSWR from "swr";
-import { motion } from "motion/react";
 import Loading from "../../layout/Loading";
-import YearAndSubject from "@/components/layout/YearAndSubject";
+import Accordion from "@/components/layout/Accordion";
+import { useAlunoData } from "@/hooks/useAlunoData";
+import { getCookie } from "cookies-next/client";
+import { MateriaType } from "@/models/MateriasModel";
 
 type Props = {
   idAluno: string;
 };
 
 const SubjectsStudentForm = ({ idAluno }: Props) => {
+  const token = getCookie("authorization");
   const [busca, setBusca] = useState("");
+  const { data, isFetching } = useAlunoData(idAluno, token as string);
 
-  // Pegando subjects
-  const fetcher = (url: string) =>
-    fetch(`${process.env.HOST}/api/student/get_subjects`, {
-      method: "POST",
-      body: JSON.stringify({ idAluno }),
-    }).then(async (res) => {
-      const { aluno } = await res.json();
-      return aluno;
-    });
+  const materiaFilterAndSorted = () => {
+    return data?.materias
+      .sort((a: any, b: any) =>
+        a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
+      )
+      .filter((materia: any) =>
+        materia.nome
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .includes(busca)
+      );
+  };
 
-  const { data: oneStudent, isValidating } = useSWR<AlunoObj>(
-    `${process.env.HOST}/api/student/get_student`,
-    fetcher
-  );
+  console.log(busca);
 
   return (
     <div className="flex flex-col w-full justify-center items-center height_pattern">
-      {isValidating ? (
+      {isFetching ? (
         <Loading />
       ) : (
         <div className="flex flex-col px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 mb-3 w-full">
           <div>
-            <div className="flex items-center justify-between pb-2">
-              <h1 className="h1_form ">Matérias</h1>
-            </div>
             <div className="flex flex-col gap-2 mb-1">
               <p className="w-full bg-zinc-800 pl-2.5 h-9 rounded-lg flex flex-col justify-center items-start ">
                 {
-                  oneStudent?.nome
+                  data?.nome
                     ?.split(" ")
                     .map(
-                      (palavra) =>
+                      (palavra: any) =>
                         `${palavra[0].toUpperCase()}${palavra.substring(1)} `
                     )!
                 }
               </p>
               <div className="flex gap-1 w-full bg-zinc-800 p-1.5 h-[36px] pl-2.5 rounded-lg">
-                {oneStudent?.preparatorio?.map((prep, i) =>
+                {data?.preparatorio?.map((prep: any, i: number) =>
                   prep == "aplicação" ? (
                     <p key={i}>{prep[0].toUpperCase() + prep.substring(1)} </p>
                   ) : (
@@ -62,7 +62,6 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
               </div>
             </div>
             <div className="flex flex-col gap-0">
-              <hr className="bg-zinc-800 border-none h-0.5 my-1" />
               <form action="">
                 {/* BUSCA */}
                 <div className="flex flex-col">
@@ -70,189 +69,163 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                     <input
                       type="text"
                       id="buscar"
-                      className="rounded-lg p-1.5 px-3 pb-[6.5px] border-2 border-roxominerva bg-inherit w-full my-1 
-                      flex flex-col justify-center items-center mb-2"
+                      className="rounded-lg p-1.5 px-3 border-2 border-zinc-800 bg-inherit w-full 
+                      placeholder:text-zinc-400 my-[10px] focus:border-zinc-800"
                       placeholder="Pesquisar"
                       value={busca}
                       onChange={(e) => {
                         e.preventDefault();
-                        setBusca(e.target.value);
+                        setBusca(
+                          e.target.value
+                            .normalize("NFD")
+                            .replace(/[\u0300-\u036f]/g, "")
+                            .toLowerCase()
+                        );
                       }}
                     />
                   </div>
-
-                  {/* RENDERIZAÇÃO CONDICIONAL PORTUGUÊS DO SEXTO ANO */}
-                  {oneStudent?.materias?.filter((materia: any) => {
-                    if (materia.materia === "português")
-                      return materia.ordem <= 10;
-                  }).length === 0 ? (
-                    ""
-                  ) : (
-                    <div>
-                      <div className="flex flex-col rounded-lg p-2 border-2 border-zinc-800 mb-3">
-                        <YearAndSubject subject="português" year={6} />
-                        {oneStudent?.materias
-                          ?.filter((materia: any) =>
-                            materia.nome
-                              .toLowerCase()
-                              .includes(busca.toLowerCase())
-                          )
-                          ?.sort((a: any, b: any) =>
-                            a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
-                          )
-                          .map((objMateria: any, i) => {
-                            if (objMateria.ordem <= 10) {
-                              if (objMateria.materia === "português")
-                                return (
-                                  <motion.div
-                                    animate={{ opacity: [0, 1] }}
-                                    transition={{
-                                      duration: 0.2,
-                                      delay: i * 0.02,
-                                    }}
-                                    key={i}
-                                  >
-                                    <MateriaComp
-                                      text={objMateria.nome.toUpperCase()}
-                                      isChecked={objMateria.isChecked}
-                                      id={objMateria._id}
-                                    />
-                                  </motion.div>
-                                );
-                            }
-                          })}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* RENDERIZAÇÃO CONDICIONAL PORTUGUÊS DO PRIMEIRO ANO */}
-                  {oneStudent?.materias?.filter((materia: any) => {
-                    if (materia.materia === "português")
-                      return materia.ordem > 10;
-                  }).length === 0 ? (
-                    ""
-                  ) : (
-                    <div className="flex flex-col rounded-lg p-2 border-2 border-zinc-800 mb-3">
-                      <YearAndSubject subject="português" year={1} />
-                      {oneStudent?.materias
-                        ?.filter((materia: any) =>
-                          materia.nome
-                            .toLowerCase()
-                            .includes(busca.toLowerCase())
-                        )
-                        ?.sort((a: any, b: any) =>
-                          a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
-                        )
-                        .map((objMateria: any, i) => {
-                          if (objMateria.ordem > 10) {
-                            if (objMateria.materia === "português")
+                  <div className="flex flex-col gap-2">
+                    {data.materias.filter(
+                      (materia: any) =>
+                        materia.materia === "português" &&
+                        materia.ordem <= 10 &&
+                        materia.nome
+                          .normalize("NFD")
+                          .toLowerCase()
+                          .includes(busca)
+                    ).length === 0 ? (
+                      ""
+                    ) : (
+                      <Accordion
+                        textLeft="Português"
+                        textRight="6° Ano"
+                        classNameContent="flex flex-col px-2 bg-zinc-900 border-t-0 border-[6px] border-zinc-800 py-2 rounded-[0.6rem] gap-2"
+                      >
+                        {materiaFilterAndSorted().map(
+                          (materia: MateriaType, i: number) => {
+                            if (
+                              materia.ordem <= 10 &&
+                              materia.materia === "português"
+                            )
                               return (
-                                <motion.div
-                                  animate={{ opacity: [0, 1] }}
-                                  transition={{
-                                    duration: 0.2,
-                                    delay: i * 0.02,
-                                  }}
+                                <MateriaComp
                                   key={i}
-                                >
-                                  <MateriaComp
-                                    text={objMateria.nome.toUpperCase()}
-                                    isChecked={objMateria.isChecked}
-                                    id={objMateria._id}
-                                  />
-                                </motion.div>
+                                  text={materia.nome.toUpperCase()}
+                                  id={materia._id!}
+                                  isChecked={materia.isChecked}
+                                />
                               );
                           }
-                        })}
-                    </div>
-                  )}
+                        )}
+                      </Accordion>
+                    )}
 
-                  {/* RENDERIZAÇÃO CONDICIONAL MATEMÁTICA DO SEXTO ANO */}
-                  {oneStudent?.materias?.filter((materia: any) => {
-                    if (materia.materia === "matemática")
-                      return materia.ordem <= 15;
-                  }).length === 0 ? (
-                    ""
-                  ) : (
-                    <div>
-                      <div className="flex flex-col rounded-lg p-2 border-2 border-zinc-800 mb-3">
-                        <YearAndSubject subject="matemática" year={6} />
-                        {oneStudent?.materias
-                          ?.filter((materia: any) =>
-                            materia.nome
-                              .toLowerCase()
-                              .includes(busca.toLowerCase())
-                          )
-                          ?.sort((a: any, b: any) =>
-                            a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
-                          )
-                          .map((objMateria: any, i) => {
-                            if (objMateria.ordem <= 15) {
-                              if (objMateria.materia === "matemática")
-                                return (
-                                  <motion.div
-                                    animate={{ opacity: [0, 1] }}
-                                    transition={{
-                                      duration: 0.2,
-                                      delay: i * 0.02,
-                                    }}
-                                    key={i}
-                                  >
-                                    <MateriaComp
-                                      text={objMateria.nome.toUpperCase()}
-                                      isChecked={objMateria.isChecked}
-                                      id={objMateria._id}
-                                    />
-                                  </motion.div>
-                                );
-                            }
-                          })}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* RENDERIZAÇÃO CONDICIONAL MATEMÁTICA DO PRIMEIRO ANO */}
-                  {oneStudent?.materias?.filter((materia: any) => {
-                    if (materia.materia === "matemática") {
-                      return materia.ordem > 15;
-                    }
-                  }).length === 0 ? (
-                    ""
-                  ) : (
-                    <div className="flex flex-col rounded-lg p-2 border-2 border-zinc-800 mb-3">
-                      <YearAndSubject subject="matemática" year={1} />
-                      {oneStudent?.materias
-                        ?.filter((materia: any) =>
-                          materia.nome
-                            .toLowerCase()
-                            .includes(busca.toLowerCase())
-                        )
-                        ?.sort((a: any, b: any) =>
-                          a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
-                        )
-                        .map((objMateria: any, i) => {
-                          if (objMateria.ordem > 15) {
-                            if (objMateria.materia === "matemática")
+                    {data.materias.filter(
+                      (materia: any) =>
+                        materia.materia === "português" &&
+                        materia.ordem > 10 &&
+                        materia.nome
+                          .normalize("NFD")
+                          .toLowerCase()
+                          .includes(busca)
+                    ).length === 0 ? (
+                      ""
+                    ) : (
+                      <Accordion
+                        textLeft="Português"
+                        textRight="1° Ano"
+                        classNameContent="flex flex-col px-2 bg-zinc-900 border-t-0 border-[6px] border-zinc-800 py-2 rounded-[0.6rem] gap-2"
+                      >
+                        {materiaFilterAndSorted().map(
+                          (materia: MateriaType, i: number) => {
+                            if (
+                              materia.ordem > 10 &&
+                              materia.materia === "português"
+                            )
                               return (
-                                <motion.div
-                                  animate={{ opacity: [0, 1] }}
-                                  transition={{
-                                    duration: 0.2,
-                                    delay: i * 0.02,
-                                  }}
+                                <MateriaComp
                                   key={i}
-                                >
-                                  <MateriaComp
-                                    text={objMateria.nome.toUpperCase()}
-                                    isChecked={objMateria.isChecked}
-                                    id={objMateria._id}
-                                  />
-                                </motion.div>
+                                  text={materia.nome.toUpperCase()}
+                                  id={materia._id!}
+                                  isChecked={materia.isChecked}
+                                />
                               );
                           }
-                        })}
-                    </div>
-                  )}
+                        )}
+                      </Accordion>
+                    )}
+
+                    {data.materias.filter(
+                      (materia: any) =>
+                        materia.materia === "matemática" &&
+                        materia.ordem <= 15 &&
+                        materia.nome
+                          .normalize("NFD")
+                          .toLowerCase()
+                          .includes(busca)
+                    ).length === 0 ? (
+                      ""
+                    ) : (
+                      <Accordion
+                        textLeft="matemática"
+                        textRight="6° Ano"
+                        classNameContent="flex flex-col px-2 bg-zinc-900 border-t-0 border-[6px] border-zinc-800 py-2 rounded-[0.6rem] gap-2"
+                      >
+                        {materiaFilterAndSorted().map(
+                          (materia: MateriaType, i: number) => {
+                            if (
+                              materia.ordem <= 15 &&
+                              materia.materia === "matemática"
+                            )
+                              return (
+                                <MateriaComp
+                                  key={i}
+                                  text={materia.nome.toUpperCase()}
+                                  id={materia._id!}
+                                  isChecked={materia.isChecked}
+                                />
+                              );
+                          }
+                        )}
+                      </Accordion>
+                    )}
+
+                    {/* MAT 1 ANO */}
+                    {data.materias.filter(
+                      (materia: MateriaType) =>
+                        materia.materia === "matemática" &&
+                        materia.ordem > 15 &&
+                        materia.nome
+                          .normalize("NFD")
+                          .toLowerCase()
+                          .includes(busca)
+                    ).length === 0 ? (
+                      ""
+                    ) : (
+                      <Accordion
+                        textLeft="matemática"
+                        textRight="1° Ano"
+                        classNameContent="flex flex-col px-2 bg-zinc-900 border-t-0 border-[6px] border-zinc-800 py-2 rounded-[0.6rem] gap-2"
+                      >
+                        {materiaFilterAndSorted().map(
+                          (materia: MateriaType, i: number) => {
+                            if (
+                              materia.ordem > 15 &&
+                              materia.materia === "matemática"
+                            )
+                              return (
+                                <MateriaComp
+                                  key={i}
+                                  text={materia.nome.toUpperCase()}
+                                  id={materia._id!}
+                                  isChecked={materia.isChecked}
+                                />
+                              );
+                          }
+                        )}
+                      </Accordion>
+                    )}
+                  </div>
                 </div>
               </form>
             </div>
