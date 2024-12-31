@@ -95,7 +95,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       <Accordion
                         textLeft="Português"
                         textRight="6° Ano"
-                        classNameContent="flex flex-col px-2 bg-zinc-900 border-[6px] border-t-0 border-[#111111] py-2 rounded-[0.6rem] gap-2"
+                        classNameContent="flex flex-col px-2 bg-zinc-900 border-[6px] border-t-0 border-[#00000075] py-2 rounded-[0.6rem] gap-2"
                       >
                         {materiaFilterAndSorted().map(
                           (materia: MateriaType, i: number) => {
@@ -128,7 +128,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       <Accordion
                         textLeft="Português"
                         textRight="1° Ano"
-                        classNameContent="flex flex-col px-2 bg-zinc-900 border-[6px] border-t-0 border-[#111111] py-2 rounded-[0.6rem] gap-2"
+                        classNameContent="flex flex-col px-2 bg-zinc-900 border-[6px] border-t-0 border-[#00000075] py-2 rounded-[0.6rem] gap-2"
                       >
                         {materiaFilterAndSorted().map(
                           (materia: MateriaType, i: number) => {
@@ -161,7 +161,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       <Accordion
                         textLeft="matemática"
                         textRight="6° Ano"
-                        classNameContent="flex flex-col px-2 bg-zinc-900 border-[6px] border-t-0 border-[#111111] py-2 rounded-[0.6rem] gap-2"
+                        classNameContent="flex flex-col px-2 bg-zinc-900 border-[6px] border-t-0 border-[#00000075] py-2 rounded-[0.6rem] gap-2"
                       >
                         {materiaFilterAndSorted().map(
                           (materia: MateriaType, i: number) => {
@@ -195,7 +195,7 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
                       <Accordion
                         textLeft="matemática"
                         textRight="1° Ano"
-                        classNameContent="flex flex-col px-2 bg-zinc-900 border-[6px] border-t-0 border-[#111111] py-2 rounded-[0.6rem] gap-2"
+                        classNameContent="flex flex-col px-2 bg-zinc-900 border-[6px] border-t-0 border-[#00000075] py-2 rounded-[0.6rem] gap-2"
                       >
                         {materiaFilterAndSorted().map(
                           (materia: MateriaType, i: number) => {

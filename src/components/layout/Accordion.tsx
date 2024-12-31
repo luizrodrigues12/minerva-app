@@ -22,7 +22,7 @@ const Accordion = ({
 
   return (
     <div
-      className={`w-full bg-[#111111] rounded-lg tracking-wide ${className}`}
+      className={`w-full bg-[#00000075] rounded-lg tracking-wide ${className}`}
     >
       <div className="flex justify-between py-3">
         <div className=" text-textwhite text-[16px] flex w-full px-3">

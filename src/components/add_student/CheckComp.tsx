@@ -45,14 +45,14 @@ const CheckComp = ({
       transition={
         transition ? transition : { duration: 0.3, delay: delay ? delay : 0 }
       }
-      className={`checkbox flex justify-between items-center p-3 px-4 bg-[#111111] w-full rounded-lg shadow-md ${className}`}
+      className={`checkbox flex justify-between items-center p-3 px-4 bg-[#00000075] w-full rounded-lg shadow-md ${className}`}
     >
       <label htmlFor={htmlFor} className="text-textwhite tracking-widest">
         {text.toUpperCase()}
       </label>
       <input
         type="checkbox"
-        className="bg-inherit border-2 border-roxominerva rounded-full cursor-pointer"
+        className="bg-transparent border-2 border-roxominerva rounded-full cursor-pointer"
         name={name}
         id={id}
         value={value}
