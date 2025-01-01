@@ -20,7 +20,7 @@ const config: Config = {
         foreground: "var(--foreground)",
         roxominerva: "#4f47a8",
         textwhite: "#ffffffce",
-        backButton: "#343438",
+        backButton: "#444449",
         backButtonHover: "#27272a",
         textButton: "#e4e4e7",
         textButtonHover: "#f4f4f5",
