@@ -5,7 +5,7 @@ type Props = { children: ReactNode; className?: string };
 const Container = ({ children, className }: Props) => {
   return (
     <div
-      className={`flex flex-col justify-center items-center w-full md:w-[85%] lg:w-[90%] xl:w-[80%] ${className}`}
+      className={`flex flex-col justify-center items-center min-h-screen px-[195px] ${className}`}
     >
       {children}
     </div>

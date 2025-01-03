@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: "parkinsans";
   src: url("../fonts/Parkinsans-Medium.ttf") format("opentype");
@@ -23,118 +29,23 @@
   font-display: swap;
 }
 
-@layer utilities {
-  /* INPUTS */
-  .input_email_username {
-    @apply rounded-lg p-1.5 px-3 border-2 border-roxominerva bg-inherit w-full placeholder:text-zinc-400;
-  }
+@font-face {
+  font-family: "inter";
+  src: url("../fonts/InterRegular.ttf") format("opentype");
+  font-style: normal;
+  font-display: swap;
+}
 
-  .input_password {
-    @apply border-roxominerva rounded-l-lg h-10 bg-inherit flex-grow pl-3 placeholder:text-zinc-400;
-  }
+@font-face {
+  font-family: "inter-medium";
+  src: url("../fonts/InterMedium.ttf") format("opentype");
+  font-style: normal;
+  font-display: swap;
+}
 
-  .div_input_password {
-    @apply w-[100%] border-2 border-roxominerva bg-inherit rounded-lg flex justify-between items-center
-    h-10;
-  }
-
-  .btn_show_password {
-    @apply p-2 md:px-3 lg:px-3 text-zinc-400 text-sm flex-shrink;
-  }
-
-  .btn_submit_form {
-    @apply bg-roxominerva w-full rounded-lg text-[16px] tracking-wider p-2 text-zinc-200 
-    hover:text-zinc-300 hover:bg-[#443d8f];
-  }
-
-  .paragraph_form {
-    @apply text-zinc-400 self-end text-[14px] hover:text-zinc-200 pr-1;
-  }
-
-  .div_form {
-    @apply flex flex-col w-full gap-4;
-  }
-
-  .h1_form {
-    @apply text-xl  md:pb-2 lg:pb-1 text-zinc-200;
-  }
-
-  .form_register {
-    @apply flex flex-col justify-center gap-2 w-full md:self-center lg:gap-2;
-  }
-
-  .form_login {
-    @apply flex flex-col justify-center gap-4 py-4 md:self-center lg:gap-4;
-  }
-
-  .form_reset_password {
-    @apply flex flex-col justify-center gap-4;
-  }
-
-  .image_persona {
-    background-image: url("../../public/images/persona-minerva.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-  .fundo_landing {
-    background-image: url("../../public/images/fundo-landing-minerva.jpg");
-    background-size: cover;
-  }
-
-  .container_form {
-    @apply flex flex-col border-2 border-zinc-800 shadow-xl p-5 rounded-lg self-center md:w-[400px];
-  }
-
-  .container_form_login {
-    @apply flex flex-col md:border-2 md:border-zinc-800 md:shadow-xl md:p-5 py-0 rounded-lg self-center w-[400px];
-  }
-
-  .error_form {
-    @apply text-[13px] pl-1 w-60;
-  }
-
-  .height_pattern {
-    @apply mb-auto mt-4 lg:mb-auto lg:mt-8;
-  }
-
-  .checked {
-    @apply text-zinc-500 line-through;
-  }
-
-  .box-foto-minerva {
-    box-shadow: 0px 0px 10px #00000065;
-  }
-
-  .foto-professora {
-    background-image: linear-gradient(90deg, #18181b, rgba(0, 0, 0, 0) 140%),
-      url("https://i.ibb.co/ZVzgBb3/background-xl.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-  @media (max-width: 1280px) {
-    .foto-professora {
-      background-image: linear-gradient(90deg, #18181b, rgba(0, 0, 0, 0) 140%),
-        url("https://i.ibb.co/ZVzgBb3/background-xl.jpg");
-    }
-  }
-
-  @media (max-width: 1024px) {
-    .foto-professora {
-      background-image: linear-gradient(90deg, #18181b, rgba(0, 0, 0, 0) 140%),
-        url("https://i.ibb.co/ZVzgBb3/background-xl.jpg");
-      background-position: top;
-      background-attachment: 50%;
-    }
-  }
-
-  @media (max-width: 767px) {
-    .foto-professora {
-      background-image: linear-gradient(90deg, #18181b, rgba(0, 0, 0, 0) 220%),
-        url("https://i.ibb.co/KNdPHTF/fundo-sm.jpg");
-      background-size: cover;
-      background-position: top left;
-    }
-  }
+@font-face {
+  font-family: "dancing-bold";
+  src: url("../fonts/DancingScriptBold.ttf") format("opentype");
+  font-style: normal;
+  font-display: swap;
 }

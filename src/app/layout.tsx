@@ -19,20 +19,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" className="bg-zinc-900 text-zinc-100">
-      <body className="flex flex-col justify-center items-center min-h-screen">
+    <html lang="pt-br" className="bg-background02 text-zinc-200">
+      <body className="flex flex-col justify-center items-center min-h-screen font-interMedium">
         <Providers>
           <Header />
-          <div className="min-h-screen w-full flex flex-col justify-center items-center">
-            <NextTopLoader
-              color="#e4e4e7"
-              speed={500}
-              crawlSpeed={500}
-              showSpinner={false}
-              shadow={false}
-            />
-            {children}
-          </div>
+          <NextTopLoader
+            color="#e4e4e7"
+            speed={500}
+            crawlSpeed={500}
+            showSpinner={false}
+            shadow={false}
+          />
+          {children}
           <Footer />
         </Providers>
       </body>
