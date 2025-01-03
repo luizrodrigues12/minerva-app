@@ -1,3 +1,4 @@
+import { dataMongoUser } from "@/models/userModel";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { getCookie } from "cookies-next";
 
@@ -13,7 +14,7 @@ export function useUserData() {
     return user;
   };
 
-  const query = useQuery({
+  const query = useQuery<dataMongoUser>({
     queryFn: getUserData,
     queryKey: ["data-usuario"],
   });

@@ -1,10 +1,13 @@
-"use client";
+import { SectionProvider } from "@/contexts/section";
+import TanstackProvider from "@/contexts/TanstackProvider";
+import { ReactNode } from "react";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-const client = new QueryClient();
-const Providers = ({ children }: { children: React.ReactNode }) => {
-  return <QueryClientProvider client={client}>{children}</QueryClientProvider>;
+const Providers = ({ children }: { children: ReactNode }) => {
+  return (
+    <TanstackProvider>
+      <SectionProvider>{children}</SectionProvider>
+    </TanstackProvider>
+  );
 };
 
 export default Providers;

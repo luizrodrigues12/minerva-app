@@ -4,10 +4,12 @@ import { getCookie } from "cookies-next/client";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useSectionContext } from "@/contexts/section";
 
 const Header = () => {
   const tokenCookie = getCookie("authorization");
   const [token, setToken] = useState<string>();
+  const { section, setSection } = useSectionContext();
 
   const getUser = async () => {
     try {
@@ -39,21 +41,30 @@ const Header = () => {
             <ul className="flex gap-[50px] text-[20px]">
               <motion.li
                 whileHover={{ scale: 1.05, transition: { duration: 0.1 } }}
-                className="cursor-pointer hover:text-roxominerva"
+                className={`cursor-pointer hover:text-roxominerva ${
+                  section === "home" ? "text-roxominerva" : 0
+                }`}
+                onClick={() => setSection("home")}
               >
-                <Link href="/">home</Link>
+                home
               </motion.li>
               <motion.li
-                className="cursor-pointer hover:text-roxominerva"
                 whileHover={{ scale: 1.05, transition: { duration: 0.1 } }}
+                className={`cursor-pointer hover:text-roxominerva ${
+                  section === "login" ? "text-roxominerva" : 0
+                }`}
+                onClick={() => setSection("login")}
               >
-                <Link href="/login">login</Link>
+                login
               </motion.li>
               <motion.li
-                className="cursor-pointer hover:text-roxominerva"
                 whileHover={{ scale: 1.05, transition: { duration: 0.1 } }}
+                className={`cursor-pointer hover:text-roxominerva ${
+                  section === "register" ? "text-roxominerva" : 0
+                }`}
+                onClick={() => setSection("register")}
               >
-                <Link href="/register">registrar</Link>
+                registrar
               </motion.li>
             </ul>
           </nav>
