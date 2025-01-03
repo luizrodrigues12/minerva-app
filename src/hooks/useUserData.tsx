@@ -11,7 +11,7 @@ export function useUserData() {
       body: JSON.stringify({ token: token }),
     });
     const { user } = await res.json();
-    return user;
+    return user ? user : null;
   };
 
   const query = useQuery<dataMongoUser>({
