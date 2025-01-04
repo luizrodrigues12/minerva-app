@@ -2,8 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="w-full px-8 h-[16vh] bg-[#202020] text-zinc-300 flex items-center justify-center text-[12px] gap-[10px] ">
-      <div className="flex w-full gap-5 justify-between">
+    <div className="w-full px-8 h-[16vh] bg-[#202020] text-zinc-300 flex items-center justify-center text-[12px] gap-[10px] md:h-[14vh] md:px-[100px] ">
+      <div className="flex w-full gap-10 justify-start md:gap-[60px]">
         <div className="flex flex-col gap-[5px]">
           <p className="text-[#9E9E9E]">navegação</p>
           <ul className="flex flex-col gap-1">
@@ -18,6 +18,14 @@ const Footer = () => {
           <ul className="flex flex-col gap-1">
             <li>minerva.atendimento@gmail.com</li>
             <li>@minervareforco</li>
+          </ul>
+        </div>
+
+        <div className="flex-col gap-[5px] hidden md:flex">
+          <p className="text-[#9E9E9E]">políticas</p>
+          <ul className="flex flex-col gap-1">
+            <li>privacidade</li>
+            <li>termos de uso</li>
           </ul>
         </div>
       </div>

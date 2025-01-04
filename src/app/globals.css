@@ -59,3 +59,9 @@
   background-image: url("../../public/images/phone-mobile.jpg");
   background-size: cover;
 }
+
+@media (min-width: 768px) {
+  .container-home {
+    background-image: url("../../public/images/back-tablet.jpg");
+  }
+}

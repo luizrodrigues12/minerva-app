@@ -4,7 +4,6 @@ import { getCookie } from "cookies-next/client";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useSectionContext } from "@/contexts/section";
 import Hamburguer from "./svgs/Hamburguer";
 import SideBar from "./SideBar";
 import NavDesktop from "./NavDesktop";
@@ -36,7 +35,7 @@ const Header = () => {
   return (
     <header className="flex items-center h-[8vh] w-full bg-background01 text-black font-inter border-b-2 border-borderColor md:h-[10vh] lg:h-[100px]">
       <div className="w-full px-[32px] flex items-center justify-between h-full md:px-[100px] lg:px-[195px]">
-        <motion.div className="text-[16px] md:text-[24px] hover:text-roxominerva cursor-pointer leading-5">
+        <motion.div className="text-[16px] md:text-[20px] hover:text-roxominerva cursor-pointer leading-5">
           <Link href={token ? "/home" : "/"}>Minerva</Link>
         </motion.div>
         {!token ? (
@@ -44,7 +43,7 @@ const Header = () => {
             <NavDesktop />
             <div className="lg:hidden">
               <Hamburguer
-                className="cursor-pointer stroke-2 md:size-[32px] md:stroke-1"
+                className="cursor-pointer stroke-2 md:size-[28px] md:stroke-1"
                 onClick={() => {
                   setIsOpen(true);
                 }}
