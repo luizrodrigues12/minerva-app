@@ -6,7 +6,7 @@ const NavDesktop = () => {
 
   return (
     <nav className="hidden lg:block">
-      <ul className="flex gap-[50px] text-[20px]">
+      <ul className="flex gap-[50px] text-[20px] lg:text-[16px] xl:text-[18px]">
         <motion.li
           whileHover={{ scale: 1.05, transition: { duration: 0.1 } }}
           className={`cursor-pointer hover:text-roxominerva ${

@@ -23,14 +23,16 @@ export default function RootLayout({
       <body className="flex flex-col justify-between min-h-screen">
         <Providers>
           <Header />
-          <NextTopLoader
-            color="#e4e4e7"
-            speed={500}
-            crawlSpeed={500}
-            showSpinner={false}
-            shadow={false}
-          />
-          <div className="flex flex-col justify-between h-full">{children}</div>
+          <div className="flex flex-col justify-between h-full">
+            <NextTopLoader
+              color="#4F47A8"
+              speed={500}
+              crawlSpeed={500}
+              showSpinner={false}
+              shadow={false}
+            />
+            {children}
+          </div>
           <Footer />
         </Providers>
       </body>
