@@ -6,26 +6,29 @@ import MoonIcon from "./svgs/moonIcon";
 import { Dispatch, SetStateAction } from "react";
 import { useSectionContext } from "@/contexts/section";
 
-const SideBar = ({
-  setIsOpen,
-}: {
+type SideBarProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-}) => {
+  isTablet?: boolean;
+  className?: string;
+};
+
+const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
   const { section, setSection } = useSectionContext();
 
   return (
     <motion.div
-      animate={{ width: [0, 195] }}
+      animate={{ width: isTablet ? [0, 300] : [0, 195] }}
       transition={{ duration: 0.1 }}
       exit={{ width: [195, 0] }}
-      className="fixed w-[195px] right-0 top-0 bg-background01 h-full border-l-2 border-borderColor 
-       text-[14px]"
+      className={`fixed ${
+        isTablet ? "w-[300px]" : "w-[195px]"
+      } right-0 top-0 bg-background01 h-full border-l-2 border-borderColor text-[14px] md:text-[16px] ${className}`}
     >
-      <div className="h-[65px] flex items-center justify-end border-b-2 border-b-borderColor pr-[32px]">
+      <div className="h-[65px] flex items-center justify-end border-b-2 border-b-borderColor pr-[32px] md:pr-0 md:justify-center">
         <CloseCircle
           strokeWidth={2}
           size={25}
-          className=" cursor-pointer"
+          className="cursor-pointer md:size-[30px]"
           onClick={() => setIsOpen(false)}
         />
       </div>
@@ -60,7 +63,7 @@ const SideBar = ({
         register
       </div>
       <div className="flex items-center justify-center border-b-2 border-b-borderColor gap-[5px] cursor-pointer">
-        <MoonIcon className="size-[21px]" />
+        <MoonIcon className="size-[21px] md:size-[28px]" />
         <div className="h-[65px] flex items-center justify-center ">escuro</div>
       </div>
     </motion.div>

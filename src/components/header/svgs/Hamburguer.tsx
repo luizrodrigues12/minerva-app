@@ -18,7 +18,6 @@ const Hamburguer = ({
       <path
         d="M19 1H7M19 7H1M19 13H7M19 19H1"
         stroke="black"
-        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

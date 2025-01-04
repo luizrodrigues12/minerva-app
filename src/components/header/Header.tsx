@@ -34,24 +34,37 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="flex items-center h-[8vh] lg:h-[100px] w-full bg-background01 text-black font-inter border-b-2 border-borderColor">
-      <div className="w-full px-[32px] lg:px-[195px] flex items-center justify-between h-full">
-        <motion.div className="text-[16px] hover:text-roxominerva cursor-pointer leading-5">
+    <header className="flex items-center h-[8vh] w-full bg-background01 text-black font-inter border-b-2 border-borderColor md:h-[10vh] lg:h-[100px]">
+      <div className="w-full px-[32px] flex items-center justify-between h-full md:px-[100px] lg:px-[195px]">
+        <motion.div className="text-[16px] md:text-[24px] hover:text-roxominerva cursor-pointer leading-5">
           <Link href={token ? "/home" : "/"}>Minerva</Link>
         </motion.div>
         {!token ? (
           <>
             <NavDesktop />
-
             <div className="lg:hidden">
               <Hamburguer
-                className="cursor-pointer"
+                className="cursor-pointer stroke-2 md:size-[32px] md:stroke-1"
                 onClick={() => {
                   setIsOpen(true);
                 }}
               />
               <AnimatePresence>
-                {isOpen && <SideBar setIsOpen={setIsOpen} />}
+                {isOpen && (
+                  <SideBar
+                    isTablet={false}
+                    setIsOpen={setIsOpen}
+                    className="md:hidden"
+                  />
+                )}
+                {isOpen && (
+                  <SideBar
+                    key={1}
+                    isTablet={true}
+                    setIsOpen={setIsOpen}
+                    className="hidden md:block lg:hidden"
+                  />
+                )}
               </AnimatePresence>
             </div>
           </>
