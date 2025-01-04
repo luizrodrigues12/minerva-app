@@ -49,3 +49,13 @@
   font-style: normal;
   font-display: swap;
 }
+
+.container-home {
+  background-image: url("../../public/images/back-phone.jpg");
+  background-size: cover;
+}
+
+.container-phone {
+  background-image: url("../../public/images/phone-mobile.jpg");
+  background-size: cover;
+}

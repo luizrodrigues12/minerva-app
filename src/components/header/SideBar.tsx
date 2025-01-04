@@ -31,7 +31,9 @@ const SideBar = ({
       </div>
       <div
         className={`h-[65px] flex items-center justify-center border-b-2 border-b-borderColor ${
-          section === "home" ? "text-roxominerva font-interMedium" : ""
+          section === "home"
+            ? "text-roxominerva font-interMedium bg-[#C1C1C1]"
+            : ""
         }`}
         onClick={() => setSection("home")}
       >
@@ -39,7 +41,9 @@ const SideBar = ({
       </div>
       <div
         className={`h-[65px] flex items-center justify-center border-b-2 border-b-borderColor ${
-          section === "login" ? "text-roxominerva font-interMedium" : ""
+          section === "login"
+            ? "text-roxominerva font-interMedium bg-[#C1C1C1]"
+            : ""
         }`}
         onClick={() => setSection("login")}
       >
@@ -47,7 +51,9 @@ const SideBar = ({
       </div>
       <div
         className={`h-[65px] flex items-center justify-center border-b-2 border-b-borderColor ${
-          section === "register" ? "text-roxominerva font-interMedium" : ""
+          section === "register"
+            ? "text-roxominerva font-interMedium bg-[#C1C1C1]"
+            : ""
         }`}
         onClick={() => setSection("register")}
       >

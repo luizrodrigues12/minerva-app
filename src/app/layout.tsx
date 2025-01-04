@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" className="bg-background02 text-zinc-200">
-      <body className="flex flex-col justify-center items-center min-h-screen font-interMedium">
+      <body className="flex flex-col justify-between min-h-screen">
         <Providers>
           <Header />
           <NextTopLoader
@@ -30,7 +30,7 @@ export default function RootLayout({
             showSpinner={false}
             shadow={false}
           />
-          {children}
+          <div className="flex flex-col justify-between h-full">{children}</div>
           <Footer />
         </Providers>
       </body>
