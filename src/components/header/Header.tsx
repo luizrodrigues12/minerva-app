@@ -1,15 +1,18 @@
 "use client";
 
 import { getCookie } from "cookies-next/client";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSectionContext } from "@/contexts/section";
+import Hamburguer from "./svgs/Hamburguer";
+import SideBar from "./SideBar";
+import NavDesktop from "./NavDesktop";
 
 const Header = () => {
   const tokenCookie = getCookie("authorization");
   const [token, setToken] = useState<string>();
-  const { section, setSection } = useSectionContext();
+  const [isOpen, setIsOpen] = useState(false);
 
   const getUser = async () => {
     try {
@@ -31,43 +34,27 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="flex items-center h-[100px] w-full bg-background01 text-black font-inter border-b-2 border-borderColor">
-      <div className="w-full px-[195px] flex items-center justify-between">
-        <motion.div className="text-[24px] hover:text-roxominerva cursor-pointer leading-5">
+    <header className="flex items-center h-[65px] lg:h-[100px] w-full bg-background01 text-black font-inter border-b-2 border-borderColor">
+      <div className="w-full px-[32px] lg:px-[195px] flex items-center justify-between h-full">
+        <motion.div className="text-[16px] hover:text-roxominerva cursor-pointer leading-5">
           <Link href={token ? "/home" : "/"}>Minerva</Link>
         </motion.div>
-        {token?.length === 0 ? (
-          <nav>
-            <ul className="flex gap-[50px] text-[20px]">
-              <motion.li
-                whileHover={{ scale: 1.05, transition: { duration: 0.1 } }}
-                className={`cursor-pointer hover:text-roxominerva ${
-                  section === "home" ? "text-roxominerva" : 0
-                }`}
-                onClick={() => setSection("home")}
-              >
-                home
-              </motion.li>
-              <motion.li
-                whileHover={{ scale: 1.05, transition: { duration: 0.1 } }}
-                className={`cursor-pointer hover:text-roxominerva ${
-                  section === "login" ? "text-roxominerva" : 0
-                }`}
-                onClick={() => setSection("login")}
-              >
-                login
-              </motion.li>
-              <motion.li
-                whileHover={{ scale: 1.05, transition: { duration: 0.1 } }}
-                className={`cursor-pointer hover:text-roxominerva ${
-                  section === "register" ? "text-roxominerva" : 0
-                }`}
-                onClick={() => setSection("register")}
-              >
-                registrar
-              </motion.li>
-            </ul>
-          </nav>
+        {!token ? (
+          <>
+            <NavDesktop />
+
+            <div className="lg:hidden">
+              <Hamburguer
+                className="cursor-pointer"
+                onClick={() => {
+                  setIsOpen(true);
+                }}
+              />
+              <AnimatePresence>
+                {isOpen && <SideBar setIsOpen={setIsOpen} />}
+              </AnimatePresence>
+            </div>
+          </>
         ) : (
           <nav>
             <div
