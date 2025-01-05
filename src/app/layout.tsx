@@ -30,7 +30,7 @@ export default function RootLayout({
               speed={500}
               crawlSpeed={500}
               showSpinner={false}
-              shadow={"1px 1px 1px #ffffff"}
+              shadow={false}
             />
             {children}
           </div>

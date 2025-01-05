@@ -71,8 +71,8 @@ const LoginForm = () => {
         className="flex flex-col w-[350px] m-auto my-[32px] py-[20px] px-[20px] bg-background02 border-borderColor rounded-md md:h-[460px] md:mx-[100px] md:px-[35px] md:w-[450px] md:py-[35px] lg:mt-10 lg:flex-row-reverse lg:w-[750px] lg:px-0 lg:justify-between lg:gap-0 lg:py-0 lg:mx-[80px] xl:mx-[195px] xl:w-[900px] "
         style={{ boxShadow: "-2px 2px 2px #00000010" }}
       >
-        <div className="flex flex-col gap-4 md:gap-5 lg:py-[10px] lg:w-full lg:px-6 lg:justify-center lg:gap-2 xl:p-10 xl:pb-14 xl:gap-5">
-          <div className="flex flex-col gap-4 md:gap-5 lg:gap-3 xl:gap-5">
+        <div className="flex flex-col gap-4 md:gap-5 lg:py-[10px] lg:w-full lg:px-6 lg:justify-center lg:gap-2 xl:p-10 xl:pb-14 xl:gap-4">
+          <div className="flex flex-col gap-4 md:gap-5 lg:gap-3 xl:gap-4">
             <h1 className="text-[20px] md:text-[20px] lg:text-[22px] xl:text-[26px] text-[#353535]">
               Login
             </h1>
@@ -83,13 +83,13 @@ const LoginForm = () => {
           </div>
 
           <div className="flex flex-col gap-0">
-            <div>
-              <div className="text-[16px] md:text-[20px]">email</div>
+            <div className={`${emailError ? "pb-2" : "mb-0"}`}>
+              <div className="text-[16px]">email</div>
               <input
                 type="email"
                 name="email"
                 autoComplete="email"
-                className="flex items-center p-2.5 border-0 bg-background01 rounded-[7px] text-[14px] w-full mt-2 md:text-[16px] md:px-4"
+                className="flex items-center p-2.5 border-0 bg-background01 rounded-[7px] text-[14px] w-full mt-2 md:text-[15px] md:px-4"
                 placeholder={"usuário ou email"}
                 value={email || ""}
                 onChange={(e) => {
@@ -104,12 +104,12 @@ const LoginForm = () => {
                 } w-full items-center mt-1`}
               >
                 {emailError && (
-                  <p className="text-red-700 text-[12px] md:text-[14px]">
+                  <p className="text-red-700 text-[12px] md:text-[13px] pl-0.5">
                     {emailError}
                   </p>
                 )}
                 <p
-                  className="text-[#404040] text-[12px] cursor-pointer md:text-[14px] hover:text-black inline-block"
+                  className="text-[#404040] text-[12px] cursor-pointer md:text-[13px] hover:text-roxominerva "
                   onClick={() => {
                     router.push("/register");
                     setSection("register");
@@ -120,15 +120,15 @@ const LoginForm = () => {
               </div>
             </div>
 
-            <div>
-              <div className="text-[16px] md:text-[20px]">senha</div>
+            <div className={`${passwordError ? "pb-2" : "mb-0"}`}>
+              <div className="text-[16px]">senha</div>
               <div className="flex relative">
                 <input
                   type={isShow ? "text" : "password"}
                   id="input-password"
                   name="password"
                   value={password || ""}
-                  className="flex items-center p-2.5 border-0 bg-background01 rounded-[7px] text-[14px] w-full mt-2 md:text-[16px] md:px-4"
+                  className="flex items-center p-2.5 border-0 bg-background01 rounded-[7px] text-[14px] w-full mt-2 md:text-[15px] md:px-4"
                   placeholder={"digite sua senha"}
                   onChange={(e) => setPassword(e.target.value.trim())}
                   onFocus={() => setpasswordError("")}
@@ -156,12 +156,12 @@ const LoginForm = () => {
                 } w-full items-center mt-1`}
               >
                 {passwordError && (
-                  <p className="text-red-700 text-[12px] md:text-[14px]">
+                  <p className="text-red-700 text-[12px] md:text-[13px] pl-0.5">
                     {passwordError}
                   </p>
                 )}
                 <p
-                  className="text-[#404040] text-[12px] cursor-pointer md:text-[14px] hover:text-black"
+                  className="text-[#404040] text-[12px] cursor-pointer md:text-[13px] hover:text-roxominerva"
                   onClick={() => router.push("/forget_pass")}
                 >
                   esqueceu sua senha?

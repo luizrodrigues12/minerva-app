@@ -27,8 +27,8 @@ export async function POST(req: NextRequest) {
     //Verificando existência prévia
     const userEmail = await UserModel.findOne({ email: email });
     const userUsername = await UserModel.findOne({ username: username });
-    if (userEmail) throw new Error("Esse email já está em uso!");
-    if (userUsername) throw new Error("Nome de usuário em uso!");
+    if (userUsername) throw new Error("Username em uso. Escolha outro.");
+    if (userEmail) throw new Error("Esse email já está sendo usado.");
     //Criando usuário
 
     //Criptografando senha
