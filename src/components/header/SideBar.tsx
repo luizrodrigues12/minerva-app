@@ -1,7 +1,7 @@
 "use client";
 
 import { CloseCircle } from "flowbite-react-icons/outline";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import MoonIcon from "./svgs/moonIcon";
 import { Dispatch, SetStateAction } from "react";
 import { useSectionContext } from "@/contexts/section";
@@ -24,7 +24,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
         isTablet ? "w-[300px]" : "w-[195px]"
       } right-0 top-0 z-50 bg-background01 h-full border-l-2 border-borderColor text-[14px] md:text-[16px] ${className}`}
     >
-      <div className="h-[65px] flex items-center justify-end border-b-2 border-b-borderColor pr-[32px] md:pr-0 md:justify-center md:h-[83px]">
+      <div className="h-[8vh] flex items-center justify-end border-b-2 border-b-borderColor pr-[32px] md:pr-0 md:justify-center md:h-[10vh] xl:h-[100px]">
         <CloseCircle
           strokeWidth={2}
           size={25}

@@ -1,11 +1,14 @@
 "use client";
 
+import { SectionProvider, useSectionContext } from "@/contexts/section";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { useRouter } from "nextjs-toploader/app";
+import { useContext } from "react";
 
 const PrincipalPage = () => {
   const router = useRouter();
+  const { setSection } = useSectionContext();
   return (
     <section className="container-home flex items-start justify-between w-full font-inter min-h-[76vh] md:pl-[100px] md:min-h-[76vh] lg:pl-[80px] xl:pl-[195px] xl:min-h-[70vh]">
       <div className="flex flex-col items-start pl-8 justify-center h-full text-black my-[32px] gap-7 md:bg-background02 md:mt-[16px] md:p-[35px] md:items-center md:rounded-[7px] md:shadow-xl lg:flex-row lg:w-[700px] lg:items-start lg:my-[40px] xl:flex-row xl:w-[830px] xl:justify-between xl:items-start xl:my-[40px]">
@@ -28,7 +31,10 @@ const PrincipalPage = () => {
                 whileHover={{ scale: 1.01 }}
                 className="bg-roxominerva h-[38px] px-10 flex items-center justify-center text-[14px] text-buttonText rounded-[4px] hover:bg-buttonHover hover:text-zinc-100 cursor-pointer md:h-[40px] xl:h-[50px] xl:px-[45px] xl:text-[16px]"
                 style={{ boxShadow: "-2px 2px 5px #00000020" }}
-                onClick={() => router.push("/register")}
+                onClick={() => {
+                  router.push("/register");
+                  setSection("register");
+                }}
               >
                 REGISTER
               </motion.div>
@@ -37,7 +43,10 @@ const PrincipalPage = () => {
                 whileHover={{ scale: 1.01 }}
                 className="bg-roxominerva h-[38px] px-10 flex items-center justify-center text-[14px] text-buttonText rounded-[4px] hover:bg-buttonHover hover:text-zinc-100 cursor-pointer md:h-[40px] xl:h-[50px] xl:text-[16px]"
                 style={{ boxShadow: "-2px 2px 5px #00000020" }}
-                onClick={() => router.push("/login")}
+                onClick={() => {
+                  router.push("/login");
+                  setSection("login");
+                }}
               >
                 LOGIN
               </motion.div>
