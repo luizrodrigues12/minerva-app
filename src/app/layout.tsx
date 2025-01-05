@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" className="bg-background02 text-zinc-200">
-      <body className="flex flex-col justify-between min-h-screen">
+      <body className="flex flex-col justify-start">
         <Providers>
           <Header />
           <div className="flex flex-col justify-between h-full">

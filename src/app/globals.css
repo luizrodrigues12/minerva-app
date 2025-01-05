@@ -64,11 +64,22 @@
   .container-home {
     background-image: url("../../public/images/back-tablet.jpg");
   }
+
+  .container-phone {
+    background-size: 115%;
+    background-position: center top;
+  }
 }
 
 @media (min-width: 1024px) {
   .container-home {
     background-image: url("../../public/images/back-laptop.jpg");
+  }
+
+  .container-phone {
+    background-image: url("../../public/images/phone-desktop.jpg");
+    background-size: cover;
+    background-position: center top;
   }
 }
 
