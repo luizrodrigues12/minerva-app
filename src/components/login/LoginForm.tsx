@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { Eye } from "flowbite-react-icons/outline";
 import { EyeSlash } from "flowbite-react-icons/solid";
@@ -11,6 +11,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isShow, setIsShow] = useState<boolean>();
+  const [width, setWidth] = useState<number>();
 
   // Manipulando submit do formulário
   const handleLogin = async (e: any) => {
@@ -36,16 +37,20 @@ const LoginForm = () => {
     }
   };
 
-  console.log(innerWidth);
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      setWidth(innerWidth);
+    }
+  });
 
   return (
     <section className="text-black font-inte min-h-[92.2vh] max-h-[92.2vh] bg-background01">
       <motion.div
         animate={{
-          height: innerWidth >= 768 ? [0, 470] : [0, 410],
+          height: width! >= 760 ? [0, 460] : [0, 410],
         }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col mx-[32px] py-[32px] px-[16px] bg-background02 border-x-2 border-b-2 border-borderColor rounded-b-md md:mx-auto md:px-[35px] md:w-[450px] md:py-[35px]"
+        className="flex h-[410px] flex-col mx-[32px] py-[32px] px-[16px] bg-background02 border-x-2 border-b-2 border-borderColor rounded-b-md md:mx-auto md:px-[35px] md:w-[450px] md:py-[35px]"
       >
         <div className="flex flex-col gap-4 md:gap-5">
           <motion.div
