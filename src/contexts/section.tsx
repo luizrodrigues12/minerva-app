@@ -11,13 +11,13 @@ import {
 
 type contextType = {
   section: string;
-  setSection: Dispatch<SetStateAction<string>>;
+  setSection: Dispatch<SetStateAction<string | undefined>>;
 };
 
 const SectionContext = createContext<contextType>({} as contextType);
 
 const SectionProvider = ({ children }: { children: ReactNode }) => {
-  const [section, setSection] = useState("home");
+  const [section, setSection] = useState<string>();
 
   return (
     <SectionContext.Provider value={{ section: section!, setSection }}>

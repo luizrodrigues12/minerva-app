@@ -60,6 +60,11 @@
   background-size: cover;
 }
 
+.section-login {
+  background-image: url("../../public/images/back-phone-blank.jpg");
+  background-size: cover;
+}
+
 @media (min-width: 768px) {
   .container-home {
     background-image: url("../../public/images/back-tablet.jpg");
@@ -68,6 +73,10 @@
   .container-phone {
     background-size: 115%;
     background-position: center top;
+  }
+
+  .section-login {
+    background-image: url("../../public/images/back-tablet.jpg");
   }
 }
 
@@ -81,6 +90,10 @@
     background-size: cover;
     background-position: center top;
   }
+
+  .section-login {
+    background-image: url("../../public/images/back-laptop.jpg");
+  }
 }
 
 @media (min-width: 1280px) {
@@ -91,6 +104,10 @@
   }
 
   .container-home {
+    background-image: url("../../public/images/back-desktop.jpg");
+  }
+
+  .section-login {
     background-image: url("../../public/images/back-desktop.jpg");
   }
 }

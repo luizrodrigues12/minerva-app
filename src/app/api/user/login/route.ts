@@ -14,10 +14,10 @@ export async function POST(req: NextRequest) {
     const { email, password } = await req.json();
     // Pegando User
     const user = await UserModel.findOne({ email: email });
-    if (!user) throw new Error("Usuário não encontrado.");
+    if (!user) throw new Error("Email não cadastrado.");
 
     if (!(await bcrypt.compare(password, user.password)))
-      throw new Error("Senha inválida.");
+      throw new Error("Senha incorreta.");
 
     if (!user.token) {
       // Criando token

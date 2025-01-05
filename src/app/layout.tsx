@@ -25,11 +25,12 @@ export default function RootLayout({
           <Header />
           <div className="flex flex-col justify-between h-full">
             <NextTopLoader
-              color="#4F47A8"
+              color="#5249B6"
+              height={3}
               speed={500}
               crawlSpeed={500}
               showSpinner={false}
-              shadow={false}
+              shadow={"1px 1px 1px #ffffff"}
             />
             {children}
           </div>

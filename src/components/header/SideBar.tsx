@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import MoonIcon from "./svgs/moonIcon";
 import { Dispatch, SetStateAction } from "react";
 import { useSectionContext } from "@/contexts/section";
+import { useRouter } from "nextjs-toploader/app";
 
 type SideBarProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -14,6 +15,7 @@ type SideBarProps = {
 
 const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
   const { section, setSection } = useSectionContext();
+  const router = useRouter();
 
   return (
     <motion.div
@@ -38,7 +40,10 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
             ? "text-roxominerva font-interMedium bg-[#C1C1C1]"
             : ""
         }`}
-        onClick={() => setSection("home")}
+        onClick={() => {
+          setSection("home");
+          router.push("/");
+        }}
       >
         home
       </div>
@@ -48,7 +53,10 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
             ? "text-roxominerva font-interMedium bg-[#C1C1C1]"
             : ""
         }`}
-        onClick={() => setSection("login")}
+        onClick={() => {
+          setSection("login");
+          router.push("/login");
+        }}
       >
         login
       </div>
@@ -58,7 +66,10 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
             ? "text-roxominerva font-interMedium bg-[#C1C1C1]"
             : ""
         }`}
-        onClick={() => setSection("register")}
+        onClick={() => {
+          setSection("register");
+          router.push("/register");
+        }}
       >
         register
       </div>
