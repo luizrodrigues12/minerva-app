@@ -17,7 +17,7 @@ const PrincipalPage = () => {
 
   return (
     <section className="container-home flex items-start justify-between w-full font-inter min-h-[76vh] md:pl-[100px] md:min-h-[76vh] lg:pl-[80px] xl:pl-[195px] xl:min-h-[69.4vh]">
-      <div className="flex flex-col items-start pl-8 justify-center h-full text-black my-[32px] gap-7 md:bg-background02 md:mt-[16px] md:p-[35px] md:rounded-[7px] md:shadow-xl lg:flex-row lg:w-[700px] lg:my-[40px] xl:flex-row xl:w-[830px] xl:justify-between xl:my-[40px]">
+      <div className="flex flex-col items-start pl-8 justify-center h-full text-black my-[32px] gap-7 md:bg-background02 md:p-[35px] md:my-[32px] md:rounded-[7px] md:shadow-xl lg:flex-row lg:w-[700px] lg:my-[40px] xl:flex-row xl:w-[830px] xl:justify-between xl:my-[40px]">
         <div className="flex flex-col gap-7 items-start lg:gap-[30px] xl:gap-[40px]">
           <h2 className="font-dancing text-[34px] leading-9 md:text-[46px] md:leading-[50px] lg:text-[40px] lg:leading-[45px] xl:text-[55px] xl:leading-[60px]">
             Precisando facilitar <br /> seus planejamentos?

@@ -20,20 +20,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" className="bg-background02 text-zinc-200">
-      <body className="flex flex-col justify-start">
+      <body>
         <Providers>
           <Header />
-          <div className="flex flex-col justify-between h-full">
-            <NextTopLoader
-              color="#5249B6"
-              height={3}
-              speed={500}
-              crawlSpeed={500}
-              showSpinner={false}
-              shadow={false}
-            />
-            {children}
-          </div>
+          <NextTopLoader
+            color="#5249B6"
+            height={3}
+            speed={500}
+            crawlSpeed={500}
+            showSpinner={false}
+            shadow={false}
+          />
+          {children}
           <Footer />
         </Providers>
       </body>
