@@ -7,14 +7,13 @@ connectDB();
 
 export async function PUT(req: NextRequest) {
   try {
-    // Pegando ID do usuário que mudará a senha
-    // Pegando a nova senha do body
     const body = await req.json();
-    console.log(body);
-    if (!body.newPass) throw new Error("Senha inválida ou inxistente.");
+    const { password, id } = await body;
+    if (!password) throw new Error("Senha inválida ou inexistente.");
+
     // Acessando user no DB e mudando senha
-    const senhaCripto = await bcrypt.hash(body.newPass, 10);
-    await UserModel.updateOne({ _id: body._id }, { password: senhaCripto });
+    const senhaCripto = await bcrypt.hash(password, 10);
+    await UserModel.updateOne({ _id: id }, { password: senhaCripto });
 
     return NextResponse.json(
       { sucess: "Senha alterada com sucesso." },
@@ -24,5 +23,3 @@ export async function PUT(req: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 204 });
   }
 }
-
-// EMAIL: `http://localhost:3000/api/user/reset_password/?_id=${userForgetId}`
