@@ -8,12 +8,11 @@ import {
   validateUsername,
 } from "@/utils/regex";
 import Image from "next/image";
-import { EyeSlash } from "flowbite-react-icons/solid";
-import { Eye } from "flowbite-react-icons/outline";
 import { useSectionContext } from "@/contexts/section";
 import Button from "../layout/Button";
 import Loading from "../layout/Loading";
 import InputComp from "../layout/InputComp";
+import EyeComp from "../layout/EyeComp";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -23,7 +22,7 @@ const RegisterForm = () => {
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setpasswordError] = useState("");
-  const [isShow, setIsShow] = useState<boolean>();
+  const [isShow, setIsShow] = useState(false);
   const [isPosting, setIsPosting] = useState(false);
   const { setSection } = useSectionContext();
 
@@ -153,21 +152,7 @@ const RegisterForm = () => {
                   onChange={(e) => setPassword(e.target.value.trim())}
                   onFocus={() => setpasswordError("")}
                 />
-                {isShow ? (
-                  <EyeSlash
-                    className="absolute z-[1] bottom-2.5 right-2.5 text-[#404040] md:right-4 cursor-pointer"
-                    onClick={() => {
-                      setIsShow(!isShow);
-                    }}
-                  />
-                ) : (
-                  <Eye
-                    className="absolute z-[1] bottom-2.5 right-2.5 text-[#404040] md:right-4 cursor-pointer"
-                    onClick={() => {
-                      setIsShow(!isShow);
-                    }}
-                  />
-                )}
+                <EyeComp isShow={isShow} setIsShow={setIsShow} />
               </div>
 
               <div

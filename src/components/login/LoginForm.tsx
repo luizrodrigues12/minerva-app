@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Eye } from "flowbite-react-icons/outline";
-import { EyeSlash } from "flowbite-react-icons/solid";
 import Image from "next/image";
 import { useSectionContext } from "@/contexts/section";
 import { useRouter } from "nextjs-toploader/app";
 import Button from "../layout/Button";
 import Loading from "../layout/Loading";
 import InputComp from "../layout/InputComp";
+import EyeComp from "../layout/EyeComp";
 
 const LoginForm = () => {
   // State com os dados
@@ -16,12 +15,11 @@ const LoginForm = () => {
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setpasswordError] = useState("");
-  const [isShow, setIsShow] = useState<boolean>();
+  const [isShow, setIsShow] = useState(false);
   const [isPosting, setIsPosting] = useState(false);
   const { setSection } = useSectionContext();
   const router = useRouter();
 
-  // Manipulando submit do formulário
   const handleLogin = async () => {
     try {
       if (!email) {
@@ -125,21 +123,7 @@ const LoginForm = () => {
                   onChange={(e) => setPassword(e.target.value.trim())}
                   onFocus={() => setpasswordError("")}
                 />
-                {isShow ? (
-                  <EyeSlash
-                    className="absolute z-[1] bottom-2.5 right-2.5 text-[#404040] md:right-4 cursor-pointer"
-                    onClick={() => {
-                      setIsShow(!isShow);
-                    }}
-                  />
-                ) : (
-                  <Eye
-                    className="absolute z-[1] bottom-2.5 right-2.5 text-[#404040] md:right-4 cursor-pointer"
-                    onClick={() => {
-                      setIsShow(!isShow);
-                    }}
-                  />
-                )}
+                <EyeComp isShow={isShow} setIsShow={setIsShow} />
               </div>
 
               <div
