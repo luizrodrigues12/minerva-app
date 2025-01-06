@@ -13,6 +13,7 @@ import { Eye } from "flowbite-react-icons/outline";
 import { useSectionContext } from "@/contexts/section";
 import Button from "../layout/Button";
 import Loading from "../layout/Loading";
+import InputComp from "../layout/InputComp";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -95,7 +96,7 @@ const RegisterForm = () => {
           <div className="flex flex-col gap-0">
             <div className={`${usernameError ? "mb-1" : "mb-2"}`}>
               <div className="text-[16px]">username</div>
-              <input
+              <InputComp
                 type="text"
                 name="username"
                 autoComplete="username"
@@ -118,7 +119,7 @@ const RegisterForm = () => {
 
             <div className={`${emailError ? "mb-1" : "mb-2"}`}>
               <div className="text-[16px]">email</div>
-              <input
+              <InputComp
                 type="email"
                 name="email"
                 autoComplete="email"
@@ -142,7 +143,7 @@ const RegisterForm = () => {
             <div>
               <div className="text-[16px]">senha</div>
               <div className="flex relative">
-                <input
+                <InputComp
                   type={isShow ? "text" : "password"}
                   id="input-password"
                   name="password"

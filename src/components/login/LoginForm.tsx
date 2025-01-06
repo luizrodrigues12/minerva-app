@@ -8,6 +8,7 @@ import { useSectionContext } from "@/contexts/section";
 import { useRouter } from "nextjs-toploader/app";
 import Button from "../layout/Button";
 import Loading from "../layout/Loading";
+import InputComp from "../layout/InputComp";
 
 const LoginForm = () => {
   // State com os dados
@@ -77,11 +78,10 @@ const LoginForm = () => {
           <div className="flex flex-col gap-0">
             <div className={`${emailError ? "pb-2" : "mb-0"}`}>
               <div className="text-[16px]">email</div>
-              <input
+              <InputComp
                 type="email"
                 name="email"
                 autoComplete="email"
-                className="flex items-center p-2.5 border-0 bg-background01 rounded-[7px] text-[14px] w-full mt-2 md:text-[15px] md:px-4"
                 placeholder={"usuário ou email"}
                 value={email || ""}
                 onChange={(e) => {
@@ -115,7 +115,7 @@ const LoginForm = () => {
             <div className={"mb-0"}>
               <div className="text-[16px]">senha</div>
               <div className="flex relative">
-                <input
+                <InputComp
                   type={isShow ? "text" : "password"}
                   id="input-password"
                   name="password"
