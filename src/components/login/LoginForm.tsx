@@ -15,7 +15,6 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setpasswordError] = useState("");
   const [isShow, setIsShow] = useState<boolean>();
-  const [width, setWidth] = useState<number>();
   const { setSection } = useSectionContext();
   const router = useRouter();
 
@@ -28,7 +27,6 @@ const LoginForm = () => {
         setEmailError("Digite um email válido!");
         return;
       }
-
       if (!password) {
         setpasswordError("Digite uma senha válida.");
         return;
@@ -54,21 +52,13 @@ const LoginForm = () => {
   };
 
   useEffect(() => {
-    if (typeof window !== undefined) {
-      window.addEventListener("resize", () => {
-        setWidth(innerWidth);
-      });
-    }
-  }, [width]);
-
-  useEffect(() => {
     setSection("login");
   }, []);
 
   return (
     <section className="text-black font-inter min-h-[76vh] bg-background01 max-h-[92.2vh] xl:min-h-[69.4vh] section-login">
       <div
-        className="flex flex-col w-[350px] m-auto my-[32px] py-[20px] px-[20px] bg-background02 border-borderColor rounded-md md:h-[460px] md:mx-[100px] md:px-[35px] md:w-[450px] md:py-[35px] lg:mt-10 lg:flex-row-reverse lg:w-[750px] lg:px-0 lg:justify-between lg:gap-0 lg:py-0 lg:mx-[80px] xl:mx-[195px] xl:w-[900px] "
+        className="flex flex-col w-[350px] m-auto my-[32px] py-[24px] pb-[32px] px-[24px] bg-background02 border-borderColor rounded-md  md:mx-[100px] md:px-[35px] md:w-[450px] md:py-[35px] md:pb-10 lg:mt-10 lg:flex-row-reverse lg:w-[750px] lg:px-0 lg:justify-between lg:gap-0 lg:py-0 lg:mx-[80px] xl:mx-[195px] xl:w-[900px] "
         style={{ boxShadow: "-2px 2px 2px #00000010" }}
       >
         <div className="flex flex-col gap-4 md:gap-5 lg:py-[10px] lg:w-full lg:px-6 lg:justify-center lg:gap-2 xl:p-10 xl:pb-14 xl:gap-4">
@@ -120,7 +110,7 @@ const LoginForm = () => {
               </div>
             </div>
 
-            <div className={`${passwordError ? "pb-2" : "mb-0"}`}>
+            <div className={"mb-0"}>
               <div className="text-[16px]">senha</div>
               <div className="flex relative">
                 <input

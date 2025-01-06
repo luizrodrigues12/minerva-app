@@ -8,12 +8,15 @@ import Hamburguer from "./svgs/Hamburguer";
 import SideBar from "./SideBar";
 import NavDesktop from "./NavDesktop";
 import { useSectionContext } from "@/contexts/section";
+import { deleteCookie } from "cookies-next";
+import { useRouter } from "nextjs-toploader/app";
 
 const Header = () => {
   const tokenCookie = getCookie("authorization");
   const [token, setToken] = useState<string>();
   const [isOpen, setIsOpen] = useState(false);
   const { setSection } = useSectionContext();
+  const router = useRouter();
 
   const getUser = async () => {
     try {
@@ -79,11 +82,40 @@ const Header = () => {
         ) : (
           <nav>
             <div
-              className="bg-roxominerva h-[50px] px-[30px] flex items-center rounded-[4px] text-zinc-200"
+              className="bg-roxominerva h-[50px] px-[30px] hidden items-center rounded-[4px] text-zinc-200 cursor-pointer hover:bg-buttonHover lg:flex"
               style={{ boxShadow: "2px 2px 4px #00000020" }}
+              onClick={() => {
+                deleteCookie("authorization");
+                deleteCookie("username");
+                window.location.href = `/login`;
+              }}
             >
               Logout
             </div>
+
+            <Hamburguer
+              className="cursor-pointer stroke-2 md:size-[28px] md:stroke-1"
+              onClick={() => {
+                setIsOpen(true);
+              }}
+            />
+            <AnimatePresence>
+              {isOpen && (
+                <SideBar
+                  isTablet={false}
+                  setIsOpen={setIsOpen}
+                  className="md:hidden"
+                />
+              )}
+              {isOpen && (
+                <SideBar
+                  key={1}
+                  isTablet={true}
+                  setIsOpen={setIsOpen}
+                  className="hidden md:block lg:hidden"
+                />
+              )}
+            </AnimatePresence>
           </nav>
         )}
       </div>

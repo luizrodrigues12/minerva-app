@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "nextjs-toploader/app";
 import {
   validateEmail,
@@ -9,9 +9,9 @@ import {
 } from "@/utils/regex";
 import { motion } from "motion/react";
 import Image from "next/image";
-import { useSectionContext } from "@/contexts/section";
 import { EyeSlash } from "flowbite-react-icons/solid";
 import { Eye } from "flowbite-react-icons/outline";
+import { useSectionContext } from "@/contexts/section";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -22,8 +22,6 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setpasswordError] = useState("");
   const [isShow, setIsShow] = useState<boolean>();
-  const [width, setWidth] = useState<number>();
-  const [error, setError] = useState("");
   const { setSection } = useSectionContext();
 
   //REGEX
@@ -66,13 +64,17 @@ const RegisterForm = () => {
     }
   };
 
+  useEffect(() => {
+    setSection("register");
+  }, []);
+
   return (
     <section className="text-black font-inter min-h-[76vh] bg-background01 max-h-[92.2vh] xl:min-h-[69.4vh] section-login">
       <div
-        className="flex flex-col w-[350px] m-auto my-[32px] py-[20px] px-[20px] bg-background02 rounded-md md:mx-[100px] md:px-[30px] md:w-[450px] md:py-[30px] lg:mt-10 lg:flex-row-reverse lg:w-[750px] lg:px-0 lg:justify-between lg:gap-0 lg:py-0 lg:mx-[80px] xl:mx-[195px] xl:w-[900px] xl:max-h-[510px]"
+        className="flex flex-col w-[350px] m-auto my-[32px] py-[24px] pb-[32px] px-[24px] bg-background02 rounded-md md:mx-[100px] md:px-[30px] md:w-[450px] md:py-[30px] lg:mt-10 lg:flex-row-reverse lg:w-[750px] lg:px-0 lg:justify-between lg:gap-0 lg:py-0 lg:mx-[80px] xl:mx-[195px] xl:w-[900px] xl:max-h-[510px]"
         style={{ boxShadow: "-2px 2px 2px #00000010" }}
       >
-        <div className="flex flex-col gap-4 md:gap-5 lg:py-[10px] lg:w-full lg:px-6 lg:justify-center lg:gap-2 xl:p-8 xl:pb-11 xl:gap-4">
+        <div className="flex flex-col gap-4 md:gap-5 lg:w-full lg:p-6 lg:pb-7 lg:justify-center lg:gap-2 xl:p-8 xl:pb-11 xl:gap-4">
           <div className="flex flex-col gap-4 md:gap-5 lg:gap-3 xl:gap-5">
             <h1 className="text-[20px] md:text-[20px] lg:text-[22px] xl:text-[26px] text-[#353535]">
               Registrar
