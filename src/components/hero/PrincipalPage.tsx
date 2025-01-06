@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import { useRouter } from "nextjs-toploader/app";
 import { useEffect } from "react";
+import Button from "../layout/Button";
 
 const PrincipalPage = () => {
   const router = useRouter();
@@ -16,8 +17,8 @@ const PrincipalPage = () => {
 
   return (
     <section className="container-home flex items-start justify-between w-full font-inter min-h-[76vh] md:pl-[100px] md:min-h-[76vh] lg:pl-[80px] xl:pl-[195px] xl:min-h-[69.4vh]">
-      <div className="flex flex-col items-start pl-8 justify-center h-full text-black my-[32px] gap-7 md:bg-background02 md:mt-[16px] md:p-[35px] md:items-center md:rounded-[7px] md:shadow-xl lg:flex-row lg:w-[700px] lg:items-start lg:my-[40px] xl:flex-row xl:w-[830px] xl:justify-between xl:items-start xl:my-[40px]">
-        <div className="flex flex-col gap-7 items-center md:items-start lg:gap-[30px] xl:gap-[40px]">
+      <div className="flex flex-col items-start pl-8 justify-center h-full text-black my-[32px] gap-7 md:bg-background02 md:mt-[16px] md:p-[35px] md:rounded-[7px] md:shadow-xl lg:flex-row lg:w-[700px] lg:my-[40px] xl:flex-row xl:w-[830px] xl:justify-between xl:my-[40px]">
+        <div className="flex flex-col gap-7 items-start lg:gap-[30px] xl:gap-[40px]">
           <h2 className="font-dancing text-[34px] leading-9 md:text-[46px] md:leading-[50px] lg:text-[40px] lg:leading-[45px] xl:text-[55px] xl:leading-[60px]">
             Precisando facilitar <br /> seus planejamentos?
           </h2>
@@ -31,38 +32,20 @@ const PrincipalPage = () => {
 
           <div className="flex gap-2 xl:gap-3">
             <div className="flex flex-col gap-2 xl:gap-3">
-              <motion.div
-                whileTap={{ scale: 0.99 }}
-                whileHover={{ scale: 1.01 }}
-                className="bg-roxominerva h-[38px] px-10 flex items-center justify-center text-[14px] text-buttonText rounded-[4px] hover:bg-buttonHover hover:text-zinc-100 cursor-pointer md:h-[40px] xl:h-[50px] xl:text-[16px]"
-                style={{ boxShadow: "-2px 2px 5px #00000020" }}
-                onClick={() => {
-                  router.push("/login");
-                  setSection("login");
-                }}
+              <Button
+                className="py-[9px] md:py-[9.3px] xl:py-[12.5px]"
+                onClick={() => router.push("/login")}
               >
                 LOGIN
-              </motion.div>
-              <motion.div
-                whileTap={{ scale: 0.99 }}
-                whileHover={{ scale: 1.01 }}
-                className="bg-roxominerva h-[38px] px-10 flex items-center justify-center text-[14px] text-buttonText rounded-[4px] hover:bg-buttonHover hover:text-zinc-100 cursor-pointer md:h-[40px] xl:h-[50px] xl:px-[45px] xl:text-[16px]"
-                style={{ boxShadow: "-2px 2px 5px #00000020" }}
-                onClick={() => {
-                  router.push("/register");
-                  setSection("register");
-                }}
+              </Button>
+              <Button
+                className="py-[9px] md:py-[9.3px] xl:py-[12.5px]"
+                onClick={() => router.push("/register")}
               >
                 REGISTER
-              </motion.div>
+              </Button>
             </div>
-            <motion.div
-              whileTap={{ scale: 0.99 }}
-              whileHover={{ scale: 1.01 }}
-              className="h-[86px] bg-roxominerva w-[86px] rounded-[4px] flex items-center justify-center hover:bg-buttonHover hover:text-zinc-100 cursor-pointer lg:h-[88px] xl:w-[111px] xl:h-[111px]"
-              style={{ boxShadow: "-2px 2px 5px #00000020" }}
-              onClick={() => router.push("/home")}
-            >
+            <Button className="px-2" onClick={() => router.push("/home")}>
               <Image
                 src={"/images/logo.png"}
                 alt="Logo Minerva"
@@ -70,7 +53,7 @@ const PrincipalPage = () => {
                 height={100}
                 className="size-[72px] xl:size-[90px]"
               />
-            </motion.div>
+            </Button>
           </div>
         </div>
 

@@ -15,7 +15,7 @@ type SideBarProps = {
 };
 
 const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
-  const { section, setSection } = useSectionContext();
+  const { section } = useSectionContext();
   const router = useRouter();
   const token = getCookie("authorization");
 

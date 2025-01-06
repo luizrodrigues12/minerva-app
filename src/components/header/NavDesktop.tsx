@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { useRouter } from "nextjs-toploader/app";
 
 const NavDesktop = () => {
-  const { section, setSection } = useSectionContext();
+  const { section } = useSectionContext();
   const router = useRouter();
 
   return (
@@ -16,7 +16,6 @@ const NavDesktop = () => {
             section === "home" ? "text-roxominerva" : 0
           }`}
           onClick={() => {
-            setSection("home");
             router.push("/");
           }}
         >
@@ -29,7 +28,6 @@ const NavDesktop = () => {
             section === "login" ? "text-roxominerva" : 0
           }`}
           onClick={() => {
-            setSection("login");
             router.push("/login");
           }}
         >
@@ -42,7 +40,6 @@ const NavDesktop = () => {
             section === "register" ? "text-roxominerva" : 0
           }`}
           onClick={() => {
-            setSection("register");
             router.push("/register");
           }}
         >

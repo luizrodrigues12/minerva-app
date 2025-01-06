@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "motion/react";
 import { Eye } from "flowbite-react-icons/outline";
 import { EyeSlash } from "flowbite-react-icons/solid";
 import Image from "next/image";
 import { useSectionContext } from "@/contexts/section";
 import { useRouter } from "nextjs-toploader/app";
+import Button from "../layout/Button";
+import Loading from "../layout/Loading";
 
 const LoginForm = () => {
   // State com os dados
@@ -15,14 +16,13 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setpasswordError] = useState("");
   const [isShow, setIsShow] = useState<boolean>();
+  const [isPosting, setIsPosting] = useState(false);
   const { setSection } = useSectionContext();
   const router = useRouter();
 
   // Manipulando submit do formulário
-  const handleLogin = async (e: any) => {
+  const handleLogin = async () => {
     try {
-      e.preventDefault();
-
       if (!email) {
         setEmailError("Digite um email válido!");
         return;
@@ -33,12 +33,14 @@ const LoginForm = () => {
       }
 
       //Enviando post dos dados
+      setIsPosting(true);
       const res = await fetch(`${process.env.HOST}/api/user/login`, {
         method: "POST",
         body: JSON.stringify({ email, password }),
       });
 
       //Mostrando error
+      setIsPosting(false);
       const { error } = await res.json();
       if (error) throw new Error(error);
 
@@ -158,14 +160,9 @@ const LoginForm = () => {
                 </p>
               </div>
 
-              <motion.button
-                whileTap={{ scale: 0.99 }}
-                whileHover={{ scale: 1.01 }}
-                className={`bg-roxominerva text-zinc-100 py-2.5 mt-[20px] text-[14px] rounded-[7px] md:text-[16px] flex items-center justify-center hover:bg-buttonHover hover:text-zinc-100 w-full`}
-                onClick={(e) => handleLogin(e)}
-              >
+              <Button className="py-2.5 mt-[20px]" onClick={handleLogin}>
                 Login
-              </motion.button>
+              </Button>
             </div>
           </div>
         </div>
@@ -175,9 +172,11 @@ const LoginForm = () => {
           alt="Arte de professora dando aula"
           width={600}
           height={500}
-          className="hidden lg:block h-full w-[50%] rounded-l-md"
+          className="hidden lg:block min-h-full w-[50%] rounded-l-md"
         />
       </div>
+
+      {isPosting && <Loading />}
     </section>
   );
 };

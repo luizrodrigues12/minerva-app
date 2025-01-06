@@ -7,11 +7,12 @@ import {
   validatePassword,
   validateUsername,
 } from "@/utils/regex";
-import { motion } from "motion/react";
 import Image from "next/image";
 import { EyeSlash } from "flowbite-react-icons/solid";
 import { Eye } from "flowbite-react-icons/outline";
 import { useSectionContext } from "@/contexts/section";
+import Button from "../layout/Button";
+import Loading from "../layout/Loading";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -22,6 +23,7 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setpasswordError] = useState("");
   const [isShow, setIsShow] = useState<boolean>();
+  const [isPosting, setIsPosting] = useState(false);
   const { setSection } = useSectionContext();
 
   //REGEX
@@ -47,10 +49,15 @@ const RegisterForm = () => {
 
       //Enviando post dos dados
       if (passwordTest && emailTest && usernameTest) {
+        setIsPosting(true);
+
         const response = await fetch(`${process.env.HOST}/api/user/register`, {
           method: "POST",
           body: JSON.stringify({ username, email, password }),
         });
+
+        setIsPosting(false);
+
         const json = await response.json();
         if (response.status !== 201) {
           throw new Error(json.error);
@@ -180,14 +187,9 @@ const RegisterForm = () => {
                 </p>
               </div>
 
-              <motion.button
-                whileTap={{ scale: 0.99 }}
-                whileHover={{ scale: 1.01 }}
-                className={`bg-roxominerva text-zinc-100 py-2.5 mt-[20px] text-[14px] rounded-[7px] md:text-[16px] flex items-center justify-center hover:bg-buttonHover hover:text-zinc-100 w-full`}
-                onClick={() => handleRegister()}
-              >
+              <Button className="py-2.5 mt-[20px] " onClick={handleRegister}>
                 Registrar
-              </motion.button>
+              </Button>
             </div>
           </div>
         </div>
@@ -200,6 +202,8 @@ const RegisterForm = () => {
           className="hidden lg:block min-h-full w-[50%] rounded-l-md"
         />
       </div>
+
+      {isPosting && <Loading />}
     </section>
   );
 };
