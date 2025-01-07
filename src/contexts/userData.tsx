@@ -19,23 +19,10 @@ const UserContext = createContext<UserContextProps>({} as UserContextProps);
 
 const UserContextProvider = ({ children }: { children: ReactNode }) => {
   const token = getCookie("authorization");
-  const [userData, setUserData] = useState<dataMongoUser | null>(null);
-
-  const getUser = async () => {
-    const res = await fetch(`${process.env.HOST}/api/user/get_user`, {
-      method: "POST",
-      body: JSON.stringify({ token: token }),
-    });
-    const { user }: { user: dataMongoUser } = await res.json();
-    setUserData(user);
-  };
-
-  useEffect(() => {
-    getUser();
-  }, []);
+  const { data } = useUserData();
 
   return (
-    <UserContext.Provider value={{ user: userData! }}>
+    <UserContext.Provider value={{ user: data! }}>
       {children}
     </UserContext.Provider>
   );
