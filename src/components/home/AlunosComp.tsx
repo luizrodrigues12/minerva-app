@@ -1,44 +1,62 @@
 "use client";
 
-import { Edit, TrashBin } from "flowbite-react-icons/outline";
+import {
+  CalendarEdit,
+  Edit,
+  ShareAll,
+  TrashBin,
+  UserEdit,
+} from "flowbite-react-icons/outline";
 import { useRouter } from "nextjs-toploader/app";
-import Link from "next/link";
 import { motion } from "motion/react";
 
-const AlunosComp = ({ text, idAluno }: { text: string; idAluno: string }) => {
-  const router = useRouter();
+const transformName = (name: string) => {
+  const separatedNames = name.toLowerCase().split(" ");
+  return separatedNames.map(
+    (palavra, i) => palavra.split("")[0].toUpperCase() + palavra.slice(1) + " "
+  );
+};
+
+const AlunosComp = ({ name, idAluno }: { name: string; idAluno: string }) => {
   return (
-    <div className="container_alunos">
-      <div className=" flex p-2 pb-1.5 px-3 rounded-lg border-2 border-zinc-800 shadow-lg justify-between items-center">
+    <div className="w-full text-black py-2 px-4 rounded-md bg-background01 flex items-center justify-between text-[16px]">
+      <motion.div className="hover:text-roxominerva cursor-pointer">
+        {transformName(name)}
+      </motion.div>
+
+      <div className="flex gap-3 items-center">
         <motion.div
-          whileHover={{ scale: 1.01 }}
-          transition={{ duration: 0.1 }}
-          whileTap={{ scale: 1 }}
-          onClick={() => router.push(`/student/${idAluno}`)}
-          className="text-[17px] tracking-wide text-zinc-300  cursor-pointer hover:underline underline-offset-[3px] hover:text-zinc-200"
+          whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
+          whileTap={{ scale: 0.99 }}
         >
-          {text}
+          <ShareAll
+            size={28}
+            strokeWidth={1.5}
+            className="mr-1 cursor-pointer hover:text-roxominerva"
+          />
         </motion.div>
-        <div className="options flex gap-3">
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.1 }}
-            whileTap={{ scale: 1 }}
-            onClick={() => router.push(`/student/update_student/${idAluno}`)}
-            className="cursor-pointer"
-          >
-            <Edit className="text-zinc-400 hover:text-zinc-200" />
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.1 }}
-            whileTap={{ scale: 1 }}
-            onClick={() => router.push(`/student/delete_student/${idAluno}`)}
-            className="cursor-pointer"
-          >
-            <TrashBin className="text-zinc-400 hover:text-zinc-200" />
-          </motion.div>
-        </div>
+
+        <motion.div
+          whileHover={{ scale: 1.04, transition: { duration: 0.05 } }}
+          whileTap={{ scale: 0.99 }}
+        >
+          <UserEdit
+            size={28}
+            strokeWidth={1.5}
+            className="cursor-pointer hover:text-roxominerva"
+          />
+        </motion.div>
+
+        <motion.div
+          whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
+          whileTap={{ scale: 0.99 }}
+        >
+          <TrashBin
+            size={22.5}
+            strokeWidth={1.5}
+            className="cursor-pointer hover:text-roxominerva"
+          />
+        </motion.div>
       </div>
     </div>
   );

@@ -5,7 +5,6 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 @font-face {
@@ -62,6 +61,12 @@
 
 .section-login {
   background-image: url("../../public/images/back-phone-blank.jpg");
+  background-size: cover;
+}
+
+.background-art {
+  background-image: url("../../public/images/background-art.jpg");
+  background-position: right bottom;
   background-size: cover;
 }
 

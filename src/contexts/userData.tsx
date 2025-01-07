@@ -2,14 +2,43 @@
 
 import { useUserData } from "@/hooks/useUserData";
 import { dataMongoUser } from "@/models/userModel";
-import { createContext, ReactNode, useContext } from "react";
+import { getCookie } from "cookies-next";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
-const UserContext = createContext<dataMongoUser>({} as dataMongoUser);
+type UserContextProps = {
+  user: dataMongoUser;
+};
+
+const UserContext = createContext<UserContextProps>({} as UserContextProps);
 
 const UserContextProvider = ({ children }: { children: ReactNode }) => {
-  const { data } = useUserData();
+  const token = getCookie("authorization");
+  const [userData, setUserData] = useState<dataMongoUser | null>(null);
 
-  return <UserContext.Provider value={data!}>{children}</UserContext.Provider>;
+  const getUser = async () => {
+    const res = await fetch(`${process.env.HOST}/api/user/get_user`, {
+      method: "POST",
+      body: JSON.stringify({ token: token }),
+    });
+    const { user }: { user: dataMongoUser } = await res.json();
+    setUserData(user);
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  return (
+    <UserContext.Provider value={{ user: userData! }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 const useUserContext = () => useContext(UserContext);

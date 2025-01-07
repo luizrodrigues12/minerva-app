@@ -1,6 +1,6 @@
 import React from "react";
 
-const moonIcon = ({ className }: { className: string }) => {
+const MoonIcon = ({ className }: { className: string }) => {
   return (
     <svg
       width="21"
@@ -18,4 +18,4 @@ const moonIcon = ({ className }: { className: string }) => {
   );
 };
 
-export default moonIcon;
+export default MoonIcon;
