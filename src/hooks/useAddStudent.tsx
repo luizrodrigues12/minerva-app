@@ -4,6 +4,7 @@ import { MateriaType } from "@/models/MateriasModel";
 import { AlunoObj } from "@/models/userModel";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { getCookie } from "cookies-next";
+import { useRouter } from "nextjs-toploader/app";
 
 const token = getCookie("authorization");
 
@@ -14,7 +15,8 @@ export function useAddStudent(
   checkedsSubjects: any
 ) {
   const queryClient = useQueryClient();
-  const { user, isFetching, refetch } = useUserContext();
+  const { refetch } = useUserContext();
+  const router = useRouter();
 
   const postStudent = async (data: {
     idStudent: string;
@@ -73,6 +75,7 @@ export function useAddStudent(
 
     onSuccess(data, variables, context) {
       queryClient.invalidateQueries({ queryKey: ["alunos-data"] });
+      router.push("/home");
     },
     retry: 2,
   });

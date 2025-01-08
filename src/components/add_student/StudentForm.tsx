@@ -19,7 +19,7 @@ const StudentForm = () => {
   const [checkedsPrep, setCheckedsPrep] = useState(Array<string>);
   const [nome, setNome] = useState("");
   const [error, setError] = useState("");
-  const { mutateAsync } = useAddStudent(
+  const { mutate, isPending, isSuccess } = useAddStudent(
     idStudent,
     nome,
     checkedsPrep,
@@ -59,13 +59,12 @@ const StudentForm = () => {
 
       // POSTANDO ALUNO
 
-      mutateAsync({
+      mutate({
         idStudent: idStudent,
         nome: primeirasMaiusculas(nome),
         checkedsPrep,
         checkedsSubjects: checkedsSubjects,
       });
-      router.push("/home");
     } catch (error: any) {
       setError(error.message);
     }
@@ -87,8 +86,8 @@ const StudentForm = () => {
   }, []);
 
   return (
-    <div>
-      <motion.div className="p-8 w-[574px] flex flex-col font-inter text-black">
+    <motion.div className="p-8 w-[574px] flex flex-col font-inter text-black">
+      {!isPending ? (
         <div className="flex flex-col p-6 border-2 gap-3 border-borderColor rounded-md text-[16px]">
           <div className="flex flex-col gap-3">
             <div className="text-[18px]">Adicionar Aluno</div>
@@ -122,8 +121,10 @@ const StudentForm = () => {
             Adicionar
           </Button>
         </div>
-      </motion.div>
-    </div>
+      ) : (
+        <Loading />
+      )}
+    </motion.div>
   );
 };
 
