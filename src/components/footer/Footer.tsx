@@ -8,7 +8,7 @@ const Footer = () => {
 
   return (
     <>
-      {section === "students" ? (
+      {section === "students" || section === "add-student" ? (
         ""
       ) : (
         <footer className="w-full px-8 h-[16vh] bg-[#202020] text-zinc-300 flex items-center justify-center text-[12px] gap-[10px] md:h-[14vh] md:px-[100px] xl:px-[195px] xl:h-[20vh] xl:text-[14px]">

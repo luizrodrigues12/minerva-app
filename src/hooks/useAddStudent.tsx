@@ -1,4 +1,5 @@
 import { idToSubjects } from "@/actions/idToSubjects";
+import { useUserContext } from "@/contexts/userData";
 import { MateriaType } from "@/models/MateriasModel";
 import { AlunoObj } from "@/models/userModel";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -8,15 +9,16 @@ const token = getCookie("authorization");
 
 export function useAddStudent(
   idStudent: string,
-  nomeAluno: string,
+  nome: string,
   checkedsPrep: Array<string>,
   checkedsSubjects: any
 ) {
   const queryClient = useQueryClient();
+  const { user, isFetching, refetch } = useUserContext();
 
   const postStudent = async (data: {
     idStudent: string;
-    nomeAluno: string;
+    nome: string;
     checkedsPrep: Array<string>;
     checkedsSubjects: any;
   }) => {
@@ -24,7 +26,7 @@ export function useAddStudent(
       method: "POST",
       body: JSON.stringify({
         idAluno: idStudent,
-        nome: nomeAluno.trim(),
+        nome: nome,
         preparatorio: checkedsPrep,
         checkeds: checkedsSubjects,
         token,
@@ -32,6 +34,7 @@ export function useAddStudent(
     });
 
     const { alunos } = await res.json();
+    refetch();
     return alunos;
   };
 

@@ -10,7 +10,7 @@ export async function idToSubjects(checkeds: Array<String>) {
     const materiaDB = await MateriasModel.findOne<MateriaType>({
       _id: checkeds[i],
     });
-    arrayMaterias.push(materiaDB!);
+    arrayMaterias.push(materiaDB);
   }
   return arrayMaterias;
 }

@@ -1,7 +1,14 @@
+"use client";
+
 import StudentForm from "@/components/add_student/StudentForm";
+import SideBarDesktop from "@/components/home/SideBarDesktop";
 
 const addStudent = () => {
-  return <StudentForm />;
+  return (
+    <SideBarDesktop>
+      <StudentForm />
+    </SideBarDesktop>
+  );
 };
 
 export default addStudent;

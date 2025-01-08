@@ -5,63 +5,38 @@ import {
   Transition,
   VariantLabels,
 } from "motion/react";
+import { InputHTMLAttributes } from "react";
 
-type Props = {
-  htmlFor: string;
+interface PropsCheckComp
+  extends InputHTMLAttributes<HTMLInputElement | HTMLInputElement> {
   text: string;
-  name: string;
-  id: string;
-  value: string;
-  isChecked?: boolean;
-  onChange?: () => void;
-  onClick?: () => void;
-  delay?: number;
-  transition?: Transition | undefined;
-  animateComp?:
-    | boolean
-    | AnimationControls
-    | TargetAndTransition
-    | VariantLabels
-    | undefined;
-  className?: string;
-};
+}
 
 const CheckComp = ({
-  htmlFor,
   text,
   name,
   id,
   value,
   onChange,
   onClick,
-  delay,
-  animateComp,
-  transition,
   className,
-}: Props) => {
+}: PropsCheckComp) => {
   return (
-    <motion.div
-      animate={animateComp ? animateComp : { opacity: [0, 1], y: [-10, 0] }}
-      transition={
-        transition ? transition : { duration: 0.3, delay: delay ? delay : 0 }
-      }
-      className={`checkbox flex justify-between items-center p-3 px-4 bg-zinc-800 w-full rounded-lg shadow-md ${className}`}
+    <div
+      className={`checkbox flex justify-between items-center p-3 md:px-4 bg-background01 w-full rounded-lg font-inter ${className}`}
     >
-      <label htmlFor={htmlFor} className="text-textwhite tracking-widest">
-        {text.toUpperCase()}
-      </label>
+      <label className="text-[#303030]">{text.toUpperCase()}</label>
       <motion.input
-        whileHover={{ scale: 1.1 }}
-        transition={{ duration: 0.02 }}
+        whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
         type="checkbox"
-        className="bg-transparent border-2 p-[7px] border-zinc-300 rounded-full cursor-pointer checked:bg-zinc-900"
+        className="bg-transparent border-2 p-[7px] border-[#404040] rounded-full cursor-pointer checked:bg-roxominerva  checked:border-2 focus:outline-none focus:ring-offset-0 focus:ring-2 focus:ring-background01"
         name={name}
         id={id}
         value={value}
         onChange={onChange}
         onClick={onClick}
       />
-    </motion.div>
+    </div>
   );
 };
 

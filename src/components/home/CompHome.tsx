@@ -7,10 +7,11 @@ import { useSectionContext } from "@/contexts/section";
 import StudentsContainer from "./StudentsContainer";
 import { useUserContext } from "@/contexts/userData";
 import SideBarDesktop from "./SideBarDesktop";
+import { useAddStudent } from "@/hooks/useAddStudent";
 
 const PageHome = () => {
   const { setSection } = useSectionContext();
-  const { user } = useUserContext();
+  const { isFetching } = useUserContext();
   noStore();
 
   useEffect(() => {
@@ -19,14 +20,14 @@ const PageHome = () => {
 
   return (
     <div>
-      {user ? (
+      {isFetching ? (
+        <Loading />
+      ) : (
         <>
           <SideBarDesktop>
             <StudentsContainer />
           </SideBarDesktop>
         </>
-      ) : (
-        <Loading />
       )}
     </div>
   );
