@@ -19,8 +19,8 @@ const transformName = (name: string) => {
 
 const AlunosComp = ({ name }: { name: string; idAluno: string }) => {
   return (
-    <div className="w-full text-black py-2 px-4 rounded-md bg-background01 flex items-center justify-between text-[16px]">
-      <motion.div className="hover:text-roxominerva cursor-pointer">
+    <div className="w-full text-black py-2 px-4 rounded-md bg-background01 flex items-center justify-between text-[14px] md:text-[16px]">
+      <motion.div className="hover:text-roxominerva cursor-pointer pr-1 md:pr-3">
         {transformName(name)}
       </motion.div>
 
@@ -32,7 +32,7 @@ const AlunosComp = ({ name }: { name: string; idAluno: string }) => {
           <ShareAll
             size={28}
             strokeWidth={1.5}
-            className="mr-1 cursor-pointer hover:text-roxominerva"
+            className="mr-1 cursor-pointer hover:text-roxominerva size-[24px] md:size-[28px]"
           />
         </motion.div>
 
@@ -43,7 +43,7 @@ const AlunosComp = ({ name }: { name: string; idAluno: string }) => {
           <UserEdit
             size={28}
             strokeWidth={1.5}
-            className="cursor-pointer hover:text-roxominerva"
+            className="cursor-pointer hover:text-roxominerva size-[24px] md:size-[28px]"
           />
         </motion.div>
 
@@ -54,7 +54,7 @@ const AlunosComp = ({ name }: { name: string; idAluno: string }) => {
           <TrashBin
             size={22.5}
             strokeWidth={1.5}
-            className="cursor-pointer hover:text-roxominerva"
+            className="cursor-pointer hover:text-roxominerva size-[19px] md:size-[22.5px]"
           />
         </motion.div>
       </div>

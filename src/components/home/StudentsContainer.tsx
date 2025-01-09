@@ -14,9 +14,9 @@ const StudentsContainer = () => {
   console.log(user.alunos?.length);
   return (
     <div>
-      <div className="flex flex-col gap-2 p-8 w-[570px]">
+      <div className="flex flex-col gap-2 px-8 py-4 md:py-6 lg:py-8 w-full">
         <div className="flex gap-2">
-          <InputComp placeholder="Pesquisar" className="!mt-0" />
+          <InputComp placeholder="Pesquisar" className="!mt-0 " />
           <Button
             className="px-[25px] font-inter"
             onClick={() => {

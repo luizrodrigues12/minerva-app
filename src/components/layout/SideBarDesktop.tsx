@@ -5,6 +5,7 @@ import PerfilContainer from "../home/PerfilContainer";
 import LinkContainer from "../home/LinkContainer";
 import { useUserContext } from "@/contexts/userData";
 import Loading from "./Loading";
+import Image from "next/image";
 
 type SideBarDesktopProps = {
   children: ReactNode;
@@ -16,16 +17,21 @@ const SideBarDesktop = ({ children }: SideBarDesktopProps) => {
   return (
     <div>
       {!isFetching || !user ? (
-        <div className="bg-background01 px-[195px] ">
-          <div className="flex w-full gap-10 min-h-screen max-h-screen bg-background01 font-inter lg:gap-12 justify-between">
-            <div className="relative bg-background02 border-x-2 min-w-max border-borderColor shadow-md">
+        <div className="bg-background01  md:px-[100px] lg:px-[80px] xl:px-[195px]">
+          <div className="flex w-full gap-10 min-h-screen max-h-screen bg-background01 font-inter justify-between">
+            <div
+              className="hidden relative bg-background02 border-x-2 border-borderColor shadow-md lg:block 
+             lg:w-[40%] 2xl:w-[25%]"
+            >
               <PerfilContainer username={user.username} />
               <LinkContainer />
             </div>
-            <div className="min-h-full min-w-max bg-background02 border-x-2 border-borderColor shadow-md overflow-y-scroll overflow-hidden scroll-style">
+            <div className="min-h-full w-full bg-background02 border-x-2 border-borderColor shadow-md overflow-y-scroll overflow-hidden scroll-style lg:w-[60%] xl:w-[60%] 2xl:w-[40%]">
               {children}
             </div>
-            <div className="min-h-full min-w-[400px] background-art bg-background02 border-x-[2px] border-borderColor shadow-md" />
+            <div className="hidden min-h-full w-[20%] 2xl:w-[25%] bg-background02 border-x-[2px] border-borderColor shadow-md 2xl:block">
+              <div className="background-art w-full h-full"></div>
+            </div>
           </div>
         </div>
       ) : (
