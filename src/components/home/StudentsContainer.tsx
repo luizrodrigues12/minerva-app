@@ -14,7 +14,7 @@ const StudentsContainer = () => {
   console.log(user.alunos?.length);
   return (
     <div>
-      <div className="flex flex-col gap-2 px-8 py-4 md:py-6 lg:py-8 w-full">
+      <div className="flex flex-col gap-2 px-4 md:px-8 py-2 md:py-4 lg:py-4 2xl:py-6 w-full">
         <div className="flex gap-2">
           <InputComp placeholder="Pesquisar" className="!mt-0 " />
           <Button

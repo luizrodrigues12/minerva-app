@@ -40,7 +40,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
           </div>
           <div
             className={`h-[65px] flex items-center justify-center border-b-2 border-b-borderColor ${
-              section === "home"
+              section === "students"
                 ? "text-roxominerva font-interMedium bg-[#C1C1C1]"
                 : ""
             }`}
