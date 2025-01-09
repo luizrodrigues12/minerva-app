@@ -16,7 +16,7 @@ const SideBarDesktop = ({ children }: SideBarDesktopProps) => {
 
   return (
     <div>
-      {!isFetching || !user ? (
+      {!isFetching || user ? (
         <div className="bg-background01  md:px-[100px] lg:px-[80px] xl:px-[195px]">
           <div className="flex w-full gap-10 min-h-screen max-h-screen bg-background01 font-inter justify-between">
             <div

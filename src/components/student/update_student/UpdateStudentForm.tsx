@@ -96,30 +96,16 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
                 Preparatório
               </h2>
               <CheckComp
-                animateComp={{ opacity: [0, 1] }}
-                transition={{ duration: 0 }}
                 text="Aplicação"
                 name="checkItem"
                 id="aplicacao"
-                htmlFor="aplicacao"
                 value="aplicação"
               />
+              <CheckComp text="CPM" name="checkItem" id="cpm" value="cpm" />
               <CheckComp
-                animateComp={{ opacity: [0, 1] }}
-                transition={{ duration: 0 }}
-                text="CPM"
-                name="checkItem"
-                id="cpm"
-                htmlFor="cpm"
-                value="cpm"
-              />
-              <CheckComp
-                animateComp={{ opacity: [0, 1] }}
-                transition={{ duration: 0 }}
                 text="CEMAM"
                 name="checkItem"
                 id="cemam"
-                htmlFor="cemam"
                 value="cemam"
               />
 
