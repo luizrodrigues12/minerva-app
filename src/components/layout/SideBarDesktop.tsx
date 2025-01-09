@@ -1,10 +1,10 @@
 "use client";
 
 import { ReactNode } from "react";
-import PerfilContainer from "./PerfilContainer";
-import LinkContainer from "./LinkContainer";
+import PerfilContainer from "../home/PerfilContainer";
+import LinkContainer from "../home/LinkContainer";
 import { useUserContext } from "@/contexts/userData";
-import Loading from "../layout/Loading";
+import Loading from "./Loading";
 
 type SideBarDesktopProps = {
   children: ReactNode;
@@ -15,7 +15,7 @@ const SideBarDesktop = ({ children }: SideBarDesktopProps) => {
 
   return (
     <div>
-      {!isFetching ? (
+      {!isFetching || !user ? (
         <div className="bg-background01 px-[195px] ">
           <div className="flex w-full gap-10 min-h-screen max-h-screen bg-background01 font-inter lg:gap-12 justify-between">
             <div className="relative bg-background02 border-x-2 min-w-max border-borderColor shadow-md">

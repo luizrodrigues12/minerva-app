@@ -1,6 +1,5 @@
-import { useUserContext } from "@/contexts/userData";
 import { dataMongoUser } from "@/models/userModel";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getCookie } from "cookies-next";
 
 const token = getCookie("authorization");
@@ -18,6 +17,7 @@ export function useUserData() {
   const query = useQuery<dataMongoUser>({
     queryFn: getUserData,
     queryKey: ["data-usuario"],
+    refetchOnWindowFocus: true,
   });
 
   return query;

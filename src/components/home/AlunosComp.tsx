@@ -17,7 +17,7 @@ const transformName = (name: string) => {
   );
 };
 
-const AlunosComp = ({ name, idAluno }: { name: string; idAluno: string }) => {
+const AlunosComp = ({ name }: { name: string; idAluno: string }) => {
   return (
     <div className="w-full text-black py-2 px-4 rounded-md bg-background01 flex items-center justify-between text-[16px]">
       <motion.div className="hover:text-roxominerva cursor-pointer">

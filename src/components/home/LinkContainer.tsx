@@ -25,9 +25,6 @@ const LinkContainer = () => {
           }}
         >
           <div className="flex items-center justify-start gap-3">
-            {section === "students" && (
-              <div className="bg-roxominerva h-5 w-1 rounded-2xl" />
-            )}
             <UsersGroup size={40} strokeWidth={1} />
             <div className="flex justify-between items-center w-full pr-4">
               <div>Alunos</div>
@@ -54,6 +51,9 @@ const LinkContainer = () => {
           className={`border-b-2  border-borderColor w-full p-2 px-3 text-black hover:bg-background01 cursor-pointer ${
             section === "profile" ? "bg-background01" : ""
           }`}
+          onClick={() => {
+            router.push("/profile");
+          }}
         >
           <div className="flex items-center justify-start gap-3">
             <ProfileCard size={37} strokeWidth={1} className="ml-[2px]" />

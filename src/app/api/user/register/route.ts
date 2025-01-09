@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import UserModel from "@/models/userModel";
+import UserModel, { AlunoObj } from "@/models/userModel";
 import connectDB from "@/dbConfig/dbConfig";
 import bcrypt from "bcrypt";
 
@@ -11,13 +11,8 @@ interface dataMongoUser {
   email: string;
   password: string;
   isVerified: boolean;
-  token: string;
-  alunos?: {
-    idAluno?: string;
-    nome?: string;
-    preparatorio?: string;
-    materias?: Array<string>;
-  };
+  token?: string;
+  alunos?: [AlunoObj];
 }
 
 export async function POST(req: NextRequest) {
@@ -39,8 +34,6 @@ export async function POST(req: NextRequest) {
       email: email,
       password: senhaCripto,
       isVerified: false,
-      token: "",
-      alunos: {},
     });
     // Salvando usuário
     newUser.save();

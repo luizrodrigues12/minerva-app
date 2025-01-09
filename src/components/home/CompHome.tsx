@@ -6,7 +6,7 @@ import { unstable_noStore as noStore } from "next/cache";
 import { useSectionContext } from "@/contexts/section";
 import StudentsContainer from "./StudentsContainer";
 import { useUserContext } from "@/contexts/userData";
-import SideBarDesktop from "./SideBarDesktop";
+import SideBarDesktop from "../layout/SideBarDesktop";
 import { useAddStudent } from "@/hooks/useAddStudent";
 
 const PageHome = () => {

@@ -7,7 +7,7 @@ export async function GET(req: NextRequest) {
     cookieStore.delete("authorization");
     cookieStore.delete("username");
 
-    return NextResponse.json({ redirect: true });
+    return NextResponse.json({ sucess: true });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
   }

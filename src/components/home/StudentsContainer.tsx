@@ -11,13 +11,14 @@ const StudentsContainer = () => {
   const { user } = useUserContext();
   const router = useRouter();
 
+  console.log(user.alunos?.length);
   return (
     <div>
       <div className="flex flex-col gap-2 p-8 w-[570px]">
         <div className="flex gap-2">
           <InputComp placeholder="Pesquisar" className="!mt-0" />
           <Button
-            className="px-[21.5px] font-inter"
+            className="px-[25px] font-inter"
             onClick={() => {
               router.push("/add_student");
             }}
@@ -25,11 +26,24 @@ const StudentsContainer = () => {
             Adicionar
           </Button>
         </div>
-        <div className="flex flex-col gap-2">
-          {user.alunos?.map((aluno, i) => (
-            <AlunosComp key={i} idAluno={aluno.idAluno!} name={aluno.nome!} />
-          ))}
-        </div>
+
+        {user.alunos?.length! > 0 ? (
+          <div className="flex flex-col gap-2">
+            {user.alunos
+              ?.sort((a, b) => (a?.nome! < b?.nome! ? -1 : 1))
+              .map((aluno, i) => (
+                <AlunosComp
+                  key={i}
+                  idAluno={aluno.idAluno!}
+                  name={aluno.nome!}
+                />
+              ))}
+          </div>
+        ) : (
+          <div className="text-[#404040] flex items-center justify-center bg-background01 p-4 rounded-md">
+            Nenhum aluno cadastrado.
+          </div>
+        )}
       </div>
     </div>
   );

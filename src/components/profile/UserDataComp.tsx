@@ -1,101 +1,163 @@
 "use client";
 
-import { deleteCookie, getCookie } from "cookies-next/client";
 import Loading from "../layout/Loading";
-import { useRouter } from "nextjs-toploader/app";
-import { useEffect, useState } from "react";
-import { dataMongoUser } from "@/models/userModel";
 import { unstable_noStore as noStore } from "next/cache";
-import { motion } from "motion/react";
+import { useUserContext } from "@/contexts/userData";
+import InputComp from "../layout/InputComp";
+import Image from "next/image";
+import Button from "../layout/Button";
+import { useEffect, useState } from "react";
+import { useSectionContext } from "@/contexts/section";
+import { validatePassword } from "@/utils/regex";
+import { CloseCircle } from "flowbite-react-icons/outline";
 
 const UserDataComp = () => {
-  const token = getCookie("authorization");
-  const router = useRouter();
-  const [user, setUser] = useState<dataMongoUser>();
+  const [isPending, setIsPending] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [error, setError] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [newPasswordRepeat, setNewPasswordRepeat] = useState("");
+  const { user, logoutFunction } = useUserContext();
+  const { setSection } = useSectionContext();
 
   noStore();
-
-  const getUserData = async () => {
-    const res = await fetch(`${process.env.HOST}/api/user/get_user`, {
-      method: "POST",
-      body: JSON.stringify({ token: token }),
-    });
-    const { user } = await res.json();
-    setUser(user);
-  };
-
-  const deleteCookies = () => {
-    deleteCookie("authorization");
-    deleteCookie("username");
-  };
-
-  const logoutFunction = async (e: any) => {
-    e.preventDefault();
-
-    const res = await fetch(`${process.env.HOST}/api/user/logout`, {
-      method: "GET",
-    });
-    const { redirect } = await res.json();
-
-    if (redirect) router.push("/login");
-  };
 
   const removerConta = async (e: any) => {
     e.preventDefault();
     await fetch(`${process.env.HOST}/api/user/delete_user`, {
       method: "POST",
-      body: JSON.stringify({ token: token }),
+      body: JSON.stringify({ token: user.token }),
     });
-    deleteCookies();
-    router.push("/login");
+    logoutFunction();
+  };
+
+  const changePassword = async () => {
+    try {
+      if (!currentPassword) throw new Error("Digite a senha atual.");
+      if (!newPassword) throw new Error("Digite uma nova senha.");
+      if (!validatePassword.test(newPassword))
+        throw new Error("8 dígitos mínimos, uma letra maiúscula e um número.");
+      if (!newPasswordRepeat) throw new Error("Repita a nova senha.");
+      if (!(newPassword === newPasswordRepeat))
+        throw new Error("Repita a nova senha corretamente.");
+
+      setIsPending(true);
+      const res = await fetch(`${process.env.HOST}/api/user/change_password`, {
+        method: "POST",
+        body: JSON.stringify({
+          token: user.token,
+          newPassword,
+          currentPassword,
+        }),
+      });
+      setIsPending(false);
+      const { error } = await res.json();
+      if (error) {
+        throw new Error(error);
+      } else {
+        setIsOpen(true);
+      }
+    } catch (error: any) {
+      setError(error.message);
+    }
   };
 
   useEffect(() => {
-    getUserData();
-  }, []);
+    setSection("profile");
+  });
 
   return (
-    <div className="flex flex-col w-full h-screen">
-      {!user ? (
+    <div className="flex flex-col w-[574px] h-screen p-8">
+      {!user || isPending ? (
         <Loading />
       ) : (
-        <div className="px-8 md:self-center rounded-lg md:px-6 md:p-5 md:w-[400px] md:border-zinc-800 md:border-2 height_pattern">
-          <div className="flex items-center justify-center gap-3">
-            <h2 className="text-xl w-[270px] text-zinc-200 text-center pt-1 pb-1.5 md:pt-0 md:pb-3">
-              Meus Dados
-            </h2>
+        <div className="flex flex-col items-start border-2 border-borderColor rounded-md p-6 gap-3 ">
+          <div className="flex gap-3 w-full">
+            <Image
+              src={"/images/blank-user.jpg"}
+              alt="Foto do usuário"
+              width={100}
+              height={100}
+              className="rounded-lg size-[110px] lg:size-[100px]"
+              style={{ boxShadow: "0px 0px 4px #00000010" }}
+            />
+            <div className="flex flex-col gap-2 text-[#404040] p-3 bg-background01 rounded-md w-full justify-center">
+              <div className="bg-background02 p-1 px-3 rounded-md">
+                {user.username}
+              </div>
+              <div className="bg-background02 p-1 px-3 rounded-md">
+                Educador(a)
+              </div>
+            </div>
           </div>
-          <hr className="bg-zinc-800 h-0.5 my-2 border-none" />
-          <div className="flex flex-col gap-2 pb-1">
-            <div className="flex justify-between">
-              <h3 className="text-[1rem]">Username</h3>
-              <h3
-                className="text-[0.9rem] text-red-700 hover:text-red-500 hover:cursor-pointer"
-                onClick={(e) => removerConta(e)}
+
+          <div className="flex flex-col gap-3 w-full relative">
+            <div className="text-black text-[18px]">email</div>
+            <div>
+              <div
+                className="text-black text-[14px] mr-1.5 mb-1 hover:text-red-700 cursor-pointer text-end absolute right-0 top-3.5"
+                onClick={async (e) => await removerConta(e)}
               >
-                Excluir conta
-              </h3>
-            </div>
-            <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg text-zinc-300">
-              {user.username}
-            </div>
-            <h3 className="text-[1rem]">Email</h3>
-            <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg text-zinc-300">
-              {user.email}
+                excluir conta
+              </div>
+              <div className="bg-background01 p-2.5 md:px-3 rounded-md text-[#202020]">
+                {user.email}
+              </div>
             </div>
           </div>
 
-          <hr className="bg-zinc-800 h-0.5 mb-2 mt-2 md:mt-2 md:mb-2 border-none" />
+          <div className="flex flex-col gap-3 w-full  ">
+            <div className="text-black text-[18px]">alterar senha</div>
+            <div className="flex flex-col gap-2 p-4 bg-background01 rounded-md">
+              <InputComp
+                placeholder="senha atual"
+                className="!mt-0 bg-background02"
+                value={currentPassword || ""}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                onFocus={() => setError("")}
+              />
+              <InputComp
+                placeholder="nova senha"
+                className="!mt-0 bg-background02"
+                value={newPassword || ""}
+                onChange={(e) => setNewPassword(e.target.value)}
+                onFocus={() => setError("")}
+              />
+              <InputComp
+                placeholder="repetir nova senha"
+                className="!mt-0 bg-background02"
+                value={newPasswordRepeat || ""}
+                onChange={(e) => setNewPasswordRepeat(e.target.value)}
+                onFocus={() => setError("")}
+              />
 
-          <motion.button
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 1 }}
-            transition={{ duration: 0.01 }}
-            className="bg-roxominerva w-full rounded-lg text-[16px] md:p-[7px] text-textButton h-10 flex justify-center items-center hover:bg-[#484199] hover:text-textButtonHover"
-            onClick={(e) => logoutFunction(e)}
-          >
-            Logout
-          </motion.button>
+              {error && (
+                <p className="text-red-700 text-[14px] text-center py-1">
+                  {error}
+                </p>
+              )}
+              <Button
+                whileHover={{ scale: 1.003 }}
+                whileTap={{ scale: 0.99 }}
+                onClick={async () => await changePassword()}
+              >
+                Alterar senha
+              </Button>
+
+              {isOpen && (
+                <div className="p-4 bg-background01 text-black border-2 border-borderColor rounded-md modal">
+                  <div className="flex flex-col gap-3">
+                    <div className="text-center text-[18px]">
+                      Sua senha foi alterada <br />
+                      com sucesso.
+                    </div>
+                    <Button onClick={() => setIsOpen(false)}>Fechar</Button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>
