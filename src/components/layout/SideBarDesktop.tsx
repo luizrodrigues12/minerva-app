@@ -26,7 +26,7 @@ const SideBarDesktop = ({ children }: SideBarDesktopProps) => {
               <PerfilContainer username={user.username} />
               <LinkContainer />
             </div>
-            <div className="min-h-full w-full bg-background02 border-x-2 border-borderColor shadow-md overflow-y-scroll overflow-hidden scroll-style lg:w-[60%] xl:w-[60%] 2xl:w-[40%]">
+            <div className="min-h-full w-full bg-background02 border-x-2 border-borderColor shadow-md lg:overflow-y-scroll lg:overflow-hidden scroll-style lg:w-[60%] xl:w-[60%] 2xl:w-[40%]">
               {children}
             </div>
             <div className="hidden min-h-full w-[20%] 2xl:w-[25%] bg-background02 border-x-[2px] border-borderColor shadow-md 2xl:block">

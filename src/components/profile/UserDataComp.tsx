@@ -68,11 +68,11 @@ const UserDataComp = () => {
   });
 
   return (
-    <div className="flex flex-col w-[574px] h-screen p-8">
+    <div className="flex flex-col w-full h-screen lg:p-4 2xl:p-6">
       {!user || isPending ? (
         <Loading />
       ) : (
-        <div className="flex flex-col items-start border-2 border-borderColor rounded-md p-6 gap-3 ">
+        <div className="flex flex-col items-start p-4 py-2 md:py-4 gap-3 lg:border-2 lg:border-borderColor lg:rounded-md lg:p-6">
           <div className="flex gap-3 w-full">
             <Image
               src={"/images/blank-user.jpg"}
@@ -141,6 +141,7 @@ const UserDataComp = () => {
                 whileHover={{ scale: 1.003 }}
                 whileTap={{ scale: 0.99 }}
                 onClick={async () => await changePassword()}
+                className="text-background02 bg-zinc-900 hover:bg-zinc-800"
               >
                 Alterar senha
               </Button>
@@ -158,6 +159,15 @@ const UserDataComp = () => {
               )}
             </div>
           </div>
+
+          <Button
+            className="w-full"
+            whileHover={{ scale: 1.003 }}
+            whileTap={{ scale: 0.99 }}
+            onClick={() => logoutFunction()}
+          >
+            Logout
+          </Button>
         </div>
       )}
     </div>

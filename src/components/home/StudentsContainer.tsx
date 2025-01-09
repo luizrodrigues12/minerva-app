@@ -11,10 +11,9 @@ const StudentsContainer = () => {
   const { user } = useUserContext();
   const router = useRouter();
 
-  console.log(user.alunos?.length);
   return (
     <div>
-      <div className="flex flex-col gap-2 px-4 md:px-8 py-2 md:py-4 lg:py-4 2xl:py-6 w-full">
+      <div className="flex flex-col gap-2 p-4 py-2  md:py-4 lg:p-4 2xl:p-6 w-full">
         <div className="flex gap-2">
           <InputComp placeholder="Pesquisar" className="!mt-0 " />
           <Button
