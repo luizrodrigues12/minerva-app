@@ -77,12 +77,12 @@ const UserDataComp = () => {
             <Image
               src={"/images/blank-user.jpg"}
               alt="Foto do usuário"
-              width={100}
-              height={100}
+              width={150}
+              height={150}
               className="rounded-lg size-[110px] lg:size-[100px]"
               style={{ boxShadow: "0px 0px 4px #00000010" }}
             />
-            <div className="flex flex-col gap-2 text-[#404040] p-3 bg-background01 rounded-md w-full justify-center">
+            <div className="flex flex-col gap-1.5 text-[#404040] p-3 bg-background01 rounded-md w-full justify-center">
               <div className="bg-background02 p-1 px-3 rounded-md">
                 {user.username}
               </div>
@@ -109,7 +109,7 @@ const UserDataComp = () => {
 
           <div className="flex flex-col gap-3 w-full  ">
             <div className="text-black text-[18px]">alterar senha</div>
-            <div className="flex flex-col gap-2 p-4 bg-background01 rounded-md">
+            <div className="flex flex-col gap-1.5 p-4 bg-background01 rounded-md">
               <InputComp
                 placeholder="senha atual"
                 className="!mt-0 bg-background02"
@@ -141,13 +141,13 @@ const UserDataComp = () => {
                 whileHover={{ scale: 1.003 }}
                 whileTap={{ scale: 0.99 }}
                 onClick={async () => await changePassword()}
-                className="text-background02 bg-zinc-900 hover:bg-zinc-800"
+                className="text-background02"
               >
                 Alterar senha
               </Button>
 
               {isOpen && (
-                <div className="p-4 bg-background01 text-black border-2 border-borderColor rounded-md modal">
+                <div className="p-6 px-8 bg-background01 text-black border-2 border-borderColor rounded-md modal">
                   <div className="flex flex-col gap-3">
                     <div className="text-center text-[18px]">
                       Sua senha foi alterada <br />
@@ -161,7 +161,7 @@ const UserDataComp = () => {
           </div>
 
           <Button
-            className="w-full"
+            className="w-full bg-zinc-700 hover:bg-zinc-800"
             whileHover={{ scale: 1.003 }}
             whileTap={{ scale: 0.99 }}
             onClick={() => logoutFunction()}

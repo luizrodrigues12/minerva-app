@@ -19,12 +19,12 @@ const transformName = (name: string) => {
 
 const AlunosComp = ({ name }: { name: string; idAluno: string }) => {
   return (
-    <div className="w-full text-black py-2 px-4 rounded-md bg-background01 flex items-center justify-between text-[16px] md:text-[16px]">
+    <div className="w-full text-black py-2 px-4 rounded-md bg-background01 flex items-center justify-between text-[16px] md:text-[16px] shadow-sm">
       <motion.div className="hover:text-roxominerva cursor-pointer pr-1 md:pr-3">
         {transformName(name)}
       </motion.div>
 
-      <div className="flex gap-1 md:gap-3 items-center">
+      <div className="flex gap-1.5 md:gap-3 items-center">
         <motion.div
           whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
           whileTap={{ scale: 0.99 }}

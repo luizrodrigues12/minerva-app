@@ -88,7 +88,7 @@ const StudentForm = () => {
   return (
     <motion.div className="p-4 py-2 w-full flex flex-col font-inter text-black md:px-4 md:py-4 lg:p-6">
       {!isPending ? (
-        <div className="flex flex-col md:p-4 lg:p-6 lg:pt-4 gap-3 rounded-md text-[16px] md:border-2 md:border-borderColor">
+        <div className="flex flex-col md:p-4 lg:p-6 lg:pt-4 gap-2 md:gap-3 rounded-md text-[16px] md:border-2 md:border-borderColor">
           <div className="flex flex-col gap-3">
             <div className="text-[18px]">Adicionar Aluno</div>
             <InputComp
@@ -104,9 +104,11 @@ const StudentForm = () => {
 
           <div className="flex flex-col gap-3">
             <div className="text-[18px]">Preparatório</div>
-            <CheckComp text="APLICAÇÃO" name="checkItem" />
-            <CheckComp text="CPM" name="checkItem" />
-            <CheckComp text="CEMAM" name="checkItem" />
+            <div className="flex flex-col gap-1.5">
+              <CheckComp text="APLICAÇÃO" name="checkItem" />
+              <CheckComp text="CPM" name="checkItem" />
+              <CheckComp text="CEMAM" name="checkItem" />
+            </div>
           </div>
 
           <SubjectForm error={error} />

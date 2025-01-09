@@ -43,7 +43,7 @@ const SubjectForm = ({ error }: Props) => {
               </div>
 
               <div className="flex flex-col gap-2 text-[14px]">
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-1.5">
                   {/* PORT 6 ANO */}
                   <Accordion
                     textLeft="português"
