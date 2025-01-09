@@ -7,7 +7,7 @@ type PerfilProps = {
 const PerfilContainer = ({ username }: PerfilProps) => {
   return (
     <div className="flex items-center justify-center border-b-2 border-borderColor">
-      <div className="flex items-center text-[#202020] justify-center w-full gap-3 px-2 lg:py-4 2xl:py-6">
+      <div className="flex items-center text-[#202020] justify-center w-full gap-3 px-2 lg:py-4 2xl:py-8">
         <Image
           src={"/images/blank-user.jpg"}
           alt="Foto do usuário"

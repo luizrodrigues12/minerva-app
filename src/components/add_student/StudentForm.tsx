@@ -13,13 +13,12 @@ import { useSectionContext } from "@/contexts/section";
 import Button from "../layout/Button";
 
 const StudentForm = () => {
-  const router = useRouter();
   const idStudent = uuidv4();
   const [checkedsSubjects, setCheckedsSubjects] = useState(Array<String>);
   const [checkedsPrep, setCheckedsPrep] = useState(Array<string>);
   const [nome, setNome] = useState("");
   const [error, setError] = useState("");
-  const { mutate, isPending, isSuccess } = useAddStudent(
+  const { mutate, isPending } = useAddStudent(
     idStudent,
     nome,
     checkedsPrep,
@@ -50,6 +49,8 @@ const StudentForm = () => {
       e.preventDefault();
       getCheckedsSubjects();
       getCheckedsPrep();
+
+      console.log(checkedsPrep);
 
       // Verificações
       if (!nome) throw new Error("Escolha um nome válido.");
@@ -86,7 +87,7 @@ const StudentForm = () => {
   }, []);
 
   return (
-    <motion.div className="p-4 py-2 w-full flex flex-col font-inter text-black md:px-4 md:py-4 lg:p-6">
+    <motion.div className="p-4 py-2 w-full flex flex-col font-inter text-black md:px-4 md:py-4 lg:p-6 xl:p-4 2xl:p-6">
       {!isPending ? (
         <div className="flex flex-col md:p-4 lg:p-6 lg:pt-4 gap-2 md:gap-3 rounded-md text-[16px] md:border-2 md:border-borderColor">
           <div className="flex flex-col gap-3">
@@ -105,9 +106,9 @@ const StudentForm = () => {
           <div className="flex flex-col gap-3">
             <div className="text-[18px]">Preparatório</div>
             <div className="flex flex-col gap-1.5">
-              <CheckComp text="APLICAÇÃO" name="checkItem" />
-              <CheckComp text="CPM" name="checkItem" />
-              <CheckComp text="CEMAM" name="checkItem" />
+              <CheckComp text="APLICAÇÃO" value="aplicação" name="checkItem" />
+              <CheckComp text="CPM" value="cpm" name="checkItem" />
+              <CheckComp text="CEMAM" value="cemam" name="checkItem" />
             </div>
           </div>
 

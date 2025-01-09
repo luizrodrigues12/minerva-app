@@ -11,21 +11,25 @@ type Props = {
 const MateriaComp = ({ text, onClick, isChecked, id }: Props) => {
   return (
     <div
-      className="checkbox flex justify-between items-center p-3 px-4 bg-zinc-800 w-full rounded-lg text-zinc-200 tracking-widest text-[13.5px] shadow-md"
+      className="checkbox flex justify-between items-center p-3 px-4 bg-background01 w-full rounded-lg tracking-widest text-[13.5px] text-zinc-800"
       id={id}
     >
-      <p className={isChecked ? "checked" : "text-zinc-300"}>{text}</p>
+      <p
+        className={isChecked ? "text-[#606060] line-through" : "text-[#404040]"}
+      >
+        {text}
+      </p>
       {isChecked ? (
         <CheckCircleSolid
           onClick={onClick}
           color="#d4d4d8"
-          className="hover:cursor-pointer text-zinc-400"
+          className="hover:cursor-pointer text-[#606060]"
         />
       ) : (
         <CheckCircle
           onClick={onClick}
           color={"#d4d4d8"}
-          className="hover:cursor-pointer"
+          className="hover:cursor-pointer text-[#404040]"
         />
       )}
     </div>

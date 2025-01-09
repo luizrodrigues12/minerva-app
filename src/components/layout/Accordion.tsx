@@ -39,12 +39,12 @@ const Accordion = ({
         </div>
         {isOpen ? (
           <AngleUp
-            className="mx-2 flex justify-center items-center mr-3 cursor-pointer"
+            className="mx-2 flex justify-center items-center mr-3 cursor-pointer text-[#303030]"
             onClick={() => setIsOpen(!isOpen)}
           />
         ) : (
           <AngleDown
-            className="mx-2 flex justify-center items-center mr-3 cursor-pointer"
+            className="mx-2 flex justify-center items-center mr-3 cursor-pointer text-[#303030]"
             onClick={() => setIsOpen(!isOpen)}
           />
         )}

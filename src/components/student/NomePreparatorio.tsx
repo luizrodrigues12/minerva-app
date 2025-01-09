@@ -1,41 +1,36 @@
-import { AlunoObj } from "@/models/userModel";
-import { FileCopy } from "flowbite-react-icons/outline";
-import copy from "clipboard-copy";
+import { motion } from "motion/react";
+import { useUserContext } from "@/contexts/userData";
+import { ShareAll } from "flowbite-react-icons/outline";
 
 type Props = {
-  oneStudent: AlunoObj;
   idAluno: string;
 };
 
-const NomePreparatorio = ({ oneStudent, idAluno }: Props) => {
+const NomePreparatorio = ({ idAluno }: Props) => {
+  const { user } = useUserContext();
+  const alunos = user.alunos?.filter((aluno) => aluno.idAluno === idAluno);
+  const aluno = alunos![0];
+
   return (
-    <div className="flex flex-col gap-2 text-textwhite w-full">
-      <div className="w-full bg-zinc-800 py-5 px-2.5 h-[36px] rounded-lg flex justify-between items-center">
-        <p id="nome_do_aluno">
-          {
-            oneStudent?.nome
-              ?.split(" ")
-              .map(
-                (palavra) =>
-                  `${palavra[0].toUpperCase()}${palavra.substring(1)} `
-              )!
-          }
-        </p>
-        <FileCopy
-          color="#e4e4e7"
-          className="hover:cursor-pointer"
-          onClick={async () =>
-            copy(`${process.env.HOST}/parents/get_subjects/${idAluno}`)
-          }
-        />
+    <div className="flex flex-col gap-2 text-textwhite w-full rounded-md p-4 bg-background01">
+      <div className="bg-background02 p-2 text-[#404040] px-3 rounded-md relative">
+        <p>{aluno.nome}</p>
+        <motion.div
+          whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
+          whileTap={{ scale: 0.99 }}
+          className="absolute top-1.5 right-3"
+        >
+          <ShareAll
+            strokeWidth={1.5}
+            className="size-[28px] cursor-pointer hover:text-roxominerva"
+          />
+        </motion.div>
       </div>
-      <div className="flex gap-1 w-full items-center bg-zinc-800 py-5 h-[36px] pl-2.5 rounded-lg tracking-wide ">
-        {oneStudent?.preparatorio?.map((prep, i) =>
-          prep == "aplicação" ? (
-            <p key={i}>{prep[0].toUpperCase() + prep.substring(1)} </p>
-          ) : (
-            <p key={i}>{prep.toUpperCase()}</p>
-          )
+      <div className="bg-background02 p-2 text-[#404040] px-3 rounded-md">
+        {aluno.preparatorio?.map((prep, i) =>
+          prep == "aplicação"
+            ? prep[0].toUpperCase() + prep.substring(1) + " "
+            : prep.toUpperCase() + " "
         )}
       </div>
     </div>

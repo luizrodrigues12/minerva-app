@@ -10,17 +10,23 @@ import {
 import { useRouter } from "nextjs-toploader/app";
 import { motion } from "motion/react";
 
-const transformName = (name: string) => {
-  const separatedNames = name.toLowerCase().split(" ");
-  return separatedNames.map(
-    (palavra, i) => palavra.split("")[0].toUpperCase() + palavra.slice(1) + " "
-  );
-};
+const AlunosComp = ({ name, idAluno }: { name: string; idAluno: string }) => {
+  const router = useRouter();
 
-const AlunosComp = ({ name }: { name: string; idAluno: string }) => {
+  const transformName = (name: string) => {
+    const separatedNames = name.toLowerCase().split(" ");
+    return separatedNames.map(
+      (palavra, i) =>
+        palavra.split("")[0].toUpperCase() + palavra.slice(1) + " "
+    );
+  };
+
   return (
     <div className="w-full text-black py-2 px-4 rounded-md bg-background01 flex items-center justify-between text-[16px] md:text-[16px] shadow-sm">
-      <motion.div className="hover:text-roxominerva cursor-pointer pr-1 md:pr-3">
+      <motion.div
+        className="hover:text-roxominerva cursor-pointer pr-1 md:pr-3"
+        onClick={() => router.push(`/student/${idAluno}`)}
+      >
         {transformName(name)}
       </motion.div>
 
