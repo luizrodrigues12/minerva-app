@@ -4,7 +4,6 @@ import { getCookie } from "cookies-next";
 import { useEffect, useState } from "react";
 import NomePreparatorio from "./NomePreparatorio";
 import Loading from "../layout/Loading";
-import { motion } from "motion/react";
 import { useChecksMutate } from "@/hooks/useChecksMutate";
 import Accordion from "../layout/Accordion";
 import MateriaComp from "./MateriaComp";

@@ -13,7 +13,7 @@ const NomePreparatorio = ({ idAluno }: Props) => {
 
   return (
     <div className="flex flex-col gap-1.5 text-textwhite w-full rounded-md bg-background02">
-      <div className="bg-background03 p-2 text-[#404040] px-3 rounded-md relative">
+      <div className="bg-background03 p-2 text-[#303030] px-3 rounded-md relative">
         <p>{aluno.nome}</p>
         <motion.div
           whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
@@ -32,7 +32,7 @@ const NomePreparatorio = ({ idAluno }: Props) => {
           />
         </motion.div>
       </div>
-      <div className="bg-background03 p-2 text-[#404040] px-3 rounded-md">
+      <div className="bg-background03 p-2 text-[#303030] px-3 rounded-md">
         {aluno.preparatorio?.map((prep, i) =>
           prep == "aplicação"
             ? prep[0].toUpperCase() + prep.substring(1) + " "

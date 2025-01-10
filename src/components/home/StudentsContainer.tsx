@@ -16,6 +16,7 @@ const StudentsContainer = () => {
       ?.filter((aluno) =>
         aluno.nome?.toLowerCase().includes(busca.toLowerCase())
       )
+
       ?.sort((a, b) => (a?.nome! < b?.nome! ? -1 : 1));
   };
 
