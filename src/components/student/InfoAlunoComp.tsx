@@ -53,20 +53,20 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center w-full p-6 py-2 md:py-4 lg:p-6 xl:p-8">
+    <div className="flex flex-col justify-center w-full p-6 py-2 md:py-4 lg:p-6 xl:p-6 2xl:p-8">
       {!aluno ? (
         <Loading />
       ) : (
         <div className="flex flex-col w-full rounded-lg gap-3 ">
-          <div className="flex flex-col gap-3.5">
+          <div className="flex flex-col gap-4">
             {/* NOME DO ALUNO */}
             <NomePreparatorio idAluno={idAluno} />
 
             <div className="flex flex-col gap-0">
-              <div className="flex flex-col gap-3.5">
+              <div className="flex flex-col gap-4">
                 <InputComp
                   type="text"
-                  placeholder="Assuntos"
+                  placeholder="Assuntos, matérias, etc."
                   value={busca}
                   onChange={(e) => {
                     setBusca(e.target.value);

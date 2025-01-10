@@ -17,8 +17,8 @@ const LinkContainer = () => {
     <div>
       <div className="h-full">
         <div
-          className={`border-b-2  border-borderColor w-full p-2 px-3 text-black hover:bg-background01 cursor-pointer ${
-            section === "students" ? "bg-background01" : ""
+          className={`border-b-2  border-borderColor w-full p-2 px-3 text-black hover:bg-background03 cursor-pointer ${
+            section === "students" ? "bg-background03" : "bg-background02"
           }`}
           onClick={() => {
             router.push("/home");
@@ -34,8 +34,8 @@ const LinkContainer = () => {
         </div>
 
         <div
-          className={`border-b-2  border-borderColor w-full p-2 px-3 text-black hover:bg-background01 cursor-pointer ${
-            section === "planning" ? "bg-background01" : ""
+          className={`border-b-2  border-borderColor w-full p-2 px-3 text-black hover:bg-background03 cursor-pointer ${
+            section === "planning" ? "bg-background03" : "bg-background02"
           }`}
         >
           <div className="flex items-center justify-start gap-3">
@@ -48,8 +48,8 @@ const LinkContainer = () => {
         </div>
 
         <div
-          className={`border-b-2  border-borderColor w-full p-2 px-3 text-black hover:bg-background01 cursor-pointer ${
-            section === "profile" ? "bg-background01" : ""
+          className={`border-b-2  border-borderColor w-full p-2 px-3 text-black hover:bg-background03 cursor-pointer ${
+            section === "profile" ? "bg-background03" : "bg-background02"
           }`}
           onClick={() => {
             router.push("/profile");

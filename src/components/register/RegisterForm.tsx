@@ -81,7 +81,7 @@ const RegisterForm = () => {
     py-[32px] lg:py-[40px]"
     >
       <div
-        className="flex flex-col w-[350px] m-auto py-[24px] pb-[32px] px-[24px] bg-background02 rounded-md md:mx-[100px] md:px-[30px] md:w-[450px] md:py-[30px] lg:flex-row-reverse lg:w-[750px] lg:px-0 lg:justify-between lg:gap-0 lg:py-0 lg:mx-[80px] xl:mx-[195px] xl:w-[900px] xl:max-h-[510px]"
+        className="flex flex-col w-[90%] m-auto py-[24px] pb-[28px] px-[24px] bg-background02 rounded-md md:mx-[100px] md:px-[30px] md:w-[450px] md:py-[30px] lg:flex-row-reverse lg:w-[750px] lg:px-0 lg:justify-between lg:gap-0 lg:py-0 lg:mx-[60px] xl:mx-[100px] xl:w-[900px] xl:max-h-[510px] 2xl:mx-[300px]"
         style={{ boxShadow: "-2px 2px 2px #00000010" }}
       >
         <div className="flex flex-col gap-4 md:gap-5 lg:w-full lg:p-6 lg:pb-7 lg:justify-center lg:gap-2 xl:p-8 xl:pb-11 xl:gap-4">

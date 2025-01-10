@@ -22,7 +22,7 @@ const Accordion = ({
 
   return (
     <div
-      className={`w-full bg-background01 rounded-lg tracking-wide ${className}`}
+      className={`w-full bg-background03 rounded-lg tracking-wide ${className}`}
     >
       <div className="flex justify-between py-3">
         <div className="text-[#303030] text-[16px] flex w-full px-3">
@@ -54,7 +54,7 @@ const Accordion = ({
         id="component-accordion"
         className={`${
           isOpen ? "flex" : "hidden"
-        } border-background01 ${classNameContent}`}
+        } border-background03 ${classNameContent}`}
       >
         {children}
       </div>

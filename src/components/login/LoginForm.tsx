@@ -57,12 +57,9 @@ const LoginForm = () => {
   }, []);
 
   return (
-    <section
-      className="flex flex-col items-center md:items-start text-black font-inter min-h-[76vh] bg-background01 max-h-[92.2vh] xl:min-h-[69.4vh] section-login
-    py-[32px] lg:py-[40px]"
-    >
+    <section className="flex flex-col items-center md:items-start text-black font-inter min-h-[76vh] bg-background01 max-h-[92.2vh] xl:min-h-[69.4vh] section-login py-[32px] lg:py-[40px]">
       <div
-        className="flex flex-col w-[350px] py-[24px] pb-[32px] px-[24px] bg-background02 border-borderColor rounded-md  md:mx-[100px] md:px-[35px] md:w-[450px] md:pb-10 lg:mt-0 lg:flex-row-reverse lg:w-[750px] lg:px-0 lg:justify-between lg:gap-0 lg:py-0 lg:mx-[80px] xl:mx-[195px] xl:w-[900px] "
+        className="flex flex-col w-[90%] py-[24px] pb-[32px] px-6 bg-background02 border-borderColor rounded-md md:mx-[100px] md:px-[35px] md:w-[450px] md:pb-10 lg:mt-0 lg:flex-row-reverse lg:w-[750px] lg:px-0 lg:justify-between lg:gap-0 lg:py-0 lg:mx-[60px] xl:mx-[100px] xl:w-[900px] 2xl:mx-[300px]"
         style={{ boxShadow: "-2px 2px 2px #00000010" }}
       >
         <div className="flex flex-col gap-4 md:gap-5 lg:py-[10px] lg:w-full lg:px-6 lg:justify-center lg:gap-2 xl:p-10 xl:pb-14 xl:gap-4">

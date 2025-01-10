@@ -19,7 +19,8 @@ const config: Config = {
         dancing: ["dancing-bold", "serif"],
       },
       colors: {
-        background01: "#CFCFCF",
+        background01: "#d4d4d4",
+        background03: "#ececec",
         background02: "#DFDFDF",
         roxominerva: "#4F47A8",
         textwhite: "#ffffffce",
