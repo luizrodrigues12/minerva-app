@@ -87,11 +87,11 @@ const StudentForm = () => {
   }, []);
 
   return (
-    <motion.div className="p-4 py-2 w-full flex flex-col font-inter text-black md:px-4 md:py-4 lg:p-6 xl:p-4 2xl:p-6">
+    <motion.div className="w-full flex flex-col font-inter text-black p-6 py-2 md:py-4 lg:p-6 xl:p-8">
       {!isPending ? (
         <div className="flex flex-col md:p-4 lg:p-6 lg:pt-4 gap-2 md:gap-3 rounded-md text-[16px] md:border-2 md:border-borderColor">
           <div className="flex flex-col gap-3">
-            <div className="text-[18px]">Adicionar Aluno</div>
+            <div className="text-[18px]">Nome</div>
             <InputComp
               placeholder="Nome do aluno"
               className="!mt-0"

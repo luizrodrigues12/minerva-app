@@ -9,9 +9,14 @@ import {
 } from "flowbite-react-icons/outline";
 import { useRouter } from "nextjs-toploader/app";
 import { motion } from "motion/react";
+import { useUserContext } from "@/contexts/userData";
+import { useEffect } from "react";
 
 const AlunosComp = ({ name, idAluno }: { name: string; idAluno: string }) => {
   const router = useRouter();
+  const { user } = useUserContext();
+  const alunos = user.alunos?.filter((aluno) => aluno.idAluno === idAluno);
+  const aluno = alunos![0];
 
   const transformName = (name: string) => {
     const separatedNames = name.toLowerCase().split(" ");
@@ -39,6 +44,12 @@ const AlunosComp = ({ name, idAluno }: { name: string; idAluno: string }) => {
             size={28}
             strokeWidth={1.5}
             className="mr-1 cursor-pointer hover:text-roxominerva size-[28px] md:size-[28px]"
+            onClick={() => {
+              navigator.share({
+                title: `Informações de ${aluno.nome}`,
+                url: `${process.env.HOST}/parents/get_subjects/${idAluno}`,
+              });
+            }}
           />
         </motion.div>
 
@@ -61,6 +72,9 @@ const AlunosComp = ({ name, idAluno }: { name: string; idAluno: string }) => {
             size={22.5}
             strokeWidth={1.5}
             className="cursor-pointer hover:text-roxominerva size-[22.5px] md:size-[22.5px]"
+            onClick={() => {
+              router.push(`/student/delete_student/${idAluno}`);
+            }}
           />
         </motion.div>
       </div>

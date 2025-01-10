@@ -68,11 +68,11 @@ const UserDataComp = () => {
   });
 
   return (
-    <div className="flex flex-col w-full h-screen lg:p-4 2xl:p-6">
+    <div className="flex flex-col w-full h-screen md:p-4 lg:p-6 2xl:p-8">
       {!user || isPending ? (
         <Loading />
       ) : (
-        <div className="flex flex-col items-start p-4 py-2 md:py-4 gap-3 lg:border-2 lg:border-borderColor lg:rounded-md lg:p-6">
+        <div className="flex flex-col items-start gap-3 md:border-2 md:border-borderColor md:rounded-md p-6 py-2 md:p-4">
           <div className="flex gap-3 w-full">
             <Image
               src={"/images/blank-user.jpg"}

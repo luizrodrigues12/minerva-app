@@ -23,6 +23,12 @@ const NomePreparatorio = ({ idAluno }: Props) => {
           <ShareAll
             strokeWidth={1.5}
             className="size-[28px] cursor-pointer hover:text-roxominerva"
+            onClick={() =>
+              navigator.share({
+                title: `Informações de ${aluno.nome}`,
+                url: `${process.env.HOST}/parents/get_subjects/${idAluno}`,
+              })
+            }
           />
         </motion.div>
       </div>

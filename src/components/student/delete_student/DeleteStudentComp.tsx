@@ -1,33 +1,23 @@
 "use client";
 
 import { getCookie } from "cookies-next";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
 import { motion } from "motion/react";
 import Loading from "@/components/layout/Loading";
+import Button from "@/components/layout/Button";
+import { useUserContext } from "@/contexts/userData";
 
 const DeleteStudentComp = ({ idAluno }: { idAluno: string }) => {
   const router = useRouter();
   const token = getCookie("authorization");
+  const { getAluno } = useUserContext();
+  const [isPosting, setIsPosting] = useState(false);
+  const aluno = getAluno(idAluno);
 
-  const fetcher = (url: string) =>
-    fetch(`${process.env.HOST}/api/student/get_student`, {
-      method: "POST",
-      body: JSON.stringify({ idAluno: idAluno, token: token }),
-    }).then(async (res) => {
-      const { aluno } = await res.json();
-      return aluno[0];
-    });
-
-  const {
-    data: oneStudent,
-    mutate,
-    isValidating,
-  } = useSWR(`${process.env.HOST}/api/subject/get_subjects`, fetcher);
-
-  const deleteStudent = async (e: any) => {
-    e.preventDefault();
+  const deleteStudent = async () => {
+    setIsPosting(true);
     const result = await fetch(
       `${process.env.HOST}/api/student/delete_student/`,
       {
@@ -38,54 +28,51 @@ const DeleteStudentComp = ({ idAluno }: { idAluno: string }) => {
     window.location.href = "/home";
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (!aluno) {
+      router.replace("/home");
+    }
+  }, []);
 
   return (
-    <div className="w-full flex flex-col justify-center items-center height_pattern">
-      {isValidating ? (
+    <div className="w-full flex flex-col">
+      {isPosting || !aluno ? (
         <Loading />
       ) : (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2 }}
-          className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2"
+          className=" md:self-center rounded-lg w-full p-6 py-2 md:py-4 lg:p-6 xl:p-8"
         >
-          <div className="flex flex-col justify-center gap-1">
-            <div className="flex items-center justify-center gap-2">
-              <h2 className="font-medium text-xl w-[270px] text-center text-zinc-200">
-                Remover Aluno
-              </h2>
-            </div>
-            <hr className="bg-zinc-800 h-0.5 mt-2 mb-1 border-none" />
-            <div className="flex flex-col gap-1.5">
-              <h3 className="text-[1rem]">Username</h3>
-              <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg border-2 border-zinc-800">
-                {oneStudent?.nome}
+          <div className="flex flex-col justify-center gap-2">
+            <div className="flex flex-col gap-2">
+              <h3 className="text-[18px] text-black">Username</h3>
+              <div className="bg-background01 p-2 text-[#404040] px-3 rounded-md">
+                {aluno.nome}
               </div>
-
-              <h3 className="text-[1rem]">Preparatório(s)</h3>
-              <div className="bg-zinc-800 p-1.5 pl-2.5 rounded-lg flex gap-1 border-2 border-zinc-800">
-                {oneStudent?.preparatorio?.map((prep: any, i: any) =>
-                  prep == "aplicação" ? (
-                    <p key={i}>{prep[0].toUpperCase() + prep.substring(1)} </p>
-                  ) : (
-                    <p key={i}>{prep.toUpperCase()}</p>
-                  )
-                )}
+              <div className="flex flex-col gap-2">
+                <h3 className="text-[18px] text-black mb-1">Preparatório(s)</h3>
+                <div className="bg-background01 p-2 text-[#404040] px-3 rounded-md">
+                  {aluno.preparatorio?.map((prep: any, i: any) =>
+                    prep == "aplicação"
+                      ? prep[0].toUpperCase() + prep.substring(1) + " "
+                      : prep.toUpperCase() + " "
+                  )}
+                </div>
               </div>
             </div>
 
-            <div className="bg-zinc-900 p-1.5 mt-2 pl-2.5 rounded-lg flex gap-1 border-2 border-zinc-800 mb-2 text-zinc-100">
+            <div className="bg-background01 p-3 text-[#404040] rounded-md">
               Certifique-se de que realmente desejas remover esse aluno, pois
               essa ação é irreversível.
             </div>
-            <button
-              onClick={(e) => deleteStudent(e)}
-              className="flex items-center justify-center rounded-lg text-[15px] p-2 py-2 w-full text-zinc-200 bg-[#961f17de] tracking-wider hover:bg-[#961f17ad]"
+            <Button
+              className="!bg-red-800 hover:!bg-[#a51e1e]"
+              onClick={() => deleteStudent()}
             >
               Remover Aluno
-            </button>
+            </Button>
           </div>
         </motion.div>
       )}

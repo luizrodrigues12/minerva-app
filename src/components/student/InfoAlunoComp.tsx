@@ -1,7 +1,7 @@
 "use client";
 
 import { getCookie } from "cookies-next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NomePreparatorio from "./NomePreparatorio";
 import Loading from "../layout/Loading";
 import { motion } from "motion/react";
@@ -11,6 +11,7 @@ import MateriaComp from "./MateriaComp";
 import { MateriaType } from "@/models/MateriasModel";
 import { useUserContext } from "@/contexts/userData";
 import InputComp from "../layout/InputComp";
+import { useRouter } from "nextjs-toploader/app";
 
 const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   const [busca, setBusca] = useState("");
@@ -18,6 +19,9 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   const [objMateria, setObjMateria] = useState<any>();
   const { user } = useUserContext();
   const { mutate } = useChecksMutate(objMateria, idAluno, token);
+  const router = useRouter();
+  const alunos = user.alunos?.filter((aluno) => aluno.idAluno === idAluno);
+  const aluno = alunos![0];
 
   // Alterando marcado ou não
   const toggleIsChecked = async (objMateria: any, e: any) => {
@@ -42,9 +46,15 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
       );
   };
 
+  useEffect(() => {
+    if (!aluno) {
+      router.replace("/home");
+    }
+  }, []);
+
   return (
     <div className="flex flex-col justify-center w-full p-4 py-2 md:py-4 lg:p-4 2xl:p-8">
-      {!user ? (
+      {!aluno ? (
         <Loading />
       ) : (
         <div className="flex flex-col w-full rounded-lg gap-3 ">
