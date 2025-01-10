@@ -25,6 +25,7 @@ const StudentsContainer = () => {
       <div className="flex flex-col gap-1.5 w-full p-6 py-2 md:py-4 lg:p-6 xl:p-6 2xl:p-8">
         <div className="flex gap-2">
           <InputComp
+            isSearch={true}
             placeholder="Pesquisar"
             value={busca || ""}
             className="!mt-0"

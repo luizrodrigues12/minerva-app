@@ -20,8 +20,9 @@ const config: Config = {
       },
       colors: {
         background01: "#d4d4d4",
-        background03: "#ececec",
         background02: "#DFDFDF",
+        background03: "#ececec",
+        corIcones: "#524AAF",
         roxominerva: "#4F47A8",
         textwhite: "#ffffffce",
         buttonHover: "#413A8C",

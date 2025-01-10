@@ -50,11 +50,7 @@ const SubjectForm = ({ error }: Props) => {
               <div className="flex flex-col gap-2 text-[14px]">
                 <div className="flex flex-col gap-1.5">
                   {/* PORT 6 ANO */}
-                  <Accordion
-                    textLeft="português"
-                    textRight="6° Ano"
-                    classNameContent="flex flex-col gap-2 p-2 bg-background02 border-[6px] border-t-0 rounded-[0.6rem]"
-                  >
+                  <Accordion textLeft="português" textRight="6° Ano">
                     {subjectsSorted.map((materia, i) => {
                       if (
                         materia.ordem <= 10 &&
@@ -74,11 +70,7 @@ const SubjectForm = ({ error }: Props) => {
                     })}
                   </Accordion>
                   {/* PORT 1 ANO */}
-                  <Accordion
-                    textLeft="português"
-                    textRight="1° Ano"
-                    classNameContent="flex flex-col gap-2 p-2 bg-background02 border-[6px] border-t-0 rounded-[0.6rem]"
-                  >
+                  <Accordion textLeft="português" textRight="1° Ano">
                     {subjectsSorted.map((materia, i) => {
                       if (
                         materia.ordem > 10 &&
@@ -98,11 +90,7 @@ const SubjectForm = ({ error }: Props) => {
                     })}
                   </Accordion>
                   {/* MAT 6 ANO */}
-                  <Accordion
-                    textLeft="matemática"
-                    textRight="6° Ano"
-                    classNameContent="flex flex-col gap-2 p-2 bg-background02 border-[6px] border-t-0 rounded-[0.6rem]"
-                  >
+                  <Accordion textLeft="matemática" textRight="6° Ano">
                     {subjectsSorted.map((materia, i) => {
                       if (
                         materia.ordem <= 15 &&
@@ -122,11 +110,7 @@ const SubjectForm = ({ error }: Props) => {
                     })}
                   </Accordion>
                   {/* MAT 1 ANO */}
-                  <Accordion
-                    textLeft="Matemática"
-                    textRight="1° Ano"
-                    classNameContent="flex flex-col gap-2 p-2 bg-background02 border-[6px] border-t-0 rounded-[0.6rem]"
-                  >
+                  <Accordion textLeft="Matemática" textRight="1° Ano">
                     {subjectsSorted.map((materia, i) => {
                       if (
                         materia.ordem > 15 &&

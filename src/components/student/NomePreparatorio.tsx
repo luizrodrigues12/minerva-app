@@ -22,7 +22,7 @@ const NomePreparatorio = ({ idAluno }: Props) => {
         >
           <ShareAll
             strokeWidth={1.5}
-            className="size-[28px] cursor-pointer hover:text-roxominerva"
+            className="size-[28px] cursor-pointer text-corIcones hover:text-roxominerva"
             onClick={() =>
               navigator.share({
                 title: `Informações de ${aluno.nome}`,

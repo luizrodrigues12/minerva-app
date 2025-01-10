@@ -39,12 +39,12 @@ const Accordion = ({
         </div>
         {isOpen ? (
           <AngleUp
-            className="mx-2 flex justify-center items-center mr-3 cursor-pointer text-[#303030]"
+            className="mx-2 flex justify-center items-center mr-3 cursor-pointer text-corIcones hover:text-roxominerva"
             onClick={() => setIsOpen(!isOpen)}
           />
         ) : (
           <AngleDown
-            className="mx-2 flex justify-center items-center mr-3 cursor-pointer text-[#303030]"
+            className="mx-2 flex justify-center items-center mr-3 cursor-pointer text-corIcones hover:text-roxominerva"
             onClick={() => setIsOpen(!isOpen)}
           />
         )}
@@ -54,7 +54,7 @@ const Accordion = ({
         id="component-accordion"
         className={`${
           isOpen ? "flex" : "hidden"
-        } border-background03 ${classNameContent}`}
+        } border-background03 bg-background02 border-[12px] border-t-0 flex flex-col p-2 gap-2 ${classNameContent}`}
       >
         {children}
       </div>

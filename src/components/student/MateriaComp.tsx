@@ -6,9 +6,16 @@ type Props = {
   isChecked: boolean;
   onClick?: any;
   id: string;
+  isParentPage?: boolean;
 };
 
-const MateriaComp = ({ text, onClick, isChecked, id }: Props) => {
+const MateriaComp = ({
+  text,
+  onClick,
+  isChecked,
+  id,
+  isParentPage = false,
+}: Props) => {
   return (
     <div
       className="checkbox flex justify-between items-center p-2.5 px-4 bg-background03 w-full rounded-lg tracking-widest text-[13.5px] text-zinc-800"
@@ -23,13 +30,17 @@ const MateriaComp = ({ text, onClick, isChecked, id }: Props) => {
         <CheckCircleSolid
           onClick={onClick}
           color="#d4d4d8"
-          className="hover:cursor-pointer size-[27px] text-[#606060]"
+          className={`size-[27px] text-roxominerva ${
+            isParentPage ? " " : "hover:cursor-pointer"
+          }`}
         />
       ) : (
         <CheckCircle
           onClick={onClick}
           color={"#d4d4d8"}
-          className="hover:cursor-pointer size-[27px] text-[#404040]"
+          className={` size-[27px] text-corIcones ${
+            isParentPage ? " " : "hover:cursor-pointer"
+          }`}
         />
       )}
     </div>
