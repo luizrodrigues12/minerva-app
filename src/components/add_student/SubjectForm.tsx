@@ -34,9 +34,14 @@ const SubjectForm = ({ error }: Props) => {
           <motion.div className="rounded-lg w-full">
             <div className="flex flex-col gap-2">
               <div className="flex justify-between">
-                <h2 className="tracking-wide pl-1 text-[18px]">Matérias</h2>
+                <h2 className="tracking-wide pl-1 text-[16px] lg:text-[18px]">
+                  Matérias
+                </h2>
                 <div className="flex items-center justify-between pr-1">
-                  <button onClick={(e) => checkAll(e)} className="text-[14px]">
+                  <button
+                    onClick={(e) => checkAll(e)}
+                    className="text-[12px] md:text-[14px]"
+                  >
                     {AllCheckeds ? "desmarcar tudo" : "selecionar tudo"}
                   </button>
                 </div>
