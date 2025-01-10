@@ -29,7 +29,7 @@ const CheckComp = ({
       <motion.input
         whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
         type="checkbox"
-        className="bg-transparent border-2 p-[7px] border-[#404040] rounded-full cursor-pointer checked:bg-roxominerva  checked:border-2 focus:outline-none focus:ring-offset-0 focus:ring-2 focus:ring-background01"
+        className="bg-transparent border-2 border-[#404040] rounded-full cursor-pointer checked:bg-roxominerva  checked:border-2 focus:outline-none focus:ring-offset-0 focus:ring-2 focus:ring-background01 size-[21px]"
         name={name}
         id={id}
         value={value}

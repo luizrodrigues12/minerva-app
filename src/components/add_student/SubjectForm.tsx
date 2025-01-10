@@ -32,7 +32,7 @@ const SubjectForm = ({ error }: Props) => {
       {subjects ? (
         <div className="w-full flex flex-col justify-center items-start text-black text-[16px]">
           <motion.div className="rounded-lg w-full">
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
               <div className="flex justify-between">
                 <h2 className="tracking-wide pl-1 text-[18px]">Matérias</h2>
                 <div className="flex items-center justify-between pr-1">
