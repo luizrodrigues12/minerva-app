@@ -29,18 +29,18 @@ const MateriaComp = ({
       {isChecked ? (
         <CheckCircleSolid
           onClick={onClick}
+          strokeWidth={1.5}
           color="#d4d4d8"
           className={`size-[27px] text-roxominerva ${
             isParentPage ? " " : "hover:cursor-pointer"
           }`}
         />
       ) : (
-        <CheckCircle
-          onClick={onClick}
-          color={"#d4d4d8"}
-          className={` size-[27px] text-corIcones ${
-            isParentPage ? " " : "hover:cursor-pointer"
+        <div
+          className={`size-[21.5px] border-[1.5px] my-[2.75px] border-roxominerva rounded-full mr-0.5 ${
+            isParentPage ? " " : "cursor-pointer"
           }`}
+          onClick={onClick}
         />
       )}
     </div>
