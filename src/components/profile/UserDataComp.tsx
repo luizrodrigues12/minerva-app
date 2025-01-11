@@ -72,7 +72,7 @@ const UserDataComp = () => {
   });
 
   return (
-    <div className="flex flex-col w-full h-screen md:p-4 lg:p-6 2xl:p-8">
+    <div className="flex flex-col w-full h-screen px-6 py-2 md:py-4 lg:p-6 2xl:p-8">
       {!user || isPending ? (
         <Loading />
       ) : (

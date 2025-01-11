@@ -43,7 +43,7 @@ const AlunosComp = ({ name, idAluno }: { name: string; idAluno: string }) => {
           <ShareAll
             size={28}
             strokeWidth={1.5}
-            className="mr-1 cursor-pointer hover:text-roxominerva size-[28px] md:size-[28px]"
+            className="mr-1 cursor-pointer text-corIcones hover:text-roxominerva size-[28px] md:size-[28px]"
             onClick={() => {
               navigator.share({
                 title: `Informações de ${aluno.nome}`,
@@ -60,7 +60,7 @@ const AlunosComp = ({ name, idAluno }: { name: string; idAluno: string }) => {
           <UserEdit
             size={28}
             strokeWidth={1.5}
-            className="cursor-pointer hover:text-roxominerva size-[28px] md:size-[28px]"
+            className="cursor-pointer text-corIcones hover:text-roxominerva size-[28px] md:size-[28px]"
           />
         </motion.div>
 
@@ -71,7 +71,7 @@ const AlunosComp = ({ name, idAluno }: { name: string; idAluno: string }) => {
           <TrashBin
             size={22.5}
             strokeWidth={1.5}
-            className="cursor-pointer hover:text-roxominerva size-[22.5px] md:size-[22.5px]"
+            className="cursor-pointer text-corIcones hover:text-roxominerva size-[22.5px] md:size-[22.5px]"
             onClick={() => {
               router.push(`/student/delete_student/${idAluno}`);
             }}
