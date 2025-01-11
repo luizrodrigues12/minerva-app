@@ -37,7 +37,7 @@ const MateriaComp = ({
         />
       ) : (
         <div
-          className={`size-[21.5px] border-[1.5px] my-[2.75px] border-roxominerva rounded-full mr-0.5 ${
+          className={`size-[21px] border-[1.5px] my-[3px] border-roxominerva rounded-[100%] mr-[2.5px] md:border-[2px] ${
             isParentPage ? " " : "cursor-pointer"
           }`}
           onClick={onClick}
