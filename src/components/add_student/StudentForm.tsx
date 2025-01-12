@@ -50,8 +50,6 @@ const StudentForm = () => {
       getCheckedsSubjects();
       getCheckedsPrep();
 
-      console.log(checkedsPrep);
-
       // Verificações
       if (!nome) throw new Error("Escolha um nome válido.");
       if (checkedsPrep.length == 0) throw new Error("Escolha um preparatório.");
@@ -62,22 +60,13 @@ const StudentForm = () => {
 
       mutate({
         idStudent: idStudent,
-        nome: primeirasMaiusculas(nome),
+        nome: nome,
         checkedsPrep,
         checkedsSubjects: checkedsSubjects,
       });
     } catch (error: any) {
       setError(error.message);
     }
-  };
-
-  const primeirasMaiusculas = (texto: string) => {
-    return texto
-      .trim()
-      .toLowerCase()
-      .split(" ")
-      .map((palavra) => palavra.split("")[0].toUpperCase() + palavra.slice(1))
-      .join(" ");
   };
 
   useEffect(() => {

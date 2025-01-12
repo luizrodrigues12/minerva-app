@@ -2,12 +2,11 @@ import { useUserContext } from "@/contexts/userData";
 import Button from "../layout/Button";
 import InputComp from "../layout/InputComp";
 import AlunosComp from "./AlunosComp";
-import { useDeferredValue, useState } from "react";
 import { useRouter } from "nextjs-toploader/app";
+import { useState } from "react";
 
 const StudentsContainer = () => {
   const [busca, setBusca] = useState("");
-  const buscaDeferred = useDeferredValue(busca);
   const { user } = useUserContext();
   const router = useRouter();
 
@@ -16,7 +15,6 @@ const StudentsContainer = () => {
       ?.filter((aluno) =>
         aluno.nome?.toLowerCase().includes(busca.toLowerCase())
       )
-
       ?.sort((a, b) => (a?.nome! < b?.nome! ? -1 : 1));
   };
 

@@ -1,30 +1,15 @@
 "use client";
 
-import {
-  CalendarEdit,
-  Edit,
-  ShareAll,
-  TrashBin,
-  UserEdit,
-} from "flowbite-react-icons/outline";
+import { ShareAll, TrashBin, UserEdit } from "flowbite-react-icons/outline";
 import { useRouter } from "nextjs-toploader/app";
 import { motion } from "motion/react";
 import { useUserContext } from "@/contexts/userData";
-import { useEffect } from "react";
 
-const AlunosComp = ({ name, idAluno }: { name: string; idAluno: string }) => {
+const AlunosComp = ({ idAluno }: { name?: string; idAluno: string }) => {
   const router = useRouter();
   const { user } = useUserContext();
-  const alunos = user.alunos?.filter((aluno) => aluno.idAluno === idAluno);
-  const aluno = alunos![0];
-
-  const transformName = (name: string) => {
-    const separatedNames = name.toLowerCase().split(" ");
-    return separatedNames.map(
-      (palavra, i) =>
-        palavra.split("")[0].toUpperCase() + palavra.slice(1) + " "
-    );
-  };
+  const alunos = user.alunos?.filter((aluno) => aluno.idAluno === idAluno)[0];
+  const aluno = alunos;
 
   return (
     <div className="w-full text-black py-2 px-4 rounded-md bg-background03 flex items-center justify-between text-[16px] md:text-[16px]">
@@ -32,7 +17,7 @@ const AlunosComp = ({ name, idAluno }: { name: string; idAluno: string }) => {
         className="hover:text-roxominerva cursor-pointer pr-1 md:pr-3"
         onClick={() => router.push(`/student/${idAluno}`)}
       >
-        {transformName(name)}
+        {aluno?.nome}
       </div>
 
       <div className="flex gap-1.5 md:gap-3 items-center">
@@ -46,7 +31,7 @@ const AlunosComp = ({ name, idAluno }: { name: string; idAluno: string }) => {
             className="mr-1 cursor-pointer hover:text-roxominerva size-[28px] md:size-[28px]"
             onClick={() => {
               navigator.share({
-                title: `Informações de ${aluno.nome}`,
+                title: `Informações de ${aluno?.nome}`,
                 url: `${process.env.HOST}/parents/get_subjects/${idAluno}`,
               });
             }}
