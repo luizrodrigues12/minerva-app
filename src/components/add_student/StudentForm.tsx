@@ -7,10 +7,10 @@ import SubjectForm from "./SubjectForm";
 import Loading from "../layout/Loading";
 import { motion } from "motion/react";
 import { useAddStudent } from "@/hooks/useAddStudent";
-import { useRouter } from "nextjs-toploader/app";
 import InputComp from "../layout/InputComp";
 import { useSectionContext } from "@/contexts/section";
 import Button from "../layout/Button";
+import Container from "../layout/Container";
 
 const StudentForm = () => {
   const idStudent = uuidv4();
@@ -76,47 +76,53 @@ const StudentForm = () => {
   }, []);
 
   return (
-    <motion.div className="w-full flex flex-col font-inter text-black p-6 py-2 md:py-4 lg:p-6 xl:p-6 2xl:p-8">
-      {!isPending ? (
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <div className="text-[16px] lg:text-[18px]">Nome</div>
-            <InputComp
-              placeholder="Nome do aluno"
-              className="!mt-0"
-              value={nome || ""}
-              onChange={(e) => {
-                setNome(e.target.value);
-              }}
-              onFocus={() => setError("")}
-            />
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <div className="text-[16px] lg:text-[18px]">Preparatório</div>
-            <div className="flex flex-col gap-1.5">
-              <CheckComp text="APLICAÇÃO" value="aplicação" name="checkItem" />
-              <CheckComp text="CPM" value="cpm" name="checkItem" />
-              <CheckComp text="CEMAM" value="cemam" name="checkItem" />
+    <Container>
+      <motion.div className="w-full flex flex-col font-inter text-black">
+        {!isPending ? (
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
+              <div className="text-[16px] lg:text-[18px]">Nome</div>
+              <InputComp
+                placeholder="Nome do aluno"
+                className="!mt-0"
+                value={nome || ""}
+                onChange={(e) => {
+                  setNome(e.target.value);
+                }}
+                onFocus={() => setError("")}
+              />
             </div>
+
+            <div className="flex flex-col gap-2">
+              <div className="text-[16px] lg:text-[18px]">Preparatório</div>
+              <div className="flex flex-col gap-1.5">
+                <CheckComp
+                  text="APLICAÇÃO"
+                  value="aplicação"
+                  name="checkItem"
+                />
+                <CheckComp text="CPM" value="cpm" name="checkItem" />
+                <CheckComp text="CEMAM" value="cemam" name="checkItem" />
+              </div>
+            </div>
+
+            <SubjectForm error={error} />
+
+            <Button
+              whileHover={{ scale: 1.005 }}
+              whileTap={{ scale: 1 }}
+              animated={false}
+              className="py-2.5"
+              onClick={(e) => addStudent(e)}
+            >
+              Adicionar
+            </Button>
           </div>
-
-          <SubjectForm error={error} />
-
-          <Button
-            whileHover={{ scale: 1.005 }}
-            whileTap={{ scale: 1 }}
-            animated={false}
-            className="py-2.5"
-            onClick={(e) => addStudent(e)}
-          >
-            Adicionar
-          </Button>
-        </div>
-      ) : (
-        <Loading />
-      )}
-    </motion.div>
+        ) : (
+          <Loading />
+        )}
+      </motion.div>
+    </Container>
   );
 };
 

@@ -4,6 +4,7 @@ import InputComp from "../layout/InputComp";
 import AlunosComp from "./AlunosComp";
 import { useRouter } from "nextjs-toploader/app";
 import { useState } from "react";
+import Container from "../layout/Container";
 
 const StudentsContainer = () => {
   const [busca, setBusca] = useState("");
@@ -19,8 +20,8 @@ const StudentsContainer = () => {
   };
 
   return (
-    <div>
-      <div className="flex flex-col gap-1.5 w-full p-6 py-2 md:py-4 lg:p-6 xl:p-6 2xl:p-8">
+    <Container>
+      <div className="flex flex-col gap-1.5 w-full">
         <div className="flex gap-2">
           <InputComp
             isSearch={true}
@@ -53,7 +54,7 @@ const StudentsContainer = () => {
           </div>
         )}
       </div>
-    </div>
+    </Container>
   );
 };
 

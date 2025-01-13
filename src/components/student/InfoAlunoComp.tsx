@@ -8,6 +8,7 @@ import InputComp from "../layout/InputComp";
 import { useRouter } from "nextjs-toploader/app";
 import AllSubjects from "./AllSubjects";
 import Button from "../layout/Button";
+import Container from "../layout/Container";
 
 const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   const [busca, setBusca] = useState("");
@@ -21,40 +22,42 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center w-full p-6 py-2 md:py-4 lg:p-6 xl:p-6 2xl:p-8">
+    <Container>
       {!getAluno(idAluno) ? (
         <Loading />
       ) : (
-        <div className="flex flex-col w-full rounded-lg gap-3 ">
-          <div className="flex flex-col gap-4">
-            {/* NOME DO ALUNO */}
-            <NomePreparatorio idAluno={idAluno} />
+        <div className="flex flex-col justify-center w-full">
+          <div className="flex flex-col w-full rounded-lg gap-3 ">
+            <div className="flex flex-col gap-4">
+              {/* NOME DO ALUNO */}
+              <NomePreparatorio idAluno={idAluno} />
 
-            <div className="flex flex-col gap-0">
-              <div className="flex flex-col gap-4">
-                <InputComp
-                  type="text"
-                  placeholder="Buscar por assuntos"
-                  value={busca}
-                  onChange={(e) => {
-                    setBusca(e.target.value);
-                  }}
-                  className="!mt-0"
-                  isSearch={true}
-                />
-                <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-0">
+                <div className="flex flex-col gap-4">
+                  <InputComp
+                    type="text"
+                    placeholder="Buscar por assuntos"
+                    value={busca}
+                    onChange={(e) => {
+                      setBusca(e.target.value);
+                    }}
+                    className="!mt-0"
+                    isSearch={true}
+                  />
                   <div className="flex flex-col gap-1.5">
-                    <AllSubjects busca={busca} idAluno={idAluno} />
+                    <div className="flex flex-col gap-1.5">
+                      <AllSubjects busca={busca} idAluno={idAluno} />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <Button>Editar</Button>
+            <Button>Editar</Button>
+          </div>
         </div>
       )}
-    </div>
+    </Container>
   );
 };
 
