@@ -1,12 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import MateriaComp from "../../student/MateriaComp";
 import Loading from "../../layout/Loading";
-import Accordion from "@/components/layout/Accordion";
-import { useAlunoData } from "@/hooks/useAlunoData";
-import { getCookie } from "cookies-next/client";
-import { MateriaType } from "@/models/MateriasModel";
 import { useParentsData } from "@/hooks/useParentsData";
 import AllSubjects from "@/components/student/AllSubjects";
 import InputComp from "@/components/layout/InputComp";

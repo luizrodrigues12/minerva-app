@@ -17,7 +17,7 @@ import {
 type UserContextProps = {
   user: dataMongoUser;
   isFetching: boolean;
-  getAluno: (idAluno: string) => AlunoObj
+  getAluno: (idAluno: string) => AlunoObj;
   refetch: (
     options?: RefetchOptions
   ) => Promise<QueryObserverResult<dataMongoUser, Error>>;
@@ -31,7 +31,7 @@ const UserContextProvider = ({ children }: { children: ReactNode }) => {
 
   const getAluno = (idAluno: string) => {
     const aluno = data?.alunos?.filter((aluno) => aluno.idAluno === idAluno);
-    return aluno![0]
+    return aluno![0];
   };
 
   const logoutFunction = async () => {

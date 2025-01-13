@@ -1,3 +1,4 @@
+import { AlunoObj } from "@/models/userModel";
 import { useQuery } from "@tanstack/react-query";
 
 export function useParentsData(idAluno: string) {
@@ -10,7 +11,7 @@ export function useParentsData(idAluno: string) {
     return aluno;
   };
 
-  const query = useQuery({
+  const query = useQuery<AlunoObj>({
     queryFn: getAlunoData,
     queryKey: ["subjects-data"],
   });
