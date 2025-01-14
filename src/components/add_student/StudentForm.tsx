@@ -40,7 +40,8 @@ const StudentForm = () => {
 
   const getCheckedsSubjects = () => {
     document.getElementsByName("subject").forEach((subject: any) => {
-      if (subject.checked) checkedsSubjects.push(subject.value);
+      if (subject.checked && !checkedsSubjects.includes(subject.value))
+        checkedsSubjects.push(subject.value);
     });
   };
 
