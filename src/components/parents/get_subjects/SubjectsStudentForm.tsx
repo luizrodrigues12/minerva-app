@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import Loading from "../../layout/Loading";
-import { useParentsData } from "@/hooks/useParentsData";
-import AllSubjects from "@/components/student/AllSubjects";
+import { useEffect, useState } from "react";
 import InputComp from "@/components/layout/InputComp";
-import NomePreparatorio from "@/components/student/NomePreparatorio";
 import Container from "@/components/layout/Container";
+import NomePreparatorioParents from "@/components/parents/get_subjects/NomePreparatorioParents";
+import AllSubjectsParents from "./AllSubjectsParents";
+import { useParentsData } from "@/hooks/useParentsData";
+import Loading from "@/components/layout/Loading";
 
 type Props = {
   idAluno: string;
@@ -14,19 +14,20 @@ type Props = {
 
 const SubjectsStudentForm = ({ idAluno }: Props) => {
   const [busca, setBusca] = useState("");
-  const { data: aluno } = useParentsData(idAluno);
+  const { data: aluno, refetch, isFetched } = useParentsData(idAluno);
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   return (
     <Container>
-      {!aluno ? (
-        <Loading />
-      ) : (
+      {isFetched ? (
         <div className="flex flex-col justify-center w-full">
           <div className="flex flex-col w-full rounded-lg gap-3 ">
             <div className="flex flex-col gap-4">
               {/* NOME DO ALUNO */}
-              <NomePreparatorio idAluno={idAluno} />
-
+              <NomePreparatorioParents idAluno={idAluno} aluno={aluno!} />
               <div className="flex flex-col gap-0">
                 <div className="flex flex-col gap-4">
                   <InputComp
@@ -41,11 +42,7 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                   />
                   <div className="flex flex-col gap-1.5">
                     <div className="flex flex-col gap-1.5">
-                      <AllSubjects
-                        busca={busca}
-                        idAluno={idAluno}
-                        isParentPage={true}
-                      />
+                      <AllSubjectsParents busca={busca} idAluno={idAluno} />
                     </div>
                   </div>
                 </div>
@@ -53,6 +50,8 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
             </div>
           </div>
         </div>
+      ) : (
+        <Loading />
       )}
     </Container>
   );

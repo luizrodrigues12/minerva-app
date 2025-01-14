@@ -10,14 +10,9 @@ import { MateriaType } from "@/models/MateriasModel";
 type AllSubjectsProps = {
   idAluno: string;
   busca: string;
-  isParentPage?: boolean;
 };
 
-const AllSubjects = ({
-  idAluno,
-  busca,
-  isParentPage = false,
-}: AllSubjectsProps) => {
+const AllSubjects = ({ idAluno, busca }: AllSubjectsProps) => {
   const { user, getAluno } = useUserContext();
   const [objMateria, setObjMateria] = useState<any>();
   const { mutate } = useChecksMutate(objMateria, idAluno, user.token);
@@ -55,12 +50,8 @@ const AllSubjects = ({
                     text={materia.nome.toUpperCase()}
                     id={materia._id!}
                     isChecked={materia.isChecked}
-                    isParentPage={isParentPage}
-                    onClick={
-                      !isParentPage
-                        ? (e: any) => toggleIsChecked(materia, e)
-                        : () => {}
-                    }
+                    isParentPage={true}
+                    onClick={(e: any) => toggleIsChecked(materia, e)}
                   />
                 );
             }
@@ -83,12 +74,8 @@ const AllSubjects = ({
                     text={materia.nome.toUpperCase()}
                     id={materia._id!}
                     isChecked={materia.isChecked}
-                    isParentPage={isParentPage}
-                    onClick={
-                      !isParentPage
-                        ? (e: any) => toggleIsChecked(materia, e)
-                        : () => {}
-                    }
+                    isParentPage={true}
+                    onClick={(e: any) => toggleIsChecked(materia, e)}
                   />
                 );
             }
@@ -111,12 +98,8 @@ const AllSubjects = ({
                     text={materia.nome.toUpperCase()}
                     id={materia._id!}
                     isChecked={materia.isChecked}
-                    isParentPage={isParentPage}
-                    onClick={
-                      !isParentPage
-                        ? (e: any) => toggleIsChecked(materia, e)
-                        : () => {}
-                    }
+                    isParentPage={true}
+                    onClick={(e: any) => toggleIsChecked(materia, e)}
                   />
                 );
             }
@@ -140,12 +123,8 @@ const AllSubjects = ({
                     text={materia.nome.toUpperCase()}
                     id={materia._id!}
                     isChecked={materia.isChecked}
-                    isParentPage={isParentPage}
-                    onClick={
-                      !isParentPage
-                        ? (e: any) => toggleIsChecked(materia, e)
-                        : () => {}
-                    }
+                    isParentPage={true}
+                    onClick={(e: any) => toggleIsChecked(materia, e)}
                   />
                 );
             }
