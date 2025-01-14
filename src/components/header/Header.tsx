@@ -9,9 +9,11 @@ import NavDesktop from "./NavDesktop";
 import { deleteCookie } from "cookies-next";
 import Button from "../layout/Button";
 import { useUserContext } from "@/contexts/userData";
+import { useSectionContext } from "@/contexts/section";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { section } = useSectionContext();
   const { user } = useUserContext();
 
   useEffect(() => {}, []);

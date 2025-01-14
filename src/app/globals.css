@@ -66,8 +66,9 @@
 
 .background-art {
   background-image: url("../../public/images/background-art.jpg");
-  background-position: -60px bottom;
+  background-position: center center;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .scroll-style::-webkit-scrollbar {
