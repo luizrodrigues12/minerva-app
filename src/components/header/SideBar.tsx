@@ -2,12 +2,10 @@
 
 import { CloseCircle } from "flowbite-react-icons/outline";
 import { motion } from "motion/react";
-import MoonIcon from "./svgs/moonIcon";
 import { Dispatch, SetStateAction } from "react";
 import { useSectionContext } from "@/contexts/section";
 import { useRouter } from "nextjs-toploader/app";
-import { getCookie } from "cookies-next";
-import Button from "../layout/Button";
+import { useUserContext } from "@/contexts/userData";
 
 type SideBarProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -18,7 +16,7 @@ type SideBarProps = {
 const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
   const { section } = useSectionContext();
   const router = useRouter();
-  const token = getCookie("authorization");
+  const { user } = useUserContext();
 
   return (
     <motion.div
@@ -29,7 +27,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
         isTablet ? "w-[300px]" : "w-[195px]"
       } right-0 top-0 z-50 bg-background02 h-full border-l-2 border-borderColor text-[14px] md:text-[16px] ${className}`}
     >
-      {token ? (
+      {user ? (
         <div>
           <div className="h-[8vh] flex items-center justify-end border-b-2 border-b-borderColor pr-[24px] md:pr-0 md:justify-center md:h-[10vh] xl:h-[100px]">
             <CloseCircle
@@ -78,9 +76,8 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
             perfil
           </div>
           <div className="flex items-center justify-center border-b-2 border-b-borderColor gap-[5px] cursor-pointer">
-            <MoonIcon className="size-[21px] md:size-[28px]" />
             <div className="h-[65px] flex items-center justify-center ">
-              escuro
+              modo escuro
             </div>
           </div>
         </div>

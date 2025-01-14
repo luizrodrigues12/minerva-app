@@ -149,15 +149,6 @@ const UserDataComp = () => {
                 </p>
               )}
 
-              {/* <Button
-              whileHover={{ scale: 1.003 }}
-              whileTap={{ scale: 0.99 }}
-              onClick={async () => await changePassword()}
-              className="text-background02"
-            >
-              Alterar senha
-            </Button> */}
-
               {isOpen && (
                 <div className="p-6 bg-background01 text-black border-2 border-borderColor rounded-md modal">
                   <div className="flex flex-col gap-3">
