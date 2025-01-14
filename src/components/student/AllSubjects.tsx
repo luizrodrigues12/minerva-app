@@ -50,7 +50,7 @@ const AllSubjects = ({ idAluno, busca }: AllSubjectsProps) => {
                     text={materia.nome.toUpperCase()}
                     id={materia._id!}
                     isChecked={materia.isChecked}
-                    isParentPage={true}
+                    isParentPage={false}
                     onClick={(e: any) => toggleIsChecked(materia, e)}
                   />
                 );
@@ -74,7 +74,7 @@ const AllSubjects = ({ idAluno, busca }: AllSubjectsProps) => {
                     text={materia.nome.toUpperCase()}
                     id={materia._id!}
                     isChecked={materia.isChecked}
-                    isParentPage={true}
+                    isParentPage={false}
                     onClick={(e: any) => toggleIsChecked(materia, e)}
                   />
                 );
@@ -98,7 +98,7 @@ const AllSubjects = ({ idAluno, busca }: AllSubjectsProps) => {
                     text={materia.nome.toUpperCase()}
                     id={materia._id!}
                     isChecked={materia.isChecked}
-                    isParentPage={true}
+                    isParentPage={false}
                     onClick={(e: any) => toggleIsChecked(materia, e)}
                   />
                 );
@@ -123,7 +123,7 @@ const AllSubjects = ({ idAluno, busca }: AllSubjectsProps) => {
                     text={materia.nome.toUpperCase()}
                     id={materia._id!}
                     isChecked={materia.isChecked}
-                    isParentPage={true}
+                    isParentPage={false}
                     onClick={(e: any) => toggleIsChecked(materia, e)}
                   />
                 );

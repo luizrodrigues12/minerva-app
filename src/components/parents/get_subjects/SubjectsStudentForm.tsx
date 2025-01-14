@@ -7,6 +7,7 @@ import NomePreparatorioParents from "@/components/parents/get_subjects/NomePrepa
 import AllSubjectsParents from "./AllSubjectsParents";
 import { useParentsData } from "@/hooks/useParentsData";
 import Loading from "@/components/layout/Loading";
+import Button from "@/components/layout/Button";
 
 type Props = {
   idAluno: string;
@@ -14,7 +15,12 @@ type Props = {
 
 const SubjectsStudentForm = ({ idAluno }: Props) => {
   const [busca, setBusca] = useState("");
-  const { data: aluno, refetch, isFetched } = useParentsData(idAluno);
+  const {
+    data: aluno,
+    refetch,
+    isFetched,
+    isRefetchError,
+  } = useParentsData(idAluno);
 
   useEffect(() => {
     refetch();
@@ -24,31 +30,37 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
     <Container>
       {isFetched ? (
         <div className="flex flex-col justify-center w-full">
-          <div className="flex flex-col w-full rounded-lg gap-3 ">
-            <div className="flex flex-col gap-4">
-              {/* NOME DO ALUNO */}
-              <NomePreparatorioParents idAluno={idAluno} aluno={aluno!} />
-              <div className="flex flex-col gap-0">
-                <div className="flex flex-col gap-4">
-                  <InputComp
-                    isSearch={true}
-                    type="text"
-                    placeholder="Buscar por assuntos"
-                    value={busca}
-                    onChange={(e) => {
-                      setBusca(e.target.value);
-                    }}
-                    className="!mt-0"
-                  />
-                  <div className="flex flex-col gap-1.5">
+          {!isRefetchError ? (
+            <div className="flex flex-col w-full rounded-lg gap-3 ">
+              <div className="flex flex-col gap-4">
+                {/* NOME DO ALUNO */}
+                <NomePreparatorioParents idAluno={idAluno} aluno={aluno!} />
+                <div className="flex flex-col gap-0">
+                  <div className="flex flex-col gap-4">
+                    <InputComp
+                      isSearch={true}
+                      type="text"
+                      placeholder="Buscar por assuntos"
+                      value={busca}
+                      onChange={(e) => {
+                        setBusca(e.target.value);
+                      }}
+                      className="!mt-0"
+                    />
                     <div className="flex flex-col gap-1.5">
-                      <AllSubjectsParents busca={busca} idAluno={idAluno} />
+                      <div className="flex flex-col gap-1.5">
+                        <AllSubjectsParents busca={busca} idAluno={idAluno} />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="text-[#606060] text-center p-4 rounded-md bg-background03 w-full">
+              Esse aluno não foi encontrado.
+            </div>
+          )}
         </div>
       ) : (
         <Loading />
