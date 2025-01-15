@@ -7,7 +7,6 @@ import NomePreparatorioParents from "@/components/parents/get_subjects/NomePrepa
 import AllSubjectsParents from "./AllSubjectsParents";
 import { useParentsData } from "@/hooks/useParentsData";
 import Loading from "@/components/layout/Loading";
-import Button from "@/components/layout/Button";
 
 type Props = {
   idAluno: string;
@@ -17,14 +16,10 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
   const [busca, setBusca] = useState("");
   const {
     data: aluno,
-    refetch,
     isFetched,
     isRefetchError,
+    refetch,
   } = useParentsData(idAluno);
-
-  useEffect(() => {
-    refetch();
-  }, []);
 
   return (
     <Container>
@@ -49,7 +44,11 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                     />
                     <div className="flex flex-col gap-1.5">
                       <div className="flex flex-col gap-1.5">
-                        <AllSubjectsParents busca={busca} idAluno={idAluno} />
+                        <AllSubjectsParents
+                          busca={busca}
+                          idAluno={idAluno}
+                          aluno={aluno!}
+                        />
                       </div>
                     </div>
                   </div>

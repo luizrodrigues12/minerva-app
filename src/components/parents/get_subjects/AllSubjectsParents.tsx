@@ -1,19 +1,17 @@
 "use client";
 
 import { MateriaType } from "@/models/MateriasModel";
-import { useParentsData } from "@/hooks/useParentsData";
 import Accordion from "@/components/layout/Accordion";
 import MateriaComp from "@/components/student/MateriaComp";
-import Loading from "@/components/layout/Loading";
+import { AlunoObj } from "@/models/userModel";
 
 type AllSubjectsProps = {
   idAluno: string;
   busca: string;
+  aluno: AlunoObj;
 };
 
-const AllSubjectsParents = ({ idAluno, busca }: AllSubjectsProps) => {
-  const { data: aluno } = useParentsData(idAluno);
-
+const AllSubjectsParents = ({ idAluno, busca, aluno }: AllSubjectsProps) => {
   const materiaFilteredAndSorted = () => {
     return aluno?.materias
       ?.sort((a: any, b: any) =>

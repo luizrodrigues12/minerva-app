@@ -9,6 +9,11 @@ export async function PUT(req: NextRequest) {
     const { token, idAluno, nome, checkedsPrep, checkedsSubjects } =
       await bodyReq;
 
+    const user = await UserModel.find<dataMongoUser>({ token });
+    const aluno = user[0].alunos?.filter(
+      (aluno) => aluno.idAluno === idAluno
+    )[0];
+
     if (nome)
       await UserModel.updateOne(
         { token: token },
@@ -39,7 +44,6 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    const user = await UserModel.find<dataMongoUser>({ token });
     const alunos = user[0].alunos;
 
     return NextResponse.json({ alunos });

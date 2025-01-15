@@ -1,3 +1,5 @@
+"use client";
+
 import { AlunoObj } from "@/models/userModel";
 import { useQuery } from "@tanstack/react-query";
 
@@ -13,7 +15,7 @@ export function useParentsData(idAluno: string) {
 
   const query = useQuery<AlunoObj>({
     queryFn: getAlunoData,
-    queryKey: ["subjects-data"],
+    queryKey: ["aluno-parents-data"],
   });
 
   return query;

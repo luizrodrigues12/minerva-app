@@ -10,10 +10,9 @@ import Loading from "../layout/Loading";
 
 interface Props {
   error: any;
-  idAluno: string;
 }
 
-const SubjectForm = ({ error, idAluno }: Props) => {
+const SubjectForm = ({ error }: Props) => {
   noStore();
   const [AllCheckeds, setAllCheckeds] = useState(false);
   const { subjects } = useSubjectsContext();

@@ -17,6 +17,7 @@ import SubjectFormUpdate from "./SubjectUpdateForm";
 
 const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
   const [nome, setNome] = useState("");
+  const [isPosting, setIsPosting] = useState(false);
   const [checkedsSubjects, setCheckedsSubjects] = useState(Array<String>);
   const [checkedsPrep, setCheckedsPrep] = useState(Array<string>);
   const [error, setError] = useState<string>();
@@ -55,6 +56,7 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
       getCheckedsSubjects();
       getCheckedsPrep();
 
+      setIsPosting(true);
       mutate({ idAluno, nome, checkedsPrep, checkedsSubjects });
     } catch (error: any) {
       setError(error.message);
@@ -69,56 +71,60 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
 
   return (
     <Container className="text-black">
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
-          <div className="text-[16px] md:text-[18px]">Nome</div>
-          <InputComp
-            placeholder={aluno.nome}
-            className="!mt-0"
-            value={nome || ""}
-            onChange={(e) => {
-              setNome(e.target.value);
-            }}
-            onFocus={() => setError("")}
-          />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <div className="text-[16px] md:text-[18px]">Preparatório</div>
-          <div className="flex flex-col gap-1.5">
-            <CheckComp
-              text="APLICAÇÃO"
-              value="aplicação"
-              name="checkItem"
-              defaultChecked={aluno.preparatorio?.includes("aplicação")}
-            />
-            <CheckComp
-              text="CPM"
-              value="cpm"
-              name="checkItem"
-              defaultChecked={aluno.preparatorio?.includes("cpm")}
-            />
-            <CheckComp
-              text="CEMAM"
-              value="cemam"
-              name="checkItem"
-              defaultChecked={aluno.preparatorio?.includes("cemam")}
+      {!isPosting ? (
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
+            <div className="text-[16px] md:text-[18px]">Nome</div>
+            <InputComp
+              placeholder={aluno.nome}
+              className="!mt-0"
+              value={nome || ""}
+              onChange={(e) => {
+                setNome(e.target.value);
+              }}
+              onFocus={() => setError("")}
             />
           </div>
+
+          <div className="flex flex-col gap-2">
+            <div className="text-[16px] md:text-[18px]">Preparatório</div>
+            <div className="flex flex-col gap-1.5">
+              <CheckComp
+                text="APLICAÇÃO"
+                value="aplicação"
+                name="checkItem"
+                defaultChecked={aluno.preparatorio?.includes("aplicação")}
+              />
+              <CheckComp
+                text="CPM"
+                value="cpm"
+                name="checkItem"
+                defaultChecked={aluno.preparatorio?.includes("cpm")}
+              />
+              <CheckComp
+                text="CEMAM"
+                value="cemam"
+                name="checkItem"
+                defaultChecked={aluno.preparatorio?.includes("cemam")}
+              />
+            </div>
+          </div>
+
+          <SubjectFormUpdate error={error} idAluno={idAluno} />
+
+          <Button
+            whileHover={{ scale: 1.003 }}
+            whileTap={{ scale: 1 }}
+            animated={false}
+            className="py-2.5"
+            onClick={(e) => updateStudent(e)}
+          >
+            Atualizar
+          </Button>
         </div>
-
-        <SubjectFormUpdate error={error} idAluno={idAluno} />
-
-        <Button
-          whileHover={{ scale: 1.003 }}
-          whileTap={{ scale: 1 }}
-          animated={false}
-          className="py-2.5"
-          onClick={(e) => updateStudent(e)}
-        >
-          Atualizar
-        </Button>
-      </div>
+      ) : (
+        <Loading />
+      )}
     </Container>
   );
 };
