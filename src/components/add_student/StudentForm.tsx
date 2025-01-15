@@ -11,10 +11,11 @@ import InputComp from "../layout/InputComp";
 import { useSectionContext } from "@/contexts/section";
 import Button from "../layout/Button";
 import Container from "../layout/Container";
+import { MateriaType } from "@/models/MateriasModel";
 
 const StudentForm = () => {
   const idStudent = uuidv4();
-  const [checkedsSubjects, setCheckedsSubjects] = useState(Array<String>);
+  const [checkedsSubjects, setCheckedsSubjects] = useState<any>();
   const [checkedsPrep, setCheckedsPrep] = useState(Array<string>);
   const [nome, setNome] = useState("");
   const [error, setError] = useState("");
@@ -40,8 +41,8 @@ const StudentForm = () => {
 
   const getCheckedsSubjects = () => {
     document.getElementsByName("subject").forEach((subject: any) => {
-      if (subject.checked && !checkedsSubjects.includes(subject.value))
-        checkedsSubjects.push(subject.value);
+      if (subject.checked && !checkedsSubjects?.includes(subject.value))
+        checkedsSubjects?.push(subject.value);
     });
   };
 
@@ -54,7 +55,7 @@ const StudentForm = () => {
       // Verificações
       if (!nome) throw new Error("Escolha um nome válido.");
       if (checkedsPrep.length == 0) throw new Error("Escolha um preparatório.");
-      if (checkedsSubjects.length == 0)
+      if (checkedsSubjects?.length == 0)
         throw new Error("Escolha pelo menos uma matéria.");
 
       // POSTANDO ALUNO
@@ -93,6 +94,15 @@ const StudentForm = () => {
                 onFocus={() => setError("")}
               />
             </div>
+
+            <h1 onClick={getCheckedsSubjects}>carregar</h1>
+            <h1
+              onClick={() =>
+                checkedsSubjects.map((mat: any) => console.log(JSON.parse(mat)))
+              }
+            >
+              ver
+            </h1>
 
             <div className="flex flex-col gap-2">
               <div className="text-[16px] lg:text-[18px]">Preparatório</div>

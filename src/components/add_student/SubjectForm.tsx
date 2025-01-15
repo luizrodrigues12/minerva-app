@@ -39,6 +39,7 @@ const SubjectForm = ({ error }: Props) => {
                 <h2 className="tracking-wide pl-1 text-[16px] lg:text-[18px]">
                   Matérias
                 </h2>
+
                 <div className="flex items-center justify-between pr-1">
                   <button
                     onClick={(e) => checkAll(e)}
@@ -64,7 +65,7 @@ const SubjectForm = ({ error }: Props) => {
                             text={materia.nome}
                             name="subject"
                             id={materia._id!}
-                            value={materia._id!}
+                            value={JSON.stringify(materia)}
                             className="shadow-sm"
                           />
                         );
@@ -84,7 +85,7 @@ const SubjectForm = ({ error }: Props) => {
                             text={materia.nome}
                             name="subject"
                             id={materia._id!}
-                            value={materia._id!}
+                            value={JSON.stringify(materia)}
                             className="shadow-sm"
                           />
                         );
@@ -104,7 +105,7 @@ const SubjectForm = ({ error }: Props) => {
                             text={materia.nome}
                             name="subject"
                             id={materia._id!}
-                            value={materia._id!}
+                            value={JSON.stringify(materia)}
                             className="shadow-sm"
                           />
                         );
@@ -124,7 +125,7 @@ const SubjectForm = ({ error }: Props) => {
                             text={materia.nome}
                             name="subject"
                             id={materia._id!}
-                            value={materia._id!}
+                            value={JSON.stringify(materia)}
                             className="shadow-sm"
                           />
                         );

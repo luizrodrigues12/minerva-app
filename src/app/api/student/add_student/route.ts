@@ -12,21 +12,16 @@ type bodyType = {
 
 export async function POST(req: NextRequest) {
   try {
-    const arrayMaterias: Array<any> = [];
+    const arrayMaterias: Array<MateriaType> = [];
     // Pegando body da requisição
     const bodyReq = await req.json();
-    const { idAluno, nome, preparatorio, token, checkeds }: bodyType = bodyReq;
-
-    // Transformando ids em Matérias
-    for (let i = 0; i < checkeds.length; i++) {
-      const materiaDB = await MateriasModel.findOne<MateriaType>({
-        _id: checkeds[i],
-      });
-      arrayMaterias.push(materiaDB!);
-    }
+    const { idAluno, nome, preparatorio, token, checkeds }: bodyType =
+      await bodyReq;
 
     // Identificando usuário
     const user = await UserModel.findOne({ token: token });
+
+    checkeds.map((materia) => arrayMaterias.push(JSON.parse(materia)));
 
     // Adicionando aluno
     await UserModel.updateOne(
