@@ -95,15 +95,6 @@ const StudentForm = () => {
               />
             </div>
 
-            <h1 onClick={getCheckedsSubjects}>carregar</h1>
-            <h1
-              onClick={() =>
-                checkedsSubjects.map((mat: any) => console.log(JSON.parse(mat)))
-              }
-            >
-              ver
-            </h1>
-
             <div className="flex flex-col gap-2">
               <div className="text-[16px] lg:text-[18px]">Preparatório</div>
               <div className="flex flex-col gap-1.5">

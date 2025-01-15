@@ -83,7 +83,7 @@ const SubjectFormUpdate = ({ error, idAluno }: Props) => {
                             text={materia.nome}
                             name="subject"
                             id={materia._id!}
-                            value={materia._id!}
+                            value={JSON.stringify(materia)}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
                           />
@@ -104,7 +104,7 @@ const SubjectFormUpdate = ({ error, idAluno }: Props) => {
                             text={materia.nome}
                             name="subject"
                             id={materia._id!}
-                            value={materia._id!}
+                            value={JSON.stringify(materia)}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
                           />
@@ -125,7 +125,7 @@ const SubjectFormUpdate = ({ error, idAluno }: Props) => {
                             text={materia.nome}
                             name="subject"
                             id={materia._id!}
-                            value={materia._id!}
+                            value={JSON.stringify(materia)}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
                           />
@@ -146,7 +146,7 @@ const SubjectFormUpdate = ({ error, idAluno }: Props) => {
                             text={materia.nome}
                             name="subject"
                             id={materia._id!}
-                            value={materia._id!}
+                            value={JSON.stringify(materia)}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
                           />

@@ -2,12 +2,25 @@ import MateriasModel, { MateriaType } from "@/models/MateriasModel";
 import UserModel, { dataMongoUser } from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
 
+type UpdateStudentProps = {
+  token: string;
+  idAluno: string;
+  nome: string;
+  checkedsPrep: Array<string>;
+  checkedsSubjects: Array<string>;
+};
+
 export async function PUT(req: NextRequest) {
   try {
-    const arrayMaterias: Array<any> = [];
+    const arrayMaterias: Array<MateriaType> = [];
     const bodyReq = await req.json();
-    const { token, idAluno, nome, checkedsPrep, checkedsSubjects } =
-      await bodyReq;
+    const {
+      token,
+      idAluno,
+      nome,
+      checkedsPrep,
+      checkedsSubjects,
+    }: UpdateStudentProps = await bodyReq;
 
     const user = await UserModel.find<dataMongoUser>({ token });
     const aluno = user[0].alunos?.filter(
@@ -29,13 +42,10 @@ export async function PUT(req: NextRequest) {
       );
 
     if (checkedsSubjects.length > 0) {
-      // Transformando ids em Matérias
-      for (let i = 0; i < checkedsSubjects.length; i++) {
-        const materiaDB = await MateriasModel.findOne<MateriaType>({
-          _id: checkedsSubjects[i],
-        });
-        arrayMaterias.push(materiaDB!);
-      }
+      //fazendo parse das matérias
+      checkedsSubjects.map((materia) =>
+        arrayMaterias.push(JSON.parse(materia))
+      );
 
       await UserModel.updateOne(
         { token: token },
