@@ -46,6 +46,7 @@ const AlunosComp = ({ idAluno }: { name?: string; idAluno: string }) => {
             size={28}
             strokeWidth={1.5}
             className="cursor-pointer hover:text-roxominerva size-[28px] md:size-[28px]"
+            onClick={() => router.push(`/student/update_student/${idAluno}`)}
           />
         </motion.div>
 

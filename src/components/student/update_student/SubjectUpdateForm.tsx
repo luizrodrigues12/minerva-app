@@ -1,22 +1,27 @@
 "use client";
 
 import CheckComp from "@/components/add_student/CheckComp";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import Accordion from "../layout/Accordion";
+import Accordion from "@/components/layout/Accordion";
 import { useSubjectsContext } from "@/contexts/subjects";
+import { useUserContext } from "@/contexts/userData";
 import { unstable_noStore as noStore } from "next/cache";
-import Loading from "../layout/Loading";
+import Loading from "@/components/layout/Loading";
 
 interface Props {
   error: any;
   idAluno: string;
 }
 
-const SubjectForm = ({ error, idAluno }: Props) => {
+const SubjectFormUpdate = ({ error, idAluno }: Props) => {
   noStore();
   const [AllCheckeds, setAllCheckeds] = useState(false);
   const { subjects } = useSubjectsContext();
+  const { getAluno, refetch } = useUserContext();
+  const aluno = getAluno(idAluno);
+  const [idsMaterias, setIdsMaterias] = useState<Array<string>>();
+
   const subjectsSorted = subjects?.sort((a, b) =>
     a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
   );
@@ -30,9 +35,22 @@ const SubjectForm = ({ error, idAluno }: Props) => {
     setAllCheckeds(!AllCheckeds);
   };
 
+  const checking = () => {
+    let arr: string[] = [];
+    aluno.materias?.map((mat) => {
+      arr.push(mat._id!);
+      setIdsMaterias(arr);
+    });
+  };
+
+  useEffect(() => {
+    refetch();
+    checking();
+  }, []);
+
   return (
     <div>
-      {subjects ? (
+      {subjects && idsMaterias?.length! > 0 ? (
         <div className="w-full flex flex-col justify-center items-start text-black text-[16px]">
           <motion.div className="rounded-lg w-full">
             <div className="flex flex-col gap-2">
@@ -67,6 +85,7 @@ const SubjectForm = ({ error, idAluno }: Props) => {
                             id={materia._id!}
                             value={materia._id!}
                             className="shadow-sm"
+                            defaultChecked={idsMaterias?.includes(materia._id!)}
                           />
                         );
                       }
@@ -87,6 +106,7 @@ const SubjectForm = ({ error, idAluno }: Props) => {
                             id={materia._id!}
                             value={materia._id!}
                             className="shadow-sm"
+                            defaultChecked={idsMaterias?.includes(materia._id!)}
                           />
                         );
                       }
@@ -107,6 +127,7 @@ const SubjectForm = ({ error, idAluno }: Props) => {
                             id={materia._id!}
                             value={materia._id!}
                             className="shadow-sm"
+                            defaultChecked={idsMaterias?.includes(materia._id!)}
                           />
                         );
                       }
@@ -127,6 +148,7 @@ const SubjectForm = ({ error, idAluno }: Props) => {
                             id={materia._id!}
                             value={materia._id!}
                             className="shadow-sm"
+                            defaultChecked={idsMaterias?.includes(materia._id!)}
                           />
                         );
                       }
@@ -150,4 +172,4 @@ const SubjectForm = ({ error, idAluno }: Props) => {
   );
 };
 
-export default SubjectForm;
+export default SubjectFormUpdate;

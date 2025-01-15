@@ -1,140 +1,125 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import CheckComp from "../../add_student/CheckComp";
 import { getCookie } from "cookies-next";
 import useSWR from "swr";
 import Loading from "../../layout/Loading";
 import { motion } from "motion/react";
+import InputComp from "@/components/layout/InputComp";
+import Container from "@/components/layout/Container";
+import Button from "@/components/layout/Button";
+import SubjectForm from "@/components/add_student/SubjectForm";
+import { useUpdateStudent } from "@/hooks/useUpdateStudent";
+import { useSectionContext } from "@/contexts/section";
+import { useUserContext } from "@/contexts/userData";
+import SubjectFormUpdate from "./SubjectUpdateForm";
 
 const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
-  const [nomeAluno, setNomeAluno] = useState("");
-  const [checks, setChecks] = useState(Array<string>);
-  const token = getCookie("authorization");
+  const [nome, setNome] = useState("");
+  const [checkedsSubjects, setCheckedsSubjects] = useState(Array<String>);
+  const [checkedsPrep, setCheckedsPrep] = useState(Array<string>);
   const [error, setError] = useState<string>();
+  const { setSection } = useSectionContext();
+  const { getAluno } = useUserContext();
+  const aluno = getAluno(idAluno);
+  const { data: alunos, mutate } = useUpdateStudent({
+    idAluno,
+    nome,
+    checkedsPrep,
+    checkedsSubjects,
+  });
 
-  const getChecks = async () => {
-    document.getElementsByName("checkItem").forEach((checkBox: any) => {
-      if (checkBox.checked) checks.push(checkBox.value);
+  const getCheckedsPrep = () => {
+    try {
+      document.getElementsByName("checkItem").forEach((check: any) => {
+        if (check.checked && !checkedsPrep.includes(check.value)) {
+          checkedsPrep.push(check.value);
+        }
+      });
+    } catch (error: any) {
+      setError(error.message);
+    }
+  };
+
+  const getCheckedsSubjects = () => {
+    document.getElementsByName("subject").forEach((subject: any) => {
+      if (subject.checked && !checkedsSubjects.includes(subject.value))
+        checkedsSubjects.push(subject.value);
     });
   };
 
-  // Pegando dados do aluno
-  const fetcher = (url: string) =>
-    fetch(`${process.env.HOST}/api/student/get_student`, {
-      method: "POST",
-      body: JSON.stringify({ idAluno: idAluno, token: token }),
-    }).then(async (res) => {
-      const { aluno } = await res.json();
-      return aluno[0];
-    });
-
-  const {
-    data: oneStudent,
-    mutate,
-    isValidating,
-  } = useSWR(`${process.env.HOST}/api/student/get_student`, fetcher);
-
-  const updateAluno = async () => {
+  const updateStudent = async (e: MouseEvent<HTMLDivElement>) => {
     try {
-      if (checks.length === 0 && nomeAluno.trim().length === 0)
-        throw new Error("Faça alguma mudança antes de atualizar!");
-      const result = await fetch(
-        `${process.env.HOST}/api/student/update_student`,
-        {
-          method: "PUT",
-          body: JSON.stringify({
-            token,
-            idAluno,
-            nomeAluno: nomeAluno.trim(),
-            checks,
-          }),
-        }
-      );
+      e.preventDefault();
+      getCheckedsSubjects();
+      getCheckedsPrep();
 
-      window.location.href = `/student/${idAluno}`;
+      mutate({ idAluno, nome, checkedsPrep, checkedsSubjects });
     } catch (error: any) {
       setError(error.message);
     }
   };
 
   useEffect(() => {
-    setChecks([]);
-    mutate();
+    setCheckedsPrep([]);
+    setCheckedsSubjects([]);
+    setSection("update-student");
   }, []);
 
   return (
-    <div className="w-full flex flex-col justify-center items-center height_pattern">
-      {isValidating ? (
-        <Loading />
-      ) : (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2 }}
-          className="px-8 md:self-center rounded-lg md:px-6 md:py-5 md:w-[400px] md:border-zinc-800 md:border-2 w-full"
+    <Container className="text-black">
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <div className="text-[16px] md:text-[18px]">Nome</div>
+          <InputComp
+            placeholder={aluno.nome}
+            className="!mt-0"
+            value={nome || ""}
+            onChange={(e) => {
+              setNome(e.target.value);
+            }}
+            onFocus={() => setError("")}
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <div className="text-[16px] md:text-[18px]">Preparatório</div>
+          <div className="flex flex-col gap-1.5">
+            <CheckComp
+              text="APLICAÇÃO"
+              value="aplicação"
+              name="checkItem"
+              defaultChecked={aluno.preparatorio?.includes("aplicação")}
+            />
+            <CheckComp
+              text="CPM"
+              value="cpm"
+              name="checkItem"
+              defaultChecked={aluno.preparatorio?.includes("cpm")}
+            />
+            <CheckComp
+              text="CEMAM"
+              value="cemam"
+              name="checkItem"
+              defaultChecked={aluno.preparatorio?.includes("cemam")}
+            />
+          </div>
+        </div>
+
+        <SubjectFormUpdate error={error} idAluno={idAluno} />
+
+        <Button
+          whileHover={{ scale: 1.003 }}
+          whileTap={{ scale: 1 }}
+          animated={false}
+          className="py-2.5"
+          onClick={(e) => updateStudent(e)}
         >
-          <form method="POST" className="form_student 2xl:min-h-[350px] ">
-            <h2 className="h1_form">Atualizar Dados</h2>
-            <div className="container_check flex flex-col gap-2">
-              <input
-                type="text"
-                name="nome"
-                id="nome_aluno"
-                placeholder={oneStudent?.nome!}
-                autoComplete="off"
-                className="input_email_username !border-zinc-800 mt-2 text-zinc-200 focus:border-zinc-800"
-                value={nomeAluno}
-                onChange={(e) => {
-                  e.preventDefault();
-                  setNomeAluno(e.target.value);
-                }}
-                onFocus={() => setError("")}
-              />
-
-              <h2 className="text-xl tracking-wide py-1 px-1 text-zinc-200">
-                Preparatório
-              </h2>
-              <CheckComp
-                text="Aplicação"
-                name="checkItem"
-                id="aplicacao"
-                value="aplicação"
-              />
-              <CheckComp text="CPM" name="checkItem" id="cpm" value="cpm" />
-              <CheckComp
-                text="CEMAM"
-                name="checkItem"
-                id="cemam"
-                value="cemam"
-              />
-
-              {error ? (
-                <p className="text-[14px] tracking-wide bg-zinc-900 my-2 text-center text-red-500">
-                  {error}
-                </p>
-              ) : (
-                <></>
-              )}
-
-              <motion.button
-                whileHover={{ scale: 1.01, transition: { duration: 0.01 } }}
-                whileTap={{ scale: 1 }}
-                type="submit"
-                className="btn_submit_form !bg-backButtonHover hover:!bg-backButton !text-textButton hover:!text-textButtonHover !py-2.5"
-                onClick={async (e) => {
-                  e.preventDefault();
-                  await getChecks();
-                  await updateAluno();
-                }}
-              >
-                ATUALIZAR
-              </motion.button>
-            </div>
-          </form>
-        </motion.div>
-      )}
-    </div>
+          Atualizar
+        </Button>
+      </div>
+    </Container>
   );
 };
 

@@ -18,12 +18,12 @@ const StudentForm = () => {
   const [checkedsPrep, setCheckedsPrep] = useState(Array<string>);
   const [nome, setNome] = useState("");
   const [error, setError] = useState("");
-  const { mutate, isPending } = useAddStudent(
+  const { mutate, isPending } = useAddStudent({
     idStudent,
     nome,
     checkedsPrep,
-    checkedsSubjects
-  );
+    checkedsSubjects,
+  });
   const { setSection } = useSectionContext();
 
   const getCheckedsPrep = () => {

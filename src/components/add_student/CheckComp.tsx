@@ -20,6 +20,8 @@ const CheckComp = ({
   onChange,
   onClick,
   className,
+  checked,
+  defaultChecked,
 }: PropsCheckComp) => {
   return (
     <div
@@ -35,6 +37,8 @@ const CheckComp = ({
         value={value}
         onChange={onChange}
         onClick={onClick}
+        checked={checked}
+        defaultChecked={defaultChecked}
       />
     </div>
   );

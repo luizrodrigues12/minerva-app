@@ -5,49 +5,44 @@ import { useRouter } from "nextjs-toploader/app";
 
 const token = getCookie("authorization");
 
-type AddStudentProps = {
-  idStudent: string;
+type UpdateStudentProps = {
+  idAluno: string;
   nome: string;
   checkedsPrep: Array<string>;
   checkedsSubjects: any;
 };
 
-export function useAddStudent({
-  nome,
-  checkedsPrep,
-  idStudent,
-  checkedsSubjects,
-}: AddStudentProps) {
+export function useUpdateStudent({}: UpdateStudentProps) {
   const queryClient = useQueryClient();
   const { refetch } = useUserContext();
   const router = useRouter();
+
   const tratedName = (name: string) => {
     return name
       .trim()
       .toLowerCase()
       .split(" ")
       .map(
-        (palavra, i) =>
-          palavra.split("")[0].toUpperCase() + palavra.slice(1) + " "
+        (palavra) => palavra.split("")[0].toUpperCase() + palavra.slice(1) + " "
       )
       .join("")
       .trim();
   };
 
-  const postStudent = async (data: {
-    idStudent: string;
-    nome: string;
-    checkedsPrep: Array<string>;
-    checkedsSubjects: any;
-  }) => {
-    const res = await fetch(`${process.env.HOST}/api/student/add_student`, {
-      method: "POST",
+  const updateStudent = async ({
+    idAluno,
+    checkedsPrep,
+    checkedsSubjects,
+    nome,
+  }: UpdateStudentProps) => {
+    const res = await fetch(`${process.env.HOST}/api/student/update_student`, {
+      method: "PUT",
       body: JSON.stringify({
-        idAluno: idStudent,
-        nome: tratedName(nome),
-        preparatorio: checkedsPrep,
-        checkeds: checkedsSubjects,
         token,
+        idAluno,
+        nome: nome ? tratedName(nome) : "",
+        checkedsPrep,
+        checkedsSubjects,
       }),
     });
 
@@ -57,7 +52,7 @@ export function useAddStudent({
   };
 
   const mutate = useMutation({
-    mutationFn: postStudent,
+    mutationFn: updateStudent,
 
     onSuccess(data, variables, context) {
       queryClient.invalidateQueries({ queryKey: ["alunos-data"] });

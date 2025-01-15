@@ -53,7 +53,24 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
               </div>
             </div>
 
-            <Button>Editar</Button>
+            <div className="w-full flex gap-2">
+              <Button
+                className="w-full"
+                onClick={() =>
+                  router.push(`/student/delete_student/${idAluno}`)
+                }
+              >
+                Remover
+              </Button>
+              <Button
+                onClick={() =>
+                  router.push(`/student/update_student/${idAluno}`)
+                }
+                className="w-full"
+              >
+                Editar
+              </Button>
+            </div>
           </div>
         </div>
       )}
