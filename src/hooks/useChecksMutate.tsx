@@ -1,3 +1,4 @@
+import { MateriaType } from "@/models/MateriasModel";
 import { dataMongoUser } from "@/models/userModel";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -6,9 +7,9 @@ export function useChecksMutate(objMateria: any, idAluno: any, token: any) {
 
   //Função que faz o PUT
   const toggleCheckeds = async (data: {
-    objMateria: any;
-    idAluno: any;
-    token: any;
+    objMateria: MateriaType;
+    idAluno: string;
+    token: string;
   }) => {
     const res = await fetch(`${process.env.HOST}/api/student/toggle_checked`, {
       method: "PUT",

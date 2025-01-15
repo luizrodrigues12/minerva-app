@@ -1,12 +1,18 @@
+import { MateriaType } from "@/models/MateriasModel";
 import UserModel from "@/models/userModel";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
+
+type ToggleProps = {
+  objMateria: MateriaType;
+  idAluno: string;
+  token: string;
+};
 
 export async function PUT(req: NextRequest) {
   try {
     const reqBody = await req.json();
-    const { objMateria, idAluno, token } = await reqBody;
+    const { objMateria, idAluno, token }: ToggleProps = await reqBody;
 
     if (objMateria.isChecked == false) {
       await UserModel.updateOne(
@@ -16,9 +22,7 @@ export async function PUT(req: NextRequest) {
           arrayFilters: [
             { "a.idAluno": idAluno },
             {
-              "m._id": mongoose.Types.ObjectId.createFromHexString(
-                objMateria._id
-              ),
+              "m._id": objMateria._id!,
             },
           ],
         }
@@ -31,9 +35,7 @@ export async function PUT(req: NextRequest) {
           arrayFilters: [
             { "a.idAluno": idAluno },
             {
-              "m._id": mongoose.Types.ObjectId.createFromHexString(
-                objMateria._id
-              ),
+              "m._id": objMateria._id!,
             },
           ],
         }
