@@ -56,7 +56,13 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
       getCheckedsSubjects();
       getCheckedsPrep();
 
+      if (checkedsSubjects.length === 0)
+        throw new Error("Escolha pelo menos uma matéria.");
+      if (checkedsPrep.length === 0)
+        throw new Error("Escolha pelo menos um preparatório.");
+
       setIsPosting(true);
+
       mutate({ idAluno, nome, checkedsPrep, checkedsSubjects });
     } catch (error: any) {
       setError(error.message);
@@ -94,23 +100,30 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
                 value="aplicação"
                 name="checkItem"
                 defaultChecked={aluno.preparatorio?.includes("aplicação")}
+                onClick={() => setError("")}
               />
               <CheckComp
                 text="CPM"
                 value="cpm"
                 name="checkItem"
                 defaultChecked={aluno.preparatorio?.includes("cpm")}
+                onClick={() => setError("")}
               />
               <CheckComp
                 text="CEMAM"
                 value="cemam"
                 name="checkItem"
                 defaultChecked={aluno.preparatorio?.includes("cemam")}
+                onClick={() => setError("")}
               />
             </div>
           </div>
 
-          <SubjectFormUpdate error={error} idAluno={idAluno} />
+          <SubjectFormUpdate
+            error={error}
+            idAluno={idAluno}
+            setError={setError}
+          />
 
           <Button
             whileHover={{ scale: 1.003 }}

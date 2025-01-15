@@ -54,7 +54,8 @@ const StudentForm = () => {
 
       // Verificações
       if (!nome) throw new Error("Escolha um nome válido.");
-      if (checkedsPrep.length == 0) throw new Error("Escolha um preparatório.");
+      if (checkedsPrep.length == 0)
+        throw new Error("Escolha pelo menos um preparatório.");
       if (checkedsSubjects?.length == 0)
         throw new Error("Escolha pelo menos uma matéria.");
 
@@ -102,13 +103,24 @@ const StudentForm = () => {
                   text="APLICAÇÃO"
                   value="aplicação"
                   name="checkItem"
+                  onClick={() => setError("")}
                 />
-                <CheckComp text="CPM" value="cpm" name="checkItem" />
-                <CheckComp text="CEMAM" value="cemam" name="checkItem" />
+                <CheckComp
+                  text="CPM"
+                  value="cpm"
+                  name="checkItem"
+                  onClick={() => setError("")}
+                />
+                <CheckComp
+                  text="CEMAM"
+                  value="cemam"
+                  name="checkItem"
+                  onClick={() => setError("")}
+                />
               </div>
             </div>
 
-            <SubjectForm error={error} />
+            <SubjectForm error={error} setError={setError} />
 
             <Button
               whileHover={{ scale: 1.005 }}

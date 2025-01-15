@@ -1,7 +1,7 @@
 "use client";
 
 import CheckComp from "@/components/add_student/CheckComp";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { motion } from "motion/react";
 import Accordion from "../layout/Accordion";
 import { useSubjectsContext } from "@/contexts/subjects";
@@ -10,9 +10,10 @@ import Loading from "../layout/Loading";
 
 interface Props {
   error: any;
+  setError: (value: SetStateAction<string>) => void;
 }
 
-const SubjectForm = ({ error }: Props) => {
+const SubjectForm = ({ error, setError }: Props) => {
   noStore();
   const [AllCheckeds, setAllCheckeds] = useState(false);
   const { subjects } = useSubjectsContext();
@@ -67,6 +68,7 @@ const SubjectForm = ({ error }: Props) => {
                             id={materia._id!}
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
+                            onClick={() => setError("")}
                           />
                         );
                       }
@@ -87,6 +89,7 @@ const SubjectForm = ({ error }: Props) => {
                             id={materia._id!}
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
+                            onClick={() => setError("")}
                           />
                         );
                       }
@@ -107,6 +110,7 @@ const SubjectForm = ({ error }: Props) => {
                             id={materia._id!}
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
+                            onClick={() => setError("")}
                           />
                         );
                       }
@@ -127,6 +131,7 @@ const SubjectForm = ({ error }: Props) => {
                             id={materia._id!}
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
+                            onClick={() => setError("")}
                           />
                         );
                       }

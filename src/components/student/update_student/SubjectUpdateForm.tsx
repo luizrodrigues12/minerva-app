@@ -1,7 +1,7 @@
 "use client";
 
 import CheckComp from "@/components/add_student/CheckComp";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { motion } from "motion/react";
 import Accordion from "@/components/layout/Accordion";
 import { useSubjectsContext } from "@/contexts/subjects";
@@ -12,9 +12,10 @@ import Loading from "@/components/layout/Loading";
 interface Props {
   error: any;
   idAluno: string;
+  setError: (value: SetStateAction<string | undefined>) => void;
 }
 
-const SubjectFormUpdate = ({ error, idAluno }: Props) => {
+const SubjectFormUpdate = ({ error, idAluno, setError }: Props) => {
   noStore();
   const [AllCheckeds, setAllCheckeds] = useState(false);
   const { subjects } = useSubjectsContext();
@@ -86,6 +87,7 @@ const SubjectFormUpdate = ({ error, idAluno }: Props) => {
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
+                            onClick={() => setError("")}
                           />
                         );
                       }
@@ -107,6 +109,7 @@ const SubjectFormUpdate = ({ error, idAluno }: Props) => {
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
+                            onClick={() => setError("")}
                           />
                         );
                       }
@@ -128,6 +131,7 @@ const SubjectFormUpdate = ({ error, idAluno }: Props) => {
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
+                            onClick={() => setError("")}
                           />
                         );
                       }
@@ -149,6 +153,7 @@ const SubjectFormUpdate = ({ error, idAluno }: Props) => {
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
+                            onClick={() => setError("")}
                           />
                         );
                       }
