@@ -7,6 +7,7 @@ import Accordion from "../layout/Accordion";
 import { useSubjectsContext } from "@/contexts/subjects";
 import { unstable_noStore as noStore } from "next/cache";
 import Loading from "../layout/Loading";
+import { capitalize } from "@/utils/stringManipulation";
 
 interface Props {
   error: any;
@@ -63,7 +64,7 @@ const SubjectForm = ({ error, setError }: Props) => {
                         return (
                           <CheckComp
                             key={i}
-                            text={materia.nome}
+                            text={capitalize(materia.nome)}
                             name="subject"
                             id={materia._id!}
                             value={JSON.stringify(materia)}
@@ -84,7 +85,7 @@ const SubjectForm = ({ error, setError }: Props) => {
                         return (
                           <CheckComp
                             key={i}
-                            text={materia.nome}
+                            text={capitalize(materia.nome)}
                             name="subject"
                             id={materia._id!}
                             value={JSON.stringify(materia)}
@@ -105,7 +106,7 @@ const SubjectForm = ({ error, setError }: Props) => {
                         return (
                           <CheckComp
                             key={i}
-                            text={materia.nome}
+                            text={capitalize(materia.nome)}
                             name="subject"
                             id={materia._id!}
                             value={JSON.stringify(materia)}
@@ -126,7 +127,7 @@ const SubjectForm = ({ error, setError }: Props) => {
                         return (
                           <CheckComp
                             key={i}
-                            text={materia.nome}
+                            text={capitalize(materia.nome)}
                             name="subject"
                             id={materia._id!}
                             value={JSON.stringify(materia)}

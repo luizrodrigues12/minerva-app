@@ -24,7 +24,7 @@ const Accordion = ({
     <div
       className={`w-full bg-background03 rounded-md tracking-wide ${className}`}
     >
-      <div className="flex justify-between py-2.5">
+      <div className="flex justify-between py-2.5 md:py-3">
         <div className="text-[#303030] text-[14px] md:text-[16px] flex w-full px-3 items-center">
           <p
             className="pr-2 cursor-pointer "

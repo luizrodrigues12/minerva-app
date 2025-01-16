@@ -1,4 +1,5 @@
 import { useUserContext } from "@/contexts/userData";
+import { capitalize } from "@/utils/stringManipulation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { getCookie } from "cookies-next";
 import { useRouter } from "nextjs-toploader/app";
@@ -21,18 +22,6 @@ export function useAddStudent({
   const queryClient = useQueryClient();
   const { refetch } = useUserContext();
   const router = useRouter();
-  const tratedName = (name: string) => {
-    return name
-      .trim()
-      .toLowerCase()
-      .split(" ")
-      .map(
-        (palavra, i) =>
-          palavra.split("")[0].toUpperCase() + palavra.slice(1) + " "
-      )
-      .join("")
-      .trim();
-  };
 
   const postStudent = async (data: {
     idStudent: string;
@@ -44,7 +33,7 @@ export function useAddStudent({
       method: "POST",
       body: JSON.stringify({
         idAluno: idStudent,
-        nome: tratedName(nome),
+        nome: capitalize(nome),
         preparatorio: checkedsPrep,
         checkeds: checkedsSubjects,
         token,

@@ -6,6 +6,7 @@ import Accordion from "../layout/Accordion";
 import { useUserContext } from "@/contexts/userData";
 import { useChecksMutate } from "@/hooks/useChecksMutate";
 import { MateriaType } from "@/models/MateriasModel";
+import { capitalize } from "@/utils/stringManipulation";
 
 type AllSubjectsProps = {
   idAluno: string;
@@ -34,7 +35,7 @@ const AllSubjects = ({ idAluno, busca }: AllSubjectsProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-2">
       {materiaFilteredAndSorted()?.filter(
         (materia) => materia.ordem <= 10 && materia.materia === "português"
       ).length === 0 ? (
@@ -47,7 +48,7 @@ const AllSubjects = ({ idAluno, busca }: AllSubjectsProps) => {
                 return (
                   <MateriaComp
                     key={i}
-                    text={materia.nome.toUpperCase()}
+                    text={capitalize(materia.nome)}
                     id={materia._id!}
                     isChecked={materia.isChecked}
                     isParentPage={false}
@@ -71,7 +72,7 @@ const AllSubjects = ({ idAluno, busca }: AllSubjectsProps) => {
                 return (
                   <MateriaComp
                     key={i}
-                    text={materia.nome.toUpperCase()}
+                    text={capitalize(materia.nome)}
                     id={materia._id!}
                     isChecked={materia.isChecked}
                     isParentPage={false}
@@ -95,7 +96,7 @@ const AllSubjects = ({ idAluno, busca }: AllSubjectsProps) => {
                 return (
                   <MateriaComp
                     key={i}
-                    text={materia.nome.toUpperCase()}
+                    text={capitalize(materia.nome)}
                     id={materia._id!}
                     isChecked={materia.isChecked}
                     isParentPage={false}
@@ -120,7 +121,7 @@ const AllSubjects = ({ idAluno, busca }: AllSubjectsProps) => {
                 return (
                   <MateriaComp
                     key={i}
-                    text={materia.nome.toUpperCase()}
+                    text={capitalize(materia.nome)}
                     id={materia._id!}
                     isChecked={materia.isChecked}
                     isParentPage={false}
