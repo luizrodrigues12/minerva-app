@@ -4,6 +4,7 @@ import Button from "@/components/layout/Button";
 import InputComp from "@/components/layout/InputComp";
 import Loading from "@/components/layout/Loading";
 import { useUserContext } from "@/contexts/userData";
+import { validateEmail } from "@/utils/regex";
 import { useState } from "react";
 
 const ChangeEmailForm = () => {
@@ -18,6 +19,8 @@ const ChangeEmailForm = () => {
   const sendEmail = async () => {
     try {
       if (!email) throw new Error("Digite um email.");
+      if (!validateEmail.test(email))
+        throw new Error("Digite um email válido.");
       if (!repeatEmail) throw new Error("Repita o email.");
       if (email !== repeatEmail) throw new Error("Emails não correspondentes.");
 
