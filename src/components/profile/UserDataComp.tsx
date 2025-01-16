@@ -18,6 +18,7 @@ import Container from "../layout/Container";
 import { useRouter } from "nextjs-toploader/app";
 import Accordion from "../layout/Accordion";
 import ChangeEmailForm from "./change_email/ChangeEmailForm";
+import ChangePasswordForm from "./change_password/ChangePasswordForm";
 
 const UserDataComp = () => {
   const router = useRouter();
@@ -132,15 +133,11 @@ const UserDataComp = () => {
                   classNameContent="bg-background02"
                 />
 
-                <div
-                  className="p-2.5 bg-background03 text-[#404040] rounded-md flex justify-between items-center px-3
-              hover:bg-[#e7e7e7] cursor-pointer"
-                >
-                  <p>Alterar senha</p>
-                  <div>
-                    <ArrowRight strokeWidth={2} size={26} />
-                  </div>
-                </div>
+                <Accordion
+                  children={<ChangePasswordForm />}
+                  textLeft="Alterar senha"
+                  classNameContent="bg-background02"
+                />
               </div>
 
               {error && (

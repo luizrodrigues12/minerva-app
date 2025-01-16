@@ -70,7 +70,7 @@ const ChangeEmailForm = () => {
               whileTap={{ scale: 0.99 }}
               onClick={async () => await sendEmail()}
             >
-              Alterar
+              Alterar email
             </Button>
           </div>
 
