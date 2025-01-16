@@ -5,7 +5,7 @@ import { ReactNode, useState } from "react";
 
 interface Props {
   textLeft: string;
-  textRight: string;
+  textRight?: string;
   children: ReactNode;
   className?: string;
   classNameContent?: string;
@@ -32,10 +32,14 @@ const Accordion = ({
           <p className="pr-2" onClick={() => setIsOpen(!isOpen)}>
             {textLeft.split("")[0].toUpperCase() + textLeft.slice(1)}
           </p>
-          <p>-</p>
-          <p className="pl-2" onClick={() => setIsOpen(!isOpen)}>
-            {textRight}
-          </p>
+          {textRight && (
+            <div>
+              <p>-</p>
+              <p className="pl-2" onClick={() => setIsOpen(!isOpen)}>
+                {textRight}
+              </p>
+            </div>
+          )}
         </div>
         {isOpen ? (
           <AngleUp className="mx-2 flex justify-center items-center mr-3 cursor-pointer text-corIcones hover:text-roxominerva" />
