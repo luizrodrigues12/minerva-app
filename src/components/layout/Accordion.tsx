@@ -24,8 +24,8 @@ const Accordion = ({
     <div
       className={`w-full bg-background03 rounded-md tracking-wide ${className}`}
     >
-      <div className="flex justify-between py-3">
-        <div className="text-[#303030] text-[16px] flex w-full px-3">
+      <div className="flex justify-between py-2.5">
+        <div className="text-[#303030] text-[14px] md:text-[16px] flex w-full px-3 items-center">
           <p
             className="pr-2 cursor-pointer "
             onClick={() => setIsOpen(!isOpen)}
@@ -54,7 +54,7 @@ const Accordion = ({
         id="component-accordion"
         className={`${
           isOpen ? "flex" : "hidden"
-        } border-background03 bg-background02 rounded-lg border-[12px] border-t-0 flex flex-col p-2 gap-2 ${classNameContent}`}
+        } border-background03 bg-background01 rounded-lg border-[12px] border-t-0 flex flex-col p-2 gap-2 ${classNameContent}`}
       >
         {children}
       </div>

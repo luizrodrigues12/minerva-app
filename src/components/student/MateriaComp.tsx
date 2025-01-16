@@ -18,11 +18,13 @@ const MateriaComp = ({
 }: Props) => {
   return (
     <div
-      className="checkbox flex justify-between items-center p-2.5 px-4 bg-background03 w-full rounded-lg tracking-widest text-[13.5px] text-zinc-800"
+      className="checkbox flex justify-between items-center p-2.5 px-4 bg-background03 w-full rounded-lg tracking-widest text-[12px] md:text-[14px] text-zinc-800"
       id={id}
     >
       <p
-        className={isChecked ? "text-[#606060] line-through" : "text-[#404040]"}
+        className={`${
+          isChecked ? "text-[#606060] line-through" : "text-[#404040]"
+        } leading-3`}
       >
         {text}
       </p>
