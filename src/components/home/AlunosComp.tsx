@@ -12,15 +12,15 @@ const AlunosComp = ({ idAluno }: { name?: string; idAluno: string }) => {
   const aluno = alunos;
 
   return (
-    <div className="w-full text-black py-2 px-3 rounded-md bg-background03 flex items-center justify-between text-[14px] md:text-[16px]">
+    <div className="w-full text-black rounded-md bg-background03 flex items-center justify-between text-[14px] md:text-[16px]">
       <div
-        className="hover:text-roxominerva cursor-pointer pr-1 md:pr-2"
+        className="hover:text-roxominerva cursor-pointer w-full h-full py-2 px-3"
         onClick={() => router.push(`/student/${idAluno}`)}
       >
         {aluno?.nome}
       </div>
 
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center px-3">
         <motion.div
           whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
           whileTap={{ scale: 0.99 }}
