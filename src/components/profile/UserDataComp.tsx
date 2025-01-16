@@ -3,25 +3,18 @@
 import Loading from "../layout/Loading";
 import { unstable_noStore as noStore } from "next/cache";
 import { useUserContext } from "@/contexts/userData";
-import InputComp from "../layout/InputComp";
-import Image from "next/image";
 import Button from "../layout/Button";
 import { useEffect, useState } from "react";
 import { useSectionContext } from "@/contexts/section";
 import { validatePassword } from "@/utils/regex";
-import {
-  ArrowRight,
-  CloseCircle,
-  UserCircle,
-} from "flowbite-react-icons/outline";
+import { UserCircle } from "flowbite-react-icons/outline";
 import Container from "../layout/Container";
-import { useRouter } from "nextjs-toploader/app";
 import Accordion from "../layout/Accordion";
 import ChangeEmailForm from "./change_email/ChangeEmailForm";
 import ChangePasswordForm from "./change_password/ChangePasswordForm";
+import VerifyEmailForm from "./verify_email/VerifyEmailForm";
 
 const UserDataComp = () => {
-  const router = useRouter();
   const [isPending, setIsPending] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
@@ -117,15 +110,11 @@ const UserDataComp = () => {
             <div className="flex flex-col gap-3 w-full  ">
               <div className="text-black text-[18px]">configurações</div>
               <div className="flex flex-col gap-1.5">
-                <div
-                  className="p-2.5 bg-background03 text-[#404040] rounded-md flex justify-between items-center px-3
-              hover:bg-[#e7e7e7] cursor-pointer"
-                >
-                  <p>Verificar email</p>
-                  <div>
-                    <ArrowRight strokeWidth={2} size={26} />
-                  </div>
-                </div>
+                <Accordion
+                  children={<VerifyEmailForm />}
+                  textLeft="Verificar email"
+                  classNameContent="bg-background02"
+                />
 
                 <Accordion
                   textLeft={"Alterar email"}

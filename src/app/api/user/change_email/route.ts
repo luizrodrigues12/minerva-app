@@ -36,7 +36,7 @@ export async function PUT(req: NextRequest) {
 
     if (sendEmail) {
       const data = await transport.sendMail({
-        subject: "Altere seu Email - MINERVA",
+        subject: "Altere seu email - MINERVA",
         from: `Minerva <${process.env.MAILER_USER}>`,
         to: email,
         html: `
@@ -45,7 +45,7 @@ export async function PUT(req: NextRequest) {
              <p style="font-size: 16px;">
              Clique <a style="text-decoration: none; color: #4f47a8" href="${`${
                process.env.HOST as string
-             }/profile/change_email/${email}`}">aqui</a> para alterar seu Email!.
+             }/profile/change_email/${email}`}">aqui</a> para alterar seu email.
              </p>
            </div>`,
       });
