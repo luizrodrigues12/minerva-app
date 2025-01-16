@@ -14,7 +14,7 @@ const AlunosComp = ({ idAluno }: { name?: string; idAluno: string }) => {
   return (
     <div className="w-full text-black rounded-md bg-background03 flex items-center justify-between text-[14px] md:text-[16px]">
       <div
-        className="hover:text-roxominerva cursor-pointer w-full h-full py-2 px-3"
+        className="hover:text-roxominerva cursor-pointer w-full h-full py-2.5 px-3"
         onClick={() => router.push(`/student/${idAluno}`)}
       >
         {aluno?.nome}
