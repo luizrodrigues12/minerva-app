@@ -69,7 +69,7 @@ const SubjectForm = ({ error, setError }: Props) => {
                             id={materia._id!}
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
-                            onClick={() => setError("")}
+                            setError={setError}
                           />
                         );
                       }
@@ -90,7 +90,7 @@ const SubjectForm = ({ error, setError }: Props) => {
                             id={materia._id!}
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
-                            onClick={() => setError("")}
+                            setError={setError}
                           />
                         );
                       }
@@ -112,6 +112,7 @@ const SubjectForm = ({ error, setError }: Props) => {
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
                             onClick={() => setError("")}
+                            setError={setError}
                           />
                         );
                       }
@@ -133,6 +134,7 @@ const SubjectForm = ({ error, setError }: Props) => {
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
                             onClick={() => setError("")}
+                            setError={setError}
                           />
                         );
                       }

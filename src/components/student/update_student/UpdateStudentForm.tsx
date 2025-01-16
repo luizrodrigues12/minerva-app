@@ -20,7 +20,7 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
   const [isPosting, setIsPosting] = useState(false);
   const [checkedsSubjects, setCheckedsSubjects] = useState(Array<String>);
   const [checkedsPrep, setCheckedsPrep] = useState(Array<string>);
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<string>("");
   const { setSection } = useSectionContext();
   const { getAluno } = useUserContext();
   const aluno = getAluno(idAluno);
@@ -99,22 +99,25 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
                 text="APLICAÇÃO"
                 value="aplicação"
                 name="checkItem"
+                id="aplicação"
                 defaultChecked={aluno.preparatorio?.includes("aplicação")}
-                onClick={() => setError("")}
+                setError={setError}
               />
               <CheckComp
                 text="CPM"
                 value="cpm"
+                id="cpm"
                 name="checkItem"
                 defaultChecked={aluno.preparatorio?.includes("cpm")}
-                onClick={() => setError("")}
+                setError={setError}
               />
               <CheckComp
                 text="CEMAM"
                 value="cemam"
+                id="cemam"
                 name="checkItem"
                 defaultChecked={aluno.preparatorio?.includes("cemam")}
-                onClick={() => setError("")}
+                setError={setError}
               />
             </div>
           </div>

@@ -102,20 +102,26 @@ const StudentForm = () => {
                 <CheckComp
                   text="APLICAÇÃO"
                   value="aplicação"
+                  id="aplicação"
                   name="checkItem"
                   onClick={() => setError("")}
+                  setError={setError}
                 />
                 <CheckComp
                   text="CPM"
                   value="cpm"
+                  id="cpm"
                   name="checkItem"
                   onClick={() => setError("")}
+                  setError={setError}
                 />
                 <CheckComp
                   text="CEMAM"
                   value="cemam"
+                  id="cemam"
                   name="checkItem"
                   onClick={() => setError("")}
+                  setError={setError}
                 />
               </div>
             </div>

@@ -12,7 +12,7 @@ import Loading from "@/components/layout/Loading";
 interface Props {
   error: any;
   idAluno: string;
-  setError: (value: SetStateAction<string | undefined>) => void;
+  setError: (value: SetStateAction<string>) => void;
 }
 
 const SubjectFormUpdate = ({ error, idAluno, setError }: Props) => {
@@ -87,7 +87,7 @@ const SubjectFormUpdate = ({ error, idAluno, setError }: Props) => {
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
-                            onClick={() => setError("")}
+                            setError={setError}
                           />
                         );
                       }
@@ -109,7 +109,7 @@ const SubjectFormUpdate = ({ error, idAluno, setError }: Props) => {
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
-                            onClick={() => setError("")}
+                            setError={setError}
                           />
                         );
                       }
@@ -131,7 +131,7 @@ const SubjectFormUpdate = ({ error, idAluno, setError }: Props) => {
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
-                            onClick={() => setError("")}
+                            setError={setError}
                           />
                         );
                       }
@@ -153,7 +153,7 @@ const SubjectFormUpdate = ({ error, idAluno, setError }: Props) => {
                             value={JSON.stringify(materia)}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
-                            onClick={() => setError("")}
+                            setError={setError}
                           />
                         );
                       }
