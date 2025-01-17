@@ -7,11 +7,15 @@ import { useUserContext } from "@/contexts/userData";
 import { useRouter } from "nextjs-toploader/app";
 import { useEffect, useState } from "react";
 
-const ChangeEmailPage = ({ email }: { email: string }) => {
-  const { user } = useUserContext();
+type ChangeEmailProps = {
+  emailTokenReceived: string;
+};
+
+const ChangeEmailPage = ({ emailTokenReceived }: ChangeEmailProps) => {
   const [isPosting, setIsPosting] = useState<boolean>();
   const [error, setError] = useState("");
   const [message, setMessage] = useState();
+  const { refetch } = useUserContext();
   const router = useRouter();
 
   const changeEmailPut = async () => {
@@ -19,15 +23,13 @@ const ChangeEmailPage = ({ email }: { email: string }) => {
       setIsPosting(true);
       const res = await fetch(`/api/user/change_email`, {
         method: "PUT",
-        body: JSON.stringify({ email, token: user.token, changeEmail: true }),
+        body: JSON.stringify({ emailTokenReceived, changeEmail: true }),
       });
       const data = await res.json();
       const { success, error } = data;
-
+      if (success) refetch();
       setIsPosting(false);
       success ? setMessage(success) : setError(error);
-
-      setTimeout(() => router.replace("/home"), 5000);
     } catch (error: any) {
       setError(error.message);
     }

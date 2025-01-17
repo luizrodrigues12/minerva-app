@@ -5,37 +5,57 @@ import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 
 type BodyProps = {
-  email: string;
-  token: string;
+  newEmail: string;
+  oldEmail: string;
+  emailTokenReceived: string;
   sendEmail?: boolean;
   changeEmail?: boolean;
+};
+
+const testEmails = (newEmail: string, oldEmail: string) => {
+  if (!validateEmail.test(newEmail)) throw new Error("Email novo inválido.");
+  if (!validateEmail.test(oldEmail)) throw new Error("Email atual inválido.");
 };
 
 export async function PUT(req: NextRequest) {
   try {
     const {
-      email,
-      token,
+      newEmail,
+      oldEmail,
+      emailTokenReceived,
       sendEmail = false,
       changeEmail = false,
     }: BodyProps = await req.json();
 
-    if (!email || !validateEmail.test(email))
-      throw new Error("Email inválido ou inexistente.");
-    if (!token || !jwt.verify(token, process.env.JWT_SECRET!))
-      throw new Error("Token inválido ou inexistente!");
-
-    //Verificando se email já está em uso
-    const emailExisting = await UserModel.findOne({ email });
-    if (emailExisting) throw new Error(`Esse email já está sendo usado.`);
-
     if (changeEmail) {
-      await UserModel.updateOne({ token }, { email: email });
+      if (!jwt.verify(emailTokenReceived, process.env.JWT_SECRET!))
+        throw new Error("Token inválido.");
+
+      const { newEmail, oldEmail }: any = jwt.decode(emailTokenReceived);
+      if (!newEmail || !oldEmail)
+        throw new Error("newEmail ou oldEmail faltando.");
+
+      testEmails(newEmail, oldEmail);
+
+      //Verificando se email já está em uso
+      const emailExisting = await UserModel.findOne({ email: newEmail });
+      if (emailExisting) throw new Error(`Esse email já está sendo usado.`);
+
+      await UserModel.updateOne({ email: oldEmail }, { email: newEmail });
       return NextResponse.json({ success: "Email alterado com sucesso!" });
     }
 
     if (sendEmail) {
-      // NODEMAILER
+      if (!newEmail || !oldEmail)
+        throw new Error("Email atual ou novo email faltando.");
+
+      testEmails(newEmail, oldEmail);
+
+      const emailTokenSent = jwt.sign(
+        { newEmail, oldEmail },
+        process.env.JWT_SECRET!
+      );
+
       const transport = nodemailer.createTransport({
         host: process.env.MAILER_HOST,
         port: 587,
@@ -52,14 +72,14 @@ export async function PUT(req: NextRequest) {
       const data = await transport.sendMail({
         subject: "Altere seu email - MINERVA",
         from: `Minerva <${process.env.MAILER_USER}>`,
-        to: email,
+        to: newEmail,
         html: `
            <div style="width: 250px; color: black;">
              <h3 style="font-size: 18px;">Altere seu email:</h3>
              <p style="font-size: 16px;">
              Clique <a style="text-decoration: none; color: #4f47a8" href="${`${
                process.env.HOST as string
-             }/profile/change_email/${email}`}">aqui</a> para alterar seu email.
+             }/profile/change_email/${emailTokenSent}`}">aqui</a> para alterar seu email.
              </p>
            </div>`,
       });

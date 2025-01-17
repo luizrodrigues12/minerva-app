@@ -13,7 +13,6 @@ const ChangeEmailForm = () => {
   const [email, setEmail] = useState("");
   const [repeatEmail, setRepeatEmail] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-
   const [error, setError] = useState("");
 
   const sendEmail = async () => {
@@ -27,7 +26,11 @@ const ChangeEmailForm = () => {
       setIsPosting(true);
       const res = await fetch(`${process.env.HOST}/api/user/change_email`, {
         method: "PUT",
-        body: JSON.stringify({ email, token: user.token, sendEmail: true }),
+        body: JSON.stringify({
+          oldEmail: user.email,
+          newEmail: email,
+          sendEmail: true,
+        }),
       });
       setIsPosting(false);
       const { success, error } = await res.json();
