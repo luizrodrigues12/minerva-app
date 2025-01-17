@@ -33,7 +33,7 @@ const Accordion = ({
             {textLeft.split("")[0].toUpperCase() + textLeft.slice(1)}
           </p>
           {textRight && (
-            <div>
+            <div className="flex">
               <p>-</p>
               <p className="pl-2" onClick={() => setIsOpen(!isOpen)}>
                 {textRight}
