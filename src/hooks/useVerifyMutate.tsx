@@ -22,10 +22,7 @@ export function useVerifyMutate() {
     mutationFn: verifyEmail,
 
     onSuccess: () => {
-      setTimeout(() => {
-        refetch();
-        window.location.replace("/home");
-      }, 10000);
+      refetch();
     },
 
     retry: 2,
