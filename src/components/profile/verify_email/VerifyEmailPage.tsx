@@ -12,22 +12,21 @@ type EmailPageProps = {
 };
 
 const VerifyEmailPage = ({ email }: EmailPageProps) => {
-  const { data, mutate } = useVerifyMutate();
+  const [isPosting, setIsPosting] = useState(true);
+  const { data, mutateAsync } = useVerifyMutate();
 
   useEffect(() => {
-    mutate({ email });
-
-    setTimeout(() => {
-      window.location.replace("/home");
-    }, 10000);
+    setIsPosting(true);
+    mutateAsync({ email });
+    setIsPosting(false);
   }, []);
 
   return (
     <Container>
-      {data ? (
+      {!isPosting ? (
         <div className="flex flex-col gap-3 text-black p-4 bg-background03 rounded-md shadow-sm">
           <div className="py-4 bg-background02 rounded-md text-[14px] md:text-[16px] text-center">
-            {data.error ? data.error : data.success}
+            {data?.error ? data.error : data?.success}
           </div>
           <Button onClick={() => window.location.replace("/home")}>
             Finalizar
