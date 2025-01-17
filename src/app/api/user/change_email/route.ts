@@ -2,7 +2,7 @@ import UserModel, { dataMongoUser } from "@/models/userModel";
 import { validateEmail } from "@/utils/regex";
 import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
-import { transport } from "../forget_password/route";
+import nodemailer from "nodemailer";
 
 type BodyProps = {
   email: string;
@@ -35,6 +35,20 @@ export async function PUT(req: NextRequest) {
     }
 
     if (sendEmail) {
+      // NODEMAILER
+      const transport = nodemailer.createTransport({
+        host: process.env.MAILER_HOST,
+        port: 587,
+        secure: false,
+        auth: {
+          user: process.env.MAILER_USER,
+          pass: process.env.MAILER_PASS,
+        },
+        tls: {
+          rejectUnauthorized: false,
+        },
+      });
+
       const data = await transport.sendMail({
         subject: "Altere seu email - MINERVA",
         from: `Minerva <${process.env.MAILER_USER}>`,

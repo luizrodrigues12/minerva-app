@@ -5,20 +5,6 @@ import nodemailer from "nodemailer";
 
 connectDB();
 
-// NODEMAILER
-export const transport = nodemailer.createTransport({
-  host: process.env.MAILER_HOST,
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.MAILER_USER,
-    pass: process.env.MAILER_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false,
-  },
-});
-
 export async function POST(req: NextRequest) {
   try {
     // Pegando body
@@ -29,6 +15,20 @@ export async function POST(req: NextRequest) {
 
     const idUser = _id.toString();
     console.log("idUser");
+
+    // NODEMAILER
+    const transport = nodemailer.createTransport({
+      host: process.env.MAILER_HOST,
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.MAILER_USER,
+        pass: process.env.MAILER_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
 
     const data = await transport.sendMail({
       text: "",
