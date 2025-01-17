@@ -19,7 +19,7 @@ const VerifyEmailPage = ({ email }: EmailPageProps) => {
 
     setTimeout(() => {
       window.location.replace("/home");
-    }, 5000);
+    }, 10000);
   }, []);
 
   return (
