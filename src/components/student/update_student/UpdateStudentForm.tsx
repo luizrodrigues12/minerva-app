@@ -24,12 +24,7 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
   const { setSection } = useSectionContext();
   const { getAluno } = useUserContext();
   const aluno = getAluno(idAluno);
-  const { data: alunos, mutate } = useUpdateStudent({
-    idAluno,
-    nome,
-    checkedsPrep,
-    checkedsSubjects,
-  });
+  const { data: alunos, mutate } = useUpdateStudent();
 
   const getCheckedsPrep = () => {
     try {
