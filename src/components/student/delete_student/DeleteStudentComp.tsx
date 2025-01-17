@@ -50,16 +50,18 @@ const DeleteStudentComp = ({ idAluno }: { idAluno: string }) => {
             <div className="flex flex-col justify-center gap-2">
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-[16px] lg:text-[18px] text-black">
+                  <h3 className="text-[16px] md:text-[18px] text-black">
                     Username
                   </h3>
-                  <div className="bg-background03 p-2 text-[#404040] px-3 rounded-md">
+                  <div className="bg-background03 p-2.5 text-[#404040] px-3 rounded-md text-[14px] md:text-[16px]">
                     {aluno.nome}
                   </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-[18px] text-black ">Preparatório(s)</h3>
-                  <div className="bg-background03 p-2 text-[#404040] px-3 rounded-md">
+                  <h3 className="text-[16px] md:text-[18px] text-black">
+                    Preparatório(s)
+                  </h3>
+                  <div className="bg-background03 p-2.5 text-[#404040] px-3 rounded-md text-[14px] md:text-[16px]">
                     {aluno.preparatorio?.map((prep: any, i: any) =>
                       prep == "aplicação"
                         ? prep[0].toUpperCase() + prep.substring(1) + " "
@@ -67,7 +69,7 @@ const DeleteStudentComp = ({ idAluno }: { idAluno: string }) => {
                     )}
                   </div>
 
-                  <div className="bg-background03 p-3 text-[#404040] rounded-md">
+                  <div className="bg-background03 p-3 text-[#404040] rounded-md text-[14px] md:text-[16px]">
                     Certifique-se de que realmente desejas remover esse aluno,
                     pois essa ação é irreversível.
                   </div>

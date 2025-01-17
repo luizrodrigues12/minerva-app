@@ -4,9 +4,8 @@ import Loading from "../layout/Loading";
 import { unstable_noStore as noStore } from "next/cache";
 import { useUserContext } from "@/contexts/userData";
 import Button from "../layout/Button";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSectionContext } from "@/contexts/section";
-import { validatePassword } from "@/utils/regex";
 import { UserCircle } from "flowbite-react-icons/outline";
 import Container from "../layout/Container";
 import Accordion from "../layout/Accordion";
@@ -15,16 +14,9 @@ import ChangePasswordForm from "./change_password/ChangePasswordForm";
 import VerifyEmailForm from "./verify_email/VerifyEmailForm";
 
 const UserDataComp = () => {
-  const [isPending, setIsPending] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [error, setError] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [newPasswordRepeat, setNewPasswordRepeat] = useState("");
+  noStore();
   const { user, logoutFunction } = useUserContext();
   const { setSection } = useSectionContext();
-
-  noStore();
 
   const removerConta = async (e: any) => {
     e.preventDefault();
@@ -35,44 +27,13 @@ const UserDataComp = () => {
     logoutFunction();
   };
 
-  const changePassword = async () => {
-    try {
-      if (!currentPassword) throw new Error("Digite a senha atual.");
-      if (!newPassword) throw new Error("Digite uma nova senha.");
-      if (!validatePassword.test(newPassword))
-        throw new Error("8 dígitos mínimos, uma letra maiúscula e um número.");
-      if (!newPasswordRepeat) throw new Error("Repita a nova senha.");
-      if (!(newPassword === newPasswordRepeat))
-        throw new Error("Repita a nova senha corretamente.");
-
-      setIsPending(true);
-      const res = await fetch(`${process.env.HOST}/api/user/change_password`, {
-        method: "POST",
-        body: JSON.stringify({
-          token: user.token,
-          newPassword,
-          currentPassword,
-        }),
-      });
-      setIsPending(false);
-      const { error } = await res.json();
-      if (error) {
-        throw new Error(error);
-      } else {
-        setIsOpen(true);
-      }
-    } catch (error: any) {
-      setError(error.message);
-    }
-  };
-
   useEffect(() => {
     setSection("profile");
   });
 
   return (
     <Container>
-      {!user || isPending ? (
+      {!user ? (
         <Loading />
       ) : (
         <div className="flex flex-col w-full h-screen">
@@ -82,33 +43,35 @@ const UserDataComp = () => {
                 <UserCircle size={100} strokeWidth={0.5} />
               </div>
               <div className="flex flex-col gap-2 justify-between w-full">
-                <div className="bg-background03 p-2.5 px-3 rounded-md text-[#404040]">
+                <div className="bg-background03 p-3 rounded-md text-[#404040] text-[14px] md:text-[16px]">
                   {user.username}
                 </div>
-                <div className="bg-background03 p-2.5 px-3 rounded-md text-[#404040]">
+                <div className="bg-background03 p-3 rounded-md text-[#404040] text-[14px] md:text-[16px]">
                   Educador(a)
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col gap-3 w-full relative">
-              <div className="text-black text-[18px]">email</div>
+              <div className="text-black text-[16px] md:text-[18px]">email</div>
               <div>
                 <div
-                  className="text-black text-[14px] mr-1.5 mb-1 hover:text-red-700 cursor-pointer text-end absolute right-0 
-                top-3.5"
+                  className="text-black text-[12px] mr-1.5 mb-1 hover:text-red-700 cursor-pointer text-end absolute right-0 
+                top-3.5 md:text-[14px]"
                   onClick={async (e) => await removerConta(e)}
                 >
                   excluir conta
                 </div>
-                <div className="bg-background03 p-2.5 md:px-3 rounded-md text-[#202020]">
+                <div className="bg-background03 p-3 rounded-md text-[#202020] text-[14px] md:text-[16px]">
                   {user.email}
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col gap-3 w-full  ">
-              <div className="text-black text-[18px]">configurações</div>
+              <div className="text-black text-[16px] md:text-[18px]">
+                configurações
+              </div>
               <div className="flex flex-col gap-1.5">
                 <Accordion
                   children={<VerifyEmailForm />}
@@ -128,24 +91,6 @@ const UserDataComp = () => {
                   classNameContent="bg-background02"
                 />
               </div>
-
-              {error && (
-                <p className="text-red-700 text-[14px] text-center py-1">
-                  {error}
-                </p>
-              )}
-
-              {isOpen && (
-                <div className="p-6 bg-background01 text-black border-2 border-borderColor rounded-md modal">
-                  <div className="flex flex-col gap-3">
-                    <div className="text-center text-[18px]">
-                      Sua senha foi alterada <br />
-                      com sucesso.
-                    </div>
-                    <Button onClick={() => setIsOpen(false)}>Fechar</Button>
-                  </div>
-                </div>
-              )}
             </div>
 
             <Button
