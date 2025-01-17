@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <header className="flex items-center h-[8vh] w-full bg-background02 text-black font-inter border-b-2 border-borderColor md:h-[10vh] xl:h-[100px]">
       <div
-        className="w-full px-6 flex items-center justify-between h-full md:px-[100px] lg:px-[60px] xl:px-[100px] 
+        className="w-full px-[13px] flex items-center justify-between h-full md:px-[100px] lg:px-[60px] xl:px-[100px] 
       2xl:px-[301px]"
       >
         <motion.div className="text-[16px] hover:text-roxominerva cursor-pointer leading-5 md:text-[20px] xl:text-[22px]">

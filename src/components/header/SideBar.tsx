@@ -29,7 +29,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
     >
       {user ? (
         <div>
-          <div className="h-[8vh] flex items-center justify-end border-b-2 border-b-borderColor pr-[24px] md:pr-0 md:justify-center md:h-[10vh] xl:h-[100px]">
+          <div className="h-[8vh] flex items-center justify-end border-b-2 border-b-borderColor pr-[11px] md:pr-0 md:justify-center md:h-[10vh] xl:h-[100px]">
             <CloseCircle
               strokeWidth={2}
               size={25}
