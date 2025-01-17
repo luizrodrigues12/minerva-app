@@ -12,7 +12,7 @@ type UpdateStudentProps = {
   checkedsSubjects: any;
 };
 
-export function useUpdateStudent({}: UpdateStudentProps) {
+export function useUpdateStudent() {
   const queryClient = useQueryClient();
   const { refetch } = useUserContext();
   const router = useRouter();

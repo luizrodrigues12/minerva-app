@@ -3,7 +3,7 @@
 import Button from "@/components/layout/Button";
 import Container from "@/components/layout/Container";
 import Loading from "@/components/layout/Loading";
-import { useUserContext } from "@/contexts/userData";
+import { useVerifyMutate } from "@/hooks/useVerifyMutate";
 import { useRouter } from "nextjs-toploader/app";
 import React, { useEffect, useState } from "react";
 
@@ -12,43 +12,23 @@ type EmailPageProps = {
 };
 
 const VerifyEmailPage = ({ email }: EmailPageProps) => {
-  const router = useRouter();
-  const [error, setError] = useState("");
-  const [isPosting, setIsPosting] = useState(false);
-  const [message, setMessage] = useState("");
+  const { data, mutate } = useVerifyMutate();
 
-  const verifyEmail = async () => {
-    try {
-      setIsPosting(true);
-      const res = await fetch(`${process.env.HOST}/api/user/verify_email`, {
-        method: "PUT",
-        body: JSON.stringify({ email, verifyEmail: true }),
-      });
-      const { success, error } = await res.json();
-      setIsPosting(false);
-      if (error) throw new Error(error);
-      if (success) setMessage(success);
-    } catch (error: any) {
-      setError(error.message);
-    }
+  useEffect(() => {
+    mutate({ email });
 
     setTimeout(() => {
       window.location.replace("/home");
     }, 5000);
-  };
-
-  useEffect(() => {
-    verifyEmail();
   }, []);
 
   return (
     <Container>
-      {!isPosting ? (
+      {data ? (
         <div className="flex flex-col gap-3 text-black p-4 bg-background03 rounded-md shadow-sm">
           <div className="py-4 bg-background02 rounded-md text-[14px] md:text-[16px] text-center">
-            {message ? message : error}
+            {data.error ? data.error : data.success}
           </div>
-
           <Button onClick={() => window.location.replace("/home")}>
             Finalizar
           </Button>
