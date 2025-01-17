@@ -34,6 +34,7 @@ const ChangeEmailPage = ({ email }: { email: string }) => {
   };
 
   useEffect(() => {
+    if (!user) router.push("/login");
     changeEmailPut();
   }, []);
 
