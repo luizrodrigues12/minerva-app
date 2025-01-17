@@ -55,7 +55,7 @@ const ChangePasswordForm = () => {
             <div className="relative">
               <InputComp
                 placeholder="senha atual"
-                className="mt-0"
+                className="!mt-0"
                 type={isShowCurrent ? "text" : "password"}
                 value={currentPassword || ""}
                 onChange={(e) => setCurrentPassword(e.target.value)}
@@ -66,7 +66,7 @@ const ChangePasswordForm = () => {
             <div className="relative">
               <InputComp
                 placeholder="nova senha"
-                className="mt-0"
+                className="!mt-0"
                 type={isShowNew ? "text" : "password"}
                 value={newPassword || ""}
                 onChange={(e) => setNewPassword(e.target.value)}
@@ -77,7 +77,7 @@ const ChangePasswordForm = () => {
             <div className="relative">
               <InputComp
                 placeholder="repetir senha"
-                className="mt-0"
+                className="!mt-0"
                 type={isShowRepeat ? "text" : "password"}
                 value={repeatPassword || ""}
                 onChange={(e) => setRepeatPassword(e.target.value)}
