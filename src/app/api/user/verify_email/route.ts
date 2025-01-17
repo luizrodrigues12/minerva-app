@@ -1,4 +1,3 @@
-import { validateEmail } from "@/utils/regex";
 import { NextRequest, NextResponse, userAgent } from "next/server";
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
@@ -6,7 +5,6 @@ import UserModel from "@/models/userModel";
 
 type BodyProps = {
   email: string;
-  token: string;
   sendEmail?: boolean;
   verifyEmail?: boolean;
 };
@@ -15,20 +13,17 @@ export async function PUT(req: NextRequest) {
   try {
     const {
       email,
-      token,
       sendEmail = false,
       verifyEmail = false,
     }: BodyProps = await req.json();
 
-    if (!email || !validateEmail.test(email))
-      throw new Error("Email inválido ou inexistente.");
-    if (!token || !jwt.verify(token, process.env.JWT_SECRET!))
-      throw new Error("Token inválido ou inexistente.");
-
-    const emailExisting = await UserModel.findOne({ email });
-    if (!emailExisting) throw new Error("Email não cadastrado.");
+    if (!email) throw new Error("Email inválido ou inexistente.");
 
     if (sendEmail) {
+      const emailToken = jwt.sign({ email: email }, process.env.JWT_SECRET!, {
+        expiresIn: "5min",
+      });
+
       // NODEMAILER
       const transport = nodemailer.createTransport({
         host: process.env.MAILER_HOST,
@@ -53,7 +48,7 @@ export async function PUT(req: NextRequest) {
                <p style="font-size: 16px;">
                Clique em <a style="text-decoration: none; color: #4f47a8" href="${`${
                  process.env.HOST as string
-               }/profile/verify_email/${email}`}">verificar email</a> para verificar seu email.
+               }/profile/verify_email/${emailToken}`}">verificar email</a> para verificar seu email.
                </p>
              </div>`,
       });
@@ -61,9 +56,20 @@ export async function PUT(req: NextRequest) {
     }
 
     if (verifyEmail) {
-      const user = await UserModel.findOne({ email });
+      // Verificando se email existe
+      const { email: emailDecoded }: any = jwt.decode(email);
+      const emailExisting = await UserModel.findOne({ email: emailDecoded });
+      if (!emailExisting) throw new Error("Email não cadastrado.");
+
+      // Verificando se o email foi gerado pelo Minerva token.
+      if (!jwt.verify(email, process.env.JWT_SECRET!))
+        throw new Error("Esse link é inválido ou expirou.");
+
+      //Verificando se o email já é verificado.
+      const user = await UserModel.findOne({ email: emailDecoded });
       if (user.isVerified) throw new Error("Esse email já está verificado.");
-      await UserModel.updateOne({ token }, { isVerified: true });
+
+      await UserModel.updateOne({ email: emailDecoded }, { isVerified: true });
       return NextResponse.json({ success: "Email verificado com sucesso." });
     }
 
