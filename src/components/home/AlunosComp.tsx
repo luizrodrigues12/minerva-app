@@ -12,7 +12,7 @@ const AlunosComp = ({ idAluno }: { name?: string; idAluno: string }) => {
   const aluno = alunos;
 
   return (
-    <div className="w-full text-black rounded-md bg-background03 flex items-center justify-between text-[14px] md:text-[16px]">
+    <div className="w-full text-black rounded-md bg-background03 flex items-center justify-between text-[16px]">
       <motion.div
         whileHover={{ scale: 1.005 }}
         whileTap={{ scale: 1 }}
@@ -31,7 +31,7 @@ const AlunosComp = ({ idAluno }: { name?: string; idAluno: string }) => {
           <ShareAll
             size={28}
             strokeWidth={1.5}
-            className="mr-1 cursor-pointer hover:text-roxominerva size-[24px] md:size-[28px]"
+            className="mr-1 cursor-pointer hover:text-roxominerva size-[28px]"
             onClick={() => {
               navigator.share({
                 title: `Informações de ${aluno?.nome}`,
@@ -48,7 +48,7 @@ const AlunosComp = ({ idAluno }: { name?: string; idAluno: string }) => {
           <UserEdit
             size={28}
             strokeWidth={1.5}
-            className="cursor-pointer hover:text-roxominerva size-[24px] md:size-[28px]"
+            className="cursor-pointer hover:text-roxominerva size-[28px]"
             onClick={() => router.push(`/student/update_student/${idAluno}`)}
           />
         </motion.div>
@@ -60,7 +60,7 @@ const AlunosComp = ({ idAluno }: { name?: string; idAluno: string }) => {
           <TrashBin
             size={22.5}
             strokeWidth={1.5}
-            className="cursor-pointer hover:text-roxominerva size-[20px] md:size-[22.5px]"
+            className="cursor-pointer hover:text-roxominerva size-[22.5px]"
             onClick={() => {
               router.push(`/student/delete_student/${idAluno}`);
             }}
