@@ -7,19 +7,22 @@ import { useUserContext } from "@/contexts/userData";
 import { useRouter } from "nextjs-toploader/app";
 import React, { useEffect, useState } from "react";
 
-const VerifyEmailPage = ({ email }: { email: string }) => {
+type EmailPageProps = {
+  email: string;
+};
+
+const VerifyEmailPage = ({ email }: EmailPageProps) => {
+  const router = useRouter();
   const [error, setError] = useState("");
   const [isPosting, setIsPosting] = useState(false);
   const [message, setMessage] = useState("");
-  const { user } = useUserContext();
-  const { token } = user;
 
   const verifyEmail = async () => {
     try {
       setIsPosting(true);
       const res = await fetch(`${process.env.HOST}/api/user/verify_email`, {
         method: "PUT",
-        body: JSON.stringify({ token, email, verifyEmail: true }),
+        body: JSON.stringify({ email, verifyEmail: true }),
       });
       const { success, error } = await res.json();
       setIsPosting(false);

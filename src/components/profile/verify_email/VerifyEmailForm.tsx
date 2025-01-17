@@ -31,7 +31,7 @@ const VerifyEmailForm = () => {
 
   return (
     <div>
-      {user || !isPosting ? (
+      {!isPosting ? (
         <div>
           {!user.isVerified && (
             <div className="flex flex-col gap-2">
@@ -44,7 +44,14 @@ const VerifyEmailForm = () => {
                   {error}
                 </p>
               )}
-              <Button onClick={sendEmailVerify}>Enviar email</Button>
+              <Button
+                onClick={() => {
+                  setError("");
+                  sendEmailVerify();
+                }}
+              >
+                Enviar email
+              </Button>
             </div>
           )}
 
