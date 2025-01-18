@@ -21,14 +21,15 @@ const ChangeEmailForm = () => {
       if (!validateEmail.test(email))
         throw new Error("Digite um email válido.");
       if (!repeatEmail) throw new Error("Repita o email.");
-      if (email !== repeatEmail) throw new Error("Emails não correspondentes.");
+      if (email.toUpperCase() !== repeatEmail.toUpperCase())
+        throw new Error("Emails não correspondentes.");
 
       setIsPosting(true);
       const res = await fetch(`${process.env.HOST}/api/user/change_email`, {
         method: "PUT",
         body: JSON.stringify({
-          oldEmail: user.email,
-          newEmail: email,
+          oldEmail: user.email.toUpperCase(),
+          newEmail: email.toUpperCase(),
           sendEmail: true,
         }),
       });
