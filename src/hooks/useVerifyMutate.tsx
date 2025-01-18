@@ -20,11 +20,6 @@ export function useVerifyMutate() {
 
   const mutate = useMutation({
     mutationFn: verifyEmail,
-
-    onSuccess: () => {
-      refetch();
-    },
-
     retry: 2,
   });
 

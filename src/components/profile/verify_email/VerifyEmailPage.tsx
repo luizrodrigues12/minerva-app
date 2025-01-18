@@ -20,7 +20,7 @@ const VerifyEmailPage = ({ email }: EmailPageProps) => {
 
   return (
     <Container>
-      {data ? (
+      {data?.error || data?.success ? (
         <div className="flex flex-col gap-3 text-black p-4 bg-background03 rounded-md shadow-sm">
           <div className="py-4 bg-background02 rounded-md text-[14px] md:text-[16px] text-center">
             {data.error ? data.error : data.success}
