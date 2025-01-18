@@ -12,7 +12,7 @@ import Button from "../layout/Button";
 import { useSectionContext } from "@/contexts/section";
 import EyeComp from "../layout/EyeComp";
 
-const ForgetPassForm = () => {
+const ForgetPassForm = ({ id }: { id: string }) => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [isShow, setIsShow] = useState(false);
@@ -20,7 +20,6 @@ const ForgetPassForm = () => {
   const [isPosting, setIsPosting] = useState(false);
   const router = useRouter();
   const { setSection } = useSectionContext();
-  const id = usePathname().slice(20);
 
   const handleResetPass = async () => {
     try {
@@ -37,9 +36,9 @@ const ForgetPassForm = () => {
           body: JSON.stringify({ password, id }),
         }
       );
-
-      const { success } = await response.json();
+      const { success, error } = await response.json();
       setIsPosting(false);
+      if (error) throw new Error(error);
       if (success) setMessage(success);
     } catch (error: any) {
       setPasswordError(error.message);

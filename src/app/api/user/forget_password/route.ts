@@ -2,6 +2,7 @@ import UserModel from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/dbConfig/dbConfig";
 import nodemailer from "nodemailer";
+import jwt from "jsonwebtoken";
 
 connectDB();
 
@@ -14,7 +15,11 @@ export async function POST(req: NextRequest) {
     if (!emailUser) throw new Error("Conta não existente.");
 
     const idUser = _id.toString();
-    console.log("idUser");
+    const idToken = jwt.sign({ _id: idUser }, process.env.JWT_SECRET!, {
+      expiresIn: "5min",
+    });
+
+    console.log(emailUser);
 
     // NODEMAILER
     const transport = nodemailer.createTransport({
@@ -41,7 +46,7 @@ export async function POST(req: NextRequest) {
         <p style="font-size: 14px;">
         Clique <a style="text-decoration: none; color: #4f47a8" href="${`${
           process.env.HOST as string
-        }/reset_password/_id=${idUser}`}">aqui</a> para redefinir sua senha.
+        }/reset_password/${idToken}`}">aqui</a> para redefinir sua senha.
         </p>
       </div>`,
     });

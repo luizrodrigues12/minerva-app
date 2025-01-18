@@ -27,7 +27,10 @@ const ForgetPassForm = () => {
           body: JSON.stringify({ email }),
         }
       );
-      router.replace("/login");
+      const { data, error } = await response.json();
+      setIsPosting(false);
+      if (error) throw new Error(error);
+      if (data) router.replace("/login");
     } catch (error: any) {
       setEmailError(error.message);
     }

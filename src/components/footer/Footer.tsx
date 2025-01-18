@@ -5,7 +5,6 @@ import React from "react";
 
 const Footer = () => {
   const { section } = useSectionContext();
-  console.log(section);
 
   return (
     <>
