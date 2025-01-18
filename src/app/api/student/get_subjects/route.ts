@@ -10,6 +10,8 @@ export async function POST(req: NextRequest) {
       (aluno: any) => aluno.idAluno === idAluno
     );
 
+    if (!alunoExato) throw new Error("Esse aluno não existe.");
+
     return NextResponse.json({ aluno: alunoExato[0] });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

@@ -7,6 +7,7 @@ import NomePreparatorioParents from "@/components/parents/get_subjects/NomePrepa
 import AllSubjectsParents from "./AllSubjectsParents";
 import { useParentsData } from "@/hooks/useParentsData";
 import Loading from "@/components/layout/Loading";
+import { useRouter } from "nextjs-toploader/app";
 
 type Props = {
   idAluno: string;
@@ -14,6 +15,7 @@ type Props = {
 
 const SubjectsStudentForm = ({ idAluno }: Props) => {
   const [busca, setBusca] = useState("");
+  const router = useRouter();
   const {
     data: aluno,
     isFetched,
@@ -21,11 +23,13 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
     refetch,
   } = useParentsData(idAluno);
 
+  useEffect(() => {}, []);
+
   return (
     <Container>
       {isFetched ? (
         <div className="flex flex-col justify-center w-full">
-          {!isRefetchError ? (
+          {aluno ? (
             <div className="flex flex-col w-full rounded-lg gap-3 ">
               <div className="flex flex-col gap-4">
                 {/* NOME DO ALUNO */}
