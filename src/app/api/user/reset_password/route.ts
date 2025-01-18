@@ -16,7 +16,9 @@ export async function PUT(req: NextRequest) {
     await UserModel.updateOne({ _id: id }, { password: senhaCripto });
 
     return NextResponse.json(
-      { sucess: "Senha alterada com sucesso." },
+      {
+        success: `Sua senha foi alterada com sucesso. \n Agora clique em fazer login e entre na sua conta.`,
+      },
       { status: 200 }
     );
   } catch (error: any) {
