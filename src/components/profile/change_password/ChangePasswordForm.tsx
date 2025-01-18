@@ -12,7 +12,6 @@ const ChangePasswordForm = () => {
   const [newPassword, setNewPassword] = useState("");
   const [isShowNew, setIsShowNew] = useState(false);
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [isShowRepeat, setIsShowRepeat] = useState(false);
   const [isPosting, setIsPosting] = useState(false);
   const [message, setMessage] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -78,12 +77,11 @@ const ChangePasswordForm = () => {
               <InputComp
                 placeholder="repetir senha"
                 className="!mt-0"
-                type={isShowRepeat ? "text" : "password"}
+                type={isShowNew ? "text" : "password"}
                 value={repeatPassword || ""}
                 onChange={(e) => setRepeatPassword(e.target.value)}
                 onFocus={() => setError("")}
               />
-              <EyeComp isShow={isShowRepeat} setIsShow={setIsShowRepeat} />
             </div>
 
             {error && (
