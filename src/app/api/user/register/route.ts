@@ -37,12 +37,9 @@ export async function POST(req: NextRequest) {
     });
     // Salvando usuário
     newUser.save();
-    return NextResponse.json(
-      { success: "Usuário salvo com sucesso." },
-      { status: 201 }
-    );
+    return NextResponse.json({ success: "Usuário salvo com sucesso." });
   } catch (error: any) {
     //Enviando erro
-    return NextResponse.json({ error: error.message }, { status: 400 });
+    return NextResponse.json({ error: error.message });
   }
 }
