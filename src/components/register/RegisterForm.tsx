@@ -62,11 +62,10 @@ const RegisterForm = () => {
           method: "POST",
           body: JSON.stringify({ username, email, password }),
         });
-        setIsPosting(false);
-
-        const json = await response.json();
-        if (response.status !== 201) {
-          throw new Error(json.error);
+        const { error } = await response.json();
+        if (error) {
+          setIsPosting(false);
+          throw new Error(error);
         }
         router.push("/login");
       }
