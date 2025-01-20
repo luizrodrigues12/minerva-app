@@ -28,12 +28,12 @@ const InfoAlunoComp = ({ idAluno }: { idAluno: string }) => {
       ) : (
         <div className="flex flex-col justify-center w-full">
           <div className="flex flex-col w-full rounded-lg gap-3 ">
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-4">
               {/* NOME DO ALUNO */}
               <NomePreparatorio idAluno={idAluno} />
 
               <div className="flex flex-col gap-0">
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-4">
                   <InputComp
                     type="text"
                     placeholder="Buscar por assuntos"

@@ -35,7 +35,7 @@ const AllSubjects = ({ idAluno, busca }: AllSubjectsProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-1.5">
       {materiaFilteredAndSorted()?.filter(
         (materia) => materia.ordem <= 10 && materia.materia === "português"
       ).length === 0 ? (

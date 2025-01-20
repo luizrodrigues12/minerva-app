@@ -52,7 +52,7 @@ const Accordion = ({
         id="component-accordion"
         className={`${
           isOpen ? "flex" : "hidden"
-        } border-background03 bg-background01 rounded-lg border-[12px] border-t-0 flex flex-col p-2 gap-2 ${classNameContent}`}
+        } border-background03 bg-background01 rounded-lg border-[12px] border-t-0 flex flex-col p-2 gap-1.5 ${classNameContent}`}
       >
         {children}
       </div>
