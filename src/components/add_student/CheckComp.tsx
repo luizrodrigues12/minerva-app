@@ -37,7 +37,7 @@ const CheckComp = ({
 
   return (
     <div
-      className={`checkbox flex justify-between items-center p-2.5 px-3 bg-background03 w-full rounded-lg font-inter cursor-pointer ${className}`}
+      className={`checkbox flex justify-between items-center p-[11.5px] md:px-4 bg-background03 w-full rounded-lg font-inter cursor-pointer ${className}`}
       id={`div-check`}
       onClick={() => {
         checkInput();
