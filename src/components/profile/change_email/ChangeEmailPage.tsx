@@ -27,7 +27,6 @@ const ChangeEmailPage = ({ emailTokenReceived }: ChangeEmailProps) => {
       });
       const data = await res.json();
       const { success, error } = data;
-      if (success) refetch();
       setIsPosting(false);
       success ? setMessage(success) : setError(error);
     } catch (error: any) {
