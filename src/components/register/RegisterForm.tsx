@@ -13,6 +13,7 @@ import Button from "../layout/Button";
 import Loading from "../layout/Loading";
 import InputComp from "../layout/InputComp";
 import EyeComp from "../layout/EyeComp";
+import Link from "next/link";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -32,6 +33,8 @@ const RegisterForm = () => {
   const usernameTest = validateUsername.test(username);
 
   const handleRegister = async () => {
+    const permissionInput: any = document.querySelector("#permission");
+
     try {
       // REGEX
       if (!usernameTest) {
@@ -47,15 +50,18 @@ const RegisterForm = () => {
         return;
       }
 
+      if (!permissionInput.checked) {
+        setpasswordError("Concorde com termos de uso e privacidade.");
+        return;
+      }
+
       //Enviando post dos dados
       if (passwordTest && emailTest && usernameTest) {
         setIsPosting(true);
-
         const response = await fetch(`${process.env.HOST}/api/user/register`, {
           method: "POST",
           body: JSON.stringify({ username, email, password }),
         });
-
         setIsPosting(false);
 
         const json = await response.json();
@@ -142,7 +148,7 @@ const RegisterForm = () => {
               )}
             </div>
 
-            <div>
+            <div className="flex flex-col">
               <div className="text-[16px]">senha</div>
               <div className="flex relative">
                 <InputComp
@@ -176,7 +182,33 @@ const RegisterForm = () => {
                 </p>
               </div>
 
-              <Button className="py-2.5 mt-[20px] " onClick={handleRegister}>
+              <div className="flex gap-1 items-center mt-2.5 ">
+                <input
+                  type="checkbox"
+                  className="size-4 rounded-sm checked:outline-none focus:outline-none focus:ring-offset-0 focus:ring-0 cursor-pointer"
+                  id="permission"
+                  onChange={() => setpasswordError("")}
+                />
+                <p className="text-[12px] md:text-[13px]">
+                  Concordo com{" "}
+                  <Link
+                    href={"/terms-of-use"}
+                    className="text-roxominerva hover:text-black"
+                  >
+                    termos de uso
+                  </Link>{" "}
+                  e{" "}
+                  <Link
+                    href={"/privacy"}
+                    className="text-roxominerva hover:text-black"
+                  >
+                    privacidade
+                  </Link>
+                  .
+                </p>
+              </div>
+
+              <Button className="py-2.5 mt-4" onClick={handleRegister}>
                 Registrar
               </Button>
             </div>
