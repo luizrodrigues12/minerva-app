@@ -13,7 +13,7 @@ const TermsOfUse = () => {
 
   return (
     <Container>
-      <div className="text-black flex flex-col gap-6 text-justify">
+      <div className="text-black flex flex-col gap-6 text-justify p-2 md:p-0">
         <div className="flex flex-col gap-2">
           <h2 className="font-interMedium text-[14px] md:text-[16px]">
             1. Termos

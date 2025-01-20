@@ -13,7 +13,7 @@ const PrivacyPage = () => {
 
   return (
     <Container>
-      <div className="text-black flex flex-col gap-6 text-justify text-[14px] md:text-[16px]">
+      <div className="text-black flex flex-col gap-6 text-justify text-[14px] md:text-[16px] p-2 md:p-0">
         <div className="flex flex-col gap-4">
           <h2 className="font-interMedium text-[14px] md:text-[16px]">
             Política de Privacidade
