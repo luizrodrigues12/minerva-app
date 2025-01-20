@@ -39,13 +39,13 @@ const LoginForm = () => {
       });
 
       //Mostrando error
-      setIsPosting(false);
       const { error } = await res.json();
       if (error) throw new Error(error);
 
       // Redirecionando
       window.location.href = `/home`;
     } catch (err: any) {
+      setIsPosting(false);
       err.message.toLowerCase().includes("senha")
         ? setpasswordError(err.message)
         : setEmailError(err.message);
