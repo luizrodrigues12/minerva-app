@@ -56,7 +56,8 @@
 
 .container-phone {
   background-image: url("../../public/images/phone-mobile.jpg");
-  background-size: cover;
+  background-position: center top;
+  background-size: 125%;
 }
 
 .section-login {
@@ -88,11 +89,6 @@
     background-image: url("../../public/images/back-tablet.jpg");
   }
 
-  .container-phone {
-    background-size: 115%;
-    background-position: center top;
-  }
-
   .section-login {
     background-image: url("../../public/images/back-tablet.jpg");
   }
@@ -115,12 +111,6 @@
 }
 
 @media (min-width: 1280px) {
-  .container-phone {
-    background-image: url("../../public/images/phone-desktop.jpg");
-    background-size: cover;
-    background-position: center top;
-  }
-
   .container-home {
     background-image: url("../../public/images/back-desktop.jpg");
   }

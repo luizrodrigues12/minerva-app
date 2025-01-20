@@ -59,7 +59,7 @@ const LoginForm = () => {
   return (
     <section className="flex flex-col items-center md:items-start text-black font-inter min-h-[76vh] bg-background01 max-h-[92.2vh] xl:min-h-[69.4vh] section-login py-[32px] lg:py-[40px]">
       <div
-        className="flex flex-col w-[90%] py-[24px] pb-[32px] px-6 bg-background02 border-borderColor rounded-md md:mx-[100px] md:px-[35px] md:w-[450px] md:pb-10 lg:mt-0 lg:flex-row-reverse lg:w-[750px] lg:px-0 lg:justify-between lg:gap-0 lg:py-0 lg:mx-[60px] xl:mx-[100px] xl:w-[900px] 2xl:mx-[300px]"
+        className="flex flex-col w-[90%] py-[24px] pb-[32px] px-6 bg-background03 border-borderColor rounded-md md:mx-[100px] md:px-[35px] md:w-[450px] md:pb-10 lg:mt-0 lg:flex-row-reverse lg:w-[750px] lg:px-0 lg:justify-between lg:gap-0 lg:py-0 lg:mx-[60px] xl:mx-[100px] xl:w-[900px] 2xl:mx-[300px]"
         style={{ boxShadow: "-2px 2px 2px #00000010" }}
       >
         <div className="flex flex-col gap-4 md:gap-5 lg:py-[10px] lg:w-full lg:px-6 lg:justify-center lg:gap-2 xl:p-10 xl:pb-14 xl:gap-4">
@@ -81,6 +81,7 @@ const LoginForm = () => {
                 name="email"
                 autoComplete="email"
                 placeholder={"usuário ou email"}
+                className="!bg-background02"
                 value={email || ""}
                 onChange={(e) => {
                   e.preventDefault();
@@ -118,7 +119,7 @@ const LoginForm = () => {
                   id="input-password"
                   name="password"
                   value={password || ""}
-                  className="flex items-center p-2.5 border-0 bg-background01 rounded-[7px] text-[14px] w-full mt-2 md:text-[15px] md:px-4"
+                  className="!bg-background02"
                   placeholder={"digite sua senha"}
                   onChange={(e) => setPassword(e.target.value.trim())}
                   onFocus={() => setpasswordError("")}

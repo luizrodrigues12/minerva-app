@@ -17,7 +17,7 @@ const PrincipalPage = () => {
 
   return (
     <section className="container-home flex items-start justify-between w-full font-inter min-h-[76vh] md:pl-[100px] md:min-h-[76vh] lg:pl-[60px] xl:pl-[100px] xl:min-h-[69.4vh] 2xl:pl-[300px]">
-      <div className="flex flex-col items-start pl-6 justify-center h-full text-black my-[32px] gap-7 md:bg-background02 md:p-[35px] md:my-[32px] md:rounded-[7px] md:shadow-xl lg:flex-row lg:w-[700px] lg:my-[40px] xl:flex-row xl:w-[830px] xl:justify-between xl:my-[40px]">
+      <div className="flex flex-col items-start pl-6 justify-center h-full text-black my-[32px] gap-7 md:bg-background03 md:p-[35px] md:my-[32px] md:rounded-[7px] md:shadow-xl lg:flex-row lg:w-[700px] lg:my-[40px] xl:flex-row xl:w-[830px] xl:justify-between xl:my-[40px]">
         <div className="flex flex-col gap-7 items-start lg:gap-[30px] xl:gap-[40px]">
           <h2 className="font-dancing text-[34px] leading-9 md:text-[46px] md:leading-[50px] lg:text-[40px] lg:leading-[45px] xl:text-[55px] xl:leading-[60px]">
             Precisando facilitar <br /> seus planejamentos?
@@ -59,7 +59,7 @@ const PrincipalPage = () => {
 
         <div
           className="container-phone w-[245px] h-[160px] bg-zinc-100 border-[6px] border-[#000000] rounded-[10px] md:w-[90%] md:h-[200px] lg:w-[300px] lg:h-[309px] xl:w-[300px] xl:h-[395px] md:self-start lg:self-center"
-          style={{ boxShadow: "2px 2px 6px #00000030" }}
+          style={{ boxShadow: "2px 2px 4px #00000020" }}
         ></div>
       </div>
     </section>

@@ -81,7 +81,7 @@ const RegisterForm = () => {
     py-[32px] lg:py-[40px]"
     >
       <div
-        className="flex flex-col w-[90%] m-auto py-[24px] pb-[28px] px-[24px] bg-background02 rounded-md md:mx-[100px] md:px-[30px] md:w-[450px] md:py-[30px] lg:flex-row-reverse lg:w-[750px] lg:px-0 lg:justify-between lg:gap-0 lg:py-0 lg:mx-[60px] xl:mx-[100px] xl:w-[900px] xl:max-h-[510px] 2xl:mx-[300px]"
+        className="flex flex-col w-[90%] m-auto py-[24px] pb-[28px] px-[24px] bg-background03 rounded-md md:mx-[100px] md:px-[30px] md:w-[450px] md:py-[30px] lg:flex-row-reverse lg:w-[750px] lg:px-0 lg:justify-between lg:gap-0 lg:py-0 lg:mx-[60px] xl:mx-[100px] xl:w-[900px] xl:max-h-[510px] 2xl:mx-[300px]"
         style={{ boxShadow: "-2px 2px 2px #00000010" }}
       >
         <div className="flex flex-col gap-4 md:gap-5 lg:w-full lg:p-6 lg:pb-7 lg:justify-center lg:gap-2 xl:p-8 xl:pb-11 xl:gap-4">
@@ -102,7 +102,7 @@ const RegisterForm = () => {
                 type="text"
                 name="username"
                 autoComplete="username"
-                className="flex items-center p-2.5 border-0 bg-background01 rounded-[7px] text-[14px] w-full mt-2 md:text-[15px] md:px-4"
+                className="!bg-background02"
                 placeholder={"nome de usuário"}
                 value={username || ""}
                 onChange={(e) => {
@@ -125,7 +125,7 @@ const RegisterForm = () => {
                 type="email"
                 name="email"
                 autoComplete="email"
-                className="flex items-center p-2.5 border-0 bg-background01 rounded-[7px] text-[14px] w-full mt-2 md:text-[15px] md:px-4"
+                className="!bg-background02"
                 placeholder={"usuário ou email"}
                 value={email || ""}
                 onChange={(e) => {
@@ -150,7 +150,7 @@ const RegisterForm = () => {
                   id="input-password"
                   name="password"
                   value={password || ""}
-                  className="flex items-center p-2.5 border-0 bg-background01 rounded-[7px] text-[14px] w-full mt-2 md:text-[15px] md:px-4"
+                  className="!bg-background02"
                   placeholder={"digite sua senha"}
                   onChange={(e) => setPassword(e.target.value.trim())}
                   onFocus={() => setpasswordError("")}
