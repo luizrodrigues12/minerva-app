@@ -1,13 +1,24 @@
-import React from "react";
+"use client";
+
+import { useSectionContext } from "@/contexts/section";
 import Container from "../layout/Container";
+import { useEffect } from "react";
 
 const TermsOfUse = () => {
+  const { setSection } = useSectionContext();
+
+  useEffect(() => {
+    setSection("terms-of-use");
+  }, []);
+
   return (
     <Container>
       <div className="text-black flex flex-col gap-6 text-justify">
         <div className="flex flex-col gap-2">
-          <h2 className="font-interMedium">1. Termos</h2>
-          <p className="indent-4">
+          <h2 className="font-interMedium text-[14px] md:text-[16px]">
+            1. Termos
+          </h2>
+          <p className="indent-4 text-[14px] md:text-[16px]">
             Ao acessar o site{" "}
             <a
               className="text-roxominerva"
@@ -24,8 +35,10 @@ const TermsOfUse = () => {
           </p>
         </div>
         <div className="flex flex-col gap-2">
-          <h2 className="font-interMedium">2. Uso de Licença</h2>
-          <p className="indent-4">
+          <h2 className="font-interMedium text-[14px] md:text-[16px]">
+            2. Uso de Licença
+          </h2>
+          <p className="indent-4 text-[14px] md:text-[16px]">
             É concedida permissão para baixar temporariamente uma cópia dos
             materiais (informações ou software) no site Minerva , apenas para
             visualização transitória pessoal e não comercial. Esta é a concessão
@@ -48,7 +61,7 @@ const TermsOfUse = () => {
               pessoa ou 'espelhar' os materiais em qualquer outro servidor.
             </li>
           </ol>
-          <p className="indent-4">
+          <p className="indent-4 text-[14px] md:text-[16px]">
             Esta licença será automaticamente rescindida se você violar alguma
             dessas restrições e poderá ser rescindida por Minerva a qualquer
             momento. Ao encerrar a visualização desses materiais ou após o
@@ -58,10 +71,12 @@ const TermsOfUse = () => {
         </div>
 
         <div className="flex flex-col gap-2">
-          <h2 className="font-interMedium">3. Isenção de responsabilidade</h2>
+          <h2 className="font-interMedium text-[14px] md:text-[16px]">
+            3. Isenção de responsabilidade
+          </h2>
           <ol>
             <li>
-              <p className="indent-4">
+              <p className="indent-4 text-[14px] md:text-[16px]">
                 Os materiais no site da Minerva são fornecidos "como estão".
                 Minerva não oferece garantias, expressas ou implícitas, e, por
                 este meio, isenta e nega todas as outras garantias, incluindo,
@@ -71,7 +86,7 @@ const TermsOfUse = () => {
               </p>
             </li>
             <li>
-              <p className="indent-4">
+              <p className="indent-4 text-[14px] md:text-[16px]">
                 Além disso, o Minerva não garante ou faz qualquer representação
                 relativa à precisão, aos resultados prováveis ​​ou à
                 confiabilidade do uso dos materiais em seu site ou de outra
@@ -82,8 +97,10 @@ const TermsOfUse = () => {
           </ol>
         </div>
         <div className="flex flex-col gap-2">
-          <h2 className="font-interMedium">4. Limitações</h2>
-          <p className="indent-4">
+          <h2 className="font-interMedium text-[14px] md:text-[16px]">
+            4. Limitações
+          </h2>
+          <p className="indent-4 text-[14px] md:text-[16px]">
             Em nenhum caso o Minerva ou seus fornecedores serão responsáveis
             ​​por quaisquer danos (incluindo, sem limitação, danos por perda de
             dados ou lucro ou devido a interrupção dos negócios) decorrentes do
@@ -96,8 +113,10 @@ const TermsOfUse = () => {
           </p>
         </div>
         <div className="flex flex-col gap-2">
-          <h2 className="font-interMedium">5. Precisão dos materiais</h2>
-          <p className="indent-4">
+          <h2 className="font-interMedium text-[14px] md:text-[16px]">
+            5. Precisão dos materiais
+          </h2>
+          <p className="indent-4 text-[14px] md:text-[16px]">
             Os materiais exibidos no site da Minerva podem incluir erros
             técnicos, tipográficos ou fotográficos. Minerva não garante que
             qualquer material em seu site seja preciso, completo ou atual.
@@ -107,8 +126,10 @@ const TermsOfUse = () => {
           </p>
         </div>
         <div className="flex flex-col gap-2">
-          <h2 className="font-interMedium">6. Links</h2>
-          <p className="indent-4">
+          <h2 className="font-interMedium text-[14px] md:text-[16px]">
+            6. Links
+          </h2>
+          <p className="indent-4 text-[14px] md:text-[16px]">
             O Minerva não analisou todos os sites vinculados ao seu site e não é
             responsável pelo conteúdo de nenhum site vinculado. A inclusão de
             qualquer link não implica endosso por Minerva do site. O uso de
@@ -116,16 +137,20 @@ const TermsOfUse = () => {
           </p>
         </div>
         <div className="flex flex-col gap-2">
-          <h3 className="font-interMedium">Modificações</h3>
-          <p className="indent-4">
+          <h3 className="font-interMedium text-[14px] md:text-[16px]">
+            Modificações
+          </h3>
+          <p className="indent-4 text-[14px] md:text-[16px]">
             O Minerva pode revisar estes termos de serviço do site a qualquer
             momento, sem aviso prévio. Ao usar este site, você concorda em ficar
             vinculado à versão atual desses termos de serviço.
           </p>
         </div>
         <div className="flex flex-col gap-2">
-          <h3 className="font-interMedium">Lei aplicável</h3>
-          <p className="indent-4">
+          <h3 className="font-interMedium text-[14px] md:text-[16px]">
+            Lei aplicável
+          </h3>
+          <p className="indent-4 text-[14px] md:text-[16px]">
             Estes termos e condições são regidos e interpretados de acordo com
             as leis do Minerva e você se submete irrevogavelmente à jurisdição
             exclusiva dos tribunais naquele estado ou localidade.
