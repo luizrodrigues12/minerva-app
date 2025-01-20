@@ -53,7 +53,8 @@ export async function PUT(req: NextRequest) {
 
       const emailTokenSent = jwt.sign(
         { newEmail, oldEmail },
-        process.env.JWT_SECRET!
+        process.env.JWT_SECRET!,
+        { expiresIn: "5min" }
       );
 
       const transport = nodemailer.createTransport({

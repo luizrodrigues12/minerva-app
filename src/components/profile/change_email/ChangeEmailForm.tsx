@@ -28,8 +28,8 @@ const ChangeEmailForm = () => {
       const res = await fetch(`${process.env.HOST}/api/user/change_email`, {
         method: "PUT",
         body: JSON.stringify({
-          oldEmail: user.email.toUpperCase(),
-          newEmail: email.toUpperCase(),
+          oldEmail: user.email.toLowerCase(),
+          newEmail: email.toLowerCase(),
           sendEmail: true,
         }),
       });
@@ -54,6 +54,7 @@ const ChangeEmailForm = () => {
                 value={email || ""}
                 onChange={(e) => setEmail(e.target.value)}
                 onFocus={() => setError("")}
+                type="email"
               />
               <InputComp
                 placeholder="repetir email"
@@ -61,6 +62,7 @@ const ChangeEmailForm = () => {
                 value={repeatEmail || ""}
                 onChange={(e) => setRepeatEmail(e.target.value)}
                 onFocus={() => setError("")}
+                type="email"
               />
             </div>
 
