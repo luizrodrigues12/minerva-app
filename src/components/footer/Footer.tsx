@@ -1,6 +1,7 @@
 "use client";
 
 import { useSectionContext } from "@/contexts/section";
+import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
@@ -31,8 +32,12 @@ const Footer = () => {
             <div className="flex-col gap-[5px] hidden md:flex">
               <p className="text-[#9E9E9E]">políticas</p>
               <ul className="flex flex-col gap-1">
-                <li>privacidade</li>
-                <li>termos de uso</li>
+                <li>
+                  <Link href={"/privacy"}>privacidade</Link>
+                </li>
+                <li>
+                  <Link href={"/terms-of-use"}>termos de uso</Link>
+                </li>
               </ul>
             </div>
           </div>

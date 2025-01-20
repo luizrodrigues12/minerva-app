@@ -95,7 +95,7 @@ const UserDataComp = () => {
             </div>
 
             <Button
-              className="w-full bg-zinc-700 hover:bg-zinc-800 mt-1 !p-2.5"
+              className="w-full bg-zinc-700 hover:bg-zinc-800 !p-2.5"
               whileHover={{ scale: 1.003 }}
               whileTap={{ scale: 0.99 }}
               onClick={() => logoutFunction()}
