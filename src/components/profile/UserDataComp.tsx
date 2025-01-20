@@ -15,7 +15,7 @@ import VerifyEmailForm from "./verify_email/VerifyEmailForm";
 
 const UserDataComp = () => {
   noStore();
-  const { user, logoutFunction } = useUserContext();
+  const { user, logoutFunction, refetch } = useUserContext();
   const { setSection } = useSectionContext();
 
   const removerConta = async (e: any) => {
@@ -29,6 +29,7 @@ const UserDataComp = () => {
 
   useEffect(() => {
     setSection("profile");
+    refetch();
   });
 
   return (
