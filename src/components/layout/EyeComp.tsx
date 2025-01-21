@@ -12,14 +12,14 @@ const EyeComp = ({ isShow, setIsShow }: EyeProps) => {
     <div>
       {isShow ? (
         <EyeSlash
-          className="absolute z-[1] bottom-2.5 right-2.5 text-[#404040] md:right-4 cursor-pointer"
+          className="absolute z-[1] bottom-2.5 right-2.5 text-inputText md:right-4 cursor-pointer"
           onClick={() => {
             setIsShow(false);
           }}
         />
       ) : (
         <Eye
-          className="absolute z-[1] bottom-2.5 right-2.5 text-[#404040] md:right-4 cursor-pointer"
+          className="absolute z-[1] bottom-2.5 right-2.5 text-inputText md:right-4 cursor-pointer"
           onClick={() => {
             setIsShow(true);
           }}

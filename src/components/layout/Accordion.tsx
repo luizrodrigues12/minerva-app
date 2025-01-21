@@ -28,7 +28,7 @@ const Accordion = ({
         className="flex justify-between py-2.5 md:py-3 cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className="text-[#303030] text-[14px] md:text-[16px] flex w-full px-3 items-center">
+        <div className="text-textColor text-[14px] md:text-[16px] flex w-full px-3 items-center">
           <p className="pr-2" onClick={() => setIsOpen(!isOpen)}>
             {textLeft.split("")[0].toUpperCase() + textLeft.slice(1)}
           </p>
@@ -42,9 +42,9 @@ const Accordion = ({
           )}
         </div>
         {isOpen ? (
-          <AngleUp className="mx-2 flex justify-center items-center mr-3 cursor-pointer text-corIcones hover:text-roxominerva" />
+          <AngleUp className="mx-2 flex justify-center items-center mr-3 cursor-pointer text-corIcones hover:text-buttonHover" />
         ) : (
-          <AngleDown className="mx-2 flex justify-center items-center mr-3 cursor-pointer text-corIcones hover:text-roxominerva" />
+          <AngleDown className="mx-2 flex justify-center items-center mr-3 cursor-pointer text-corIcones hover:text-buttonHover" />
         )}
       </div>
 

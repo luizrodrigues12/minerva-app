@@ -1,3 +1,30 @@
+.light {
+  --background01: #d4d4d4;
+  --background02: #dfdfdf;
+  --background03: #ececec;
+  --cor-icones: #524aaf;
+  --roxo-minerva: #4f47a8;
+  --text-color: #000;
+  --input-text: #404040;
+  --button-hover: #584ebd;
+  --button-text: #e4e4e7;
+  --border-color: #a8a8a8;
+  --error-color: #e02424;
+}
+
+.dark {
+  --background01: #151515;
+  --background02: #202020;
+  --background03: #303030;
+  --cor-icones: #665dc5;
+  --roxo-minerva: #4f47a8;
+  --text-color: #ececec;
+  --input-text: #c2c2c2;
+  --button-hover: #584ebd;
+  --border-color: #404040;
+  --error-color: #da2323;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

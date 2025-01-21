@@ -20,7 +20,7 @@ const Button = ({
       whileTap={whileTap ? whileTap : { scale: 0.99 }}
       whileHover={whileHover ? whileHover : { scale: 1.01 }}
       transition={{ duration: 0.1 }}
-      className={`bg-roxominerva font-inter py-2 px-10 flex items-center justify-center text-[14px] text-buttonText rounded-[4px] hover:bg-[#584ebd] cursor-pointer xl:text-[16px] ${className}`}
+      className={`bg-roxominerva font-inter py-2 px-10 flex items-center justify-center text-[14px] text-buttonText rounded-[4px] hover:bg-buttonHover cursor-pointer xl:text-[16px] ${className}`}
       style={style ? { boxShadow: "-2px 2px 5px #00000020" } : style}
       onClick={onClick}
     >

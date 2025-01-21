@@ -35,12 +35,12 @@ const VerifyEmailForm = () => {
         <div>
           {!user.isVerified && (
             <div className="flex flex-col gap-2">
-              <div className="bg-background03 py-4 text-center text-black rounded-md text-[14px] md:text-[16px]">
+              <div className="bg-background03 py-4 text-center text-textColor rounded-md text-[14px] md:text-[16px]">
                 Enviaremos um email pra você.
                 <br /> Abra-o e clique em verificar email.
               </div>
               {error && (
-                <p className="text-red-600 py-2.5 text-center text-[14px] md:text-[15px] bg-background03 rounded-md">
+                <p className="text-errorColor py-2.5 text-center text-[14px] md:text-[15px] bg-background03 rounded-md">
                   {error}
                 </p>
               )}
@@ -56,15 +56,15 @@ const VerifyEmailForm = () => {
           )}
 
           {user.isVerified && (
-            <div className="bg-background03 py-4 text-center text-black rounded-md text-[14px] md:text-[16px] flex gap-1 items-center justify-center">
+            <div className="bg-background03 py-4 text-center rounded-md text-[14px] md:text-[16px] flex gap-1 items-center justify-center">
               <p>Email verificado!</p>
-              <CheckCircle className="size-[24px] text-roxominerva" />
+              <CheckCircle className="size-[24px] text-corIcones" />
             </div>
           )}
 
           {message && (
             <div className="bg-background03 p-6 modal border-2 border-borderColor rounded-md shadow-md flex flex-col gap-2 w-[90%] md:w-[60%] lg:w-[30%] xl:w-[25%]">
-              <div className="bg-background02 p-2.5 text-black rounded-md text-center text-[14px] md:text-[16px]">
+              <div className="bg-background02 p-2.5 rounded-md text-center text-[14px] md:text-[16px]">
                 {message}
               </div>
               <Button

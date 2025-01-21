@@ -30,49 +30,47 @@ const UserDataComp = () => {
   useEffect(() => {
     setSection("profile");
     refetch();
-  });
+  }, []);
 
   return (
     <Container>
       {!user ? (
         <Loading />
       ) : (
-        <div className="flex flex-col w-full h-screen">
-          <div className="flex flex-col items-start gap-4 md:rounded-md">
+        <div className="flex flex-col w-full h-screen text-textColor">
+          <div className="flex flex-col items-start gap-4 md:rounded-md text-textColor">
             <div className="flex gap-3 w-full">
-              <div className="bg-background03 text-[#414141] rounded-md">
+              <div className="bg-background03 text-inputText rounded-md">
                 <UserCircle size={100} strokeWidth={0.5} />
               </div>
               <div className="flex flex-col gap-2 justify-between w-full">
-                <div className="bg-background03 p-3 rounded-md text-[#404040] text-[14px] md:text-[16px]">
+                <div className="bg-background03 p-3 rounded-md text-[14px] md:text-[16px]">
                   {user.username}
                 </div>
-                <div className="bg-background03 p-3 rounded-md text-[#404040] text-[14px] md:text-[16px]">
+                <div className="bg-background03 p-3 rounded-md text-[14px] md:text-[16px]">
                   Educador(a)
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col gap-3 w-full relative">
-              <div className="text-black text-[16px] md:text-[18px]">email</div>
+              <div className="text-[16px] md:text-[18px]">email</div>
               <div>
                 <div
-                  className="text-black text-[12px] mr-1.5 mb-1 hover:text-red-700 cursor-pointer text-end absolute right-0 
+                  className="text-[12px] mr-1.5 mb-1 hover:text-errorColor cursor-pointer text-end absolute right-0 
                 top-3.5 md:text-[14px]"
                   onClick={async (e) => await removerConta(e)}
                 >
                   excluir conta
                 </div>
-                <div className="bg-background03 p-3 rounded-md text-[#202020] text-[14px] md:text-[16px]">
+                <div className="bg-background03 p-3 rounded-md text-inputText text-[14px] md:text-[16px]">
                   {user.email}
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col gap-3 w-full  ">
-              <div className="text-black text-[16px] md:text-[18px]">
-                configurações
-              </div>
+              <div className=" text-[16px] md:text-[18px]">configurações</div>
               <div className="flex flex-col gap-1.5">
                 <Accordion
                   children={<VerifyEmailForm />}
@@ -95,7 +93,7 @@ const UserDataComp = () => {
             </div>
 
             <Button
-              className="w-full bg-zinc-700 hover:bg-zinc-800 !p-2.5"
+              className="w-full !p-2.5"
               whileHover={{ scale: 1.003 }}
               whileTap={{ scale: 0.99 }}
               onClick={() => logoutFunction()}

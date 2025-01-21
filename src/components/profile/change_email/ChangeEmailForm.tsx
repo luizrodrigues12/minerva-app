@@ -45,7 +45,7 @@ const ChangeEmailForm = () => {
   return (
     <div>
       {!isPosting ? (
-        <div className="text-black flex flex-col gap-2">
+        <div className="text-textColor flex flex-col gap-2">
           <div className="flex flex-col gap-2">
             <div className="flex flex-col gap-1.5">
               <InputComp
@@ -67,7 +67,7 @@ const ChangeEmailForm = () => {
             </div>
 
             {error && (
-              <p className="text-red-600 py-2.5 text-center text-[14px] md:text-[15px] bg-background03 rounded-md">
+              <p className="text-errorColor py-2.5 text-center text-[14px] md:text-[15px] bg-background03 rounded-md">
                 {error}
               </p>
             )}

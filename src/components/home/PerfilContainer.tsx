@@ -10,8 +10,8 @@ const PerfilContainer = ({ username }: PerfilProps) => {
     <Container className="border-b-2 border-borderColor">
       {username && (
         <div className="flex items-center justify-center">
-          <div className="flex items-center text-[#202020] justify-center w-full gap-2">
-            <div className="bg-background03 text-[#414141] rounded-md">
+          <div className="flex items-center text-textColor justify-center w-full gap-2">
+            <div className="bg-background03 text-inputText rounded-md">
               <UserCircle size={90} strokeWidth={0.5} />
             </div>
             <div className="flex flex-col justify-between h-full gap-2 w-full">
