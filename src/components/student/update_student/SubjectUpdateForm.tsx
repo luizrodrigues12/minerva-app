@@ -52,7 +52,7 @@ const SubjectFormUpdate = ({ error, idAluno, setError }: Props) => {
   return (
     <div>
       {subjects && idsMaterias?.length! > 0 ? (
-        <div className="w-full flex flex-col justify-center items-start text-black text-[16px]">
+        <div className="w-full flex flex-col justify-center items-start text-textColor text-[16px]">
           <motion.div className="rounded-lg w-full">
             <div className="flex flex-col gap-2">
               <div className="flex justify-between">

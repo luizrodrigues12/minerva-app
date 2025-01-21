@@ -4,7 +4,7 @@ import UserDataComp from "@/components/profile/UserDataComp";
 const page = async () => {
   return (
     <SideBarDesktop>
-      <UserDataComp />;
+      <UserDataComp />
     </SideBarDesktop>
   );
 };

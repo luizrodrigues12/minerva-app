@@ -80,7 +80,7 @@ const StudentForm = () => {
 
   return (
     <Container>
-      <motion.div className="w-full flex flex-col font-inter text-black">
+      <motion.div className="w-full flex flex-col font-inter text-textColor">
         {!isPending ? (
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">

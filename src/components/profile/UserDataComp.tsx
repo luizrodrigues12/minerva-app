@@ -33,11 +33,11 @@ const UserDataComp = () => {
   }, []);
 
   return (
-    <Container>
+    <Container className="min-h-screen">
       {!user ? (
         <Loading />
       ) : (
-        <div className="flex flex-col w-full h-screen text-textColor">
+        <div className="flex flex-col w-full text-textColor">
           <div className="flex flex-col items-start gap-4 md:rounded-md text-textColor">
             <div className="flex gap-3 w-full">
               <div className="bg-background03 text-inputText rounded-md">

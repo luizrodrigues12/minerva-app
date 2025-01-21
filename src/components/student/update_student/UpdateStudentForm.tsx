@@ -71,7 +71,7 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
   }, []);
 
   return (
-    <Container className="text-black">
+    <Container className="text-textColor">
       {!isPosting ? (
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
