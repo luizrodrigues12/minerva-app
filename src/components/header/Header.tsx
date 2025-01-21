@@ -30,11 +30,11 @@ const Header = () => {
         className="w-full px-[13px] flex items-center justify-between h-full md:px-[100px] lg:px-[60px] xl:px-[100px] 
       2xl:px-[301px]"
       >
-        <motion.div className="text-[16px] hover:text-inputText cursor-pointer leading-5 md:text-[20px] xl:text-[22px]">
+        <div className="text-[16px] hover:text-inputText cursor-pointer leading-5 md:text-[20px] xl:text-[22px]">
           <Link href={"/home"}>Minerva</Link>
-        </motion.div>
+        </div>
         {!user ? (
-          <>
+          <div>
             <NavDesktop />
             <div className="lg:hidden">
               <Hamburguer
@@ -61,7 +61,7 @@ const Header = () => {
                 )}
               </AnimatePresence>
             </div>
-          </>
+          </div>
         ) : (
           <nav>
             <Button
