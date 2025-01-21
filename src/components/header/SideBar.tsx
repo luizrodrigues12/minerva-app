@@ -27,7 +27,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
       exit={{ width: [195, 0] }}
       className={`fixed ${
         isTablet ? "w-[300px]" : "w-[195px]"
-      } right-0 top-0 z-50 bg-background02 h-full border-l-2 border-borderColor text-[14px] md:text-[16px] ${className}`}
+      } right-0 top-0 z-50 bg-background03 dark:bg-background01 h-full border-l-2 border-borderColor text-[14px] md:text-[16px] ${className}`}
     >
       {user ? (
         <div>
@@ -41,9 +41,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
           </div>
           <div
             className={`h-[65px] flex items-center justify-center border-b-2 border-b-borderColor ${
-              section === "students"
-                ? "text-corIcones font-interMedium bg-background03"
-                : ""
+              section === "students" ? "text-corIcones font-interMedium " : ""
             }`}
             onClick={() => {
               router.push("/home");
@@ -54,9 +52,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
 
           <div
             className={`h-[65px] flex items-center justify-center border-b-2 border-b-borderColor ${
-              section === "planners"
-                ? "text-corIcones font-interMedium bg-background03"
-                : ""
+              section === "planners" ? "text-corIcones font-interMedium " : ""
             }`}
             onClick={() => {
               router.push("/planners");
@@ -68,7 +64,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
           <div
             className={`h-[65px] flex items-center justify-center border-b-2 border-b-borderColor ${
               section === "profile"
-                ? "text-corIcones font-interMedium bg-background03"
+                ? "text-corIcones font-interMedium "
                 : "text-textColor"
             }`}
             onClick={() => {

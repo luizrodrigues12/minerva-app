@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <header
-      className={`flex items-center h-[8vh] w-full bg-background03 md:bg-background02 text-textColor font-inter border-b-2 border-borderColor md:h-[10vh] xl:h-[100px] ${
+      className={`flex items-center h-[8vh] w-full bg-background03 dark:bg-background01 md:bg-background02 text-textColor font-inter border-b-2 border-borderColor md:h-[10vh] xl:h-[100px] ${
         section === "home" || section === "login" || section === "register"
           ? "light"
           : theme
@@ -30,7 +30,7 @@ const Header = () => {
         className="w-full px-[13px] flex items-center justify-between h-full md:px-[100px] lg:px-[60px] xl:px-[100px] 
       2xl:px-[301px]"
       >
-        <div className="text-[16px] hover:text-inputText cursor-pointer leading-5 md:text-[20px] xl:text-[22px]">
+        <div className="text-[16px] hover:text-textColor cursor-pointer leading-5 md:text-[20px] xl:text-[22px]">
           <Link href={"/home"}>Minerva</Link>
         </div>
         {!user ? (
