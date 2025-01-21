@@ -1,11 +1,12 @@
 "use client";
 
-import { CloseCircle } from "flowbite-react-icons/outline";
+import { CloseCircle, Moon, Sun } from "flowbite-react-icons/outline";
 import { motion } from "motion/react";
 import { Dispatch, SetStateAction } from "react";
 import { useSectionContext } from "@/contexts/section";
 import { useRouter } from "nextjs-toploader/app";
 import { useUserContext } from "@/contexts/userData";
+import { useThemeContext } from "@/contexts/darkMode";
 
 type SideBarProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -17,6 +18,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
   const { section } = useSectionContext();
   const router = useRouter();
   const { user } = useUserContext();
+  const { theme, toggleTheme } = useThemeContext();
 
   return (
     <motion.div
@@ -40,7 +42,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
           <div
             className={`h-[65px] flex items-center justify-center border-b-2 border-b-borderColor ${
               section === "students"
-                ? "text-roxominerva font-interMedium bg-background03"
+                ? "text-corIcones font-interMedium bg-background03"
                 : ""
             }`}
             onClick={() => {
@@ -53,7 +55,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
           <div
             className={`h-[65px] flex items-center justify-center border-b-2 border-b-borderColor ${
               section === "planners"
-                ? "text-roxominerva font-interMedium bg-background03"
+                ? "text-corIcones font-interMedium bg-background03"
                 : ""
             }`}
             onClick={() => {
@@ -66,8 +68,8 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
           <div
             className={`h-[65px] flex items-center justify-center border-b-2 border-b-borderColor ${
               section === "profile"
-                ? "text-roxominerva font-interMedium bg-background03"
-                : ""
+                ? "text-corIcones font-interMedium bg-background03"
+                : "text-textColor"
             }`}
             onClick={() => {
               router.push("/profile");
@@ -75,9 +77,16 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
           >
             perfil
           </div>
-          <div className="flex items-center justify-center border-b-2 border-b-borderColor gap-[5px] cursor-pointer">
+          <div
+            className="flex items-center justify-center border-b-2 border-b-borderColor gap-[5px] cursor-pointer"
+            onClick={toggleTheme}
+          >
             <div className="h-[65px] flex items-center justify-center ">
-              modo escuro
+              {theme === "dark" ? (
+                <Sun className="md:size-8" />
+              ) : (
+                <Moon className="md:size-7" />
+              )}
             </div>
           </div>
         </div>
