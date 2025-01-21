@@ -27,11 +27,11 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
       exit={{ width: [195, 0] }}
       className={`fixed ${
         isTablet ? "w-[300px]" : "w-[195px]"
-      } right-0 top-0 z-50 bg-background03 dark:bg-background01 h-full border-l-2 border-borderColor text-[14px] md:text-[16px] ${className}`}
+      } right-0 top-0 z-50 bg-background03 dark:bg-background02 h-full border-l-2 border-borderColor text-[14px] md:text-[16px] ${className}`}
     >
       {user ? (
         <div>
-          <div className="h-[8vh] flex items-center justify-end border-b-2 border-b-borderColor pr-[11px] md:pr-0 md:justify-center md:h-[10vh] xl:h-[100px]">
+          <div className="h-[8vh] flex items-center justify-end pr-[11px] border-b-2 border-borderColor md:pr-0 md:justify-center md:h-[10vh] xl:h-[100px]">
             <CloseCircle
               strokeWidth={2}
               size={25}
@@ -40,7 +40,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
             />
           </div>
           <div
-            className={`h-[65px] flex items-center justify-center border-b-2 border-b-borderColor ${
+            className={`h-[65px] flex items-center justify-center border-b-2 border-borderColor  ${
               section === "students" ? "text-corIcones font-interMedium " : ""
             }`}
             onClick={() => {
@@ -51,7 +51,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
           </div>
 
           <div
-            className={`h-[65px] flex items-center justify-center border-b-2 border-b-borderColor ${
+            className={`h-[65px] flex items-center justify-center border-b-2 border-borderColor  ${
               section === "planners" ? "text-corIcones font-interMedium " : ""
             }`}
             onClick={() => {
@@ -62,9 +62,9 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
           </div>
 
           <div
-            className={`h-[65px] flex items-center justify-center border-b-2 border-b-borderColor ${
+            className={`h-[65px] flex items-center justify-center border-b-2 border-borderColor ${
               section === "profile"
-                ? "text-corIcones font-interMedium "
+                ? "text-corIcones font-interMedium"
                 : "text-textColor"
             }`}
             onClick={() => {
@@ -74,7 +74,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
             perfil
           </div>
           <div
-            className="flex items-center justify-center border-b-2 border-b-borderColor gap-[5px] cursor-pointer"
+            className="flex items-center justify-center border-b-2 border-borderColor gap-[5px] cursor-pointer"
             onClick={toggleTheme}
           >
             <div className="h-[65px] flex items-center justify-center ">
