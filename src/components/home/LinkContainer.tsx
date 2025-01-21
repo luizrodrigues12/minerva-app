@@ -74,7 +74,7 @@ const LinkContainer = () => {
       >
         <div
           className={`flex items-center justify-center  ${
-            theme === "dark gap-[13px]" ? "py-[1px]" : "py-[3.5px] gap-[14px]"
+            theme === "dark" ? "py-[1px] gap-[13px]" : "py-[3.5px] gap-[14px]"
           }`}
         >
           {theme == "dark" ? (

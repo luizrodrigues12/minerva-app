@@ -83,7 +83,7 @@ const RegisterForm = () => {
   return (
     <section
       className="text-black font-inter min-h-[76vh] bg-background01 max-h-[92.2vh] xl:min-h-[69.4vh] section-login
-    py-[32px] lg:py-[40px]"
+    py-[32px] lg:py-[40px] light"
     >
       <div
         className="flex flex-col w-[90%] m-auto py-[24px] pb-[28px] px-[24px] bg-background03 rounded-md md:mx-[100px] md:px-[30px] md:w-[450px] md:py-[30px] lg:flex-row-reverse lg:w-[750px] lg:px-0 lg:justify-between lg:gap-0 lg:py-0 lg:mx-[60px] xl:mx-[100px] xl:w-[900px] xl:max-h-[510px] 2xl:mx-[300px]"

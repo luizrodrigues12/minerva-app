@@ -24,7 +24,7 @@ const MateriaComp = ({
     >
       <p
         className={`${
-          isChecked ? "text-[#606060] line-through" : "text-[#404040]"
+          isChecked ? "text-inputText line-through" : "text-textColor"
         } leading-4`}
       >
         {text}
@@ -32,14 +32,13 @@ const MateriaComp = ({
       {isChecked ? (
         <CheckCircleSolid
           strokeWidth={1.5}
-          color="#d4d4d8"
-          className={`size-[24.3px] md:size-[27px] text-roxominerva ${
+          className={`size-[24.3px] md:size-[27px] text-corIcones ${
             isParentPage ? " " : "hover:cursor-pointer"
           }`}
         />
       ) : (
         <div
-          className={`size-[19px] border-[1.5px] my-[2.67px] border-roxominerva rounded-[100%] mr-[2.5px] md:border-[2px] md:size-[21px] md:my-[3px] ${
+          className={`size-[19px] border-[1.5px] my-[2.67px] border-corIcones rounded-[100%] mr-[2.5px] md:border-[2px] md:size-[21px] md:my-[3px] ${
             isParentPage ? " " : "cursor-pointer"
           }`}
         />

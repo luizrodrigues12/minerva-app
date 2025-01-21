@@ -12,8 +12,8 @@ const NomePreparatorio = ({ idAluno }: Props) => {
   const aluno = alunos![0];
 
   return (
-    <div className="flex flex-col gap-1.5 text-textwhite w-full rounded-md bg-background02 text-[14px] md:text-[16px]">
-      <div className="bg-background03 p-2.5 text-[#303030] px-3 rounded-md relative">
+    <div className="flex flex-col gap-1.5 text-textColor w-full rounded-md bg-background02 text-[14px] md:text-[16px]">
+      <div className="bg-background03 p-2.5 px-3 rounded-md relative">
         <p>{aluno.nome}</p>
         <motion.div
           whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
@@ -32,7 +32,7 @@ const NomePreparatorio = ({ idAluno }: Props) => {
           />
         </motion.div>
       </div>
-      <div className="bg-background03 p-2.5 text-[#303030] px-3 rounded-md">
+      <div className="bg-background03 p-2.5 px-3 rounded-md">
         {aluno.preparatorio?.map((prep, i) =>
           prep == "aplicação"
             ? prep[0].toUpperCase() + prep.substring(1) + " "

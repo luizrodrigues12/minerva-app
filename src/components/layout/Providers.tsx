@@ -9,15 +9,15 @@ import { ReactNode } from "react";
 
 const Providers = ({ children }: { children: ReactNode }) => {
   return (
-    <TanstackProvider>
-      <DarkModeProvider>
+    <DarkModeProvider>
+      <TanstackProvider>
         <SectionProvider>
           <SubjectsProvider>
             <UserContextProvider>{children}</UserContextProvider>
           </SubjectsProvider>
         </SectionProvider>
-      </DarkModeProvider>
-    </TanstackProvider>
+      </TanstackProvider>
+    </DarkModeProvider>
   );
 };
 

@@ -16,10 +16,10 @@
   --background01: #151515;
   --background02: #202020;
   --background03: #303030;
-  --cor-icones: #665dc5;
+  --cor-icones: #837dc5;
   --roxo-minerva: #4f47a8;
-  --text-color: #ececec;
-  --input-text: #c2c2c2;
+  --text-color: #dfdfdf;
+  --input-text: #b6b6b6;
   --button-hover: #584ebd;
   --border-color: #404040;
   --error-color: #da2323;
@@ -32,6 +32,10 @@
 * {
   margin: 0;
   padding: 0;
+}
+
+html {
+  background-color: var(--background01);
 }
 
 @font-face {

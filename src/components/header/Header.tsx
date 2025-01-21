@@ -10,16 +10,22 @@ import { deleteCookie } from "cookies-next";
 import Button from "../layout/Button";
 import { useUserContext } from "@/contexts/userData";
 import { useSectionContext } from "@/contexts/section";
+import { useThemeContext } from "@/contexts/darkMode";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { section } = useSectionContext();
   const { user } = useUserContext();
-
-  useEffect(() => {}, []);
+  const { theme } = useThemeContext();
 
   return (
-    <header className="flex items-center h-[8vh] w-full bg-background02 text-textColor font-inter border-b-2 border-borderColor md:h-[10vh] xl:h-[100px]">
+    <header
+      className={`flex items-center h-[8vh] w-full bg-background02 text-textColor font-inter border-b-2 border-borderColor md:h-[10vh] xl:h-[100px] ${
+        section === "home" || section === "login" || section === "register"
+          ? "light"
+          : theme
+      }`}
+    >
       <div
         className="w-full px-[13px] flex items-center justify-between h-full md:px-[100px] lg:px-[60px] xl:px-[100px] 
       2xl:px-[301px]"
