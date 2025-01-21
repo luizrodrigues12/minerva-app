@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <header
-      className={`flex items-center h-[8vh] w-full bg-headerColor md:bg-background02 text-textColor font-inter border-b-2 border-borderColor md:h-[10vh] xl:h-[100px] ${
+      className={`flex items-center h-[8vh] w-full bg-headerColor text-textColor font-inter border-b-[1px] border-borderColor md:border-b-2 md:h-[10vh] xl:h-[100px] ${
         section === "home" || section === "login" || section === "register"
           ? "light"
           : theme
