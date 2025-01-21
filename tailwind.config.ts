@@ -31,6 +31,7 @@ const config: Config = {
         buttonHover: "var(--button-hover)",
         buttonText: "var(--button-text)",
         borderColor: "var(--border-color)",
+        headerColor: "var(--header-color)",
       },
     },
   },

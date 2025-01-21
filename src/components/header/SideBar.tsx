@@ -27,7 +27,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
       exit={{ width: [195, 0] }}
       className={`fixed ${
         isTablet ? "w-[300px]" : "w-[195px]"
-      } right-0 top-0 z-50 bg-background03 dark:bg-background02 h-full border-l-2 border-borderColor text-[14px] md:text-[16px] ${className}`}
+      } right-0 top-0 z-50 bg-headerColor h-full border-l-2 border-borderColor text-[14px] md:text-[16px] ${className}`}
     >
       {user ? (
         <div>
