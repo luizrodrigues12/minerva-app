@@ -38,7 +38,7 @@ const Header = () => {
             <NavDesktop />
             <div className="lg:hidden">
               <Hamburguer
-                className="cursor-pointer stroke-2 md:size-[28px] md:stroke-1"
+                className="cursor-pointer stroke-textColor stroke-2 md:size-[28px] md:stroke-1"
                 onClick={() => {
                   setIsOpen(true);
                 }}
@@ -76,7 +76,7 @@ const Header = () => {
             </Button>
 
             <Hamburguer
-              className="cursor-pointer stroke-2 md:size-[28px] md:stroke-1 lg:hidden"
+              className="cursor-pointer stroke-textColor stroke-2 md:size-[28px] md:stroke-1 lg:hidden"
               onClick={() => {
                 setIsOpen(true);
               }}
