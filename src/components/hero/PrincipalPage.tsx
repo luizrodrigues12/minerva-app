@@ -44,13 +44,16 @@ const PrincipalPage = () => {
                 REGISTER
               </Button>
             </div>
-            <Button className="px-2" onClick={() => router.push("/home")}>
+            <Button
+              className="px-2 xl:px-4"
+              onClick={() => router.push("/home")}
+            >
               <Image
                 src={"/images/logo.png"}
                 alt="Logo Minerva"
                 width={100}
                 height={100}
-                className="size-[72px] xl:size-[90px]"
+                className="w-[62px] xl:w-[85px]"
               />
             </Button>
           </div>
