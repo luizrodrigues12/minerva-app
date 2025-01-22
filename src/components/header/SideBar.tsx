@@ -50,7 +50,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
             alunos
           </div>
 
-          <div
+          {/* <div
             className={`h-[65px] flex items-center justify-center border-b-[1px] md:border-b-2 border-borderColor  ${
               section === "planners" ? "text-corIcones font-interMedium " : ""
             }`}
@@ -59,7 +59,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
             }}
           >
             planejamentos
-          </div>
+          </div> */}
 
           <div
             className={`h-[65px] flex items-center justify-center border-b-[1px] md:border-b-2 border-borderColor ${

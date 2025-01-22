@@ -37,7 +37,7 @@ const LinkContainer = () => {
           </div>
         </div>
 
-        <div
+        {/* <div
           className={`border-b-2  border-borderColor w-full p-2 px-3 hover:bg-background03 cursor-pointer ${
             section === "planning" ? "bg-background03" : "bg-background02"
           }`}
@@ -49,7 +49,7 @@ const LinkContainer = () => {
               <div>3</div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div
           className={`border-b-2  border-borderColor w-full p-2 px-3 hover:bg-background03 cursor-pointer ${
