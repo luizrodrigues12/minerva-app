@@ -21,7 +21,7 @@ const LinkContainer = () => {
     <div>
       <div className="h-full text-textColor">
         <div
-          className={`border-b-2  border-borderColor w-full p-2 px-3 hover:bg-background03 cursor-pointer ${
+          className={`border-b-[1px]  border-borderColor w-full p-2 px-3 hover:bg-background03 cursor-pointer ${
             section === "students" ? "bg-background03" : "bg-background02"
           }`}
           onClick={() => {
@@ -38,7 +38,7 @@ const LinkContainer = () => {
         </div>
 
         {/* <div
-          className={`border-b-2  border-borderColor w-full p-2 px-3 hover:bg-background03 cursor-pointer ${
+          className={`border-b-[1px] border-borderColor w-full p-2 px-3 hover:bg-background03 cursor-pointer ${
             section === "planning" ? "bg-background03" : "bg-background02"
           }`}
         >
@@ -52,7 +52,7 @@ const LinkContainer = () => {
         </div> */}
 
         <div
-          className={`border-b-2  border-borderColor w-full p-2 px-3 hover:bg-background03 cursor-pointer ${
+          className={`border-b-[1px]  border-borderColor w-full p-2 px-3 hover:bg-background03 cursor-pointer ${
             section === "profile" ? "bg-background03" : "bg-background02"
           }`}
           onClick={() => {
@@ -69,7 +69,7 @@ const LinkContainer = () => {
       </div>
 
       <div
-        className={`border-b-2 border-borderColor w-full px-3 text-textColor hover:bg-background03 cursor-pointer flex justify-start items-center`}
+        className={`border-b-[1px] border-borderColor w-full px-3 text-textColor hover:bg-background03 cursor-pointer flex justify-start items-center`}
         onClick={() => toggleTheme()}
       >
         <div

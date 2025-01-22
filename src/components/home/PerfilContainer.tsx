@@ -7,7 +7,7 @@ type PerfilProps = {
 
 const PerfilContainer = ({ username }: PerfilProps) => {
   return (
-    <Container className="border-b-2 border-borderColor">
+    <Container className="border-b-[1px] border-borderColor">
       {username && (
         <div className="flex items-center justify-center">
           <div className="flex items-center text-textColor justify-center w-full gap-2">

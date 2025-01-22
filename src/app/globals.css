@@ -14,16 +14,16 @@
 }
 
 .dark {
-  --background01: #151515;
-  --background02: #202020;
-  --background03: #303030;
+  --background01: #101014;
+  --background02: #151519;
+  --background03: #202025;
   --cor-icones: #9c97d6;
   --roxo-minerva: #4f47a8da;
   --text-color: #dfdfdf;
   --input-text: #b6b6b6;
   --button-hover: #584ebd;
   --border-color: #363636;
-  --header-color: #202020;
+  --header-color: #151519;
   --error-color: #da2323;
 }
 

@@ -29,19 +29,19 @@ const SideBarDesktop = ({ children }: SideBarDesktopProps) => {
           >
             {user && (
               <div
-                className="hidden relative bg-background02 border-x-2 border-borderColor shadow-md lg:block 
+                className="hidden relative bg-background02 border-x-[1px] border-borderColor shadow-sm lg:block 
              lg:w-[28%] xl:w-[25%] 2xl:w-[25%]"
               >
                 <PerfilContainer username={user.username} />
                 <LinkContainer />
               </div>
             )}
-            <div className="min-h-full w-full bg-background02 md:border-x-2 md:border-borderColor md:shadow-md md:overflow-y-scroll md:overflow-hidden scroll-style lg:w-[40%] xl:w-[45%] 2xl:w-[45%]">
+            <div className="min-h-full w-full bg-background02 md:border-x-[1px] md:border-borderColor md:shadow-sm md:overflow-y-scroll md:overflow-hidden scroll-style lg:w-[40%] xl:w-[45%] 2xl:w-[45%]">
               {children}
             </div>
 
             {user && (
-              <div className="hidden min-h-full w-[20%] lg:w-[28%] xl:w-[25%] 2xl:w-[25%] bg-background02 border-x-[2px] border-borderColor shadow-md lg:block">
+              <div className="hidden min-h-full w-[20%] lg:w-[28%] xl:w-[25%] 2xl:w-[25%] bg-background02 border-x-[1px] border-borderColor shadow-sm lg:block">
                 <div
                   className={`${
                     theme === "light" ? "background-art" : "background-art-dark"
