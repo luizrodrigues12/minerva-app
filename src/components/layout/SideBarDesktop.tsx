@@ -8,6 +8,7 @@ import Loading from "./Loading";
 import Image from "next/image";
 import Button from "./Button";
 import Container from "./Container";
+import { useThemeContext } from "@/contexts/darkMode";
 
 type SideBarDesktopProps = {
   children: ReactNode;
@@ -15,6 +16,7 @@ type SideBarDesktopProps = {
 
 const SideBarDesktop = ({ children }: SideBarDesktopProps) => {
   const { user, isFetching } = useUserContext();
+  const { theme } = useThemeContext();
 
   return (
     <div>
@@ -40,7 +42,11 @@ const SideBarDesktop = ({ children }: SideBarDesktopProps) => {
 
             {user && (
               <div className="hidden min-h-full w-[20%] lg:w-[28%] xl:w-[25%] 2xl:w-[25%] bg-background02 border-x-[2px] border-borderColor shadow-md lg:block">
-                <div className="background-art w-full h-full"></div>
+                <div
+                  className={`${
+                    theme === "light" ? "background-art" : "background-art-dark"
+                  } w-full h-full`}
+                ></div>
               </div>
             )}
           </div>

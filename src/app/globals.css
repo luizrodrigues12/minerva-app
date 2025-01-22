@@ -100,7 +100,14 @@ html {
 
 .background-art {
   background-image: url("../../public/images/background-art.jpg");
-  background-position: center center;
+  background-position: 40% center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.background-art-dark {
+  background-image: url("../../public/images/background-art-dark.jpg");
+  background-position: 40% center;
   background-size: cover;
   background-repeat: no-repeat;
 }
