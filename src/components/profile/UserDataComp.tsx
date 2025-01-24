@@ -4,7 +4,7 @@ import Loading from "../layout/Loading";
 import { unstable_noStore as noStore } from "next/cache";
 import { useUserContext } from "@/contexts/userData";
 import Button from "../layout/Button";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSectionContext } from "@/contexts/section";
 import { UserCircle } from "flowbite-react-icons/outline";
 import Container from "../layout/Container";
@@ -12,11 +12,14 @@ import Accordion from "../layout/Accordion";
 import ChangeEmailForm from "./change_email/ChangeEmailForm";
 import ChangePasswordForm from "./change_password/ChangePasswordForm";
 import VerifyEmailForm from "./verify_email/VerifyEmailForm";
+import EditPhotoIcon from "./change-photo/EditPhotoIcon";
+import PhotoForm from "./change-photo/PhotoForm";
 
 const UserDataComp = () => {
   noStore();
   const { user, logoutFunction, refetch } = useUserContext();
   const { setSection } = useSectionContext();
+  const [isOpen, setIsOpen] = useState(false);
 
   const removerConta = async (e: any) => {
     e.preventDefault();
@@ -40,8 +43,9 @@ const UserDataComp = () => {
         <div className="flex flex-col w-full text-textColor">
           <div className="flex flex-col items-start gap-4 md:rounded-md text-textColor">
             <div className="flex gap-3 w-full">
-              <div className="bg-background03 text-inputText rounded-md">
+              <div className="bg-background03 text-inputText rounded-md relative">
                 <UserCircle size={100} strokeWidth={0.5} />
+                <EditPhotoIcon setIsOpen={setIsOpen} />
               </div>
               <div className="flex flex-col gap-2 justify-between w-full">
                 <div className="bg-background03 p-3 rounded-md text-[14px] md:text-[16px]">
@@ -91,6 +95,8 @@ const UserDataComp = () => {
                 />
               </div>
             </div>
+
+            {isOpen && <PhotoForm setIsOpen={setIsOpen} />}
 
             <Button
               className="w-full !p-2.5"
