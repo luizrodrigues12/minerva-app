@@ -117,7 +117,7 @@ const PhotoForm = ({ setIsOpen }: PhotoFormProps) => {
                 </div>
               )}
               {isSuccess && (
-                <div className="bg-background03 p-2 modal w-[97.5%] text-[14px] md:text-[16px]">
+                <div className="dark:bg-background03 bg-textColor text-background03 dark:text-textColor p-2 modal w-[97.5%] text-[14px] md:text-[16px]">
                   Sucesso!
                 </div>
               )}
