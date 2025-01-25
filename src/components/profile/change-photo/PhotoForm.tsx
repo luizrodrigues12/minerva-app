@@ -7,7 +7,6 @@ import { useDropzone } from "react-dropzone";
 import { motion } from "motion/react";
 import { Spinner } from "flowbite-react";
 import { useAvatarMutate } from "@/hooks/useAvatarMutate";
-import { dataMongoUser } from "@/models/userModel";
 import { useQueryClient } from "@tanstack/react-query";
 import { useUserContext } from "@/contexts/userData";
 import { useDeleteAvatar } from "@/hooks/useDeleteAvatar";
@@ -98,7 +97,7 @@ const PhotoForm = ({ setIsOpen }: PhotoFormProps) => {
         className="text-textColor absolute top-2 right-2 hover:text-inputText cursor-pointer"
         onClick={() => setIsOpen(false)}
       />
-      <div className="flex flex-col items-center justify-center text-center mt-2">
+      <div className="flex flex-col items-center justify-center text-center">
         <p className="w-[80%]">
           Clique na imagem ou arraste o arquivo até aqui.
         </p>
