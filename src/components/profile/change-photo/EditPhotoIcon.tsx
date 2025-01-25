@@ -15,7 +15,7 @@ const EditPhotoIcon = ({ setIsOpen }: EditPhotoProps) => {
         onClick={() => setIsOpen(true)}
       >
         <div
-          className={`p-0.5 pl-1.5 dark:bg-background02 bg-background03 pb-1 flex justify-center items-center hover:bg-roxominerva dark:hover:bg-roxominerva cursor-pointer hover:text-zinc-200 rounded-bl-md rounded-tr-sm`}
+          className={`p-0.5 pl-1.5 bg-background03 pb-1 flex justify-center items-center hover:bg-roxominerva dark:hover:bg-roxominerva cursor-pointer hover:text-zinc-200 rounded-bl-md rounded-tr-sm`}
         >
           <Edit size={24} />
         </div>
