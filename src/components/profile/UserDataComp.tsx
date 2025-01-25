@@ -51,7 +51,7 @@ const UserDataComp = () => {
                     alt={`Avatar de ${user.username}`}
                     width={120}
                     height={120}
-                    className="min-w-[100px] max-h-[104px] rounded-md object-cover"
+                    className="min-w-[100px] max-h-[104px] rounded-md object-cover shadow-md"
                   />
                   <EditPhotoIcon setIsOpen={setIsOpen} />
                 </div>

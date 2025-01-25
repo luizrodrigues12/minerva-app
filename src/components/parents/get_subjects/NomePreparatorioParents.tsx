@@ -14,7 +14,7 @@ const NomePreparatorioParents = ({ idAluno, aluno }: Props) => {
       {aluno.nome === undefined ? (
         <Loading />
       ) : (
-        <div className="flex flex-col gap-1.5 text-textColor w-full rounded-md bg-background02">
+        <div className="flex flex-col gap-1.5 text-textColor w-full rounded-md bg-background02 text-[14px] md:text-[16px]">
           <div className="bg-background03 h-10 px-3 flex items-center rounded-md relative">
             <p>{aluno?.nome}</p>
             <motion.div

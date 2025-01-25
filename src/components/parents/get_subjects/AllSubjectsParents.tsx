@@ -4,6 +4,7 @@ import { MateriaType } from "@/models/MateriasModel";
 import Accordion from "@/components/layout/Accordion";
 import MateriaComp from "@/components/student/MateriaComp";
 import { AlunoObj } from "@/models/userModel";
+import { capitalize } from "@/utils/stringManipulation";
 
 type AllSubjectsProps = {
   idAluno: string;
@@ -37,7 +38,7 @@ const AllSubjectsParents = ({ idAluno, busca, aluno }: AllSubjectsProps) => {
                   return (
                     <MateriaComp
                       key={i}
-                      text={materia.nome.toUpperCase()}
+                      text={capitalize(materia.nome)}
                       id={materia._id!}
                       isChecked={materia.isChecked}
                       isParentPage={true}
@@ -60,7 +61,7 @@ const AllSubjectsParents = ({ idAluno, busca, aluno }: AllSubjectsProps) => {
                   return (
                     <MateriaComp
                       key={i}
-                      text={materia.nome.toUpperCase()}
+                      text={capitalize(materia.nome)}
                       id={materia._id!}
                       isChecked={materia.isChecked}
                       isParentPage={true}
@@ -83,7 +84,7 @@ const AllSubjectsParents = ({ idAluno, busca, aluno }: AllSubjectsProps) => {
                   return (
                     <MateriaComp
                       key={i}
-                      text={materia.nome.toUpperCase()}
+                      text={capitalize(materia.nome)}
                       id={materia._id!}
                       isChecked={materia.isChecked}
                       isParentPage={true}
@@ -107,7 +108,7 @@ const AllSubjectsParents = ({ idAluno, busca, aluno }: AllSubjectsProps) => {
                   return (
                     <MateriaComp
                       key={i}
-                      text={materia.nome.toUpperCase()}
+                      text={capitalize(materia.nome)}
                       id={materia._id!}
                       isChecked={materia.isChecked}
                       isParentPage={true}
