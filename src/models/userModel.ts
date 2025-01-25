@@ -13,6 +13,8 @@ export type AlunoObj = {
 
 export interface dataMongoUser {
   username: string;
+  avatar: string;
+  avatar_key: string;
   email: string;
   password: string;
   token: string;
@@ -26,6 +28,12 @@ const userSchema = new Schema<dataMongoUser>(
       type: String,
       required: [true, "Escolha um nome de usuário."],
       unique: true,
+    },
+    avatar: {
+      type: String,
+    },
+    avatar_key: {
+      type: String,
     },
     email: {
       type: String,

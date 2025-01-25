@@ -14,6 +14,7 @@ import ChangePasswordForm from "./change_password/ChangePasswordForm";
 import VerifyEmailForm from "./verify_email/VerifyEmailForm";
 import EditPhotoIcon from "./change-photo/EditPhotoIcon";
 import PhotoForm from "./change-photo/PhotoForm";
+import Image from "next/image";
 
 const UserDataComp = () => {
   noStore();
@@ -41,12 +42,25 @@ const UserDataComp = () => {
         <Loading />
       ) : (
         <div className="flex flex-col w-full text-textColor">
-          <div className="flex flex-col items-start gap-4 md:rounded-md text-textColor">
+          <div className="flex flex-col items-start gap-4 md:rounded-md text-textColor ">
             <div className="flex gap-3 w-full">
-              <div className="bg-background03 text-inputText rounded-md relative">
-                <UserCircle size={100} strokeWidth={0.5} />
-                <EditPhotoIcon setIsOpen={setIsOpen} />
-              </div>
+              {user.avatar ? (
+                <div className="relative">
+                  <Image
+                    src={user.avatar}
+                    alt={`Avatar de ${user.username}`}
+                    width={120}
+                    height={120}
+                    className="min-w-[100px] max-h-[104px] rounded-md object-cover"
+                  />
+                  <EditPhotoIcon setIsOpen={setIsOpen} />
+                </div>
+              ) : (
+                <div className="bg-background03 text-inputText rounded-md relative">
+                  <UserCircle size={100} strokeWidth={0.5} />
+                  <EditPhotoIcon setIsOpen={setIsOpen} />
+                </div>
+              )}
               <div className="flex flex-col gap-2 justify-between w-full">
                 <div className="bg-background03 p-3 rounded-md text-[14px] md:text-[16px]">
                   {user.username}

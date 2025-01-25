@@ -32,7 +32,7 @@ const SideBarDesktop = ({ children }: SideBarDesktopProps) => {
                 className="hidden relative bg-background02 border-x-[1px] border-borderColor shadow-sm lg:block 
              lg:w-[28%] xl:w-[25%] 2xl:w-[25%]"
               >
-                <PerfilContainer username={user.username} />
+                <PerfilContainer />
                 <LinkContainer />
               </div>
             )}
