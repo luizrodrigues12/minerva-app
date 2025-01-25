@@ -45,7 +45,7 @@ const PrincipalPage = () => {
               </Button>
             </div>
             <Button
-              className="px-2 xl:px-4"
+              className="px-3 xl:px-4"
               onClick={() => router.push("/home")}
             >
               <Image
