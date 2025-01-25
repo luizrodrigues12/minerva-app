@@ -6,12 +6,12 @@ export async function DELETE(req: NextRequest) {
     const reqBody = await req.json();
     const { idAluno, token } = await reqBody;
 
-    await UserModel.updateOne(
+    const user = await UserModel.findOneAndUpdate(
       { token: token },
       { $pull: { alunos: { idAluno: idAluno } } }
     );
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ user });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });
   }

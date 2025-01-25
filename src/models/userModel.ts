@@ -19,7 +19,7 @@ export interface dataMongoUser {
   password: string;
   token: string;
   isVerified: boolean;
-  alunos?: [AlunoObj];
+  alunos?: AlunoObj[];
 }
 
 const userSchema = new Schema<dataMongoUser>(

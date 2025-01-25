@@ -1,32 +1,32 @@
 "use client";
 
-import { getCookie } from "cookies-next";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import useSWR from "swr";
 import { motion } from "motion/react";
 import Loading from "@/components/layout/Loading";
 import Button from "@/components/layout/Button";
 import { useUserContext } from "@/contexts/userData";
 import Container from "@/components/layout/Container";
+import { useDeleteStudent } from "@/hooks/useDeleteStudent";
 
 const DeleteStudentComp = ({ idAluno }: { idAluno: string }) => {
   const router = useRouter();
-  const token = getCookie("authorization");
+  const { mutate } = useDeleteStudent();
   const { getAluno } = useUserContext();
   const [isPosting, setIsPosting] = useState(false);
   const aluno = getAluno(idAluno);
+  const [error, setError] = useState("");
 
   const deleteStudent = async () => {
     setIsPosting(true);
-    const result = await fetch(
-      `${process.env.HOST}/api/student/delete_student/`,
+    mutate(
+      { idAluno },
       {
-        method: "DELETE",
-        body: JSON.stringify({ token: token, idAluno: idAluno }),
+        onError(error) {
+          setError(error.message);
+        },
       }
     );
-    window.location.href = "/home";
   };
 
   useEffect(() => {
@@ -73,9 +73,18 @@ const DeleteStudentComp = ({ idAluno }: { idAluno: string }) => {
                   </div>
                 </div>
 
+                {error && (
+                  <p className="text-[12px] md:text-[14px] text-errorColor text-center">
+                    {error}
+                  </p>
+                )}
+
                 <Button
                   className="!bg-red-800 hover:!bg-[#a51e1e]"
-                  onClick={() => deleteStudent()}
+                  onClick={() => {
+                    deleteStudent();
+                    setError("");
+                  }}
                 >
                   Remover Aluno
                 </Button>
