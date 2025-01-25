@@ -60,6 +60,11 @@ const PhotoForm = ({ setIsOpen }: PhotoFormProps) => {
   });
 
   const PutPhoto = async () => {
+    if (!file) {
+      setError("Escolha uma foto clicando na imagem.");
+      return;
+    }
+
     mutate(
       { file: file! },
       {
