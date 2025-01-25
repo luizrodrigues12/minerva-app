@@ -57,7 +57,7 @@ export function useDeleteStudent() {
     },
 
     onSuccess() {
-      router.push("/home");
+      router.replace("/home");
     },
 
     retry: 2,
