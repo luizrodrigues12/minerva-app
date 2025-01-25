@@ -18,8 +18,9 @@ const StudentForm = () => {
   const [checkedsSubjects, setCheckedsSubjects] = useState<any>();
   const [checkedsPrep, setCheckedsPrep] = useState(Array<string>);
   const [nome, setNome] = useState("");
+  const [isPosting, setIsPosting] = useState(false);
   const [error, setError] = useState("");
-  const { mutate, isPending } = useAddStudent({
+  const { mutateAsync } = useAddStudent({
     idStudent,
     nome,
     checkedsPrep,
@@ -60,14 +61,22 @@ const StudentForm = () => {
         throw new Error("Escolha pelo menos uma matéria.");
 
       // POSTANDO ALUNO
-
-      mutate({
-        idStudent: idStudent,
-        nome: nome,
-        checkedsPrep,
-        checkedsSubjects: checkedsSubjects,
-      });
+      setIsPosting(true);
+      await mutateAsync(
+        {
+          idStudent: idStudent,
+          nome: nome,
+          checkedsPrep,
+          checkedsSubjects: checkedsSubjects,
+        },
+        {
+          onError(error) {
+            throw new Error(error.message);
+          },
+        }
+      );
     } catch (error: any) {
+      setIsPosting(false);
       setError(error.message);
     }
   };
@@ -81,7 +90,7 @@ const StudentForm = () => {
   return (
     <Container>
       <motion.div className="w-full flex flex-col font-inter text-textColor">
-        {!isPending ? (
+        {!isPosting ? (
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
               <div className="text-[16px] lg:text-[18px]">Nome</div>
