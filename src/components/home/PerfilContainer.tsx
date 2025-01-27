@@ -18,9 +18,9 @@ const PerfilContainer = () => {
                 <Image
                   src={user.avatar}
                   alt={`Avatar de ${user.name}`}
-                  width={90}
-                  height={90}
-                  className="min-w-[88px] max-h-[88px] rounded-md object-cover shadow-md dark:bg-[#101010] bg-background03"
+                  width={150}
+                  height={150}
+                  className="max-w-[88px] max-h-[88px] min-w-[88px] min-h-[88px] md: rounded-md object-cover shadow-md dark:bg-[#101010] bg-background03"
                 />
               ) : (
                 <UserCircle

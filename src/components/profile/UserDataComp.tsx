@@ -49,9 +49,9 @@ const UserDataComp = () => {
                   <Image
                     src={user.avatar}
                     alt={`Avatar de ${user.name}`}
-                    width={120}
-                    height={120}
-                    className="max-w-[88px] max-h-[88px] md:max-w-[95px] md:max-h-[95px] rounded-md object-cover shadow-md dark:bg-[#101010] bg-background03"
+                    width={200}
+                    height={200}
+                    className="max-w-[88px] min-h-[88px] max-h-[88px] md:min-h-[95px] md:max-w-[95px] md:max-h-[95px] rounded-md object-cover shadow-md dark:bg-[#101010] bg-background03"
                   />
                   <EditPhotoIcon setIsOpen={setIsOpen} />
                 </div>
