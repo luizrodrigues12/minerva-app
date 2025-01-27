@@ -18,7 +18,9 @@ const MateriaComp = ({
 }: Props) => {
   return (
     <div
-      className="checkbox flex justify-between items-center p-[9px] px-3 bg-background03 w-full rounded-lg tracking-widest text-[14px] md:text-[16px] text-zinc-800 md:py-2.5 md:px-4 cursor-pointer"
+      className={`checkbox flex justify-between items-center p-[9px] px-3 bg-background03 w-full rounded-lg tracking-widest text-[14px] md:text-[16px] text-zinc-800 md:py-2.5 md:px-4 ${
+        isParentPage ? "cursor-default" : "cursor-pointer"
+      }`}
       id={id}
       onClick={onClick}
     >

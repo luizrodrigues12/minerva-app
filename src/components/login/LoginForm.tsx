@@ -80,7 +80,7 @@ const LoginForm = () => {
                 type="email"
                 name="email"
                 autoComplete="email"
-                placeholder={"usuário ou email"}
+                placeholder={"digite seu email"}
                 className="!bg-background02"
                 value={email || ""}
                 onChange={(e) => {

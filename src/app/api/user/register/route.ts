@@ -1,40 +1,34 @@
 import { NextRequest, NextResponse } from "next/server";
-import UserModel, { AlunoObj } from "@/models/userModel";
+import UserModel, { AlunoObj, dataMongoUser } from "@/models/userModel";
 import connectDB from "@/dbConfig/dbConfig";
 import bcrypt from "bcrypt";
+import { capitalize } from "@/utils/stringManipulation";
 
 connectDB();
-
-//TIPAGENS
-interface dataMongoUser {
-  username: string;
-  email: string;
-  password: string;
-  isVerified: boolean;
-  token?: string;
-  alunos?: [AlunoObj];
-}
 
 export async function POST(req: NextRequest) {
   try {
     //Pegando body do post.
-    const { username, email, password }: dataMongoUser = await req.json();
+    const { name, email, password }: dataMongoUser = await req.json();
+
+    if (!name || !email || !password)
+      throw new Error("Envie name, email e password.");
+
     //Verificando existência prévia
     const userEmail = await UserModel.findOne({ email: email });
-    const userUsername = await UserModel.findOne({ username: username });
-    if (userUsername) throw new Error("Username em uso. Escolha outro.");
     if (userEmail) throw new Error("Esse email já está sendo usado.");
-    //Criando usuário
 
     //Criptografando senha
     const senhaCripto = await bcrypt.hash(password, 10);
 
+    //Criando usuário
     const newUser = await new UserModel<dataMongoUser>({
-      username: username,
+      name: capitalize(name),
       email: email,
       password: senhaCripto,
       isVerified: false,
     });
+
     // Salvando usuário
     newUser.save();
     return NextResponse.json({ success: "Usuário salvo com sucesso." });

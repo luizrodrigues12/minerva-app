@@ -49,7 +49,7 @@ const StudentsContainer = () => {
             ))}
           </div>
         ) : (
-          <div className="text-[#606060] flex items-center justify-center bg-background03 p-4 rounded-md">
+          <div className="text-inputText flex items-center justify-center bg-background03 p-4 rounded-md">
             Nenhum aluno cadastrado.
           </div>
         )}

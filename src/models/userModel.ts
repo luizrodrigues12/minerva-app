@@ -12,22 +12,21 @@ export type AlunoObj = {
 };
 
 export interface dataMongoUser {
-  username: string;
-  avatar: string;
-  avatar_key: string;
+  name: string;
+  avatar?: string;
+  avatar_key?: string;
   email: string;
   password: string;
-  token: string;
+  token?: string;
   isVerified: boolean;
   alunos?: AlunoObj[];
 }
 
 const userSchema = new Schema<dataMongoUser>(
   {
-    username: {
+    name: {
       type: String,
-      required: [true, "Escolha um nome de usuário."],
-      unique: true,
+      required: [true, "Digie seu nome."],
     },
     avatar: {
       type: String,

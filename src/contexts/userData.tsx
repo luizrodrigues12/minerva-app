@@ -4,15 +4,7 @@ import { useUserData } from "@/hooks/useUserData";
 import { AlunoObj, dataMongoUser } from "@/models/userModel";
 import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 import { deleteCookie } from "cookies-next";
-import {
-  createContext,
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactNode, useContext } from "react";
 
 type UserContextProps = {
   user: dataMongoUser;

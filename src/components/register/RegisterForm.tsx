@@ -2,11 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "nextjs-toploader/app";
-import {
-  validateEmail,
-  validatePassword,
-  validateUsername,
-} from "@/utils/regex";
+import { validateEmail, validatePassword } from "@/utils/regex";
 import Image from "next/image";
 import { useSectionContext } from "@/contexts/section";
 import Button from "../layout/Button";
@@ -17,8 +13,8 @@ import Link from "next/link";
 
 const RegisterForm = () => {
   const router = useRouter();
-  const [username, setUsername] = useState("");
-  const [usernameError, setUsernameError] = useState("");
+  const [name, setName] = useState("");
+  const [nameError, setNameError] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
@@ -30,15 +26,14 @@ const RegisterForm = () => {
   //REGEX
   const emailTest = validateEmail.test(email);
   const passwordTest = validatePassword.test(password);
-  const usernameTest = validateUsername.test(username);
 
   const handleRegister = async () => {
     const permissionInput: any = document.querySelector("#permission");
 
     try {
       // REGEX
-      if (!usernameTest) {
-        setUsernameError('Username deve conter apenas letras, números e "_". ');
+      if (!name) {
+        setNameError("Digite seu nome.");
         return;
       }
       if (!emailTest) {
@@ -49,18 +44,17 @@ const RegisterForm = () => {
         setpasswordError("8 dígitos, uma letra \n maiúscula e um número.");
         return;
       }
-
       if (!permissionInput.checked) {
         setpasswordError("Concorde com termos de uso e privacidade.");
         return;
       }
 
       //Enviando post dos dados
-      if (passwordTest && emailTest && usernameTest) {
+      if (passwordTest && emailTest && name) {
         setIsPosting(true);
         const response = await fetch(`${process.env.HOST}/api/user/register`, {
           method: "POST",
-          body: JSON.stringify({ username, email, password }),
+          body: JSON.stringify({ name, email, password }),
         });
         const { error } = await response.json();
         if (error) {
@@ -70,8 +64,8 @@ const RegisterForm = () => {
         router.push("/login");
       }
     } catch (err: any) {
-      err.message.toLowerCase().includes("username")
-        ? setUsernameError(err.message)
+      err.message.toLowerCase().includes("nome")
+        ? setNameError(err.message)
         : setEmailError(err.message);
     }
   };
@@ -101,25 +95,25 @@ const RegisterForm = () => {
           </div>
 
           <div className="flex flex-col gap-0">
-            <div className={`${usernameError ? "mb-1" : "mb-2"}`}>
-              <div className="text-[16px]">username</div>
+            <div className={`${nameError ? "mb-1" : "mb-2"}`}>
+              <div className="text-[16px]">nome</div>
               <InputComp
                 type="text"
-                name="username"
-                autoComplete="username"
+                name="name"
+                autoComplete="name"
                 className="!bg-background02"
-                placeholder={"nome de usuário"}
-                value={username || ""}
+                placeholder={"digite seu nome"}
+                value={name || ""}
                 onChange={(e) => {
                   e.preventDefault();
-                  setUsername(e.target.value.trim().toLowerCase());
+                  setName(e.target.value);
                 }}
-                onFocus={() => setUsernameError("")}
+                onFocus={() => setNameError("")}
               />
 
-              {usernameError && (
+              {nameError && (
                 <p className="text-red-700 text-[12px] md:text-[13px] mt-2 pl-0.5">
-                  {usernameError}
+                  {nameError}
                 </p>
               )}
             </div>
@@ -131,7 +125,7 @@ const RegisterForm = () => {
                 name="email"
                 autoComplete="email"
                 className="!bg-background02"
-                placeholder={"usuário ou email"}
+                placeholder={"digite seu email"}
                 value={email || ""}
                 onChange={(e) => {
                   e.preventDefault();

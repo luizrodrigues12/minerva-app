@@ -7,6 +7,8 @@ import NomePreparatorioParents from "@/components/parents/get_subjects/NomePrepa
 import AllSubjectsParents from "./AllSubjectsParents";
 import { useParentsData } from "@/hooks/useParentsData";
 import Loading from "@/components/layout/Loading";
+import Image from "next/image";
+import { UserCircle } from "flowbite-react-icons/outline";
 
 type Props = {
   idAluno: string;
@@ -14,7 +16,7 @@ type Props = {
 
 const SubjectsStudentForm = ({ idAluno }: Props) => {
   const [busca, setBusca] = useState("");
-  const { data: aluno, isFetched } = useParentsData(idAluno);
+  const { data, isFetched } = useParentsData(idAluno);
 
   useEffect(() => {}, []);
 
@@ -22,11 +24,43 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
     <Container>
       {isFetched ? (
         <div className="flex flex-col justify-center w-full">
-          {aluno ? (
+          {data?.aluno ? (
             <div className="flex flex-col w-full rounded-lg gap-3 ">
               <div className="flex flex-col gap-4">
-                {/* NOME DO ALUNO */}
-                <NomePreparatorioParents idAluno={idAluno} aluno={aluno!} />
+                {/* Info Professor */}
+                <div className="flex gap-3 w-full text-textColor rounded-md">
+                  {data.user.avatar ? (
+                    <div className="relative">
+                      <Image
+                        src={data.user.avatar}
+                        alt={`Avatar de ${data.user.name}`}
+                        width={120}
+                        height={120}
+                        className="max-w-[88px] max-h-[88px] md:max-w-[94px] md:max-h-[94px] rounded-md object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="bg-background03 text-inputText rounded-md relative">
+                      <UserCircle size={100} strokeWidth={0.5} />
+                    </div>
+                  )}
+
+                  <div className="flex flex-col gap-1.5 justify-between w-full">
+                    <div className="p-2.5 md:p-2.5 px-3 bg-background03 rounded-md text-[14px] md:text-[16px]">
+                      {data.user.name}
+                    </div>
+                    <div className="p-2.5 md:p-2.5 px-3 bg-background03 rounded-md text-[14px] md:text-[16px]">
+                      Professor(a)
+                    </div>
+                  </div>
+                </div>
+
+                {/* Info Aluno */}
+                <NomePreparatorioParents
+                  idAluno={idAluno}
+                  aluno={data?.aluno!}
+                />
+
                 <div className="flex flex-col gap-0">
                   <div className="flex flex-col gap-4">
                     <InputComp
@@ -44,7 +78,7 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                         <AllSubjectsParents
                           busca={busca}
                           idAluno={idAluno}
-                          aluno={aluno!}
+                          aluno={data?.aluno!}
                         />
                       </div>
                     </div>

@@ -48,10 +48,10 @@ const UserDataComp = () => {
                 <div className="relative">
                   <Image
                     src={user.avatar}
-                    alt={`Avatar de ${user.username}`}
+                    alt={`Avatar de ${user.name}`}
                     width={120}
                     height={120}
-                    className="min-w-[100px] max-h-[104px] rounded-md object-cover shadow-md"
+                    className="max-w-[104px] max-h-[104px] rounded-md object-cover shadow-md"
                   />
                   <EditPhotoIcon setIsOpen={setIsOpen} />
                 </div>
@@ -63,7 +63,7 @@ const UserDataComp = () => {
               )}
               <div className="flex flex-col gap-2 justify-between w-full">
                 <div className="bg-background03 p-3 rounded-md text-[14px] md:text-[16px]">
-                  {user.username}
+                  {user.name}
                 </div>
                 <div className="bg-background03 p-3 rounded-md text-[14px] md:text-[16px]">
                   Educador(a)
