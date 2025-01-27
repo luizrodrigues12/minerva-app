@@ -60,8 +60,6 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                   </div>
                 </div>
 
-                <hr className="border-0 h-[1px] bg-borderColor rounded-full" />
-
                 {/* Info Aluno */}
                 <NomePreparatorioParents
                   idAluno={idAluno}

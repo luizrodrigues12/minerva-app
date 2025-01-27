@@ -51,7 +51,7 @@ const UserDataComp = () => {
                     alt={`Avatar de ${user.name}`}
                     width={120}
                     height={120}
-                    className="max-w-[104px] max-h-[104px] rounded-md object-cover shadow-md dark:bg-[#101010] bg-background03"
+                    className="max-w-[88px] max-h-[88px] md:max-w-[95px] md:max-h-[95px] rounded-md object-cover shadow-md dark:bg-[#101010] bg-background03"
                   />
                   <EditPhotoIcon setIsOpen={setIsOpen} />
                 </div>
@@ -61,11 +61,11 @@ const UserDataComp = () => {
                   <EditPhotoIcon setIsOpen={setIsOpen} />
                 </div>
               )}
-              <div className="flex flex-col gap-2 justify-between w-full">
-                <div className="bg-background03 p-3 rounded-md text-[14px] md:text-[16px]">
+              <div className="flex flex-col gap-1.5 justify-between w-full">
+                <div className="bg-background03 p-2.5 rounded-md text-[14px] md:text-[16px]">
                   {user.name}
                 </div>
-                <div className="bg-background03 p-3 rounded-md text-[14px] md:text-[16px]">
+                <div className="bg-background03 p-2.5 rounded-md text-[14px] md:text-[16px]">
                   Educador(a)
                 </div>
               </div>
