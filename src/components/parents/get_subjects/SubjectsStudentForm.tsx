@@ -36,7 +36,7 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                         alt={`Avatar de ${data.user.name}`}
                         width={120}
                         height={120}
-                        className="max-w-[88px] max-h-[88px] md:max-w-[94px] md:max-h-[94px] rounded-md object-cover"
+                        className="max-w-[88px] max-h-[88px] md:max-w-[94px] md:max-h-[94px] rounded-md object-cover dark:bg-[#101010] bg-background03"
                       />
                     </div>
                   ) : (
