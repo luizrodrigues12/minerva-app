@@ -8,6 +8,7 @@ import { useSubjectsContext } from "@/contexts/subjects";
 import { useUserContext } from "@/contexts/userData";
 import { unstable_noStore as noStore } from "next/cache";
 import Loading from "@/components/layout/Loading";
+import { capitalize } from "@/utils/stringManipulation";
 
 interface Props {
   error: any;
@@ -24,6 +25,10 @@ const SubjectFormUpdate = ({ error, idAluno, setError }: Props) => {
   const [idsMaterias, setIdsMaterias] = useState<Array<string>>();
 
   const subjectsSorted = subjects?.sort((a, b) =>
+    a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
+  );
+
+  const alunoMateriasSorted = aluno.materias!.sort((a, b) =>
     a.ordem < b.ordem ? -1 : a.ordem > b.ordem ? 1 : 0
   );
 
@@ -81,10 +86,14 @@ const SubjectFormUpdate = ({ error, idAluno, setError }: Props) => {
                         return (
                           <CheckComp
                             key={i}
-                            text={materia.nome}
+                            text={capitalize(materia.nome)}
                             name="subject"
                             id={materia._id!}
-                            value={JSON.stringify(materia)}
+                            value={JSON.stringify(
+                              alunoMateriasSorted[i].isChecked
+                                ? alunoMateriasSorted[i]
+                                : materia
+                            )}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
                             setError={setError}
@@ -103,10 +112,14 @@ const SubjectFormUpdate = ({ error, idAluno, setError }: Props) => {
                         return (
                           <CheckComp
                             key={i}
-                            text={materia.nome}
+                            text={capitalize(materia.nome)}
                             name="subject"
                             id={materia._id!}
-                            value={JSON.stringify(materia)}
+                            value={JSON.stringify(
+                              alunoMateriasSorted[i].isChecked
+                                ? alunoMateriasSorted[i]
+                                : materia
+                            )}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
                             setError={setError}
@@ -125,10 +138,14 @@ const SubjectFormUpdate = ({ error, idAluno, setError }: Props) => {
                         return (
                           <CheckComp
                             key={i}
-                            text={materia.nome}
+                            text={capitalize(materia.nome)}
                             name="subject"
                             id={materia._id!}
-                            value={JSON.stringify(materia)}
+                            value={JSON.stringify(
+                              alunoMateriasSorted[i].isChecked
+                                ? alunoMateriasSorted[i]
+                                : materia
+                            )}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
                             setError={setError}
@@ -147,10 +164,14 @@ const SubjectFormUpdate = ({ error, idAluno, setError }: Props) => {
                         return (
                           <CheckComp
                             key={i}
-                            text={materia.nome}
+                            text={capitalize(materia.nome)}
                             name="subject"
                             id={materia._id!}
-                            value={JSON.stringify(materia)}
+                            value={JSON.stringify(
+                              alunoMateriasSorted[i].isChecked
+                                ? alunoMateriasSorted[i]
+                                : materia
+                            )}
                             className="shadow-sm"
                             defaultChecked={idsMaterias?.includes(materia._id!)}
                             setError={setError}
