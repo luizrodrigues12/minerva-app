@@ -9,6 +9,8 @@ import { useParentsData } from "@/hooks/useParentsData";
 import Loading from "@/components/layout/Loading";
 import Image from "next/image";
 import { UserCircle } from "flowbite-react-icons/outline";
+import { useUserContext } from "@/contexts/userData";
+import { useSectionContext } from "@/contexts/section";
 
 type Props = {
   idAluno: string;
@@ -17,8 +19,11 @@ type Props = {
 const SubjectsStudentForm = ({ idAluno }: Props) => {
   const [busca, setBusca] = useState("");
   const { data, isFetched } = useParentsData(idAluno);
+  const { setSection } = useSectionContext();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setSection("students");
+  }, []);
 
   return (
     <Container>
@@ -36,7 +41,7 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                         alt={`Avatar de ${data.user.name}`}
                         width={120}
                         height={120}
-                        className="max-w-[88px] max-h-[88px] md:max-w-[94px] md:max-h-[94px] rounded-md object-cover dark:bg-[#101010] bg-background03"
+                        className="max-w-[80px] max-h-[80px] md:max-w-[85px] md:max-h-[85px] rounded-md object-cover dark:bg-[#101010] bg-background03"
                       />
                     </div>
                   ) : (
@@ -46,14 +51,16 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                   )}
 
                   <div className="flex flex-col gap-1.5 justify-between w-full">
-                    <div className="p-2.5 md:p-2.5 px-3 bg-background03 rounded-md text-[14px] md:text-[16px]">
+                    <div className="p-2 md:p-2 px-3 bg-background03 rounded-md text-[14px] md:text-[16px]">
                       {data.user.name}
                     </div>
-                    <div className="p-2.5 md:p-2.5 px-3 bg-background03 rounded-md text-[14px] md:text-[16px]">
+                    <div className="p-2 md:p-2 px-3 bg-background03 rounded-md text-[14px] md:text-[16px]">
                       Professor(a)
                     </div>
                   </div>
                 </div>
+
+                <hr className="border-0 h-[1px] bg-borderColor rounded-full" />
 
                 {/* Info Aluno */}
                 <NomePreparatorioParents
