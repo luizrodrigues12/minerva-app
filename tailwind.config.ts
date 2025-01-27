@@ -24,6 +24,7 @@ const config: Config = {
         background02: "var(--background02)",
         background03: "var(--background03)",
         corIcones: "var(--cor-icones)",
+        corIconesHover: "var(--cor-icones-hover)",
         inputText: "var(--input-text)",
         errorColor: "var(--error-color)",
         roxominerva: "var(--roxo-minerva)",

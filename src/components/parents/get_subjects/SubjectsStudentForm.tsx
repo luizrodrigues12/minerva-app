@@ -7,7 +7,6 @@ import NomePreparatorioParents from "@/components/parents/get_subjects/NomePrepa
 import AllSubjectsParents from "./AllSubjectsParents";
 import { useParentsData } from "@/hooks/useParentsData";
 import Loading from "@/components/layout/Loading";
-import { useRouter } from "nextjs-toploader/app";
 
 type Props = {
   idAluno: string;
@@ -15,13 +14,7 @@ type Props = {
 
 const SubjectsStudentForm = ({ idAluno }: Props) => {
   const [busca, setBusca] = useState("");
-  const router = useRouter();
-  const {
-    data: aluno,
-    isFetched,
-    isRefetchError,
-    refetch,
-  } = useParentsData(idAluno);
+  const { data: aluno, isFetched } = useParentsData(idAluno);
 
   useEffect(() => {}, []);
 

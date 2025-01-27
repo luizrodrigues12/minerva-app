@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Hamburguer from "./svgs/Hamburguer";
 import SideBar from "./SideBar";
 import NavDesktop from "./NavDesktop";
