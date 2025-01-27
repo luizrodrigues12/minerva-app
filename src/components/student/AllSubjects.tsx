@@ -21,7 +21,7 @@ const AllSubjects = ({ idAluno, busca }: AllSubjectsProps) => {
   const toggleIsChecked = async (objMateria: any, e: any) => {
     e.preventDefault();
     setObjMateria(objMateria);
-    mutate({ idAluno, objMateria, token: user.token });
+    mutate({ idAluno, objMateria, token: user.token! });
   };
 
   const materiaFilteredAndSorted = () => {

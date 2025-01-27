@@ -17,7 +17,7 @@ export async function PUT(req: NextRequest) {
     if (!image) throw new Error("Envie uma imagem.");
 
     if (hasAvatar) {
-      await utapi.deleteFiles(user.avatar_key);
+      await utapi.deleteFiles(user.avatar_key!);
       const res = await utapi.uploadFiles(image as File);
       const { data } = res;
 

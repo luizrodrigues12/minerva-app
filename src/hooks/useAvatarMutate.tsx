@@ -19,7 +19,7 @@ export function useAvatarMutate() {
 
     const formData = new FormData();
     formData.append("image", file!);
-    formData.append("token", user.token);
+    formData.append("token", user.token!);
 
     const res = await fetch(`${process.env.HOST}/api/user/avatar`, {
       method: "PUT",
