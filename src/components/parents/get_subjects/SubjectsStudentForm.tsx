@@ -77,7 +77,7 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                           ) : (
                             <Moon
                               strokeWidth={1.8}
-                              className="size-[20px] cursor-pointer text-corIcones hover:text-corIconesHover"
+                              className="size-[24px] cursor-pointer text-corIcones hover:text-corIconesHover"
                               onClick={() => toggleTheme()}
                             />
                           )}
@@ -89,8 +89,6 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                     </div>
                   </div>
                 </div>
-
-                <hr className="dark:bg-borderColor bg-background03 border-0 h-[2px]" />
 
                 {/* Info Aluno */}
                 <NomePreparatorioParents
