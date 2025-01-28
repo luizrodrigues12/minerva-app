@@ -1,9 +1,7 @@
 import { motion } from "motion/react";
-import { Moon, ShareAll, Sun } from "flowbite-react-icons/outline";
+import { ShareAll } from "flowbite-react-icons/outline";
 import { AlunoObj } from "@/models/userModel";
 import Loading from "@/components/layout/Loading";
-import { useThemeContext } from "@/contexts/darkMode";
-import { useUserContext } from "@/contexts/userData";
 
 type Props = {
   idAluno: string;
@@ -11,9 +9,6 @@ type Props = {
 };
 
 const NomePreparatorioParents = ({ idAluno, aluno }: Props) => {
-  const { toggleTheme, theme } = useThemeContext();
-  const { user } = useUserContext();
-
   return (
     <div>
       {aluno.nome === undefined ? (
@@ -45,27 +40,6 @@ const NomePreparatorioParents = ({ idAluno, aluno }: Props) => {
               prep == "aplicação"
                 ? prep[0].toUpperCase() + prep.substring(1) + " "
                 : prep.toUpperCase() + " "
-            )}
-            {!user && (
-              <motion.div
-                whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
-                whileTap={{ scale: 0.99 }}
-                className="pr-[1px]"
-              >
-                {theme === "dark" ? (
-                  <Sun
-                    strokeWidth={1.8}
-                    className="size-[26px] cursor-pointer text-corIcones hover:text-corIconesHover"
-                    onClick={() => toggleTheme()}
-                  />
-                ) : (
-                  <Moon
-                    strokeWidth={1.8}
-                    className="size-[22px] cursor-pointer text-corIcones hover:text-corIconesHover"
-                    onClick={() => toggleTheme()}
-                  />
-                )}
-              </motion.div>
             )}
           </div>
         </div>

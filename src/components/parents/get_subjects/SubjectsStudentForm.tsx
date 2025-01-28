@@ -8,9 +8,11 @@ import AllSubjectsParents from "./AllSubjectsParents";
 import { useParentsData } from "@/hooks/useParentsData";
 import Loading from "@/components/layout/Loading";
 import Image from "next/image";
-import { UserCircle } from "flowbite-react-icons/outline";
+import { Moon, Sun, UserCircle } from "flowbite-react-icons/outline";
 import { useUserContext } from "@/contexts/userData";
 import { useSectionContext } from "@/contexts/section";
+import { useThemeContext } from "@/contexts/darkMode";
+import { motion } from "motion/react";
 
 type Props = {
   idAluno: string;
@@ -20,6 +22,8 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
   const [busca, setBusca] = useState("");
   const { data, isFetched } = useParentsData(idAluno);
   const { setSection } = useSectionContext();
+  const { toggleTheme, theme } = useThemeContext();
+  const { user } = useUserContext();
 
   useEffect(() => {
     setSection("students");
@@ -51,14 +55,42 @@ const SubjectsStudentForm = ({ idAluno }: Props) => {
                   )}
 
                   <div className="flex flex-col gap-1.5 justify-between w-full">
-                    <div className="p-2 md:p-2 px-3 bg-background03 rounded-md text-[14px] md:text-[16px]">
-                      {data.user.name}
+                    <div className="flex justify-between p-[6.5px] md:p-2 px-3 md:px-3 bg-background03 rounded-md items-center">
+                      <div className="text-[14px] md:text-[16px]">
+                        {data.user.name}
+                      </div>
+                      {!user && (
+                        <motion.div
+                          whileHover={{
+                            scale: 1.05,
+                            transition: { duration: 0.05 },
+                          }}
+                          whileTap={{ scale: 0.99 }}
+                          className="pr-[1px]"
+                        >
+                          {theme === "dark" ? (
+                            <Sun
+                              strokeWidth={1.8}
+                              className="size-[24px] cursor-pointer text-corIcones hover:text-corIconesHover"
+                              onClick={() => toggleTheme()}
+                            />
+                          ) : (
+                            <Moon
+                              strokeWidth={1.8}
+                              className="size-[20px] cursor-pointer text-corIcones hover:text-corIconesHover"
+                              onClick={() => toggleTheme()}
+                            />
+                          )}
+                        </motion.div>
+                      )}
                     </div>
-                    <div className="p-2 md:p-2 px-3 bg-background03 rounded-md text-[14px] md:text-[16px]">
+                    <div className="p-2 px-3 bg-background03 rounded-md text-[14px] md:text-[16px]">
                       Professor(a)
                     </div>
                   </div>
                 </div>
+
+                <hr className="dark:bg-borderColor bg-background03 border-0 h-[2px]" />
 
                 {/* Info Aluno */}
                 <NomePreparatorioParents
