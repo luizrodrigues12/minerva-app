@@ -15,15 +15,17 @@ import VerifyEmailForm from "./verify_email/VerifyEmailForm";
 import EditPhotoIcon from "./change-photo/EditPhotoIcon";
 import PhotoForm from "./change-photo/PhotoForm";
 import Image from "next/image";
+import DeleteAccount from "./delete_account/DeleteAccount";
 
 const UserDataComp = () => {
   noStore();
   const { user, logoutFunction, refetch } = useUserContext();
+  const [isPosting, setIsPosting] = useState(false);
   const { setSection } = useSectionContext();
   const [isOpen, setIsOpen] = useState(false);
 
-  const removerConta = async (e: any) => {
-    e.preventDefault();
+  const deleteAccount = async () => {
+    setIsPosting(true);
     await fetch(`${process.env.HOST}/api/user/delete_user`, {
       method: "POST",
       body: JSON.stringify({ token: user.token }),
@@ -38,7 +40,7 @@ const UserDataComp = () => {
 
   return (
     <Container className="min-h-screen">
-      {!user ? (
+      {!user || isPosting ? (
         <Loading />
       ) : (
         <div className="flex flex-col w-full text-textColor">
@@ -71,23 +73,14 @@ const UserDataComp = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-3 w-full relative">
+            <div className="flex flex-col gap-2 w-full relative">
               <div className="text-[16px] md:text-[18px]">email</div>
-              <div>
-                <div
-                  className="text-[12px] mr-1.5 mb-1 hover:text-errorColor cursor-pointer text-end absolute right-0 
-                top-3.5 md:text-[14px]"
-                  onClick={async (e) => await removerConta(e)}
-                >
-                  excluir conta
-                </div>
-                <div className="bg-background03 p-3 rounded-md text-inputText text-[14px] md:text-[16px]">
-                  {user.email}
-                </div>
+              <div className="bg-background03 p-3 rounded-md text-inputText text-[14px] md:text-[16px]">
+                {user.email}
               </div>
             </div>
 
-            <div className="flex flex-col gap-3 w-full  ">
+            <div className="flex flex-col gap-2 w-full  ">
               <div className=" text-[16px] md:text-[18px]">configurações</div>
               <div className="flex flex-col gap-1.5">
                 <Accordion
@@ -105,6 +98,12 @@ const UserDataComp = () => {
                 <Accordion
                   children={<ChangePasswordForm />}
                   textLeft="Alterar senha"
+                  classNameContent="bg-background02"
+                />
+
+                <Accordion
+                  children={<DeleteAccount deleteAccount={deleteAccount} />}
+                  textLeft="Excluir conta"
                   classNameContent="bg-background02"
                 />
               </div>

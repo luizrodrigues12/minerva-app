@@ -101,7 +101,7 @@ const RegisterForm = () => {
                 type="text"
                 name="name"
                 autoComplete="name"
-                className="!bg-background02"
+                className="!bg-background02 mt-2"
                 placeholder={"digite seu nome"}
                 value={name || ""}
                 onChange={(e) => {
@@ -124,7 +124,7 @@ const RegisterForm = () => {
                 type="email"
                 name="email"
                 autoComplete="email"
-                className="!bg-background02"
+                className="!bg-background02 mt-2"
                 placeholder={"digite seu email"}
                 value={email || ""}
                 onChange={(e) => {
@@ -149,7 +149,7 @@ const RegisterForm = () => {
                   id="input-password"
                   name="password"
                   value={password || ""}
-                  className="!bg-background02"
+                  className="!bg-background02 mt-2"
                   placeholder={"digite sua senha"}
                   onChange={(e) => setPassword(e.target.value.trim())}
                   onFocus={() => setpasswordError("")}

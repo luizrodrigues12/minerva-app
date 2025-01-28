@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <>
       {section === "login" || section === "register" || section === "home" ? (
-        <footer className="w-full px-8 h-[16vh] bg-[#202020] text-zinc-300 flex items-center justify-center text-[12px] gap-[10px] md:h-[14vh] md:px-[100px] xl:px-[195px] xl:h-[20vh] xl:text-[14px]">
+        <footer className="w-full px-6 h-[16vh] bg-[#202020] text-zinc-300 flex items-center justify-center text-[12px] gap-[10px] md:h-[14vh] md:px-[100px] lg:px-[60px] xl:px-[100px] xl:h-[20vh] xl:text-[14px] 2xl:px-[300px]">
           <div className="flex w-full gap-10 justify-start md:gap-[60px] xl:gap-[100px]">
             <div className="flex flex-col gap-[5px]">
               <p className="text-[#9E9E9E]">navegação</p>

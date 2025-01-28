@@ -11,13 +11,9 @@ const StudentsContainer = () => {
   const { user } = useUserContext();
   const router = useRouter();
 
-  const studentsFilteredsAndSorteds = () => {
-    return user.alunos
-      ?.filter((aluno) =>
-        aluno.nome?.toLowerCase().includes(busca.toLowerCase())
-      )
-      ?.sort((a, b) => (a?.nome! < b?.nome! ? -1 : 1));
-  };
+  const studentsFilteredsAndSorteds = user.alunos
+    ?.filter((aluno) => aluno.nome?.toLowerCase().includes(busca.toLowerCase()))
+    ?.sort((a, b) => (a?.nome! < b?.nome! ? -1 : 1));
 
   return (
     <Container>
@@ -27,7 +23,6 @@ const StudentsContainer = () => {
             isSearch={true}
             placeholder="Pesquisar"
             value={busca || ""}
-            className="!mt-0"
             onChange={(e) => {
               setBusca(e.target.value);
             }}
@@ -44,7 +39,7 @@ const StudentsContainer = () => {
 
         {user.alunos?.length! > 0 ? (
           <div className="flex flex-col gap-1.5">
-            {studentsFilteredsAndSorteds()?.map((aluno, i) => (
+            {studentsFilteredsAndSorteds?.map((aluno, i) => (
               <AlunosComp key={i} idAluno={aluno.idAluno!} name={aluno.nome!} />
             ))}
           </div>

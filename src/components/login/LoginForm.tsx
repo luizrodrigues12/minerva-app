@@ -81,7 +81,7 @@ const LoginForm = () => {
                 name="email"
                 autoComplete="email"
                 placeholder={"digite seu email"}
-                className="!bg-background02"
+                className="!bg-background02 mt-2"
                 value={email || ""}
                 onChange={(e) => {
                   e.preventDefault();
@@ -111,7 +111,7 @@ const LoginForm = () => {
               </div>
             </div>
 
-            <div className={"mb-0"}>
+            <div className="mb-0">
               <div className="text-[16px]">senha</div>
               <div className="flex relative">
                 <InputComp
@@ -119,7 +119,7 @@ const LoginForm = () => {
                   id="input-password"
                   name="password"
                   value={password || ""}
-                  className="!bg-background02"
+                  className="!bg-background02 mt-2"
                   placeholder={"digite sua senha"}
                   onChange={(e) => setPassword(e.target.value.trim())}
                   onFocus={() => setpasswordError("")}
