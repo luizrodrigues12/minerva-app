@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     ],
   },
   env: {
-    HOST: "http://localhost:3000",
+    HOST: "https://minerva-gamma.vercel.app",
   },
   /* config options here */
 };
