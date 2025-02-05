@@ -7,12 +7,11 @@ import {
   UsersGroup,
 } from "flowbite-react-icons/outline";
 import { useRouter } from "nextjs-toploader/app";
-import MoonIcon from "../header/svgs/moonIcon";
 import { useUserContext } from "@/contexts/userData";
 import { useThemeContext } from "@/contexts/darkMode";
 
 const LinkContainer = () => {
-  const { section } = useSectionContext();
+  const { section, setSection } = useSectionContext();
   const router = useRouter();
   const { user } = useUserContext();
   const { toggleTheme, theme } = useThemeContext();
@@ -37,10 +36,14 @@ const LinkContainer = () => {
           </div>
         </div>
 
-        {/* <div
+        <div
           className={`border-b-[1px] border-borderColor w-full p-2 px-3 hover:bg-background03 cursor-pointer ${
             section === "planning" ? "bg-background03" : "bg-background02"
           }`}
+          onClick={() => {
+            setSection("planning");
+            router.push("/planning");
+          }}
         >
           <div className="flex items-center justify-start gap-3">
             <CalendarWeek size={40} strokeWidth={1} />
@@ -49,7 +52,7 @@ const LinkContainer = () => {
               <div>3</div>
             </div>
           </div>
-        </div> */}
+        </div>
 
         <div
           className={`border-b-[1px]  border-borderColor w-full p-2 px-3 hover:bg-background03 cursor-pointer ${

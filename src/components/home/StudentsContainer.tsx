@@ -6,7 +6,11 @@ import { useRouter } from "nextjs-toploader/app";
 import { useState } from "react";
 import Container from "../layout/Container";
 
-const StudentsContainer = () => {
+type StudentsProps = {
+  isPlanning?: boolean;
+};
+
+const StudentsContainer = ({ isPlanning = false }: StudentsProps) => {
   const [busca, setBusca] = useState("");
   const { user } = useUserContext();
   const router = useRouter();
@@ -27,25 +31,43 @@ const StudentsContainer = () => {
               setBusca(e.target.value);
             }}
           />
-          <Button
-            className="px-[25px] font-inter shadow-sm"
-            onClick={() => {
-              router.push("/add_student");
-            }}
-          >
-            Adicionar
-          </Button>
+          {!isPlanning ? (
+            <Button
+              className="px-[25px] font-inter shadow-sm"
+              onClick={() => {
+                router.push("/add_student");
+              }}
+            >
+              Adicionar
+            </Button>
+          ) : (
+            <Button
+              className="px-[30px] font-inter shadow-sm"
+              onClick={() => {
+                router.push("/planning/add-planning");
+              }}
+            >
+              Planejar
+            </Button>
+          )}
         </div>
 
         {user.alunos?.length! > 0 ? (
           <div className="flex flex-col gap-1.5">
             {studentsFilteredsAndSorteds?.map((aluno, i) => (
-              <AlunosComp key={i} idAluno={aluno.idAluno!} name={aluno.nome!} />
+              <AlunosComp
+                isPlanning={isPlanning}
+                key={i}
+                idAluno={aluno.idAluno!}
+                name={aluno.nome!}
+              />
             ))}
           </div>
         ) : (
           <div className="text-inputText flex items-center justify-center bg-background03 p-4 rounded-md text-[14px] md:text-[16px]">
-            Nenhum aluno cadastrado.
+            {isPlanning
+              ? "Nenhum planejamento criado."
+              : "Nenhum aluno cadastrado."}
           </div>
         )}
       </div>

@@ -23,6 +23,7 @@ const config: Config = {
         background01: "var(--background01)",
         background02: "var(--background02)",
         background03: "var(--background03)",
+        background03Hover: "var(--background03-hover)",
         corIcones: "var(--cor-icones)",
         corIconesHover: "var(--cor-icones-hover)",
         inputText: "var(--input-text)",

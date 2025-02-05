@@ -7,7 +7,6 @@ import { useSectionContext } from "@/contexts/section";
 import StudentsContainer from "./StudentsContainer";
 import { useUserContext } from "@/contexts/userData";
 import SideBarDesktop from "../layout/SideBarDesktop";
-import { useAddStudent } from "@/hooks/useAddStudent";
 
 const PageHome = () => {
   const { setSection } = useSectionContext();
