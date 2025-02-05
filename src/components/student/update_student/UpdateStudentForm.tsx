@@ -2,10 +2,7 @@
 
 import { MouseEvent, useEffect, useState } from "react";
 import CheckComp from "../../add_student/CheckComp";
-import { getCookie } from "cookies-next";
-import useSWR from "swr";
 import Loading from "../../layout/Loading";
-import { motion } from "motion/react";
 import InputComp from "@/components/layout/InputComp";
 import Container from "@/components/layout/Container";
 import Button from "@/components/layout/Button";

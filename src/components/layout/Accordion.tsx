@@ -1,14 +1,13 @@
-import { MateriaType } from "@/models/MateriasModel";
 import { AngleDown, AngleUp } from "flowbite-react-icons/outline";
-import { motion } from "motion/react";
 import { ReactNode, useState } from "react";
 
 interface Props {
   textLeft: string;
   textRight?: string;
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   classNameContent?: string;
+  disable?: boolean;
 }
 
 const Accordion = ({
@@ -17,6 +16,7 @@ const Accordion = ({
   children,
   className,
   classNameContent,
+  disable = false,
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -26,18 +26,22 @@ const Accordion = ({
     >
       <div
         className="flex justify-between py-2.5 md:py-3 cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          if (!disable) setIsOpen(!isOpen);
+        }}
       >
-        <div className="text-textColor text-[14px] md:text-[16px] flex w-full px-3 items-center">
-          <p className="pr-2" onClick={() => setIsOpen(!isOpen)}>
+        <div
+          className={` text-[14px] md:text-[16px] flex w-full px-3 items-center ${
+            disable ? "text-inputText" : "text-textColor"
+          }`}
+        >
+          <p className="pr-2">
             {textLeft.split("")[0].toUpperCase() + textLeft.slice(1)}
           </p>
           {textRight && (
             <div className="flex">
               <p>-</p>
-              <p className="pl-2" onClick={() => setIsOpen(!isOpen)}>
-                {textRight}
-              </p>
+              <p className="pl-2">{textRight}</p>
             </div>
           )}
         </div>

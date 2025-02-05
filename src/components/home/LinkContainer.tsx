@@ -11,7 +11,7 @@ import { useUserContext } from "@/contexts/userData";
 import { useThemeContext } from "@/contexts/darkMode";
 
 const LinkContainer = () => {
-  const { section, setSection } = useSectionContext();
+  const { section } = useSectionContext();
   const router = useRouter();
   const { user } = useUserContext();
   const { toggleTheme, theme } = useThemeContext();
@@ -41,7 +41,6 @@ const LinkContainer = () => {
             section === "planning" ? "bg-background03" : "bg-background02"
           }`}
           onClick={() => {
-            setSection("planning");
             router.push("/planning");
           }}
         >

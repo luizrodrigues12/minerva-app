@@ -96,7 +96,6 @@ const StudentForm = () => {
               <div className="text-[16px] lg:text-[18px]">Nome</div>
               <InputComp
                 placeholder="Nome do aluno"
-                className="!mt-0"
                 value={nome || ""}
                 onChange={(e) => {
                   setNome(e.target.value);
