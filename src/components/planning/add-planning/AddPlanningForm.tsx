@@ -12,9 +12,17 @@ import {
 import React, { useEffect, useState } from "react";
 import AddPlanningSubjects from "./AddPlanningSubjects";
 import SelectWeekDays from "./SelectWeekDays";
-import InputComp from "@/components/layout/InputComp";
 import Button from "@/components/layout/Button";
 import DatesPlace from "./DatesPlace";
+import { MateriaType } from "@/models/MateriasModel";
+import PlanningPDF from "./PlanningPDF";
+
+export interface daysAndSubjectsType {
+  date: number;
+  day: string;
+  month: number;
+  subjects: Array<MateriaType>;
+}
 
 const AddPlanningForm = () => {
   const [error, setError] = useState("");
@@ -28,6 +36,10 @@ const AddPlanningForm = () => {
   const [initialDate, setInitialDate] = useState(0);
   const [finalDate, setFinalDate] = useState(0);
   const [subjectPerDay, setSubjectPerDay] = useState(0);
+  const [alternateSubjects, setAlternateSubjects] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [daysAndSubjects, setDaysAndSubjects] =
+    useState<Array<daysAndSubjectsType>>();
 
   const { setSection } = useSectionContext();
 
@@ -64,21 +76,27 @@ const AddPlanningForm = () => {
   };
 
   const submitForm = () => {
-    const completeDate = getDaysAndSubjectsFinal({
-      getCheckedsDays,
-      getCheckedsSubjects,
-      getSelectedDaysOfMonth,
-      idAluno,
-      checkedsSubj: checkedsSubj!,
-      monthDays,
-      checkedsDays: checkedsDays!,
-      initialDate,
-      finalDate,
-      subjectPerDay,
-      setError,
-    });
+    try {
+      const completeDate: Array<daysAndSubjectsType> = getDaysAndSubjectsFinal({
+        getCheckedsDays,
+        getCheckedsSubjects,
+        getSelectedDaysOfMonth,
+        idAluno,
+        checkedsSubj: checkedsSubj!,
+        monthDays,
+        checkedsDays: checkedsDays!,
+        initialDate,
+        finalDate,
+        subjectPerDay,
+        setError,
+        alternateSubjects,
+        setIsOpen,
+      })!;
 
-    console.log(completeDate);
+      setDaysAndSubjects(completeDate);
+    } catch (error: any) {
+      setError(error.message);
+    }
   };
 
   useEffect(() => {
@@ -124,13 +142,42 @@ const AddPlanningForm = () => {
           />
         )}
 
+        <div className="flex gap-1.5 items-center">
+          <input
+            type="checkbox"
+            className="size-[18px] rounded-sm checked:outline-none focus:outline-none focus:ring-offset-0 focus:ring-0 cursor-pointer checked:!bg-roxominerva"
+            id="alternate-subjects"
+            onClick={() => setAlternateSubjects(!alternateSubjects)}
+          />
+          <p className="text-[14px] md:text-[16px]">
+            Alternar entre Português e Matemática.
+          </p>
+        </div>
+
         {error && (
           <p className="text-[14px] py-0.5 text-center text-errorColor">
             {error}
           </p>
         )}
 
-        <Button onClick={() => submitForm()}>Criar Planejamento</Button>
+        {isOpen && (
+          <PlanningPDF
+            daysAndSubjects={daysAndSubjects!}
+            idAluno={idAluno}
+            setIsOpen={setIsOpen}
+            subjectPerDay={subjectPerDay}
+            monthNumber={monthNumber}
+          />
+        )}
+
+        <Button
+          onClick={() => {
+            setError("");
+            submitForm();
+          }}
+        >
+          Criar Planejamento
+        </Button>
       </div>
     </Container>
   );

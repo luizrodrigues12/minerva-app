@@ -1,3 +1,4 @@
+import { daysAndSubjectsType } from "@/components/planning/add-planning/AddPlanningForm";
 import { MateriaType } from "@/models/MateriasModel";
 import { Dispatch } from "react";
 
@@ -19,6 +20,7 @@ export const allMonths = [
 export interface DateType {
   date: number;
   day: string;
+  month: number;
 }
 
 interface GetDaysProps {
@@ -27,16 +29,12 @@ interface GetDaysProps {
   finalDate: number;
 }
 
-interface SubjectType {
-  name: string;
-  ordem: number;
-}
-
-interface daysAndSubjectsType {
-  date: number;
-  day: string;
-  subjects: Array<SubjectType>;
-}
+type DistributeSubjectsProps = {
+  selectedDaysOfMonth: Array<DateType>;
+  subjects: Array<MateriaType>;
+  subjectPerDay: number;
+  alternateSubjects: boolean;
+};
 
 export const getDaysOfMonth = ({
   monthNumber,
@@ -56,19 +54,19 @@ export const getDaysOfMonth = ({
 
   return daysOfMonth.map((date) => {
     if (date.day === "Sun") {
-      return { ...date, day: "Dom" };
+      return { ...date, day: "Domingo" };
     } else if (date.day === "Mon") {
-      return { ...date, day: "Seg" };
+      return { ...date, day: "Segunda-feira" };
     } else if (date.day === "Tue") {
-      return { ...date, day: "Ter" };
+      return { ...date, day: "Terça-feira" };
     } else if (date.day === "Wed") {
-      return { ...date, day: "Qua" };
+      return { ...date, day: "Quarta-feira" };
     } else if (date.day === "Thu") {
-      return { ...date, day: "Qui" };
+      return { ...date, day: "Quinta-feira" };
     } else if (date.day === "Fri") {
-      return { ...date, day: "Sex" };
+      return { ...date, day: "Sexta-feira" };
     } else if (date.day === "Sat") {
-      return { ...date, day: "Sáb" };
+      return { ...date, day: "Sábado" };
     }
   });
 };
@@ -85,6 +83,8 @@ interface getDaysAndSubjectsProps {
   finalDate: number;
   subjectPerDay: number;
   setError: Dispatch<React.SetStateAction<string>>;
+  alternateSubjects: boolean;
+  setIsOpen: Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const getDaysAndSubjectsFinal = ({
@@ -99,6 +99,8 @@ export const getDaysAndSubjectsFinal = ({
   finalDate,
   subjectPerDay,
   setError,
+  alternateSubjects = false,
+  setIsOpen,
 }: getDaysAndSubjectsProps) => {
   try {
     getCheckedsDays();
@@ -120,24 +122,96 @@ export const getDaysAndSubjectsFinal = ({
       throw new Error(`"Matérias por dia" maior que a quantidade marcada.`);
     if (!selectedDaysOfMonth.length)
       throw new Error("Esses dias não existem nesse intervalo.");
+    if (checkedsSubj.length > subjectPerDay * selectedDaysOfMonth.length)
+      throw new Error(
+        `Matérias por dia precisa ser maior que ${Math.round(
+          checkedsSubj.length / selectedDaysOfMonth.length
+        )}.`
+      );
 
-    const daysAndSubjects: Array<daysAndSubjectsType> = [];
+    //Tranformando Matérias Json em Objeto
+    const subjectsParsed: Array<MateriaType> = [];
+    checkedsSubj.map((subj) => subjectsParsed.push(JSON.parse(subj)));
 
-    for (let i = 0; i < selectedDaysOfMonth.length; i++) {
-      const subjectParsed: MateriaType = JSON.parse(checkedsSubj[i]);
-      const date = selectedDaysOfMonth[i];
-      const subjects: Array<SubjectType> = [];
+    const subjectsPortuguese = subjectsParsed.filter(
+      (subj) => subj.materia === "português"
+    );
 
-      const result = {
-        date: date?.date!,
-        day: date?.day!,
-        subjects: [{ name: subjectParsed.nome, ordem: subjectParsed.ordem }],
-      };
-      daysAndSubjects.push(result);
+    const subjectsMath = subjectsParsed.filter(
+      (subj) => subj.materia === "matemática"
+    );
+
+    if (alternateSubjects && subjectsPortuguese.length === 0) {
+      throw new Error("Nenhum matéria de Português selecionada.");
+    } else if (alternateSubjects && subjectsMath.length === 0) {
+      throw new Error("Nenhum matéria de Matemática selecionada.");
     }
 
-    return daysAndSubjects;
+    setIsOpen(true);
+    return distributeSubjects({
+      selectedDaysOfMonth: selectedDaysOfMonth as Array<DateType>,
+      subjects: subjectsParsed,
+      subjectPerDay,
+      alternateSubjects,
+    });
   } catch (error: any) {
     setError(error.message);
   }
 };
+
+function distributeSubjects({
+  selectedDaysOfMonth,
+  subjects,
+  subjectPerDay,
+  alternateSubjects = false,
+}: DistributeSubjectsProps) {
+  // Ordena as matérias pela chave 'ordem'
+  const subjectsArray = [...subjects];
+
+  // Se for necessário alternar entre matérias, separamos as listas
+  let portuguesSubjects = subjectsArray.filter(
+    (sub) => sub.materia === "português"
+  );
+  let matematicaSubjects = subjectsArray.filter(
+    (sub) => sub.materia === "matemática"
+  );
+
+  let subjectIndex = 0;
+  let totalSubjects = subjectsArray.length;
+  let portuguesIndex = 0,
+    matematicaIndex = 0;
+
+  return selectedDaysOfMonth
+    .map((day) => {
+      // Caso acabem as matérias, subjects recebem array vazio
+      if (subjectIndex >= totalSubjects) return { ...day, subjects: [] };
+
+      let subjectsForTheDay = [];
+
+      if (alternateSubjects) {
+        // Alterna entre português e matemática
+        for (let i = 0; i < subjectPerDay; i++) {
+          if (i % 2 === 0 && portuguesIndex < portuguesSubjects.length) {
+            subjectsForTheDay.push(portuguesSubjects[portuguesIndex++]);
+          } else if (matematicaIndex < matematicaSubjects.length) {
+            subjectsForTheDay.push(matematicaSubjects[matematicaIndex++]);
+          }
+        }
+      } else {
+        // Seleciona matérias na sequência original
+        subjectsForTheDay = subjectsArray.slice(
+          subjectIndex,
+          subjectIndex + subjectPerDay
+        );
+        subjectIndex += subjectsForTheDay.length;
+      }
+
+      const completeData: daysAndSubjectsType = {
+        ...day,
+        subjects: subjectsForTheDay,
+      };
+
+      return completeData;
+    })
+    .filter((day) => day.subjects.length > 0); // Remove dias sem matérias
+}

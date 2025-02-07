@@ -45,21 +45,23 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
             }`}
             onClick={() => {
               router.push("/home");
+              setIsOpen(false);
             }}
           >
             alunos
           </div>
 
-          {/* <div
+          <div
             className={`h-[65px] flex items-center justify-center border-b-[1px] md:border-b-2 border-borderColor  ${
-              section === "planners" ? "text-corIcones font-interMedium " : ""
+              section === "planning" ? "text-corIcones font-interMedium " : ""
             }`}
             onClick={() => {
-              router.push("/planners");
+              router.push("/planning");
+              setIsOpen(false);
             }}
           >
             planejamentos
-          </div> */}
+          </div>
 
           <div
             className={`h-[65px] flex items-center justify-center border-b-[1px] md:border-b-2 border-borderColor ${
@@ -69,6 +71,7 @@ const SideBar = ({ setIsOpen, isTablet, className }: SideBarProps) => {
             }`}
             onClick={() => {
               router.push("/profile");
+              setIsOpen(false);
             }}
           >
             perfil

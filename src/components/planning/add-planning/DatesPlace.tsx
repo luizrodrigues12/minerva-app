@@ -23,9 +23,9 @@ const DatesPlace = ({
   setFinalDate,
 }: DatesPlaceProps) => {
   return (
-    <div className="flex gap-8">
+    <div className="flex justify-between gap-2 md:gap-8 lg:gap-2 2xl:gap-8">
       <div className="flex flex-col gap-2">
-        <div className="text-[16px] md:text-[18px] text-center">
+        <div className="text-[14px] md:text-[16px] text-center">
           Data Inicial
         </div>
         <InputComp
@@ -38,7 +38,7 @@ const DatesPlace = ({
       </div>
 
       <div className="flex flex-col gap-2">
-        <div className="text-[16px] md:text-[18px] text-center">Data Final</div>
+        <div className="text-[14px] md:text-[16px] text-center">Data Final</div>
         <InputComp
           className=" text-center !px-0"
           placeholder={`Entre 1 e ${monthDays}`}
@@ -49,8 +49,8 @@ const DatesPlace = ({
       </div>
 
       <div className="flex flex-col gap-2">
-        <div className="text-[16px] md:text-[18px] text-center">
-          Matérias por Dia
+        <div className="text-[14px] md:text-[16px] text-center">
+          Matérias por dia
         </div>
         <InputComp
           className="text-center !px-0"

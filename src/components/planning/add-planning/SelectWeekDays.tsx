@@ -32,7 +32,7 @@ const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
         <input
           type="checkbox"
           id="week-day"
-          value="Dom"
+          value="Domingo"
           className="rounded-full size-8 bg-background03 flex justify-center items-center after:content-['D'] after:text-textColor checked:!bg-roxominerva checked:after:content-none cursor-pointer hover:bg-roxominerva focus:ring-offset-0 focus:ring-0 border-0"
           onClick={() => setError("")}
         />
@@ -40,7 +40,7 @@ const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
         <input
           type="checkbox"
           id="week-day"
-          value="Seg"
+          value="Segunda-feira"
           className="rounded-full size-8 bg-background03 flex justify-center items-center after:content-['S'] after:text-textColor checked:!bg-roxominerva checked:after:content-none cursor-pointer hover:bg-roxominerva focus:ring-offset-0 focus:ring-0 border-0"
           onClick={() => setError("")}
         />
@@ -48,7 +48,7 @@ const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
         <input
           type="checkbox"
           id="week-day"
-          value="Ter"
+          value="Terça-feira"
           className="rounded-full size-8 bg-background03 flex justify-center items-center after:content-['T'] after:text-textColor checked:!bg-roxominerva checked:after:content-none cursor-pointer hover:bg-roxominerva focus:ring-offset-0 focus:ring-0 border-0"
           onClick={() => setError("")}
         />
@@ -56,7 +56,7 @@ const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
         <input
           type="checkbox"
           id="week-day"
-          value="Qua"
+          value="Quarta-feira"
           className="rounded-full size-8 bg-background03 flex justify-center items-center after:content-['Q'] after:text-textColor checked:!bg-roxominerva checked:after:content-none cursor-pointer hover:bg-roxominerva focus:ring-offset-0 focus:ring-0 border-0"
           onClick={() => setError("")}
         />
@@ -64,7 +64,7 @@ const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
         <input
           type="checkbox"
           id="week-day"
-          value="Qui"
+          value="Quinta-feira"
           className="rounded-full size-8 bg-background03 flex justify-center items-center after:content-['Q'] after:text-textColor checked:!bg-roxominerva checked:after:content-none cursor-pointer hover:bg-roxominerva focus:ring-offset-0 focus:ring-0 border-0"
           onClick={() => setError("")}
         />
@@ -72,7 +72,7 @@ const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
         <input
           type="checkbox"
           id="week-day"
-          value="Sex"
+          value="Sexta-feira"
           className="rounded-full size-8 bg-background03 flex justify-center items-center after:content-['S'] after:text-textColor checked:!bg-roxominerva checked:after:content-none cursor-pointer hover:bg-roxominerva focus:ring-offset-0 focus:ring-0 border-0"
           onClick={() => setError("")}
         />
@@ -80,7 +80,7 @@ const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
         <input
           type="checkbox"
           id="week-day"
-          value="Sáb"
+          value="Sábado"
           className="rounded-full size-8 bg-background03 flex justify-center items-center after:content-['S'] after:text-textColor checked:!bg-roxominerva checked:after:content-none cursor-pointer hover:bg-roxominerva focus:ring-offset-0 focus:ring-0 border-0"
           onClick={() => setError("")}
         />
