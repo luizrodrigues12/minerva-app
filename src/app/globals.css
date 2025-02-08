@@ -167,3 +167,18 @@ html {
     background-image: url("../../public/images/back-desktop.jpg");
   }
 }
+
+@media print {
+  body {
+    zoom: 115%;
+    object-fit: contain;
+
+    .columns-print {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    .show-on-print {
+      display: flex;
+    }
+  }
+}

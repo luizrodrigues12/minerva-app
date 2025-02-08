@@ -16,6 +16,7 @@ import Button from "@/components/layout/Button";
 import DatesPlace from "./DatesPlace";
 import { MateriaType } from "@/models/MateriasModel";
 import PlanningPDF from "./PlanningPDF";
+import DocumentPDF from "./DocumentPDF";
 
 export interface daysAndSubjectsType {
   date: number;

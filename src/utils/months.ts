@@ -124,9 +124,9 @@ export const getDaysAndSubjectsFinal = ({
       throw new Error("Esses dias não existem nesse intervalo.");
     if (checkedsSubj.length > subjectPerDay * selectedDaysOfMonth.length)
       throw new Error(
-        `Matérias por dia precisa ser maior que ${Math.round(
-          checkedsSubj.length / selectedDaysOfMonth.length
-        )}.`
+        `${`Matérias por dia deve ser no mínimo ${Math.trunc(
+          checkedsSubj.length / selectedDaysOfMonth.length + 1
+        )}.`}`
       );
 
     //Tranformando Matérias Json em Objeto
