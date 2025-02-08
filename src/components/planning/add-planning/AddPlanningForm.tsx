@@ -41,7 +41,6 @@ const AddPlanningForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [daysAndSubjects, setDaysAndSubjects] =
     useState<Array<daysAndSubjectsType>>();
-
   const { setSection } = useSectionContext();
 
   const daysOfMonth = getDaysOfMonth({

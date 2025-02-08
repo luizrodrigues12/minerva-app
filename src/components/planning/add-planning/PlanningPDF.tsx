@@ -148,7 +148,7 @@ const gridsDaysAndSubjects = ({
 
 const buttonsFooterPdf = ({ aluno }: { aluno: AlunoObj }) => {
   return (
-    <div className="font-interMedium hidden w-full mt-2 justify-self-end border-[#202020] items-center gap-2 show-on-print text-[14px] md:text-[16px] print:text-[14px] bg-[#5950bb] print:mx-0 print:mb-[16px]">
+    <div className="font-interMedium hidden w-full mt-3 justify-self-end border-[#202020] items-center gap-2 show-on-print text-[14px] md:text-[16px] print:text-[14px] bg-[#5950bb] print:mx-0">
       <div className="flex gap-2 justify-evenly w-full text-[#ffffff] p-2.5 border-y-2 border-[#202020]">
         <a
           href={`https://minerva-gamma.vercel.app/parents/get_subjects/${aluno.idAluno}`}
