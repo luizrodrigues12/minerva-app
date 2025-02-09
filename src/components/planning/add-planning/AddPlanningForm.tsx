@@ -16,13 +16,7 @@ import Button from "@/components/layout/Button";
 import DatesPlace from "./DatesPlace";
 import { MateriaType } from "@/models/MateriasModel";
 import PlanningPDF from "./PlanningPDF";
-
-export interface daysAndSubjectsType {
-  date: number;
-  day: string;
-  month: number;
-  subjects: Array<MateriaType>;
-}
+import { daysAndSubjectsType } from "@/models/userModel";
 
 const AddPlanningForm = () => {
   const [error, setError] = useState("");
@@ -161,11 +155,12 @@ const AddPlanningForm = () => {
 
         {isOpen && (
           <PlanningPDF
+            setError={setError}
             daysAndSubjects={daysAndSubjects!}
             idAluno={idAluno}
             setIsOpen={setIsOpen}
             subjectPerDay={subjectPerDay}
-            monthNumber={monthNumber}
+            isAddPage={true}
           />
         )}
 

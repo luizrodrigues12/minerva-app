@@ -7,18 +7,23 @@ import {
   UserEdit,
   Edit,
   Download,
+  CalendarEdit,
 } from "flowbite-react-icons/outline";
 import { useRouter } from "nextjs-toploader/app";
 import { motion } from "motion/react";
 import { useUserContext } from "@/contexts/userData";
+import PlanningPDF from "../planning/add-planning/PlanningPDF";
+import { useState } from "react";
 
 type AlunoCompProps = { name?: string; idAluno: string; isPlanning?: boolean };
 
 const AlunosComp = ({ idAluno, isPlanning = false }: AlunoCompProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [error, setError] = useState("");
+
   const router = useRouter();
-  const { user } = useUserContext();
-  const alunos = user.alunos?.filter((aluno) => aluno.idAluno === idAluno)[0];
-  const aluno = alunos;
+  const { user, getAluno } = useUserContext();
+  const aluno = getAluno(idAluno);
 
   return (
     <div className="w-full text-textColor rounded-md bg-background03 flex items-center justify-between text-[14px] md:text-[16px]">
@@ -27,7 +32,13 @@ const AlunosComp = ({ idAluno, isPlanning = false }: AlunoCompProps) => {
         whileTap={{ scale: 1 }}
         transition={{ duration: 0.05 }}
         className="hover:text-corIconesHover cursor-pointer w-full h-full py-2.5 px-3"
-        onClick={() => router.push(`/student/${idAluno}`)}
+        onClick={() => {
+          if (isPlanning) {
+            setIsOpen(true);
+            return;
+          }
+          router.push(`/student/${idAluno}`);
+        }}
       >
         {aluno?.nome}
       </motion.div>
@@ -78,7 +89,7 @@ const AlunosComp = ({ idAluno, isPlanning = false }: AlunoCompProps) => {
           </motion.div>
         </div>
       ) : (
-        <div className="flex gap-[14.5px] items-center px-2.5">
+        <div className="flex gap-[13px] items-center px-3">
           <motion.div
             whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
             whileTap={{ scale: 0.99 }}
@@ -86,7 +97,7 @@ const AlunosComp = ({ idAluno, isPlanning = false }: AlunoCompProps) => {
             <Download
               size={28}
               strokeWidth={1.5}
-              className="cursor-pointer hover:text-corIconesHover size-[24px] md:size-[26px] brightness-105"
+              className="cursor-pointer hover:text-corIconesHover size-[25px] md:size-[26px] brightness-105 mr-[4px] mb-[0.5px]"
               onClick={() => {}}
             />
           </motion.div>
@@ -95,9 +106,9 @@ const AlunosComp = ({ idAluno, isPlanning = false }: AlunoCompProps) => {
             whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
             whileTap={{ scale: 0.99 }}
           >
-            <CalendarWeek
+            <CalendarEdit
               strokeWidth={1.5}
-              className="cursor-pointer hover:text-corIconesHover size-[22px] md:size-[24px] brightness-105"
+              className="cursor-pointer hover:text-corIconesHover size-[25px] md:size-[24px] brightness-105"
             />
           </motion.div>
 
@@ -105,12 +116,26 @@ const AlunosComp = ({ idAluno, isPlanning = false }: AlunoCompProps) => {
             whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
             whileTap={{ scale: 0.99 }}
           >
-            <Edit
+            <TrashBin
+              size={22.5}
               strokeWidth={1.5}
-              className="cursor-pointer hover:text-corIconesHover size-[22px] md:size-[24px] brightness-105"
+              className="cursor-pointer hover:text-corIconesHover size-[22px] md:size-[22.5px] ml--1"
+              onClick={() => {
+                router.push(`/student/delete_student/${idAluno}`);
+              }}
             />
           </motion.div>
         </div>
+      )}
+
+      {isPlanning && isOpen && (
+        <PlanningPDF
+          daysAndSubjects={aluno.planning![0].daysAndSubjects}
+          idAluno={idAluno}
+          setError={setError}
+          setIsOpen={setIsOpen}
+          subjectPerDay={aluno.planning![0].subjectPerDay}
+        />
       )}
     </div>
   );

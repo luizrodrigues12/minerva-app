@@ -15,9 +15,17 @@ const StudentsContainer = ({ isPlanning = false }: StudentsProps) => {
   const { user } = useUserContext();
   const router = useRouter();
 
-  const studentsFilteredsAndSorteds = user.alunos
-    ?.filter((aluno) => aluno.nome?.toLowerCase().includes(busca.toLowerCase()))
-    ?.sort((a, b) => (a?.nome! < b?.nome! ? -1 : 1));
+  const studentsFilteredsAndSorteds = () => {
+    const alunosFilterded = user.alunos
+      ?.filter((aluno) =>
+        aluno.nome?.toLowerCase().includes(busca.toLowerCase())
+      )
+      ?.sort((a, b) => (a?.nome! < b?.nome! ? -1 : 1));
+    if (isPlanning) {
+      return alunosFilterded?.filter((aluno) => aluno.planning?.length! > 0);
+    }
+    return alunosFilterded;
+  };
 
   return (
     <Container>
@@ -54,7 +62,7 @@ const StudentsContainer = ({ isPlanning = false }: StudentsProps) => {
 
         {user.alunos?.length! > 0 ? (
           <div className="flex flex-col gap-1.5">
-            {studentsFilteredsAndSorteds?.map((aluno, i) => (
+            {studentsFilteredsAndSorteds()?.map((aluno, i) => (
               <AlunosComp
                 isPlanning={isPlanning}
                 key={i}
@@ -65,9 +73,7 @@ const StudentsContainer = ({ isPlanning = false }: StudentsProps) => {
           </div>
         ) : (
           <div className="text-inputText flex items-center justify-center bg-background03 p-4 rounded-md text-[14px] md:text-[16px]">
-            {isPlanning
-              ? "Nenhum planejamento criado."
-              : "Nenhum aluno cadastrado."}
+            Nenhum aluno cadastrado.
           </div>
         )}
       </div>

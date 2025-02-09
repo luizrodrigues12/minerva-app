@@ -1,20 +1,20 @@
 "use client";
 
 import { capitalize } from "@/utils/stringManipulation";
-import { daysAndSubjectsType } from "./AddPlanningForm";
 import { allMonths } from "@/utils/months";
 import { useUserContext } from "@/contexts/userData";
 import Button from "@/components/layout/Button";
 import { useReactToPrint } from "react-to-print";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-import { AlunoObj } from "@/models/userModel";
+import { AlunoObj, daysAndSubjectsType } from "@/models/userModel";
 
 interface PlanningPDFProps {
   daysAndSubjects: Array<daysAndSubjectsType>;
   subjectPerDay: number;
   idAluno: string;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  monthNumber: number;
+  setError: Dispatch<SetStateAction<string>>;
+  isAddPage?: boolean;
 }
 
 interface gridDaysAndSubjectsProps {
@@ -29,7 +29,8 @@ const PlanningPDF = ({
   idAluno,
   setIsOpen,
   subjectPerDay,
-  monthNumber,
+  setError,
+  isAddPage = false,
 }: PlanningPDFProps) => {
   const [width, setWidth] = useState(0);
   const { getAluno } = useUserContext();
@@ -43,9 +44,28 @@ const PlanningPDF = ({
     .replace("á", "a")
     .replace("é", "e");
 
+  const postPlanning = async () => {
+    try {
+      const res = await fetch(`${process.env.HOST}/api/student/add_planning`, {
+        method: "POST",
+        body: JSON.stringify({ daysAndSubjects, idAluno, subjectPerDay }),
+      });
+      const { user, error } = await res.json();
+      if (error) throw new Error(error);
+    } catch (error: any) {
+      setError(error.message);
+    }
+  };
+
   const downloadPdf = useReactToPrint({
     contentRef: printRef,
     documentTitle: `planning-${nomeAlunoPDF}`,
+    onAfterPrint: async () => {
+      if (isAddPage) {
+        await postPlanning();
+      }
+      return;
+    },
   });
 
   useEffect(() => {
@@ -55,14 +75,16 @@ const PlanningPDF = ({
   }, [setWidth]);
 
   return (
-    <div className="flex flex-col gap-3 modal w-[95%] max-h-[80%] bg-white overflow-y-scroll overflow-hidden  rounded-md md:w-[480px] lg:w-[700px] xl:w-[700px] scroll-style">
+    <div className="flex flex-col gap-0 modal w-[95%] max-h-[80%] bg-white overflow-y-scroll overflow-hidden  rounded-md md:w-[480px] lg:w-[700px] xl:w-[700px] scroll-style">
       <div
         ref={printRef}
         className="flex flex-col justify-between text-[11px] md:text-[14px] pb-0 text-black"
       >
         <div className="flex justify-between items-center font-parkinsans-normal text-[26px] md:text-[32px] leading-[24px] md:leading-[28px] bg-[#4f47a8] text-[#ececec] p-2 px-3 md:p-4 md:px-3 m-2 md:m-4 mb-0 md:mb-0 rounded-md print:mx-[16px] print:mt-[16px]">
-          <p>{allMonths[monthNumber].name}</p>
-          <p>{new Date().getFullYear()}</p>
+          <p>{allMonths[daysAndSubjects[0].month - 1].name}</p>
+          <p>
+            {isAddPage ? new Date().getFullYear() : aluno.planning![0].year}
+          </p>
         </div>
 
         {gridsDaysAndSubjects({
@@ -82,7 +104,7 @@ const PlanningPDF = ({
             downloadPdf();
           }}
         >
-          Download
+          Salvar
         </Button>
         <Button className="w-full !bg-black" onClick={() => setIsOpen(false)}>
           Fechar
@@ -100,7 +122,7 @@ const gridsDaysAndSubjects = ({
 }: gridDaysAndSubjectsProps) => {
   return (
     <div
-      className="grid gap-x-2 columns-print m-2 md:m-4 my-0 md:my-0 print:mx-[16px]"
+      className="grid gap-x-2 columns-print m-2 md:m-4 mt-0 md:mt-0 print:mx-[16px] !mb-3"
       style={{
         gridTemplateColumns:
           width >= 1024

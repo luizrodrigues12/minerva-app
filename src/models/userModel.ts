@@ -4,11 +4,25 @@ import { MateriaType } from "./MateriasModel";
 
 connectDB();
 
+export interface daysAndSubjectsType {
+  date: number;
+  day: string;
+  month: number;
+  subjects: Array<MateriaType>;
+}
+
+export type PlanningObj = {
+  daysAndSubjects: Array<daysAndSubjectsType>;
+  subjectPerDay: number;
+  year: number;
+};
+
 export type AlunoObj = {
   idAluno?: string;
   nome?: string;
   preparatorio?: Array<String>;
   materias?: Array<MateriaType>;
+  planning?: Array<PlanningObj>;
 };
 
 export interface dataMongoUser {
@@ -60,6 +74,7 @@ const userSchema = new Schema<dataMongoUser>(
         },
         preparatorio: { type: [String] },
         materias: { type: Array<MateriaType> },
+        planning: { type: Array<PlanningObj> },
       },
     ],
   },
