@@ -25,7 +25,6 @@ const SelectStudent = ({
 
   const filteredStudents = user.alunos
     ?.sort((a, b) => (a?.nome! < b?.nome! ? -1 : 1))
-    .filter((aluno) => aluno.planning?.length === 0)
     .filter((aluno) =>
       aluno.nome?.toLowerCase().includes(busca.toLocaleLowerCase())
     );

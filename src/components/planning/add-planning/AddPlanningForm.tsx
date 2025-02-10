@@ -14,7 +14,6 @@ import AddPlanningSubjects from "./AddPlanningSubjects";
 import SelectWeekDays from "./SelectWeekDays";
 import Button from "@/components/layout/Button";
 import DatesPlace from "./DatesPlace";
-import { MateriaType } from "@/models/MateriasModel";
 import PlanningPDF from "./PlanningPDF";
 import { daysAndSubjectsType } from "@/models/userModel";
 

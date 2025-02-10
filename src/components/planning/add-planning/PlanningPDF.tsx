@@ -59,8 +59,10 @@ const PlanningPDF = ({
 
   const downloadPdf = useReactToPrint({
     contentRef: printRef,
-    documentTitle: `planning-${nomeAlunoPDF}`,
-    onAfterPrint: async () => {
+    documentTitle: `planning-${nomeAlunoPDF}-${allMonths[
+      daysAndSubjects[0].month - 1
+    ].name.toLowerCase()}`,
+    onBeforePrint: async () => {
       if (isAddPage) {
         await postPlanning();
       }

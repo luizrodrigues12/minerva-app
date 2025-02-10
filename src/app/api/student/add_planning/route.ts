@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
 
     const user = await UserModel.findOneAndUpdate<dataMongoUser>(
       { "alunos.idAluno": idAluno },
-      { $set: { "alunos.$[a].planning": planning } },
+      { $push: { "alunos.$[a].planning": planning } },
       { arrayFilters: [{ "a.idAluno": idAluno }] }
     );
 

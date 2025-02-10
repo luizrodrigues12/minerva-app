@@ -1,5 +1,5 @@
-import { daysAndSubjectsType } from "@/components/planning/add-planning/AddPlanningForm";
 import { MateriaType } from "@/models/MateriasModel";
+import { daysAndSubjectsType } from "@/models/userModel";
 import { Dispatch } from "react";
 
 export const allMonths = [
@@ -215,3 +215,7 @@ function distributeSubjects({
     })
     .filter((day) => day.subjects.length > 0); // Remove dias sem matérias
 }
+
+export const withZeroOrNot = (date: number) => {
+  return date > 9 ? date : `0${date}`;
+};
