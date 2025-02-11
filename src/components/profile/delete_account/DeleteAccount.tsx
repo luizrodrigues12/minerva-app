@@ -14,7 +14,7 @@ const DeleteAccount = ({ deleteAccount }: DeleteAccountProps) => {
         Ao clicar em excluir, todos os seus dados serão permanentemente apagados
         desse site.
       </div>
-      <Button className="dark:!bg-red-800 !bg-red-700" onClick={deleteAccount}>
+      <Button className="bg-errorButton" onClick={deleteAccount}>
         Excluir
       </Button>
     </div>

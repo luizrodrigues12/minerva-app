@@ -12,12 +12,13 @@
   --border-color: #a8a8a8;
   --header-color: #dfdfdf;
   --error-color: #e02424;
+  --error-button: #b62f2f;
 }
 
 .dark {
   --background01: #101014;
   --background02: #151519;
-  --background03: #202025;
+  --background03: #1d1d22;
   --background03-hover: #1d1d22;
   --cor-icones: #9c97d6;
   --cor-icones-hover: #aeaad8;
@@ -28,6 +29,7 @@
   --border-color: #363636;
   --header-color: #151519;
   --error-color: #da2323;
+  --error-button: #8b1919;
 }
 
 @tailwind base;
@@ -126,6 +128,8 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 20;
+
+  backdrop-filter: var(--button-hover);
 }
 
 *:focus {

@@ -5,9 +5,6 @@ import PerfilContainer from "../home/PerfilContainer";
 import LinkContainer from "../home/LinkContainer";
 import { useUserContext } from "@/contexts/userData";
 import Loading from "./Loading";
-import Image from "next/image";
-import Button from "./Button";
-import Container from "./Container";
 import { useThemeContext } from "@/contexts/darkMode";
 
 type SideBarDesktopProps = {
@@ -36,6 +33,7 @@ const SideBarDesktop = ({ children }: SideBarDesktopProps) => {
                 <LinkContainer />
               </div>
             )}
+
             <div className="min-h-full w-full bg-background02 md:border-x-[1px] md:border-borderColor md:shadow-sm md:overflow-y-scroll md:overflow-hidden scroll-style lg:w-[40%] xl:w-[45%] 2xl:w-[45%]">
               {children}
             </div>

@@ -80,7 +80,7 @@ const DeleteStudentComp = ({ idAluno }: { idAluno: string }) => {
                 )}
 
                 <Button
-                  className="!bg-red-800 hover:!bg-[#a51e1e]"
+                  className="bg-errorButton"
                   onClick={() => {
                     deleteStudent();
                     setError("");

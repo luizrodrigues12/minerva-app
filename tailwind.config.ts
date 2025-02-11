@@ -28,6 +28,7 @@ const config: Config = {
         corIconesHover: "var(--cor-icones-hover)",
         inputText: "var(--input-text)",
         errorColor: "var(--error-color)",
+        errorButton: "var(--error-button)",
         roxominerva: "var(--roxo-minerva)",
         textColor: "var(--text-color)",
         buttonHover: "var(--button-hover)",
