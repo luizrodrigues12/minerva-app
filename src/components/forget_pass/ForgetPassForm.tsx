@@ -41,7 +41,7 @@ const ForgetPassForm = () => {
   }, []);
 
   return (
-    <section className="flex flex-col min-h-[76vh] font-inter text-black xl:min-h-[69.4vh] bg-background01 items-center">
+    <section className="flex white flex-col min-h-[76vh] font-inter text-textColor xl:min-h-[69.4vh] bg-background01 items-center">
       {!isPosting ? (
         <div className="bg-background02 p-8 rounded-md shadow-md mx-8 my-[32px] md:w-[400px]">
           <div className="flex flex-col gap-4">

@@ -101,12 +101,12 @@ const PlanningPDF = ({
 
   return (
     <div className="w-full h-full bg-[#10101033] dark:bg-[#10101080] modal flex justify-center items-center">
-      <div className="flex flex-col gap-0 w-[95%] max-h-[80%] bg-background03 overflow-y-scroll overflow-hidden  rounded-md md:w-[480px] lg:w-[700px] xl:w-[700px] scroll-style print:bg-white">
+      <div className="flex flex-col gap-0 w-[95%] max-h-[80%] bg-[#ececec] overflow-y-scroll overflow-hidden  rounded-md md:w-[480px] lg:w-[700px] xl:w-[700px] scroll-style">
         <div
           ref={printRef}
-          className="flex flex-col justify-between text-[11px] md:text-[14px] pb-0 text-textColor"
+          className="flex flex-col justify-between text-[11px] md:text-[14px] pb-0 text-black"
         >
-          <div className="flex justify-between items-center font-parkinsans-normal text-[26px] md:text-[32px] leading-[24px] md:leading-[28px] bg-[#4f47a8] text-[#ececec] p-2 px-3 md:p-4 md:px-3 m-2 md:m-4 mb-0 md:mb-0 rounded-md print:mx-[16px] print:mt-[16px]">
+          <div className="flex justify-between items-center font-parkinsans-normal text-[26px] md:text-[32px] leading-[24px] md:leading-[28px] bg-[#4f47a8] text-[#ececec] p-2 px-3 md:p-4 md:px-3 m-3 md:m-4 mb-0 md:mb-0 rounded-md print:mx-[16px] print:mt-[16px]">
             <p>{allMonths[daysAndSubjects[0].month - 1].name}</p>
             <p>
               {isAddPage ? new Date().getFullYear() : aluno.planning![0].year}
@@ -123,9 +123,10 @@ const PlanningPDF = ({
           {buttonsFooterPdf({ aluno })}
         </div>
 
-        <div className="flex gap-2 p-2 pt-0 md:p-4 md:pt-0 justify-between text-[14px] md:text-[16px]">
+        <div className="flex gap-2 p-3 pt-0 md:p-4 md:pt-0 justify-between text-[14px] md:text-[16px]">
           <Button
-            className="w-full !bg-roxominerva"
+            whileHover={{ scale: 1 }}
+            className="w-full !bg-[#4f47a8] hover:!bg-buttonHover"
             onClick={async () => {
               if (isAddPage) {
                 await postPlanning();
@@ -141,7 +142,8 @@ const PlanningPDF = ({
             {getTextOfButton()}
           </Button>
           <Button
-            className="w-full !bg-roxominerva"
+            whileHover={{ scale: 1 }}
+            className="w-full !bg-[#4f47a8] hover:!bg-buttonHover"
             onClick={() => setIsOpen(false)}
           >
             Fechar
@@ -167,7 +169,7 @@ const gridsDaysAndSubjects = ({
 }: gridDaysAndSubjectsProps) => {
   return (
     <div
-      className="grid gap-x-2 columns-print m-2 md:m-4 mt-0 md:mt-0 print:mx-[16px] !mb-3"
+      className="grid gap-x-2 columns-print m-3 md:m-4 mt-0 md:mt-0 print:mx-[16px] !mb-3"
       style={{
         gridTemplateColumns:
           width >= 1024
@@ -176,10 +178,7 @@ const gridsDaysAndSubjects = ({
       }}
     >
       {daysAndSubjects.map((daysAndSub, i) => (
-        <div
-          key={i}
-          className="border-[2px] border-[#151515] bg-background03 dark:border-[#353545] print:border-[#151515] mt-2 rounded-md"
-        >
+        <div key={i} className="border-[2px] border-[#151515] mt-2 rounded-md">
           <div className="flex flex-col gap-1">
             <div className="flex justify-between p-2 pb-0 pt-1">
               <div className="">{daysAndSub.day}</div>
