@@ -118,6 +118,7 @@ const EditPlanningForm = ({
     setcheckedsDays([]);
     setMonthName(allMonths[planning.daysAndSubjects[0].month - 1].name);
     setMonthDays(allMonths[planning.daysAndSubjects[0].month - 1].dias);
+    setMonthNumber(planning.daysAndSubjects[0].month - 1);
     setIdAluno(idAlunoParam);
     setSection("planning");
   }, []);

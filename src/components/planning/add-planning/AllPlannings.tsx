@@ -18,13 +18,17 @@ const AllPlannings = ({ idAluno }: { idAluno: string }) => {
   const { getAluno } = useUserContext();
   const aluno = getAluno(idAluno);
 
+  const sortedPlanning = aluno.planning?.sort(
+    (a, b) => a.daysAndSubjects[0].month! - b.daysAndSubjects[0].month!
+  );
+
   return (
     <Container>
       <div className="flex flex-col gap-3">
         <div className="text-[16px] md:text-[18px] bg-background03 p-2.5 px-4 rounded-md text-center text-textColor tracking-wide">
           {aluno.nome}
         </div>
-        {aluno.planning?.map((planning, i) => (
+        {sortedPlanning?.map((planning, i) => (
           <div
             key={i}
             className="flex flex-col gap-2.5 py-2.5 px-3 bg-background03 rounded-md text-textColor"

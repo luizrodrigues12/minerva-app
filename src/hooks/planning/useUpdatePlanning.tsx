@@ -1,32 +1,36 @@
-"use client";
-
 import { useUserContext } from "@/contexts/userData";
 import { dataMongoUser, daysAndSubjectsType } from "@/models/userModel";
 import { useMutation } from "@tanstack/react-query";
 
-interface PostPlanningProps {
+interface UpdatePlanningProps {
   daysAndSubjects: Array<daysAndSubjectsType>;
-  idAluno: string;
   subjectPerDay: number;
+  idAluno: string;
+  planningId: string;
 }
 
-export function useAddPlanning({}) {
+export function useUpdatePlanning() {
   const { refetch } = useUserContext();
 
-  const postPlanning = async ({
+  const updatePlanning = async ({
     daysAndSubjects,
     idAluno,
+    planningId,
     subjectPerDay,
-  }: PostPlanningProps) => {
+  }: UpdatePlanningProps) => {
     try {
-      const res = await fetch(`${process.env.HOST}/api/student/add_planning`, {
-        method: "POST",
-        body: JSON.stringify({
-          daysAndSubjects,
-          idAluno,
-          subjectPerDay,
-        }),
-      });
+      const res = await fetch(
+        `${process.env.HOST}/api/student/update_planning`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            daysAndSubjects,
+            subjectPerDay,
+            idAluno,
+            planningId,
+          }),
+        }
+      );
       const { user, error } = await res.json();
       if (error) {
         throw new Error(error);
@@ -39,9 +43,7 @@ export function useAddPlanning({}) {
     }
   };
 
-  const mutate = useMutation({
-    mutationFn: postPlanning,
-  });
+  const mutate = useMutation({ mutationFn: updatePlanning });
 
   return mutate;
 }

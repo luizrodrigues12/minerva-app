@@ -4,17 +4,17 @@ import UserModel, {
   PlanningObj,
 } from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
+import { v4 as uuidV4 } from "uuid";
 
 interface bodyProps {
   daysAndSubjects: Array<daysAndSubjectsType>;
   subjectPerDay: number;
   idAluno: string;
-  id: string;
 }
 
 export async function POST(req: NextRequest) {
   try {
-    const { daysAndSubjects, subjectPerDay, idAluno, id }: bodyProps =
+    const { daysAndSubjects, subjectPerDay, idAluno }: bodyProps =
       await req.json();
 
     if (!daysAndSubjects) throw new Error("dias e matérias não enviados.");
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     if (!idAluno) throw new Error("idAluno não enviado.");
 
     const planning: PlanningObj = {
-      id,
+      id: uuidV4(),
       daysAndSubjects,
       subjectPerDay,
       year: new Date().getFullYear(),
