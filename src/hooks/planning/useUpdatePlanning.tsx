@@ -1,6 +1,7 @@
 import { useUserContext } from "@/contexts/userData";
 import { dataMongoUser, daysAndSubjectsType } from "@/models/userModel";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "nextjs-toploader/app";
 
 interface UpdatePlanningProps {
   daysAndSubjects: Array<daysAndSubjectsType>;
@@ -10,7 +11,8 @@ interface UpdatePlanningProps {
 }
 
 export function useUpdatePlanning() {
-  const { refetch } = useUserContext();
+  const { refetch, isFetching } = useUserContext();
+  const router = useRouter();
 
   const updatePlanning = async ({
     daysAndSubjects,
@@ -20,7 +22,7 @@ export function useUpdatePlanning() {
   }: UpdatePlanningProps) => {
     try {
       const res = await fetch(
-        `${process.env.HOST}/api/student/update_planning`,
+        `${process.env.HOST}/api/planning/update_planning`,
         {
           method: "PUT",
           body: JSON.stringify({
@@ -35,8 +37,9 @@ export function useUpdatePlanning() {
       if (error) {
         throw new Error(error);
       }
-      refetch();
       const data: dataMongoUser = user;
+      refetch();
+      if (!isFetching) router.replace(`/planning/${idAluno}`);
       return data;
     } catch (error: any) {
       throw new Error(error.message);

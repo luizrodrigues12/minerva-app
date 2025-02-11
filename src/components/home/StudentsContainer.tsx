@@ -72,10 +72,27 @@ const StudentsContainer = ({ isPlanning = false }: StudentsProps) => {
             ))}
           </div>
         ) : (
-          <div className="text-inputText flex items-center justify-center bg-background03 p-4 rounded-md text-[14px] md:text-[16px]">
-            Nenhum aluno cadastrado.
+          <div>
+            {!isPlanning ? (
+              <div className="text-inputText flex items-center justify-center bg-background03 p-4 rounded-md text-[14px] md:text-[16px]">
+                Nenhum aluno cadastrado.
+              </div>
+            ) : (
+              <div className="text-inputText flex items-center justify-center bg-background03 p-4 rounded-md text-[14px] md:text-[16px]">
+                Adicione pelo menos um aluno antes de planejar.
+              </div>
+            )}
           </div>
         )}
+
+        {isPlanning &&
+          user.alunos?.length! > 0 &&
+          user.alunos?.filter((aluno) => aluno.planning?.length! > 0).length ==
+            0 && (
+            <div className="text-inputText flex items-center justify-center bg-background03 p-4 rounded-md text-[14px] md:text-[16px] mt-[-6px]">
+              Nenhum planejamento gerado.
+            </div>
+          )}
       </div>
     </Container>
   );

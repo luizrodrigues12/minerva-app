@@ -65,7 +65,6 @@ const PlanningPDF = ({
         },
       }
     );
-    router.replace(`/planning/${idAluno}`);
   };
 
   const updatePlanning = async () => {
@@ -79,7 +78,6 @@ const PlanningPDF = ({
         },
       }
     );
-    router.replace(`/planning/${idAluno}`);
   };
 
   const downloadPdf = useReactToPrint({

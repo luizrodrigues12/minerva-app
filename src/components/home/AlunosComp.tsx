@@ -85,13 +85,21 @@ const AlunosComp = ({ idAluno, isPlanning = false }: AlunoCompProps) => {
           </motion.div>
         </div>
       ) : (
-        <motion.div
-          whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
-          whileTap={{ scale: 0.99 }}
-          className="mr-3 rounded-full w-7 flex items-center justify-center cursor-pointer"
-        >
-          {aluno.planning?.length}
-        </motion.div>
+        <div className="flex gap-2 mx-3">
+          <motion.div
+            whileHover={{ scale: 1.05, transition: { duration: 0.05 } }}
+            whileTap={{ scale: 0.99 }}
+          >
+            <TrashBin
+              size={22.5}
+              strokeWidth={1.5}
+              className="cursor-pointer hover:text-corIconesHover size-[22px] md:size-[22.5px]"
+              onClick={() => {
+                router.push(`/student/delete_student/${idAluno}`);
+              }}
+            />
+          </motion.div>
+        </div>
       )}
     </div>
   );
