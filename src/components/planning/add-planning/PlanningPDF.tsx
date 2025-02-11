@@ -100,8 +100,8 @@ const PlanningPDF = ({
   }, [setWidth]);
 
   return (
-    <div className="w-full h-full bg-[#10101033] dark:bg-[#10101080] print:bg-white modal">
-      <div className="flex flex-col gap-0 modal w-[95%] max-h-[80%] bg-background03 overflow-y-scroll overflow-hidden  rounded-md md:w-[480px] lg:w-[700px] xl:w-[700px] scroll-style">
+    <div className="w-full h-full bg-[#10101033] dark:bg-[#10101080] modal">
+      <div className="flex flex-col gap-0 modal w-[95%] max-h-[80%] bg-background03 overflow-y-scroll overflow-hidden  rounded-md md:w-[480px] lg:w-[700px] xl:w-[700px] scroll-style print:bg-white">
         <div
           ref={printRef}
           className="flex flex-col justify-between text-[11px] md:text-[14px] pb-0 text-textColor"
@@ -178,7 +178,7 @@ const gridsDaysAndSubjects = ({
       {daysAndSubjects.map((daysAndSub, i) => (
         <div
           key={i}
-          className="border-[2px] border-[#151515] dark:border-[#404040] print:border-[#151515] mt-2 rounded-md"
+          className="border-[2px] border-[#151515] bg-background03 dark:border-[#353545] print:border-[#151515] mt-2 rounded-md"
         >
           <div className="flex flex-col gap-1">
             <div className="flex justify-between p-2 pb-0 pt-1">
@@ -198,7 +198,7 @@ const gridsDaysAndSubjects = ({
               </div>
             </div>
 
-            <div className="flex flex-col gap-[1px] justify-center p-2 pt-0 border-t-[1.5px] border-[#151515] dark:border-[#404040] print:border-[#151515]">
+            <div className="flex flex-col gap-[1px] justify-center p-2 pt-0 border-t-[1.5px] border-[#151515] dark:border-[#353545] print:border-[#151515]">
               {daysAndSub.subjects.map((subject, i) => (
                 <div key={i} className={`${i === 0 ? "mt-1" : "mt-0"}`}>
                   {subjectPerDay > 1
