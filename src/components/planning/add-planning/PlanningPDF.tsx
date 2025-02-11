@@ -100,8 +100,8 @@ const PlanningPDF = ({
   }, [setWidth]);
 
   return (
-    <div className="w-full h-full bg-[#10101033] dark:bg-[#10101080] modal">
-      <div className="flex flex-col gap-0 modal w-[95%] max-h-[80%] bg-background03 overflow-y-scroll overflow-hidden  rounded-md md:w-[480px] lg:w-[700px] xl:w-[700px] scroll-style print:bg-white">
+    <div className="w-full h-full bg-[#10101033] dark:bg-[#10101080] modal flex justify-center items-center">
+      <div className="flex flex-col gap-0 w-[95%] max-h-[80%] bg-background03 overflow-y-scroll overflow-hidden  rounded-md md:w-[480px] lg:w-[700px] xl:w-[700px] scroll-style print:bg-white">
         <div
           ref={printRef}
           className="flex flex-col justify-between text-[11px] md:text-[14px] pb-0 text-textColor"

@@ -2,6 +2,7 @@ import Button from "@/components/layout/Button";
 import EyeComp from "@/components/layout/EyeComp";
 import InputComp from "@/components/layout/InputComp";
 import Loading from "@/components/layout/Loading";
+import Modal from "@/components/layout/Modal";
 import { useUserContext } from "@/contexts/userData";
 import { validatePassword } from "@/utils/regex";
 import { useState } from "react";
@@ -92,18 +93,13 @@ const ChangePasswordForm = () => {
             <Button onClick={() => changePassword()}>Alterar senha</Button>
 
             {isOpen && (
-              <div className="bg-background03 p-6 modal border-2 border-borderColor rounded-md shadow-md flex flex-col gap-2 w-[90%] md:w-[60%] lg:w-[30%] xl:w-[25%]">
-                <div className="bg-background02 p-2.5 text-black rounded-md text-center text-[14px] md:text-[16px]">
-                  {message}
+              <Modal setIsOpen={setIsOpen}>
+                <div className="bg-background02 rounded-md flex flex-col gap-2 w-full mt-2">
+                  <div className="bg-background02 p-2.5 text-textColor rounded-md text-center text-[14px] md:text-[16px]">
+                    {message}
+                  </div>
                 </div>
-                <Button
-                  whileHover={{ scale: 1.001 }}
-                  whileTap={{ scale: 0.99 }}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Fechar
-                </Button>
-              </div>
+              </Modal>
             )}
           </div>
         </div>

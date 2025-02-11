@@ -58,8 +58,11 @@ const UserDataComp = () => {
                   <EditPhotoIcon setIsOpen={setIsOpen} />
                 </div>
               ) : (
-                <div className="bg-background03 text-inputText rounded-md relative">
-                  <UserCircle size={100} strokeWidth={0.5} />
+                <div className="bg-background03 text-inputText rounded-md relative min-w-[88px] min-h-[88px] max-w-[88px] max-h-[88px] md:min-w-[95px] md:min-h-[95px] md:max-w-[95px] md:max-h-[95px]flex items-center justify-center">
+                  <UserCircle
+                    strokeWidth={0.5}
+                    className="size-20 w-full h-full"
+                  />
                   <EditPhotoIcon setIsOpen={setIsOpen} />
                 </div>
               )}

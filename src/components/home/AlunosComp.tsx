@@ -5,20 +5,22 @@ import {
   ShareAll,
   TrashBin,
   UserEdit,
-  Edit,
-  Download,
-  CalendarEdit,
 } from "flowbite-react-icons/outline";
 import { useRouter } from "nextjs-toploader/app";
 import { motion } from "motion/react";
 import { useUserContext } from "@/contexts/userData";
 import { useState } from "react";
+import Modal from "../layout/Modal";
+import Button from "../layout/Button";
+import { useDeleteAllPlanning } from "@/hooks/planning/useDeleteAllPlanning";
 
 type AlunoCompProps = { name?: string; idAluno: string; isPlanning?: boolean };
 
 const AlunosComp = ({ idAluno, isPlanning = false }: AlunoCompProps) => {
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const { getAluno } = useUserContext();
+  const { mutate } = useDeleteAllPlanning();
   const aluno = getAluno(idAluno);
 
   return (
@@ -95,11 +97,28 @@ const AlunosComp = ({ idAluno, isPlanning = false }: AlunoCompProps) => {
               strokeWidth={1.5}
               className="cursor-pointer hover:text-corIconesHover size-[22px] md:size-[22.5px]"
               onClick={() => {
-                router.push(`/student/delete_student/${idAluno}`);
+                setIsOpen(true);
               }}
             />
           </motion.div>
         </div>
+      )}
+
+      {isOpen && (
+        <Modal className="flex flex-col gap-2" setIsOpen={setIsOpen}>
+          <div className="rounded-md p-3 bg-background02 text-center">
+            Caso queira apagar todos os planejamentos ligados a{" "}
+            <span className="font-interMedium">{aluno.nome}</span>, clique no
+            botão abaixo.
+          </div>
+          <Button
+            whileHover={{ scale: 1 }}
+            className="!bg-errorButton"
+            onClick={() => mutate({ idAluno })}
+          >
+            Apagar
+          </Button>
+        </Modal>
       )}
     </div>
   );

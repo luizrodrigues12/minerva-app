@@ -2,6 +2,7 @@
 
 import Button from "@/components/layout/Button";
 import Loading from "@/components/layout/Loading";
+import Modal from "@/components/layout/Modal";
 import { useUserContext } from "@/contexts/userData";
 import { CheckCircle } from "flowbite-react-icons/solid";
 import React, { useState } from "react";
@@ -10,6 +11,7 @@ const VerifyEmailForm = () => {
   const [error, setError] = useState("");
   const [isPosting, setIsPosting] = useState(false);
   const [message, setMessage] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   const { user } = useUserContext();
   const { token, email } = user;
 
@@ -23,7 +25,10 @@ const VerifyEmailForm = () => {
       setIsPosting(false);
       const { success, error } = await res.json();
       if (error) throw new Error(error);
-      if (success) setMessage(success);
+      if (success) {
+        setMessage(success);
+        setIsOpen(true);
+      }
     } catch (error: any) {
       setError(error.message);
     }
@@ -62,19 +67,12 @@ const VerifyEmailForm = () => {
             </div>
           )}
 
-          {message && (
-            <div className="bg-background03 p-6 modal border-2 border-borderColor rounded-md shadow-md flex flex-col gap-2 w-[90%] md:w-[60%] lg:w-[30%] xl:w-[25%]">
-              <div className="bg-background02 p-2.5 rounded-md text-center text-[14px] md:text-[16px]">
+          {isOpen && (
+            <Modal setIsOpen={setIsOpen}>
+              <div className="bg-background02 p-4 rounded-md flex flex-col gap-2 w-full mt-2 text-center">
                 {message}
               </div>
-              <Button
-                whileHover={{ scale: 1.001 }}
-                whileTap={{ scale: 0.99 }}
-                onClick={() => setMessage("")}
-              >
-                Fechar
-              </Button>
-            </div>
+            </Modal>
           )}
         </div>
       ) : (

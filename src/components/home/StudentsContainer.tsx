@@ -30,18 +30,19 @@ const StudentsContainer = ({ isPlanning = false }: StudentsProps) => {
   return (
     <Container>
       <div className="flex flex-col gap-1.5 w-full">
-        <div className="flex gap-2">
+        <div className="flex">
           <InputComp
             isSearch={true}
             placeholder="Pesquisar"
             value={busca || ""}
+            className="!w-full"
             onChange={(e) => {
               setBusca(e.target.value);
             }}
           />
           {!isPlanning ? (
             <Button
-              className="px-[25px] font-inter shadow-sm"
+              className="px-[25px] font-inter shadow-sm ml-2 !min-h-full"
               onClick={() => {
                 router.push("/add_student");
               }}
@@ -49,14 +50,18 @@ const StudentsContainer = ({ isPlanning = false }: StudentsProps) => {
               Adicionar
             </Button>
           ) : (
-            <Button
-              className="px-[30px] font-inter shadow-sm"
-              onClick={() => {
-                router.push("/planning/add-planning");
-              }}
-            >
-              Planejar
-            </Button>
+            <div>
+              {user.alunos?.length! > 0 && (
+                <Button
+                  className="px-[30.5px] font-inter shadow-sm ml-2 h-full"
+                  onClick={() => {
+                    router.push("/planning/add-planning");
+                  }}
+                >
+                  Planejar
+                </Button>
+              )}
+            </div>
           )}
         </div>
 

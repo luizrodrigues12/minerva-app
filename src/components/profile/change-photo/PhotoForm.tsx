@@ -96,7 +96,7 @@ const PhotoForm = ({ setIsOpen }: PhotoFormProps) => {
     <motion.div
       animate={{ opacity: [0, 1] }}
       transition={{ duration: 0.15 }}
-      className="p-6 w-[280px] bg-background03 rounded-md border-[1px] border-borderColor modal text-[14px] md:text-[16px] text-textColor md:w-[300px] flex flex-col gap-4 items-center justify-center relative"
+      className="p-6 w-[280px] bg-background03 rounded-md border-[1px] border-borderColor text-[14px] md:text-[16px] text-textColor md:w-[300px] flex flex-col gap-4 items-center justify-center absolute translate-x-[-50%] translate-y-[-50%] top-[50%] left-[50%] z-20"
     >
       <CloseCircle
         className="text-textColor absolute top-2 right-2 hover:text-inputText cursor-pointer"
@@ -117,12 +117,12 @@ const PhotoForm = ({ setIsOpen }: PhotoFormProps) => {
                 onClick={() => setError("")}
               />
               {isPending && (
-                <div className="size-full flex items-center justify-center modal backdrop-blur-[1px] backdrop-brightness-75">
+                <div className="size-full flex items-center justify-center absolute translate-x-[-50%] translate-y-[-50%] top-[50%] left-[50%] z-20 backdrop-blur-[1px] backdrop-brightness-75">
                   <Spinner className="fill-white" />
                 </div>
               )}
               {isSuccess && (
-                <div className="dark:bg-background03 bg-textColor text-background03 dark:text-textColor p-2 modal w-[97.5%] text-[14px] md:text-[16px]">
+                <div className="dark:bg-background03 bg-textColor text-background03 dark:text-textColor p-2 absolute translate-x-[-50%] translate-y-[-50%] top-[50%] left-[50%] z-20 w-[97.5%] text-[14px] md:text-[16px]">
                   Sucesso!
                 </div>
               )}

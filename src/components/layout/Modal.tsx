@@ -9,9 +9,9 @@ interface ModalProps {
 
 const Modal = ({ children, className, setIsOpen }: ModalProps) => {
   return (
-    <div className="modal w-full h-full bg-[#10101033] dark:bg-[#10101080] flex justify-center items-center text-[14px] md:text-[16px]">
+    <div className="modal bg-[#10101033] dark:bg-[#10101080] flex justify-center items-center text-[14px] md:text-[16px] pb-[50%] md:pb-0">
       <div
-        className={`p-2 pt-1.5 md:p-3 md:pt-2.5 rounded-md bg-background03 w-[90%] md:w-[60%] lg:w-[30%] xl:w-[25%] text-textColor ${className}`}
+        className={`p-3 pt-2.5 rounded-md bg-background03 w-[90%] md:w-[60%] lg:w-[30%] xl:w-[22%] text-textColor ${className}`}
       >
         <div
           className="w-full flex justify-end items-center cursor-pointer"
