@@ -3,22 +3,31 @@
 import CheckComp from "@/components/add_student/CheckComp";
 import Accordion from "@/components/layout/Accordion";
 import { useUserContext } from "@/contexts/userData";
+import { MateriaType } from "@/models/MateriasModel";
+import { PlanningObj } from "@/models/userModel";
 import { capitalize } from "@/utils/stringManipulation";
 import { Dispatch, SetStateAction, useState } from "react";
 
 type PlanningSubjectsProps = {
   idAluno: string;
   setError: Dispatch<SetStateAction<string>>;
+  planning?: PlanningObj;
 };
 
-const AddPlanningSubjects = ({ idAluno, setError }: PlanningSubjectsProps) => {
+const AddPlanningSubjects = ({
+  idAluno,
+  setError,
+  planning,
+}: PlanningSubjectsProps) => {
   const [allCheckeds, setAllCheckeds] = useState(false);
   const { getAluno } = useUserContext();
+  const aluno = getAluno(idAluno);
 
-  const getSubjectsUnchecked = () => {
-    return getAluno(idAluno).materias?.filter(
+  const getSubjects = () => {
+    const subjectsUncheckeds = aluno.materias?.filter(
       (materia) => materia.isChecked === false
     );
+    return subjectsUncheckeds;
   };
 
   const checkAll = () => {
@@ -27,6 +36,14 @@ const AddPlanningSubjects = ({ idAluno, setError }: PlanningSubjectsProps) => {
       allCheckeds ? (des.checked = false) : (des.checked = true)
     );
     setAllCheckeds(!allCheckeds);
+  };
+
+  const getAllSelectedsSubjects = () => {
+    let allSubjects: Array<MateriaType> = [];
+    const getAllSubjects = planning?.daysAndSubjects.map((daysAndSubj, i) => {
+      daysAndSubj.subjects.map((subj) => allSubjects.push(subj));
+    });
+    return allSubjects;
   };
 
   return (
@@ -46,24 +63,31 @@ const AddPlanningSubjects = ({ idAluno, setError }: PlanningSubjectsProps) => {
         {idAluno ? (
           <div className="flex flex-col  gap-1.5">
             {/* PORTUGUÊS SEXTO ANO */}
-            {getSubjectsUnchecked()?.filter(
+            {getSubjects()?.filter(
               (materia) =>
                 materia.materia === "português" && materia.ordem <= 10
             ).length ? (
               <Accordion textLeft="Português" textRight="6° Ano">
-                {getSubjectsUnchecked()
+                {getSubjects()
                   ?.filter(
                     (materia) =>
                       materia.materia === "português" && materia.ordem <= 10
                   )
                   .map((materia, i) => (
                     <CheckComp
-                      key={i}
                       text={capitalize(materia.nome)}
+                      key={i}
                       name="subject"
                       value={JSON.stringify(materia)}
                       id={materia._id!}
                       setError={setError}
+                      defaultChecked={
+                        planning
+                          ? getAllSelectedsSubjects()
+                              .map((subj) => subj._id)
+                              .includes(materia._id)
+                          : false
+                      }
                     />
                   ))}
               </Accordion>
@@ -76,11 +100,11 @@ const AddPlanningSubjects = ({ idAluno, setError }: PlanningSubjectsProps) => {
             )}
 
             {/* PORTUGUÊS PRIMEIRO ANO */}
-            {getSubjectsUnchecked()?.filter(
+            {getSubjects()?.filter(
               (materia) => materia.materia === "português" && materia.ordem > 10
             ).length ? (
               <Accordion textLeft="Português" textRight="1° Ano">
-                {getSubjectsUnchecked()
+                {getSubjects()
                   ?.filter(
                     (materia) =>
                       materia.materia === "português" && materia.ordem > 10
@@ -93,6 +117,13 @@ const AddPlanningSubjects = ({ idAluno, setError }: PlanningSubjectsProps) => {
                       value={JSON.stringify(materia)}
                       id={materia._id!}
                       setError={setError}
+                      defaultChecked={
+                        planning
+                          ? getAllSelectedsSubjects()
+                              .map((subj) => subj._id)
+                              .includes(materia._id)
+                          : false
+                      }
                     />
                   ))}
               </Accordion>
@@ -105,12 +136,12 @@ const AddPlanningSubjects = ({ idAluno, setError }: PlanningSubjectsProps) => {
             )}
 
             {/* MATEMÁTICA SEXTO ANO */}
-            {getSubjectsUnchecked()?.filter(
+            {getSubjects()?.filter(
               (materia) =>
                 materia.materia === "matemática" && materia.ordem <= 15
             ).length ? (
               <Accordion textLeft="Matemática" textRight="6° Ano">
-                {getSubjectsUnchecked()
+                {getSubjects()
                   ?.filter(
                     (materia) =>
                       materia.materia === "matemática" && materia.ordem <= 15
@@ -123,6 +154,13 @@ const AddPlanningSubjects = ({ idAluno, setError }: PlanningSubjectsProps) => {
                       value={JSON.stringify(materia)}
                       id={materia._id!}
                       setError={setError}
+                      defaultChecked={
+                        planning
+                          ? getAllSelectedsSubjects()
+                              .map((subj) => subj._id)
+                              .includes(materia._id)
+                          : false
+                      }
                     />
                   ))}
               </Accordion>
@@ -135,12 +173,12 @@ const AddPlanningSubjects = ({ idAluno, setError }: PlanningSubjectsProps) => {
             )}
 
             {/* MATEMÁTICA PRIMEIRO ANO */}
-            {getSubjectsUnchecked()?.filter(
+            {getSubjects()?.filter(
               (materia) =>
                 materia.materia === "matemática" && materia.ordem > 15
             ).length ? (
               <Accordion textLeft="Matemática" textRight="1° Ano">
-                {getSubjectsUnchecked()
+                {getSubjects()
                   ?.filter(
                     (materia) =>
                       materia.materia === "matemática" && materia.ordem > 15
@@ -153,6 +191,13 @@ const AddPlanningSubjects = ({ idAluno, setError }: PlanningSubjectsProps) => {
                       value={JSON.stringify(materia)}
                       id={materia._id!}
                       setError={setError}
+                      defaultChecked={
+                        planning
+                          ? getAllSelectedsSubjects()
+                              .map((subj) => subj._id)
+                              .includes(materia._id)
+                          : false
+                      }
                     />
                   ))}
               </Accordion>

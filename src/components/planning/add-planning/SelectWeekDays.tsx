@@ -1,13 +1,23 @@
 "use client";
 
+import { PlanningObj } from "@/models/userModel";
 import { Dispatch, SetStateAction, useState } from "react";
 
 type SelectWeeksProps = {
   setError: Dispatch<SetStateAction<string>>;
+  planning?: PlanningObj;
 };
 
-const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
+const SelectWeekDays = ({ setError, planning }: SelectWeeksProps) => {
   const [allDaysCheckeds, setAllDaysCheckeds] = useState(false);
+
+  const getDaysOnPlanning = () => {
+    const days: Array<string> = [];
+    planning?.daysAndSubjects.map((daysAndSub) => {
+      if (!days.includes(daysAndSub.day)) days.push(daysAndSub.day);
+    });
+    return days;
+  };
 
   const checkAllDays = () => {
     const days = document.querySelectorAll("#week-day");
@@ -35,6 +45,9 @@ const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
           value="Domingo"
           className="rounded-full size-8 bg-background03 flex justify-center items-center after:content-['D'] after:text-textColor checked:!bg-roxominerva checked:after:content-none cursor-pointer hover:bg-roxominerva focus:ring-offset-0 focus:ring-0 border-0"
           onClick={() => setError("")}
+          defaultChecked={
+            planning ? getDaysOnPlanning().includes("Domingo") : false
+          }
         />
 
         <input
@@ -43,6 +56,9 @@ const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
           value="Segunda-feira"
           className="rounded-full size-8 bg-background03 flex justify-center items-center after:content-['S'] after:text-textColor checked:!bg-roxominerva checked:after:content-none cursor-pointer hover:bg-roxominerva focus:ring-offset-0 focus:ring-0 border-0"
           onClick={() => setError("")}
+          defaultChecked={
+            planning ? getDaysOnPlanning().includes("Segunda-feira") : false
+          }
         />
 
         <input
@@ -51,6 +67,9 @@ const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
           value="Terça-feira"
           className="rounded-full size-8 bg-background03 flex justify-center items-center after:content-['T'] after:text-textColor checked:!bg-roxominerva checked:after:content-none cursor-pointer hover:bg-roxominerva focus:ring-offset-0 focus:ring-0 border-0"
           onClick={() => setError("")}
+          defaultChecked={
+            planning ? getDaysOnPlanning().includes("Terça-feira") : false
+          }
         />
 
         <input
@@ -59,6 +78,9 @@ const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
           value="Quarta-feira"
           className="rounded-full size-8 bg-background03 flex justify-center items-center after:content-['Q'] after:text-textColor checked:!bg-roxominerva checked:after:content-none cursor-pointer hover:bg-roxominerva focus:ring-offset-0 focus:ring-0 border-0"
           onClick={() => setError("")}
+          defaultChecked={
+            planning ? getDaysOnPlanning().includes("Quarta-feira") : false
+          }
         />
 
         <input
@@ -67,6 +89,9 @@ const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
           value="Quinta-feira"
           className="rounded-full size-8 bg-background03 flex justify-center items-center after:content-['Q'] after:text-textColor checked:!bg-roxominerva checked:after:content-none cursor-pointer hover:bg-roxominerva focus:ring-offset-0 focus:ring-0 border-0"
           onClick={() => setError("")}
+          defaultChecked={
+            planning ? getDaysOnPlanning().includes("Quinta-feira") : false
+          }
         />
 
         <input
@@ -75,6 +100,9 @@ const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
           value="Sexta-feira"
           className="rounded-full size-8 bg-background03 flex justify-center items-center after:content-['S'] after:text-textColor checked:!bg-roxominerva checked:after:content-none cursor-pointer hover:bg-roxominerva focus:ring-offset-0 focus:ring-0 border-0"
           onClick={() => setError("")}
+          defaultChecked={
+            planning ? getDaysOnPlanning().includes("Sexta-feira") : false
+          }
         />
 
         <input
@@ -83,6 +111,9 @@ const SelectWeekDays = ({ setError }: SelectWeeksProps) => {
           value="Sábado"
           className="rounded-full size-8 bg-background03 flex justify-center items-center after:content-['S'] after:text-textColor checked:!bg-roxominerva checked:after:content-none cursor-pointer hover:bg-roxominerva focus:ring-offset-0 focus:ring-0 border-0"
           onClick={() => setError("")}
+          defaultChecked={
+            planning ? getDaysOnPlanning().includes("Sábado") : false
+          }
         />
       </div>
     </div>

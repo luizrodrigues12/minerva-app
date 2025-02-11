@@ -8,12 +8,14 @@ import { ArrowRight } from "flowbite-react-icons/outline";
 import React, { useState } from "react";
 import PlanningPDF from "./PlanningPDF";
 import { PlanningObj } from "@/models/userModel";
+import { useRouter } from "nextjs-toploader/app";
 
 const AllPlannings = ({ idAluno }: { idAluno: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
   const [planning, setPlanning] = useState<PlanningObj>();
-  const { user, getAluno } = useUserContext();
+  const router = useRouter();
+  const { getAluno } = useUserContext();
   const aluno = getAluno(idAluno);
 
   return (
@@ -25,7 +27,7 @@ const AllPlannings = ({ idAluno }: { idAluno: string }) => {
         {aluno.planning?.map((planning, i) => (
           <div
             key={i}
-            className="flex flex-col gap-2 py-2.5 px-3 bg-background03 rounded-md text-textColor"
+            className="flex flex-col gap-2.5 py-2.5 px-3 bg-background03 rounded-md text-textColor"
           >
             <div className="flex items-center justify-between px-1">
               <div className="flex gap-[2.5px]">
@@ -67,6 +69,9 @@ const AllPlannings = ({ idAluno }: { idAluno: string }) => {
                 whileHover={{ scale: 1 }}
                 whileTap={{ scale: 0.97, transition: { duration: 0.01 } }}
                 className="!text-[12px] md:!text-[14px] w-full !px-4 !bg-background02 dark:!bg-background03 brightness-110 hover:brightness-[1.06] dark:hover:brightness-[1.02] text-textColor"
+                onClick={() => {
+                  router.push(`/planning/edit-planning/${idAluno}/${i}`);
+                }}
               >
                 Editar
               </Button>
@@ -88,6 +93,7 @@ const AllPlannings = ({ idAluno }: { idAluno: string }) => {
             setError={setError}
             setIsOpen={setIsOpen}
             subjectPerDay={planning?.subjectPerDay!}
+            setIsPosting={() => {}}
           />
         )}
       </div>

@@ -7,6 +7,8 @@ import Button from "@/components/layout/Button";
 import { useReactToPrint } from "react-to-print";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { AlunoObj, daysAndSubjectsType } from "@/models/userModel";
+import { useRouter } from "nextjs-toploader/app";
+import { useAddPlanning } from "@/hooks/planning/useAddPlanning";
 
 interface PlanningPDFProps {
   daysAndSubjects: Array<daysAndSubjectsType>;
@@ -15,6 +17,8 @@ interface PlanningPDFProps {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   setError: Dispatch<SetStateAction<string>>;
   isAddPage?: boolean;
+  planningId?: string;
+  setIsPosting: Dispatch<SetStateAction<boolean>> | (() => void);
 }
 
 interface gridDaysAndSubjectsProps {
@@ -31,12 +35,16 @@ const PlanningPDF = ({
   subjectPerDay,
   setError,
   isAddPage = false,
+  planningId,
+  setIsPosting,
 }: PlanningPDFProps) => {
   const [width, setWidth] = useState(0);
   const { getAluno } = useUserContext();
   const aluno = getAluno(idAluno);
   const numberOfSubjects = daysAndSubjects.length;
   const printRef = useRef(null);
+  const router = useRouter();
+  const { mutateAsync } = useAddPlanning({});
   const nomeAlunoPDF = aluno.nome
     ?.toLowerCase()
     .split(" ")
@@ -45,13 +53,38 @@ const PlanningPDF = ({
     .replace("é", "e");
 
   const postPlanning = async () => {
+    setIsPosting(true);
+    await mutateAsync({
+      daysAndSubjects,
+      idAluno,
+      subjectPerDay,
+    });
+    router.push(`/planning/${idAluno}`);
+  };
+
+  const updatePlanning = async () => {
     try {
-      const res = await fetch(`${process.env.HOST}/api/student/add_planning`, {
-        method: "POST",
-        body: JSON.stringify({ daysAndSubjects, idAluno, subjectPerDay }),
-      });
+      setIsPosting(true);
+      const res = await fetch(
+        `${process.env.HOST}/api/student/update_planning`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            daysAndSubjects,
+            subjectPerDay,
+            idAluno,
+            planningId,
+          }),
+        }
+      );
       const { user, error } = await res.json();
-      if (error) throw new Error(error);
+      if (error) {
+        setIsPosting(false);
+        throw new Error(error);
+      }
+      if (user) {
+        router.push(`/planning/${idAluno}`);
+      }
     } catch (error: any) {
       setError(error.message);
     }
@@ -62,12 +95,6 @@ const PlanningPDF = ({
     documentTitle: `planning-${nomeAlunoPDF}-${allMonths[
       daysAndSubjects[0].month - 1
     ].name.toLowerCase()}`,
-    onBeforePrint: async () => {
-      if (isAddPage) {
-        await postPlanning();
-      }
-      return;
-    },
   });
 
   useEffect(() => {
@@ -102,11 +129,23 @@ const PlanningPDF = ({
       <div className="flex gap-2 p-2 pt-0 md:p-4 md:pt-0 justify-between text-[14px] md:text-[16px]">
         <Button
           className="w-full !bg-black"
-          onClick={() => {
+          onClick={async () => {
+            if (isAddPage) {
+              await postPlanning();
+              return;
+            }
+            if (planningId) {
+              await updatePlanning();
+              return;
+            }
             downloadPdf();
           }}
         >
-          Salvar
+          {isAddPage || planningId
+            ? isAddPage
+              ? "Adicionar"
+              : "Salvar"
+            : "Baixar"}
         </Button>
         <Button className="w-full !bg-black" onClick={() => setIsOpen(false)}>
           Fechar

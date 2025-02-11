@@ -48,7 +48,12 @@ const LinkContainer = () => {
             <CalendarWeek size={40} strokeWidth={1} />
             <div className="flex justify-between items-center w-full pr-4">
               <div>Planejamentos</div>
-              <div>3</div>
+              <div>
+                {
+                  user.alunos?.filter((aluno) => aluno.planning?.length! > 0)
+                    .length
+                }
+              </div>
             </div>
           </div>
         </div>

@@ -12,6 +12,7 @@ export interface daysAndSubjectsType {
 }
 
 export type PlanningObj = {
+  id: string;
   daysAndSubjects: Array<daysAndSubjectsType>;
   subjectPerDay: number;
   year: number;

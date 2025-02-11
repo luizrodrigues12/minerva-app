@@ -2,26 +2,35 @@
 
 import Container from "@/components/layout/Container";
 import SelectMonth from "@/components/layout/SelectMonth";
-import SelectStudent from "@/components/layout/SelectStudent";
 import { useSectionContext } from "@/contexts/section";
 import {
+  allMonths,
   DateType,
   getDaysAndSubjectsFinal,
   getDaysOfMonth,
 } from "@/utils/months";
 import React, { useEffect, useState } from "react";
-import AddPlanningSubjects from "./AddPlanningSubjects";
-import SelectWeekDays from "./SelectWeekDays";
 import Button from "@/components/layout/Button";
-import DatesPlace from "./DatesPlace";
-import PlanningPDF from "./PlanningPDF";
 import { daysAndSubjectsType } from "@/models/userModel";
+import AddPlanningSubjects from "../../add-planning/AddPlanningSubjects";
+import SelectWeekDays from "../../add-planning/SelectWeekDays";
+import DatesPlace from "../../add-planning/DatesPlace";
+import PlanningPDF from "../../add-planning/PlanningPDF";
+import { useUserContext } from "@/contexts/userData";
 import Loading from "@/components/layout/Loading";
+import { MateriaType } from "@/models/MateriasModel";
 
-const AddPlanningForm = () => {
+interface EditPlanningProps {
+  idAlunoParam: string;
+  numberPlanning: number;
+}
+
+const EditPlanningForm = ({
+  numberPlanning,
+  idAlunoParam,
+}: EditPlanningProps) => {
   const [isPosting, setIsPosting] = useState(false);
   const [error, setError] = useState("");
-  const [aluno, setAluno] = useState("Escolha um aluno");
   const [idAluno, setIdAluno] = useState("");
   const [checkedsSubj, setCheckedsSubj] = useState<Array<string>>();
   const [monthNumber, setMonthNumber] = useState(0);
@@ -36,6 +45,9 @@ const AddPlanningForm = () => {
   const [daysAndSubjects, setDaysAndSubjects] =
     useState<Array<daysAndSubjectsType>>();
   const { setSection } = useSectionContext();
+  const { getAluno } = useUserContext();
+  const aluno = getAluno(idAlunoParam);
+  const planning = aluno.planning![numberPlanning];
 
   const daysOfMonth = getDaysOfMonth({
     monthNumber,
@@ -93,9 +105,20 @@ const AddPlanningForm = () => {
     }
   };
 
+  const getAllSelectedsSubjects = () => {
+    let allSubjects: Array<MateriaType> = [];
+    planning?.daysAndSubjects.map((daysAndSubj, i) => {
+      daysAndSubj.subjects.map((subj) => allSubjects.push(subj));
+    });
+    return allSubjects;
+  };
+
   useEffect(() => {
     setCheckedsSubj([]);
     setcheckedsDays([]);
+    setMonthName(allMonths[planning.daysAndSubjects[0].month - 1].name);
+    setMonthDays(allMonths[planning.daysAndSubjects[0].month - 1].dias);
+    setIdAluno(idAlunoParam);
     setSection("planning");
   }, []);
 
@@ -103,15 +126,16 @@ const AddPlanningForm = () => {
     <Container>
       {!isPosting ? (
         <div className="text-textColor flex flex-col gap-4">
-          <SelectStudent
-            setOption={setAluno}
-            setValue={setIdAluno}
-            value={idAluno}
-            option={aluno}
+          <div className="flex flex-col gap-2">
+            <div className="text-[16px] md:text-[18px]">Aluno</div>
+            <div className="p-3 bg-background03 rounded-md">{aluno.nome}</div>
+          </div>
+
+          <AddPlanningSubjects
+            idAluno={idAlunoParam}
+            planning={planning}
             setError={setError}
           />
-
-          <AddPlanningSubjects idAluno={idAluno} setError={setError} />
 
           <SelectMonth
             setMonthName={setMonthName}
@@ -122,7 +146,7 @@ const AddPlanningForm = () => {
             setError={setError}
           />
 
-          <SelectWeekDays setError={setError} />
+          <SelectWeekDays planning={planning} setError={setError} />
 
           {monthDays > 0 && (
             <DatesPlace
@@ -134,6 +158,7 @@ const AddPlanningForm = () => {
               monthDays={monthDays}
               setSubjectPerDay={setSubjectPerDay}
               subjectPerDay={subjectPerDay}
+              planning={planning}
             />
           )}
 
@@ -143,6 +168,10 @@ const AddPlanningForm = () => {
               className="size-[18px] rounded-sm checked:outline-none focus:outline-none focus:ring-offset-0 focus:ring-0 cursor-pointer checked:!bg-roxominerva"
               id="alternate-subjects"
               onClick={() => setAlternateSubjects(!alternateSubjects)}
+              defaultChecked={
+                getAllSelectedsSubjects()[0].materia === "português" &&
+                getAllSelectedsSubjects()[1].materia === "matemática"
+              }
             />
             <p className="text-[14px] md:text-[16px]">
               Alternar entre Português e Matemática.
@@ -162,7 +191,7 @@ const AddPlanningForm = () => {
               idAluno={idAluno}
               setIsOpen={setIsOpen}
               subjectPerDay={subjectPerDay}
-              isAddPage={true}
+              planningId={planning.id}
               setIsPosting={setIsPosting}
             />
           )}
@@ -173,7 +202,7 @@ const AddPlanningForm = () => {
               submitForm();
             }}
           >
-            Criar Planejamento
+            Visualizar Planejamento
           </Button>
         </div>
       ) : (
@@ -183,4 +212,4 @@ const AddPlanningForm = () => {
   );
 };
 
-export default AddPlanningForm;
+export default EditPlanningForm;

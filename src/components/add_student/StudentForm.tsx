@@ -11,7 +11,6 @@ import InputComp from "../layout/InputComp";
 import { useSectionContext } from "@/contexts/section";
 import Button from "../layout/Button";
 import Container from "../layout/Container";
-import { MateriaType } from "@/models/MateriasModel";
 
 const StudentForm = () => {
   const idStudent = uuidv4();

@@ -1,5 +1,6 @@
 import InputComp from "@/components/layout/InputComp";
-import React, { Dispatch } from "react";
+import { PlanningObj } from "@/models/userModel";
+import React, { Dispatch, useEffect } from "react";
 
 interface DatesPlaceProps {
   setError: Dispatch<React.SetStateAction<string>>;
@@ -10,6 +11,7 @@ interface DatesPlaceProps {
   setSubjectPerDay: Dispatch<React.SetStateAction<number>>;
   finalDate: number;
   setFinalDate: Dispatch<React.SetStateAction<number>>;
+  planning?: PlanningObj;
 }
 
 const DatesPlace = ({
@@ -21,7 +23,20 @@ const DatesPlace = ({
   setSubjectPerDay,
   finalDate,
   setFinalDate,
+  planning,
 }: DatesPlaceProps) => {
+  const settedFinalDate =
+    planning?.daysAndSubjects[planning.daysAndSubjects.length - 1].date!;
+  const settedInitialDate = planning?.daysAndSubjects[0].date!;
+
+  useEffect(() => {
+    if (planning) {
+      setInitialDate(settedInitialDate);
+      setFinalDate(settedFinalDate);
+      setSubjectPerDay(planning.subjectPerDay);
+    }
+  }, []);
+
   return (
     <div className="flex justify-between gap-2 md:gap-8 lg:gap-2 2xl:gap-8">
       <div className="flex flex-col gap-2">
