@@ -7,7 +7,6 @@ import Button from "@/components/layout/Button";
 import { useReactToPrint } from "react-to-print";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { AlunoObj, daysAndSubjectsType } from "@/models/userModel";
-import { useRouter } from "nextjs-toploader/app";
 import { useAddPlanning } from "@/hooks/planning/useAddPlanning";
 import { useUpdatePlanning } from "@/hooks/planning/useUpdatePlanning";
 
@@ -84,12 +83,6 @@ const PlanningPDF = ({
     documentTitle: `planning-${getNamePdf()}-${allMonths[
       daysAndSubjects[0].month - 1
     ].name.toLowerCase()}`,
-    pageStyle: `
-      body {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-    `,
   });
 
   const getTextOfButton = () => {
