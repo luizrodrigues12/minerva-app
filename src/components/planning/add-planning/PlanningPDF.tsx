@@ -105,7 +105,7 @@ const PlanningPDF = ({
           ref={printRef}
           className="flex flex-col justify-between text-[10px] md:text-[14px] pb-0 text-black"
         >
-          <div className="flex justify-between items-center font-parkinsans-normal text-[26px] md:text-[32px] leading-[24px] md:leading-[28px] bg-[#4f47a8] text-[#ececec] p-2 px-3 md:p-4 md:px-3 m-3 md:m-4 mb-0 md:mb-0 rounded-md print:mx-[16px] print:mt-[16px]">
+          <div className="flex justify-between items-center font-parkinsans-normal text-[26px] md:text-[32px] leading-[24px] md:leading-[28px] bg-[#151515] text-[#ececec] p-2 px-3 md:p-4 md:px-3 m-3 md:m-4 mb-0 md:mb-0 rounded-md print:mx-[16px] print:mt-[16px]">
             <p>{allMonths[daysAndSubjects[0].month - 1].name}</p>
             <p>
               {isAddPage ? new Date().getFullYear() : aluno.planning![0].year}
@@ -216,18 +216,18 @@ const gridsDaysAndSubjects = ({
 
 const buttonsFooterPdf = ({ aluno }: { aluno: AlunoObj }) => {
   return (
-    <div className="font-interMedium hidden w-full mt-3 justify-self-end border-[#202020] items-center gap-2 show-on-print text-[14px] md:text-[16px] print:text-[14px] bg-[#5950bb] print:bg-[#5950bb] print:mx-0">
+    <div className="font-interMedium  hidden w-full mt-3 justify-self-end border-[#202020] items-center gap-2 show-on-print text-[14px] md:text-[16px] print:text-[14px] bg-[#151515] print:mx-0">
       <div className="flex gap-2 justify-evenly w-full text-[#ffffff] p-2.5 border-y-2 border-[#202020]">
         <a
           href={`https://minerva-gamma.vercel.app/parents/get_subjects/${aluno.idAluno}`}
-          className="p-2 px-3 rounded-md border-2 bg-[#695edd] print:bg-[#695edd] border-black shadow-md text-center"
+          className="p-2 px-3 rounded-md bg-[#505050] shadow-md flex items-center justify-center"
         >
           Situação do Aluno
         </a>
 
         <a
           href={`https://minerva-gamma.vercel.app/`}
-          className="p-2 px-3 rounded-md border-2 bg-[#695edd] print:bg-[#695edd] border-black shadow-md text-center"
+          className="p-2 px-3 rounded-md bg-[#505050] shadow-md flex items-center justify-center"
         >
           Gerar Planejamento
         </a>
