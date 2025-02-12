@@ -37,7 +37,6 @@ const PlanningPDF = ({
   const aluno = getAluno(idAluno);
   const numberOfSubjects = daysAndSubjects.length;
   const printRef = useRef(null);
-  const router = useRouter();
   const { mutateAsync } = useAddPlanning({});
   const { mutateAsync: mutateAsyncUpdate } = useUpdatePlanning();
 
@@ -100,7 +99,7 @@ const PlanningPDF = ({
   }, [setWidth]);
 
   return (
-    <div className="w-full h-full bg-[#10101033] dark:bg-[#10101080] modal flex justify-center items-center">
+    <div className="w-full h-full light print:light bg-[#10101033] dark:bg-[#10101080] modal flex justify-center items-center">
       <div className="flex flex-col gap-0 w-[95%] max-h-[80%] bg-[#ececec] overflow-y-scroll overflow-hidden  rounded-md md:w-[480px] lg:w-[700px] xl:w-[700px] scroll-style">
         <div
           ref={printRef}
