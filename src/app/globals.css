@@ -175,6 +175,12 @@ html {
   }
 }
 
+@media print and (color) {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
 @media print {
   body {
     zoom: 115%;
