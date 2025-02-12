@@ -180,6 +180,8 @@ html {
     zoom: 115%;
     object-fit: contain;
 
+    print-color-adjust: exact;
+
     .columns-print {
       grid-template-columns: repeat(3, 1fr) !important;
     }
