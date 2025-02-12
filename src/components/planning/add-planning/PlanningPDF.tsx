@@ -123,7 +123,7 @@ const PlanningPDF = ({
           {buttonsFooterPdf({ aluno })}
         </div>
 
-        <div className="flex gap-2 p-3 pt-0 md:p-4 md:pt-0 justify-between text-[14px] md:text-[16px]">
+        <div className="flex gap-2 p-3 pt-0 md:p-4 md:pt-0 justify-between text-[14px] md:text-[16px] print:hidden">
           <Button
             whileHover={{ scale: 1 }}
             className="w-full !bg-[#4f47a8] hover:!bg-buttonHover"
@@ -217,18 +217,18 @@ const gridsDaysAndSubjects = ({
 
 const buttonsFooterPdf = ({ aluno }: { aluno: AlunoObj }) => {
   return (
-    <div className="font-interMedium hidden w-full mt-3 justify-self-end border-[#202020] items-center gap-2 show-on-print text-[14px] md:text-[16px] print:text-[14px] bg-[#5950bb] print:mx-0">
+    <div className="font-interMedium hidden w-full mt-3 justify-self-end border-[#202020] items-center gap-2 show-on-print text-[14px] md:text-[16px] print:text-[14px] bg-[#5950bb] print:bg-[#5950bb] print:mx-0">
       <div className="flex gap-2 justify-evenly w-full text-[#ffffff] p-2.5 border-y-2 border-[#202020]">
         <a
           href={`https://minerva-gamma.vercel.app/parents/get_subjects/${aluno.idAluno}`}
-          className="p-2 px-3 rounded-md border-2 bg-[#695edd] border-black shadow-md text-center"
+          className="p-2 px-3 rounded-md border-2 bg-[#695edd] print:bg-[#695edd] border-black shadow-md text-center"
         >
           Situação do Aluno
         </a>
 
         <a
           href={`https://minerva-gamma.vercel.app/`}
-          className="p-2 px-3 rounded-md border-2 bg-[#695edd] border-black shadow-md text-center"
+          className="p-2 px-3 rounded-md border-2 bg-[#695edd] print:bg-[#695edd] border-black shadow-md text-center"
         >
           Gerar Planejamento
         </a>

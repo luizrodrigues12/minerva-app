@@ -32,6 +32,7 @@ export const config = {
     "/add_student/:path*",
     "/login",
     "/register",
+    "/planning/:path*",
     "/",
   ],
 };
