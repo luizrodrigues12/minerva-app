@@ -176,7 +176,7 @@ html {
 }
 
 @media print {
-  body {
+  .body-print {
     zoom: 115%;
     object-fit: contain;
 

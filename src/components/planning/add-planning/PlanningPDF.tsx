@@ -109,7 +109,7 @@ const PlanningPDF = ({
       <div className="flex flex-col gap-0 w-[95%] max-h-[80%] bg-[#ececec] overflow-y-scroll overflow-hidden  rounded-md md:w-[480px] lg:w-[700px] xl:w-[700px] scroll-style">
         <div
           ref={printRef}
-          className="flex flex-col justify-between text-[10px] md:text-[14px] pb-0 text-black"
+          className="flex flex-col justify-between text-[10px] md:text-[14px] pb-0 text-black bg-[#ececec] body-print"
         >
           <div className="flex justify-between items-center font-parkinsans-normal text-[26px] md:text-[32px] leading-[24px] md:leading-[28px] bg-[#4f47a8] text-[#ececec] p-2 px-3 md:p-4 md:px-3 m-3 md:m-4 mb-0 md:mb-0 rounded-md print:mx-[16px] print:mt-[16px]">
             <p>{allMonths[daysAndSubjects[0].month - 1].name}</p>
