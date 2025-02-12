@@ -176,15 +176,17 @@ html {
 }
 
 @media print {
-  .body-print {
+  body {
     zoom: 115%;
     object-fit: contain;
 
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-
     .columns-print {
       grid-template-columns: repeat(3, 1fr) !important;
+    }
+
+    .fundo {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
 
     .show-on-print {
