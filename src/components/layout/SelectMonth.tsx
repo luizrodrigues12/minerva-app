@@ -23,13 +23,15 @@ const SelectMonth = ({
 }: SelectProps) => {
   const [busca, setBusca] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const filteredMonths = allMonths.filter((month) =>
-    month.name.toLowerCase().startsWith(busca.toLowerCase())
-  );
+  const getFilteredMonths = () => {
+    return allMonths.filter((month) =>
+      month.name.toLowerCase().startsWith(busca.toLowerCase())
+    );
+  };
 
   return (
     <div>
-      {filteredMonths.length ? (
+      {getFilteredMonths().length ? (
         <div className="flex flex-col gap-2">
           <div className="text-[16px] md:text-[18px]">Mês</div>
           <div className="rounded-md relative">
@@ -58,11 +60,11 @@ const SelectMonth = ({
             </div>
             {isOpen && (
               <div className="flex flex-col bg-background03 mt-1 rounded-md absolute z-[2] w-full max-h-[153px] md:max-h-[165px] overflow-y-scroll overflow-hidden scroll-style border-[1px] border-borderColor">
-                {filteredMonths.map((month, i) => (
+                {getFilteredMonths().map((month, i) => (
                   <div
                     key={i}
                     className={`flex items-center py-2 hover:bg-background03Hover cursor-pointer text-[14px] md:text-[16px] ${
-                      i === filteredMonths.length! - 1
+                      i === getFilteredMonths().length! - 1
                         ? "border-0 pb-2.5"
                         : "border-b-[1px] border-borderColor"
                     }`}
@@ -74,9 +76,9 @@ const SelectMonth = ({
                       setIsOpen(false);
                     }}
                   >
-                    <option key={i} className="px-3 text-[14px] md:text-[16px]">
+                    <div key={i} className="px-3 text-[14px] md:text-[16px]">
                       {month.name}
-                    </option>
+                    </div>
                   </div>
                 ))}
               </div>

@@ -23,15 +23,17 @@ const SelectStudent = ({
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useUserContext();
 
-  const filteredStudents = user.alunos
-    ?.sort((a, b) => (a?.nome! < b?.nome! ? -1 : 1))
-    .filter((aluno) =>
-      aluno.nome?.toLowerCase().includes(busca.toLocaleLowerCase())
-    );
+  const getFilteredStudents = () => {
+    return user.alunos
+      ?.sort((a, b) => (a?.nome! < b?.nome! ? -1 : 1))
+      .filter((aluno) =>
+        aluno.nome?.toLowerCase().includes(busca.toLocaleLowerCase())
+      );
+  };
 
   return (
     <div className="flex flex-col gap-2">
-      {user ? (
+      {user.alunos?.length ? (
         <div className="flex flex-col gap-2">
           <div className="text-[16px] md:text-[18px]">Aluno</div>
           <div className="rounded-md relative">
@@ -60,11 +62,11 @@ const SelectStudent = ({
             </div>
             {isOpen && (
               <div className="flex flex-col bg-background03 mt-1 rounded-md absolute z-[2] w-full max-h-[126px] md:max-h-[134px] overflow-y-scroll overflow-hidden scroll-style border-[1px] border-borderColor">
-                {filteredStudents?.map((aluno, i) => (
+                {getFilteredStudents()?.map((aluno, i) => (
                   <div
                     key={i}
                     className={`flex items-center py-2 hover:bg-background03Hover cursor-pointer text-[14px] md:text-[16px] ${
-                      i === filteredStudents.length! - 1
+                      i === getFilteredStudents()?.length! - 1
                         ? "border-0 pb-2.5"
                         : "border-b-[1px] border-borderColor"
                     }`}
@@ -75,9 +77,9 @@ const SelectStudent = ({
                       setIsOpen(false);
                     }}
                   >
-                    <option key={i} className="px-3 text-[14px] md:text-[16px]">
+                    <div key={i} className="px-3 text-[14px] md:text-[16px]">
                       {aluno.nome}
-                    </option>
+                    </div>
                   </div>
                 ))}
               </div>

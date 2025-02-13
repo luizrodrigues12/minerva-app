@@ -187,6 +187,8 @@ html {
     .fundo {
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
+
+      margin: 15px;
     }
 
     .show-on-print {
