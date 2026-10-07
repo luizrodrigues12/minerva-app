@@ -41,7 +41,7 @@
 
 ## 7. Limpeza e verificação final (Fase 6)
 
-- [ ] 7.1 Auditar imports e remover dependências não usadas (`swr`, `jose`, `sharp`, `@as-integrations/next`, `npm`; `mongodb`/`@types/mongoose` se confirmado). Verificar: `npm run lint` + `npm run build` verdes sem elas.
-- [ ] 7.2 Rodar `npm audit` e resolver vulnerabilidades sem `--force` cego. Verificar: sem vulnerabilidade alta/crítica (ou exceção registrada).
+- [x] 7.1 Auditar imports e remover dependências não usadas (`swr`, `jose`, `sharp`, `@as-integrations/next`, `npm`; `mongodb`/`@types/mongoose` se confirmado). Verificar: `npm run lint` + `npm run build` verdes sem elas.
+- [x] 7.2 Rodar `npm audit` e resolver vulnerabilidades sem `--force` cego. Verificar: sem vulnerabilidade alta/crítica (ou exceção registrada).
 - [ ] 7.3 Smoke manual completo: cadastro, login, criar aluno/matérias, gerar planejamento + PDF, upload de avatar, verificar email, recuperar senha. Verificar: todos os fluxos concluem sem erro.
 - [ ] 7.4 Deploy de preview na Vercel e confirmar build via npm (sem `yarn.lock`) com app funcional. Verificar: preview verde.

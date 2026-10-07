@@ -65,6 +65,8 @@ O npm 12 bloqueia scripts de instalação por padrão (`allow-scripts`), e o `bc
 
 **12. Adiar o TypeScript 7 (decidido durante o apply).** `typescript@7.0.2` passa em `tsc --noEmit` e no `next build`, mas o `typescript-eslint@8` (via `eslint-config-next@16`) faz hard error `does not support TS 7.0` e quebra o `npm run lint`. Mantido `typescript` em **5.9.x** para preservar o portão de lint; `@types/node` → 26, `@types/react`/`@types/react-dom` → 19.3 e `@types/nodemailer` → 8 foram atualizados. Reavaliar quando o `typescript-eslint` suportar TS 7.
 
+**13. Vulnerabilidades do audit aceitas como exceção (Fase 6).** `npm audit` reporta 10 vulnerabilidades **high**, todas em deps **transitivas** cujos "fixes" só existem via `npm audit fix --force`, que aplicaria **downgrade** (`eslint-config-next` 14, `flowbite-react` 0.10.2, `uploadthing` 6.12.0) e desfaria o upgrade. Origem: `braces` (via `eslint-config-next`, dev/lint), `deepmerge-ts` (via `flowbite-react`, build) e `effect` (via `uploadthing`, server). `npm audit fix` sem `--force` não resolve. Exceção registrada; reavaliar quando as dependências-pai subirem.
+
 ## Risks / Trade-offs
 
 - **[Tailwind 4 incompatível com flowbite]** → confirmar cedo; fallback com `@config`/pins; se bloquear, pausar e decidir.
