@@ -35,8 +35,8 @@
 
 ## 6. Framework + toolchain (Fase 5)
 
-- [ ] 6.1 Migrar ESLint para flat config (`eslint.config.mjs`) reproduzindo as regras atuais e trocar o script `lint` para `eslint .`. Verificar: `npm run lint` retorna o mesmo resultado (0 erros) que antes da migração.
-- [ ] 6.2 `next` 15→16, `react`/`react-dom` 19.0→19.3, `eslint-config-next` 15→16, `eslint` 9→10; rodar `npx @next/codemod@latest upgrade latest` e ajustar `next.config.ts`/middleware conforme o changelog. Verificar: `npm run build` sucesso e app sobe.
+- [x] 6.1 Migrar ESLint para flat config (`eslint.config.mjs`) reproduzindo as regras atuais e trocar o script `lint` para `eslint .`. Verificar: `npm run lint` retorna o mesmo resultado (0 erros) que antes da migração.
+- [x] 6.2 `next` 15→16, `react`/`react-dom` 19.0→19.3, `eslint-config-next` 15→16, `eslint` 9→10; rodar `npx @next/codemod@latest upgrade latest` e ajustar `next.config.ts`/middleware conforme o changelog. Verificar: `npm run build` sucesso e app sobe.
 - [ ] 6.3 `typescript` 5→7, `@types/node` 22→26 e `@types/react`/`@types/react-dom`/`@types/nodemailer` alinhados. Verificar: `npx tsc --noEmit` e `npm run build`; se o TS 7 for incompatível, **pausar** e decidir.
 
 ## 7. Limpeza e verificação final (Fase 6)
