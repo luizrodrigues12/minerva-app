@@ -25,7 +25,7 @@ export async function DELETE(req: NextRequest) {
 
     const user = await UserModel.findOneAndUpdate<dataMongoUser>(
       { "alunos.idAluno": idAluno },
-      { "alunos.$[a].planning": finalPlannings },
+      { $set: { "alunos.$[a].planning": finalPlannings } },
       { arrayFilters: [{ "a.idAluno": idAluno }] }
     );
 

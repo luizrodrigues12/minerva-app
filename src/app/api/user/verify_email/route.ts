@@ -69,7 +69,7 @@ export async function PUT(req: NextRequest) {
       const user = await UserModel.findOne({ email: emailDecoded });
       if (user.isVerified) throw new Error("Esse email já está verificado.");
 
-      await UserModel.updateOne({ email: emailDecoded }, { isVerified: true });
+      await UserModel.updateOne({ email: emailDecoded }, { $set: { isVerified: true } });
       return NextResponse.json({ success: "Email verificado com sucesso." });
     }
 

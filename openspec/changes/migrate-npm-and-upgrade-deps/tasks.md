@@ -30,8 +30,8 @@
 
 ## 5. Camada de dados (Fase 4)
 
-- [ ] 5.1 `mongoose` 8→9 (e `mongodb` 6→7, ou remover se não usado): revisar changelog e ajustar `dbConfig`, models e rotas que usam `findOneAndUpdate`/`arrayFilters`/`ObjectId`. Verificar: build + login (busca por email) e CRUD de aluno funcionando.
-- [ ] 5.2 Smoke das rotas de planejamento (add/update/delete). Verificar: criar, editar e excluir planejamento sem erro.
+- [x] 5.1 `mongoose` 8→9 (e `mongodb` 6→7, ou remover se não usado): revisar changelog e ajustar `dbConfig`, models e rotas que usam `findOneAndUpdate`/`arrayFilters`/`ObjectId`. Verificar: build + login (busca por email) e CRUD de aluno funcionando.
+- [x] 5.2 Smoke das rotas de planejamento (add/update/delete). Verificar: criar, editar e excluir planejamento sem erro.
 
 ## 6. Framework + toolchain (Fase 5)
 

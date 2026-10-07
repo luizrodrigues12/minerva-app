@@ -61,6 +61,8 @@ Fase 6  Limpeza (remover nao usadas) + verificacao final
 **10. Trocar `bcrypt` por `bcryptjs` (decidido durante o apply).**
 O npm 12 bloqueia scripts de instalação por padrão (`allow-scripts`), e o `bcrypt@5` depende de `node-pre-gyp`/`node-gyp` para gerar o binário nativo — após `npm ci`, o `bcrypt` fica quebrado (`bcrypt_lib.node` ausente), o que derruba login/registro. Alternativas: aprovar o script (executa código de terceiros no install) ou usar `bcryptjs`, que é JS puro, sem build, e **compatível com os hashes `$2a$/$2b$` já gravados** (usuários existentes continuam logando). Escolhido `bcryptjs`. Troca de import em 4 rotas; `@types/bcrypt` sai (o `bcryptjs` v3 traz tipos próprios).
 
+**11. Corrigir os updates não-atômicos (decidido durante o apply).** A verificação da Fase 4 revelou que várias rotas enviavam documentos de update **sem operador atômico** (`{ alunos: [...] }`, `{ "alunos.$[a].planning": [...] }`, `{ password: ... }`, `{ isVerified: true }`, `{ avatar: null }`, etc.) e uma usava `$Set` (maiúsculo). O MongoDB rejeita ambos (`Update document requires atomic operators` / `Unknown modifier: $Set`) — **não é regressão do mongoose 9**, foi reproduzido com o driver cru. Corrigido envolvendo em `$set`/`$pull` e trocando `$Set`→`$set` em 10 arquivos, com E2E real (CRUD de aluno e de planejamento) validando.
+
 ## Risks / Trade-offs
 
 - **[Tailwind 4 incompatível com flowbite]** → confirmar cedo; fallback com `@config`/pins; se bloquear, pausar e decidir.

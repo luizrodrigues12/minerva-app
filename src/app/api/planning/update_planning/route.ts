@@ -43,11 +43,13 @@ export async function PUT(req: NextRequest) {
     const newUser = await UserModel.findOneAndUpdate<dataMongoUser>(
       { "alunos.idAluno": idAluno },
       {
-        "alunos.$[a].planning.$[p]": {
-          ...planningExisting,
-          daysAndSubjects,
-          subjectPerDay,
-          anoAtual,
+        $set: {
+          "alunos.$[a].planning.$[p]": {
+            ...planningExisting,
+            daysAndSubjects,
+            subjectPerDay,
+            anoAtual,
+          },
         },
       },
       { arrayFilters: [{ "a.idAluno": idAluno }, { "p.id": planningId }] }

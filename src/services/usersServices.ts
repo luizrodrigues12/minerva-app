@@ -18,7 +18,7 @@ export const SetIsChecked = async (
   if (objMateria.isChecked === false) {
     await UserModel.updateOne(
       { token: token },
-      { $Set: { "alunos.$[a].materias.$[m].isChecked": true } },
+      { $set: { "alunos.$[a].materias.$[m].isChecked": true } },
       {
         arrayFilters: [{ "a.idAluno": idAluno }, { "m._id": objMateria._id }],
       }
@@ -27,7 +27,7 @@ export const SetIsChecked = async (
     await UserModel.updateOne(
       { token: token },
       {
-        $Set: { "alunos.$[a].materias.$[m].isChecked": false },
+        $set: { "alunos.$[a].materias.$[m].isChecked": false },
       },
       {
         arrayFilters: [{ "a.idAluno": idAluno }, { "m._id": objMateria._id }],

@@ -23,7 +23,7 @@ export async function PUT(req: NextRequest) {
 
     // Acessando user no DB e mudando senha
     const senhaCripto = await bcrypt.hash(password, 10);
-    await UserModel.updateOne({ _id: _id }, { password: senhaCripto });
+    await UserModel.updateOne({ _id: _id }, { $set: { password: senhaCripto } });
 
     return NextResponse.json(
       {

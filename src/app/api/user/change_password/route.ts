@@ -31,7 +31,7 @@ export async function PUT(req: NextRequest) {
 
     const newPasswordCrypt = await bcrypt.hash(newPassword, 10);
     if (verifyCurrentPassword) {
-      await UserModel.updateOne({ token }, { password: newPasswordCrypt });
+      await UserModel.updateOne({ token }, { $set: { password: newPasswordCrypt } });
     } else {
       throw new Error("A senha atual está incorreta.");
     }
