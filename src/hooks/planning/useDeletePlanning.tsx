@@ -16,10 +16,10 @@ export function useDeletePlanning() {
     idAluno: string;
   }) => {
     const res = await fetch(
-      `${process.env.HOST}/api/planning/delete_planning`,
+      `/api/planning/delete_planning`,
       {
         method: "DELETE",
-        body: JSON.stringify({ planningId, idAluno }),
+        headers: { "content-type": "application/json" }, body: JSON.stringify({ planningId, idAluno }),
       }
     );
     const { planning } = await res.json();

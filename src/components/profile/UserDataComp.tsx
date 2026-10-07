@@ -26,11 +26,15 @@ const UserDataComp = () => {
 
   const deleteAccount = async () => {
     setIsPosting(true);
-    await fetch(`${process.env.HOST}/api/user/delete_user`, {
-      method: "POST",
-      body: JSON.stringify({ token: user.token }),
-    });
-    logoutFunction();
+    try {
+      await fetch(`/api/user/delete_user`, {
+        method: "POST",
+        headers: { "content-type": "application/json" }, body: JSON.stringify({ token: user.token }),
+      });
+      logoutFunction();
+    } catch {
+      setIsPosting(false);
+    }
   };
 
   useEffect(() => {

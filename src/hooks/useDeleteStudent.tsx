@@ -12,10 +12,10 @@ export function useDeleteStudent() {
     if (!idAluno) throw new Error("IdAluno inexistente!");
 
     const result = await fetch(
-      `${process.env.HOST}/api/student/delete_student/`,
+      `/api/student/delete_student/`,
       {
         method: "DELETE",
-        body: JSON.stringify({ token: user.token, idAluno: idAluno }),
+        headers: { "content-type": "application/json" }, body: JSON.stringify({ token: user.token, idAluno: idAluno }),
       }
     );
 

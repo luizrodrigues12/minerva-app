@@ -29,9 +29,9 @@ export function useAddStudent({
     checkedsPrep: Array<string>;
     checkedsSubjects: any;
   }) => {
-    const res = await fetch(`${process.env.HOST}/api/student/add_student`, {
+    const res = await fetch(`/api/student/add_student`, {
       method: "POST",
-      body: JSON.stringify({
+      headers: { "content-type": "application/json" }, body: JSON.stringify({
         idAluno: idStudent,
         nome: capitalize(nome),
         preparatorio: checkedsPrep,

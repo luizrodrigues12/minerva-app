@@ -79,7 +79,7 @@ export async function PUT(req: NextRequest) {
              <h3 style="font-size: 18px;">Altere seu email:</h3>
              <p style="font-size: 16px;">
              Clique <a style="text-decoration: none; color: #4f47a8" href="${`${
-               process.env.HOST as string
+               new URL(req.url).origin
              }/profile/change_email/${emailTokenSent}`}">aqui</a> para alterar seu email.
              </p>
            </div>`,

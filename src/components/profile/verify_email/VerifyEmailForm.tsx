@@ -18,9 +18,9 @@ const VerifyEmailForm = () => {
   const sendEmailVerify = async () => {
     try {
       setIsPosting(true);
-      const res = await fetch(`${process.env.HOST}/api/user/verify_email`, {
+      const res = await fetch(`/api/user/verify_email`, {
         method: "PUT",
-        body: JSON.stringify({ token, email, sendEmail: true }),
+        headers: { "content-type": "application/json" }, body: JSON.stringify({ token, email, sendEmail: true }),
       });
       setIsPosting(false);
       const { success, error } = await res.json();
@@ -30,6 +30,7 @@ const VerifyEmailForm = () => {
         setIsOpen(true);
       }
     } catch (error: any) {
+      setIsPosting(false);
       setError(error.message);
     }
   };

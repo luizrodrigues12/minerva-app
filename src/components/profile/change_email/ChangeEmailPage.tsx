@@ -23,7 +23,7 @@ const ChangeEmailPage = ({ emailTokenReceived }: ChangeEmailProps) => {
       setIsPosting(true);
       const res = await fetch(`/api/user/change_email`, {
         method: "PUT",
-        body: JSON.stringify({ emailTokenReceived, changeEmail: true }),
+        headers: { "content-type": "application/json" }, body: JSON.stringify({ emailTokenReceived, changeEmail: true }),
       });
       const data = await res.json();
       const { success, error } = data;
@@ -34,6 +34,7 @@ const ChangeEmailPage = ({ emailTokenReceived }: ChangeEmailProps) => {
         setError(error);
       }
     } catch (error: any) {
+      setIsPosting(false);
       setError(error.message);
     }
   };

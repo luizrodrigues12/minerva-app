@@ -33,9 +33,9 @@ const LoginForm = () => {
 
       //Enviando post dos dados
       setIsPosting(true);
-      const res = await fetch(`${process.env.HOST}/api/user/login`, {
+      const res = await fetch(`/api/user/login`, {
         method: "POST",
-        body: JSON.stringify({ email, password }),
+        headers: { "content-type": "application/json" }, body: JSON.stringify({ email, password }),
       });
 
       //Mostrando error

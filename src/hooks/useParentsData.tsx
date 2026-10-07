@@ -10,9 +10,9 @@ interface ParentsDataType {
 
 export function useParentsData(idAluno: string) {
   const getAlunoData = async (): Promise<ParentsDataType | null> => {
-    const data = await fetch(`${process.env.HOST}/api/student/get_subjects`, {
+    const data = await fetch(`/api/student/get_subjects`, {
       method: "POST",
-      body: JSON.stringify({ idAluno }),
+      headers: { "content-type": "application/json" }, body: JSON.stringify({ idAluno }),
     });
     const { aluno, user } = await data.json();
     if (!aluno) return null;

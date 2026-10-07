@@ -31,9 +31,9 @@ const ChangePasswordForm = () => {
         throw new Error("Senhas não condizentes.");
 
       setIsPosting(true);
-      const res = await fetch(`${process.env.HOST}/api/user/change_password`, {
+      const res = await fetch(`/api/user/change_password`, {
         method: "PUT",
-        body: JSON.stringify({ token, currentPassword, newPassword }),
+        headers: { "content-type": "application/json" }, body: JSON.stringify({ token, currentPassword, newPassword }),
       });
       setIsPosting(false);
       const { success, error } = await res.json();
@@ -43,6 +43,7 @@ const ChangePasswordForm = () => {
       }
       if (error) throw new Error(error);
     } catch (error: any) {
+      setIsPosting(false);
       setError(error.message);
     }
   };

@@ -52,9 +52,9 @@ const RegisterForm = () => {
       //Enviando post dos dados
       if (passwordTest && emailTest && name) {
         setIsPosting(true);
-        const response = await fetch(`${process.env.HOST}/api/user/register`, {
+        const response = await fetch(`/api/user/register`, {
           method: "POST",
-          body: JSON.stringify({ name, email, password }),
+          headers: { "content-type": "application/json" }, body: JSON.stringify({ name, email, password }),
         });
         const { error } = await response.json();
         if (error) {
@@ -64,6 +64,7 @@ const RegisterForm = () => {
         router.push("/login");
       }
     } catch (err: any) {
+      setIsPosting(false);
       if (err.message.toLowerCase().includes("nome")) {
         setNameError(err.message);
       } else {

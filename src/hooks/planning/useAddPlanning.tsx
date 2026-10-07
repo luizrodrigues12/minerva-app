@@ -21,9 +21,9 @@ export function useAddPlanning({}) {
     subjectPerDay,
   }: PostPlanningProps) => {
     try {
-      const res = await fetch(`${process.env.HOST}/api/planning/add_planning`, {
+      const res = await fetch(`/api/planning/add_planning`, {
         method: "POST",
-        body: JSON.stringify({
+        headers: { "content-type": "application/json" }, body: JSON.stringify({
           daysAndSubjects,
           idAluno,
           subjectPerDay,

@@ -6,9 +6,9 @@ const token = getCookie("authorization");
 
 export function useUserData() {
   const getUserData = async () => {
-    const res = await fetch(`${process.env.HOST}/api/user/get_user`, {
+    const res = await fetch(`/api/user/get_user`, {
       method: "POST",
-      body: JSON.stringify({ token: token }),
+      headers: { "content-type": "application/json" }, body: JSON.stringify({ token: token }),
     });
     const { user } = await res.json();
     return user ? user : null;

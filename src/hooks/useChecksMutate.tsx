@@ -11,9 +11,9 @@ export function useChecksMutate(objMateria: any, idAluno: any, token: any) {
     idAluno: string;
     token: string;
   }) => {
-    const res = await fetch(`${process.env.HOST}/api/student/toggle_checked`, {
+    const res = await fetch(`/api/student/toggle_checked`, {
       method: "PUT",
-      body: JSON.stringify({ objMateria, idAluno, token }),
+      headers: { "content-type": "application/json" }, body: JSON.stringify({ objMateria, idAluno, token }),
     });
     const { aluno } = await res.json();
     return { aluno: aluno };

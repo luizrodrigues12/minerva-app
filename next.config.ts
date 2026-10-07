@@ -9,9 +9,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  env: {
-    HOST: "https://minerva-gamma.vercel.app",
-  },
   /* config options here */
 };
 

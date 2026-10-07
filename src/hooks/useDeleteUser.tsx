@@ -5,9 +5,9 @@ const token = getCookie("authorization");
 
 export function useDeleteUser() {
   const deleteUser = async () => {
-    await fetch(`${process.env.HOST}/api/user/delete_user`, {
+    await fetch(`/api/user/delete_user`, {
       method: "POST",
-      body: JSON.stringify({ token: token }),
+      headers: { "content-type": "application/json" }, body: JSON.stringify({ token: token }),
     });
   };
 

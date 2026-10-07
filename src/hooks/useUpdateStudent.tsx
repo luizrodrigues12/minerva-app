@@ -35,9 +35,9 @@ export function useUpdateStudent() {
     checkedsSubjects,
     nome,
   }: UpdateStudentProps) => {
-    const res = await fetch(`${process.env.HOST}/api/student/update_student`, {
+    const res = await fetch(`/api/student/update_student`, {
       method: "PUT",
-      body: JSON.stringify({
+      headers: { "content-type": "application/json" }, body: JSON.stringify({
         token,
         idAluno,
         nome: nome ? tratedName(nome) : "",

@@ -28,7 +28,7 @@ const NomePreparatorioParents = ({ idAluno, aluno }: Props) => {
                   onClick={() =>
                     navigator.share({
                       title: `Informações de ${aluno?.nome}`,
-                      url: `${process.env.HOST}/parents/get_subjects/${idAluno}`,
+                      url: `/parents/get_subjects/${idAluno}`,
                     })
                   }
                 />

@@ -55,7 +55,10 @@ const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
 
       setIsPosting(true);
 
-      mutate({ idAluno, nome, checkedsPrep, checkedsSubjects });
+      mutate(
+        { idAluno, nome, checkedsPrep, checkedsSubjects },
+        { onError: () => setIsPosting(false) }
+      );
     } catch (error: any) {
       setError(error.message);
     }

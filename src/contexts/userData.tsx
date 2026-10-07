@@ -27,7 +27,7 @@ const UserContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logoutFunction = async () => {
-    const res = await fetch(`${process.env.HOST}/api/user/logout`, {
+    const res = await fetch(`/api/user/logout`, {
       method: "GET",
     });
     deleteCookie("authorization");

@@ -30,10 +30,10 @@ const ForgetPassForm = ({ id }: { id: string }) => {
       //Enviando post dos dados
       setIsPosting(true);
       const response = await fetch(
-        `${process.env.HOST}/api/user/reset_password/`,
+        `/api/user/reset_password/`,
         {
           method: "PUT",
-          body: JSON.stringify({ password, id }),
+          headers: { "content-type": "application/json" }, body: JSON.stringify({ password, id }),
         }
       );
       const { success, error } = await response.json();
@@ -41,6 +41,7 @@ const ForgetPassForm = ({ id }: { id: string }) => {
       if (error) throw new Error(error);
       if (success) setMessage(success);
     } catch (error: any) {
+      setIsPosting(false);
       setPasswordError(error.message);
     }
   };

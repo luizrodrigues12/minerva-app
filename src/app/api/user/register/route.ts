@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
     });
 
     // Salvando usuário
-    newUser.save();
+    await newUser.save();
     return NextResponse.json({ success: "Usuário salvo com sucesso." });
   } catch (error: any) {
     //Enviando erro

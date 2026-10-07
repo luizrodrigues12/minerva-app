@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export function useGetSubjects() {
   const getSubjects = async () => {
-    const res = await fetch(`${process.env.HOST}/api/subject/get_subjects`, {
+    const res = await fetch(`/api/subject/get_subjects`, {
       method: "GET",
     });
     const { materias } = await res.json();

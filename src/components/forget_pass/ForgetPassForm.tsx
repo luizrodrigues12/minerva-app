@@ -21,10 +21,10 @@ const ForgetPassForm = () => {
       //Enviando post dos dados
       setIsPosting(true);
       const response = await fetch(
-        `${process.env.HOST}/api/user/forget_password/`,
+        `/api/user/forget_password/`,
         {
           method: "POST",
-          body: JSON.stringify({ email }),
+          headers: { "content-type": "application/json" }, body: JSON.stringify({ email }),
         }
       );
       const { data, error } = await response.json();
@@ -32,6 +32,7 @@ const ForgetPassForm = () => {
       if (error) throw new Error(error);
       if (data) router.replace("/login");
     } catch (error: any) {
+      setIsPosting(false);
       setEmailError(error.message);
     }
   };

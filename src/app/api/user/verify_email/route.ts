@@ -47,7 +47,7 @@ export async function PUT(req: NextRequest) {
                <h3 style="font-size: 18px;">Verifique seu email:</h3>
                <p style="font-size: 16px;">
                Clique em <a style="text-decoration: none; color: #4f47a8" href="${`${
-                 process.env.HOST as string
+                 new URL(req.url).origin
                }/profile/verify_email/${emailToken}`}">verificar email</a> para verificar seu email.
                </p>
              </div>`,

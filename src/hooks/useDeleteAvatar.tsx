@@ -10,9 +10,9 @@ export function useDeleteAvatar() {
   const queryClient = useQueryClient();
 
   const deleteAvatar = async () => {
-    const res = await fetch(`${process.env.HOST}/api/user/avatar`, {
+    const res = await fetch(`/api/user/avatar`, {
       method: "DELETE",
-      body: JSON.stringify({ token: user.token }),
+      headers: { "content-type": "application/json" }, body: JSON.stringify({ token: user.token }),
     });
     const { error, user: data } = await res.json();
     if (error) throw new Error(error);

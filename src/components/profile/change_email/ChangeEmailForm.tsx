@@ -26,9 +26,9 @@ const ChangeEmailForm = () => {
         throw new Error("Emails não correspondentes.");
 
       setIsPosting(true);
-      const res = await fetch(`${process.env.HOST}/api/user/change_email`, {
+      const res = await fetch(`/api/user/change_email`, {
         method: "PUT",
-        body: JSON.stringify({
+        headers: { "content-type": "application/json" }, body: JSON.stringify({
           oldEmail: user.email.toLowerCase(),
           newEmail: email.toLowerCase(),
           sendEmail: true,
@@ -39,6 +39,7 @@ const ChangeEmailForm = () => {
       if (error) throw new Error(error);
       if (success) setIsOpen(true);
     } catch (error: any) {
+      setIsPosting(false);
       setError(error.message);
     }
   };

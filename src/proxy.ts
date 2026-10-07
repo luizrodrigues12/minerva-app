@@ -7,8 +7,9 @@ export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   // PEGANDO USUÁRIO
-  const result = await fetch(`${process.env.HOST}/api/user/get_user`, {
+  const result = await fetch(new URL("/api/user/get_user", request.url), {
     method: "POST",
+    headers: { "content-type": "application/json" },
     body: JSON.stringify({ token }),
   });
   const { user } = await result.json();

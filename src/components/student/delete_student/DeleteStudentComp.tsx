@@ -24,6 +24,7 @@ const DeleteStudentComp = ({ idAluno }: { idAluno: string }) => {
       {
         onError(error) {
           setError(error.message);
+          setIsPosting(false);
         },
       }
     );

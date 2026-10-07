@@ -10,9 +10,9 @@ export function useVerifyMutate() {
   const { refetch } = useUserContext();
 
   const verifyEmail = async ({ email }: VerifyProps) => {
-    const res = await fetch(`${process.env.HOST}/api/user/verify_email`, {
+    const res = await fetch(`/api/user/verify_email`, {
       method: "PUT",
-      body: JSON.stringify({ email, verifyEmail: true }),
+      headers: { "content-type": "application/json" }, body: JSON.stringify({ email, verifyEmail: true }),
     });
     const data: { success: string; error: string } = await res.json();
     return data;

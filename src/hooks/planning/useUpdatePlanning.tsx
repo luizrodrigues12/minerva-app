@@ -22,10 +22,10 @@ export function useUpdatePlanning() {
   }: UpdatePlanningProps) => {
     try {
       const res = await fetch(
-        `${process.env.HOST}/api/planning/update_planning`,
+        `/api/planning/update_planning`,
         {
           method: "PUT",
-          body: JSON.stringify({
+          headers: { "content-type": "application/json" }, body: JSON.stringify({
             daysAndSubjects,
             subjectPerDay,
             idAluno,

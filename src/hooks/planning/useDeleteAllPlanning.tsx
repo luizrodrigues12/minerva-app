@@ -6,9 +6,9 @@ export function useDeleteAllPlanning() {
 
   const deleteAllPlanning = async ({ idAluno }: { idAluno: string }) => {
     try {
-      const res = await fetch(`${process.env.HOST}/api/planning/delete_all`, {
+      const res = await fetch(`/api/planning/delete_all`, {
         method: "DELETE",
-        body: JSON.stringify({ idAluno }),
+        headers: { "content-type": "application/json" }, body: JSON.stringify({ idAluno }),
       });
       const { user, error } = await res.json();
       if (error) throw new Error(error);
