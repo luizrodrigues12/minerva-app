@@ -10,8 +10,8 @@
 
 ## 2. Atualizar dentro das faixas (Fase 1)
 
-- [ ] 2.1 Rodar `npm update` (minors/patch dentro das faixas). Verificar: `npm run lint` (0 erros) e `npm run build` (sucesso).
-- [ ] 2.2 Registrar no diff o que subiu nesta fase e commitar separadamente. Verificar: commit contém apenas `package.json` + `package-lock.json` desta fase.
+- [x] 2.1 Rodar `npm update` (minors/patch dentro das faixas). Verificar: `npm run lint` (0 erros) e `npm run build` (sucesso).
+- [x] 2.2 Registrar no diff o que subiu nesta fase e commitar separadamente. Verificar: commit contém apenas `package.json` + `package-lock.json` desta fase.
 
 ## 3. Tailwind 4 + flowbite + PostCSS (Fase 2)
 
