@@ -1,6 +1,6 @@
 import UserModel, { dataMongoUser } from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { validatePassword } from "@/utils/regex";
 
 type BodyType = {
@@ -31,7 +31,7 @@ export async function PUT(req: NextRequest) {
 
     const newPasswordCrypt = await bcrypt.hash(newPassword, 10);
     if (verifyCurrentPassword) {
-      await UserModel.updateOne({ token }, { password: newPasswordCrypt });
+      await UserModel.updateOne({ token }, { $set: { password: newPasswordCrypt } });
     } else {
       throw new Error("A senha atual está incorreta.");
     }

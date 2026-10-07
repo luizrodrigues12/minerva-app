@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import UserModel from "@/models/userModel";
 import connectDB from "@/dbConfig/dbConfig";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 connectDB();
@@ -23,7 +23,7 @@ export async function PUT(req: NextRequest) {
 
     // Acessando user no DB e mudando senha
     const senhaCripto = await bcrypt.hash(password, 10);
-    await UserModel.updateOne({ _id: _id }, { password: senhaCripto });
+    await UserModel.updateOne({ _id: _id }, { $set: { password: senhaCripto } });
 
     return NextResponse.json(
       {

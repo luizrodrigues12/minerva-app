@@ -27,15 +27,17 @@ export async function POST(req: NextRequest) {
     await UserModel.updateOne(
       { token: token },
       {
-        alunos: [
-          ...user.alunos,
-          {
-            idAluno: idAluno,
-            nome: nome,
-            preparatorio: preparatorio,
-            materias: arrayMaterias,
-          },
-        ],
+        $set: {
+          alunos: [
+            ...user.alunos,
+            {
+              idAluno: idAluno,
+              nome: nome,
+              preparatorio: preparatorio,
+              materias: arrayMaterias,
+            },
+          ],
+        },
       }
     );
 

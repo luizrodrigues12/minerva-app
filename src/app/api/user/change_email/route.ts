@@ -41,7 +41,7 @@ export async function PUT(req: NextRequest) {
       const emailExisting = await UserModel.findOne({ email: newEmail });
       if (emailExisting) throw new Error(`Esse email já está sendo usado.`);
 
-      await UserModel.updateOne({ email: oldEmail }, { email: newEmail });
+      await UserModel.updateOne({ email: oldEmail }, { $set: { email: newEmail } });
       return NextResponse.json({ success: "Email alterado com sucesso!" });
     }
 

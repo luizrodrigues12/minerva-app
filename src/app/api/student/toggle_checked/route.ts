@@ -17,7 +17,7 @@ export async function PUT(req: NextRequest) {
     if (objMateria.isChecked == false) {
       await UserModel.updateOne(
         { token: token },
-        { "alunos.$[a].materias.$[m].isChecked": true },
+        { $set: { "alunos.$[a].materias.$[m].isChecked": true } },
         {
           arrayFilters: [
             { "a.idAluno": idAluno },
@@ -30,7 +30,7 @@ export async function PUT(req: NextRequest) {
     } else if (objMateria.isChecked == true) {
       await UserModel.updateOne(
         { token: token },
-        { "alunos.$[a].materias.$[m].isChecked": false },
+        { $set: { "alunos.$[a].materias.$[m].isChecked": false } },
         {
           arrayFilters: [
             { "a.idAluno": idAluno },

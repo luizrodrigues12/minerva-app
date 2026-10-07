@@ -63,10 +63,10 @@ export async function DELETE(req: NextRequest) {
     if (!res?.avatar_key || !res?.avatar) throw new Error("Você não tem foto.");
     await utapi.deleteFiles(res?.avatar_key!);
 
-    await UserModel.findOneAndUpdate({ token }, { avatar: null });
+    await UserModel.findOneAndUpdate({ token }, { $set: { avatar: null } });
     const userData = await UserModel.findOneAndUpdate(
       { token },
-      { avatar_key: null }
+      { $set: { avatar_key: null } }
     );
 
     const data = userData[0];
