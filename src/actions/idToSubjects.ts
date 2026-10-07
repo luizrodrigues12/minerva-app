@@ -2,7 +2,7 @@
 
 import MateriasModel, { MateriaType } from "@/models/MateriasModel";
 
-export async function idToSubjects(checkeds: Array<String>) {
+export async function idToSubjects(checkeds: Array<string>) {
   console.log(checkeds);
   const arrayMaterias: Array<any> = [];
   // Transformando ids em Matérias

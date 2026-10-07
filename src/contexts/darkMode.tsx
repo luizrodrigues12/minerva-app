@@ -30,9 +30,11 @@ const DarkModeProvider = ({ children }: { children: ReactNode }) => {
 
   const toggleTheme = () => {
     const themeStorage = localStorage.getItem("theme");
-    themeStorage === "dark"
-      ? localStorage.setItem("theme", "light")
-      : localStorage.setItem("theme", "dark");
+    if (themeStorage === "dark") {
+      localStorage.setItem("theme", "light");
+    } else {
+      localStorage.setItem("theme", "dark");
+    }
     getTheme();
   };
 

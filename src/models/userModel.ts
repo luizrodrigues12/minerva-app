@@ -21,7 +21,7 @@ export type PlanningObj = {
 export type AlunoObj = {
   idAluno?: string;
   nome?: string;
-  preparatorio?: Array<String>;
+  preparatorio?: Array<string>;
   materias?: Array<MateriaType>;
   planning?: Array<PlanningObj>;
 };
@@ -79,7 +79,7 @@ const userSchema = new Schema<dataMongoUser>(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const UserModel = models.professores || model("professores", userSchema);

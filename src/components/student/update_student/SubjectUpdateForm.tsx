@@ -42,7 +42,7 @@ const SubjectFormUpdate = ({ error, idAluno, setError }: Props) => {
   };
 
   const checking = () => {
-    let arr: string[] = [];
+    const arr: string[] = [];
     aluno.materias?.map((mat) => {
       arr.push(mat._id!);
       setIdsMaterias(arr);

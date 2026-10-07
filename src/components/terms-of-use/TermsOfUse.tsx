@@ -58,7 +58,7 @@ const TermsOfUse = () => {
             <li>
               remover quaisquer direitos autorais ou outras notações de
               propriedade dos materiais, ou transferir os materiais para outra
-              pessoa ou 'espelhar' os materiais em qualquer outro servidor.
+              pessoa ou &apos;espelhar&apos; os materiais em qualquer outro servidor.
             </li>
           </ol>
           <p className="indent-4 text-[14px] md:text-[16px]">
@@ -77,7 +77,7 @@ const TermsOfUse = () => {
           <ol>
             <li>
               <p className="indent-4 text-[14px] md:text-[16px]">
-                Os materiais no site da Minerva são fornecidos "como estão".
+                Os materiais no site da Minerva são fornecidos &quot;como estão&quot;.
                 Minerva não oferece garantias, expressas ou implícitas, e, por
                 este meio, isenta e nega todas as outras garantias, incluindo,
                 sem limitação, garantias implícitas ou condições de

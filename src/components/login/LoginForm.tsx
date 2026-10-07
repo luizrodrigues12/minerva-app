@@ -46,9 +46,11 @@ const LoginForm = () => {
       window.location.href = `/home`;
     } catch (err: any) {
       setIsPosting(false);
-      err.message.toLowerCase().includes("senha")
-        ? setpasswordError(err.message)
-        : setEmailError(err.message);
+      if (err.message.toLowerCase().includes("senha")) {
+        setpasswordError(err.message);
+      } else {
+        setEmailError(err.message);
+      }
     }
   };
 

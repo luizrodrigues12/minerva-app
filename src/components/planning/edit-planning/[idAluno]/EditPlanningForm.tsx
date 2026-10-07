@@ -106,7 +106,7 @@ const EditPlanningForm = ({
   };
 
   const getAllSelectedsSubjects = () => {
-    let allSubjects: Array<MateriaType> = [];
+    const allSubjects: Array<MateriaType> = [];
     planning?.daysAndSubjects.map((daysAndSubj, i) => {
       daysAndSubj.subjects.map((subj) => allSubjects.push(subj));
     });

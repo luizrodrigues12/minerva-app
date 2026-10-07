@@ -87,28 +87,32 @@ const UserDataComp = () => {
               <div className=" text-[16px] md:text-[18px]">configurações</div>
               <div className="flex flex-col gap-1.5">
                 <Accordion
-                  children={<VerifyEmailForm />}
                   textLeft="Verificar email"
                   classNameContent="bg-background02"
-                />
+                >
+                  <VerifyEmailForm />
+                </Accordion>
 
                 <Accordion
                   textLeft={"Alterar email"}
-                  children={<ChangeEmailForm />}
                   classNameContent="bg-background02"
-                />
+                >
+                  <ChangeEmailForm />
+                </Accordion>
 
                 <Accordion
-                  children={<ChangePasswordForm />}
                   textLeft="Alterar senha"
                   classNameContent="bg-background02"
-                />
+                >
+                  <ChangePasswordForm />
+                </Accordion>
 
                 <Accordion
-                  children={<DeleteAccount deleteAccount={deleteAccount} />}
                   textLeft="Excluir conta"
                   classNameContent="bg-background02"
-                />
+                >
+                  <DeleteAccount deleteAccount={deleteAccount} />
+                </Accordion>
               </div>
             </div>
 

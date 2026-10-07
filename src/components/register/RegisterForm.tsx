@@ -64,9 +64,11 @@ const RegisterForm = () => {
         router.push("/login");
       }
     } catch (err: any) {
-      err.message.toLowerCase().includes("nome")
-        ? setNameError(err.message)
-        : setEmailError(err.message);
+      if (err.message.toLowerCase().includes("nome")) {
+        setNameError(err.message);
+      } else {
+        setEmailError(err.message);
+      }
     }
   };
 

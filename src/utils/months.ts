@@ -169,15 +169,15 @@ function distributeSubjects({
   const subjectsArray = [...subjects];
 
   // Se for necessário alternar entre matérias, separamos as listas
-  let portuguesSubjects = subjectsArray.filter(
+  const portuguesSubjects = subjectsArray.filter(
     (sub) => sub.materia === "português"
   );
-  let matematicaSubjects = subjectsArray.filter(
+  const matematicaSubjects = subjectsArray.filter(
     (sub) => sub.materia === "matemática"
   );
 
   let subjectIndex = 0;
-  let totalSubjects = subjectsArray.length;
+  const totalSubjects = subjectsArray.length;
   let portuguesIndex = 0,
     matematicaIndex = 0;
 

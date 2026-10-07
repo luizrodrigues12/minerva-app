@@ -15,7 +15,7 @@ import SubjectFormUpdate from "./SubjectUpdateForm";
 const UpdateStudentForm = ({ idAluno }: { idAluno: string }) => {
   const [nome, setNome] = useState("");
   const [isPosting, setIsPosting] = useState(false);
-  const [checkedsSubjects, setCheckedsSubjects] = useState(Array<String>);
+  const [checkedsSubjects, setCheckedsSubjects] = useState<string[]>([]);
   const [checkedsPrep, setCheckedsPrep] = useState(Array<string>);
   const [error, setError] = useState<string>("");
   const { setSection } = useSectionContext();
