@@ -63,6 +63,8 @@ O npm 12 bloqueia scripts de instalação por padrão (`allow-scripts`), e o `bc
 
 **11. Corrigir os updates não-atômicos (decidido durante o apply).** A verificação da Fase 4 revelou que várias rotas enviavam documentos de update **sem operador atômico** (`{ alunos: [...] }`, `{ "alunos.$[a].planning": [...] }`, `{ password: ... }`, `{ isVerified: true }`, `{ avatar: null }`, etc.) e uma usava `$Set` (maiúsculo). O MongoDB rejeita ambos (`Update document requires atomic operators` / `Unknown modifier: $Set`) — **não é regressão do mongoose 9**, foi reproduzido com o driver cru. Corrigido envolvendo em `$set`/`$pull` e trocando `$Set`→`$set` em 10 arquivos, com E2E real (CRUD de aluno e de planejamento) validando.
 
+**12. Adiar o TypeScript 7 (decidido durante o apply).** `typescript@7.0.2` passa em `tsc --noEmit` e no `next build`, mas o `typescript-eslint@8` (via `eslint-config-next@16`) faz hard error `does not support TS 7.0` e quebra o `npm run lint`. Mantido `typescript` em **5.9.x** para preservar o portão de lint; `@types/node` → 26, `@types/react`/`@types/react-dom` → 19.3 e `@types/nodemailer` → 8 foram atualizados. Reavaliar quando o `typescript-eslint` suportar TS 7.
+
 ## Risks / Trade-offs
 
 - **[Tailwind 4 incompatível com flowbite]** → confirmar cedo; fallback com `@config`/pins; se bloquear, pausar e decidir.
