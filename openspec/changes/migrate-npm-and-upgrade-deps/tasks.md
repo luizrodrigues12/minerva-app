@@ -21,12 +21,12 @@
 
 ## 4. Libs isoladas (Fase 3)
 
-- [ ] 4.1 `motion` 11→14: confirmar que `motion/react` resolve e as animações de `Button`/`Header` funcionam. Verificar: build + animação observada.
-- [ ] 4.2 `react-dropzone` 14→20: abrir a dropzone em `PhotoForm` e enviar uma imagem. Verificar: seleção de arquivo funciona; build ok.
-- [ ] 4.3 `cookies-next` 5→6: ler/remover cookie no login e no logout. Verificar: sessão persiste/limpa como antes.
-- [ ] 4.4 `uuid` 11→14: geração de id em `add_student` e `add_planning`. Verificar: id válido gerado; build ok.
-- [ ] 4.5 `dotenv` 16→18 e `nodemailer` 6→10 (o `bcrypt` já saiu na Fase 0): exercitar verificação de email e recuperação de senha. Verificar: email dispara sem erro.
-- [ ] 4.6 `@tanstack/react-query`, `uploadthing`, `react-to-print`, `jsonwebtoken`, `nextjs-toploader` (últimas): rodar `npm run lint` + `npm run build`. Verificar: ambos verdes.
+- [x] 4.1 `motion` 11→14: confirmar que `motion/react` resolve e as animações de `Button`/`Header` funcionam. Verificar: build + animação observada.
+- [x] 4.2 `react-dropzone` 14→20: abrir a dropzone em `PhotoForm` e enviar uma imagem. Verificar: seleção de arquivo funciona; build ok.
+- [x] 4.3 `cookies-next` 5→6: ler/remover cookie no login e no logout. Verificar: sessão persiste/limpa como antes.
+- [x] 4.4 `uuid` 11→14: geração de id em `add_student` e `add_planning`. Verificar: id válido gerado; build ok.
+- [x] 4.5 `dotenv` 16→18 e `nodemailer` 6→10 (o `bcrypt` já saiu na Fase 0): exercitar verificação de email e recuperação de senha. Verificar: email dispara sem erro.
+- [x] 4.6 `@tanstack/react-query`, `uploadthing`, `react-to-print`, `jsonwebtoken`, `nextjs-toploader` (últimas): rodar `npm run lint` + `npm run build`. Verificar: ambos verdes.
 
 ## 5. Camada de dados (Fase 4)
 

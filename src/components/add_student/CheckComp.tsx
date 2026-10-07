@@ -1,10 +1,4 @@
-import {
-  AnimationControls,
-  motion,
-  TargetAndTransition,
-  Transition,
-  VariantLabels,
-} from "motion/react";
+import { motion } from "motion/react";
 import { InputHTMLAttributes, SetStateAction } from "react";
 
 interface PropsCheckComp
