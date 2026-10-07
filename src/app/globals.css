@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "flowbite-react/plugin/tailwindcss";
-@config "../../tailwind.config.ts";
+@config "../../tailwind.config.mjs";
 @plugin "flowbite-react/plugin/tailwindcss";
 @source "../../node_modules/flowbite-react/dist";
 
@@ -38,14 +38,16 @@
   --error-button: #8b1919;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-html {
-  background-color: var(--background01);
+  html {
+    background-color: var(--background01);
+  }
 }
 
 @font-face {
@@ -137,8 +139,10 @@ html {
   backdrop-filter: var(--button-hover);
 }
 
-*:focus {
-  outline: none;
+@layer base {
+  *:focus {
+    outline: none;
+  }
 }
 
 @media (min-width: 768px) {

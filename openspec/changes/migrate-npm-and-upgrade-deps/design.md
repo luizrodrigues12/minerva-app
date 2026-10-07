@@ -50,6 +50,8 @@ Fase 6  Limpeza (remover nao usadas) + verificacao final
 
 > **Atualização (apply):** `flowbite-react@0.12.17` declara `tailwindcss: "^3 || ^4"` — suporta v4. **Porém o subpath `flowbite-react/tailwind` foi removido em 0.12** (o `tailwind.config.ts` importa `content`/`plugin` de lá). A integração passa a ser por `flowbite-react/plugin/tailwindcss` (que expõe um `style`/CSS) e/ou `@source`. A migração desse import (e do `globals.css` para `@import "tailwindcss"` + `@plugin`/`@config`) é parte da Fase 2. A API exata deve ser confirmada na doc do flowbite-react 0.12 antes de aplicar.
 
+> **Correção (apply):** o reset `* { margin/padding: 0 }` do `globals.css` estava **fora de layer**; no v4 as utilities ficam em `@layer utilities`, e estilo **sem layer vence** — o reset zerava o espaçamento (`py-*`/`px-*`/`gap-*`). Movido para `@layer base` (idem `html` e `*:focus`). Também `tailwind.config.ts` → `tailwind.config.mjs` (ESM nativo) para eliminar o aviso `MODULE_TYPELESS_PACKAGE_JSON` do Node.
+
 **6. `resolutions` → `overrides`.** O npm ignora `resolutions`. Migrar os pins de `@types/react`/`@types/react-dom` para `overrides`.
 
 **7. Remover dependências não usadas em vez de subir majors delas.** `swr`, `jose`, `sharp`, `@as-integrations/next` não são importados; `npm` não é dependência de app. Reduz superfície de risco. (`mongodb`, `@types/mongoose` só remover se o audit confirmar; `@types/mongoose` está obsoleto.)
