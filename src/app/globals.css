@@ -1,3 +1,9 @@
+@import "tailwindcss";
+@import "flowbite-react/plugin/tailwindcss";
+@config "../../tailwind.config.ts";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../../node_modules/flowbite-react/dist";
+
 .light {
   --background01: #d4d4d4;
   --background02: #dfdfdf;
@@ -31,10 +37,6 @@
   --error-color: #da2323;
   --error-button: #8b1919;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 * {
   margin: 0;

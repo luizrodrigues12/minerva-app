@@ -48,6 +48,8 @@ Fase 6  Limpeza (remover nao usadas) + verificacao final
 
 **5. Tailwind 4 com caminho de menor churn.** Usar o modo de compatibilidade `@config` (mantém `tailwind.config.ts`) e trocar o PostCSS para `@tailwindcss/postcss`. A compatibilidade do helper `flowbite-react/tailwind` com v4 precisa ser confirmada; fallback: embutir `content()`/`plugin()` diretamente ou fixar `flowbite-react` numa versão compatível. Se nem isso funcionar, **pausar** e decidir com o usuário (não silenciar).
 
+> **Atualização (apply):** `flowbite-react@0.12.17` declara `tailwindcss: "^3 || ^4"` — suporta v4. **Porém o subpath `flowbite-react/tailwind` foi removido em 0.12** (o `tailwind.config.ts` importa `content`/`plugin` de lá). A integração passa a ser por `flowbite-react/plugin/tailwindcss` (que expõe um `style`/CSS) e/ou `@source`. A migração desse import (e do `globals.css` para `@import "tailwindcss"` + `@plugin`/`@config`) é parte da Fase 2. A API exata deve ser confirmada na doc do flowbite-react 0.12 antes de aplicar.
+
 **6. `resolutions` → `overrides`.** O npm ignora `resolutions`. Migrar os pins de `@types/react`/`@types/react-dom` para `overrides`.
 
 **7. Remover dependências não usadas em vez de subir majors delas.** `swr`, `jose`, `sharp`, `@as-integrations/next` não são importados; `npm` não é dependência de app. Reduz superfície de risco. (`mongodb`, `@types/mongoose` só remover se o audit confirmar; `@types/mongoose` está obsoleto.)

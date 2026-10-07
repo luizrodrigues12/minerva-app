@@ -15,9 +15,9 @@
 
 ## 3. Tailwind 4 + flowbite + PostCSS (Fase 2)
 
-- [ ] 3.1 Confirmar suporte do `flowbite-react` (versão alvo 0.12.x) ao Tailwind 4, incluindo `flowbite-react/tailwind` (`content()`/`plugin()`). Verificar: achado registrado; se incompatível, **pausar** e decidir (fallback `@config`/pin).
-- [ ] 3.2 Atualizar `tailwindcss` 3→4, `postcss` e `autoprefixer`; ajustar `postcss.config.mjs` para `@tailwindcss/postcss` e adotar `@config` no `globals.css`/`tailwind.config.ts`. Verificar: `npm run build` gera CSS sem erro.
-- [ ] 3.3 Smoke visual de tema/componentes (variáveis CSS + Flowbite) em login, home e planning. Verificar: cores/tema e componentes renderizam como antes.
+- [x] 3.1 Confirmar suporte do `flowbite-react` (versão alvo 0.12.x) ao Tailwind 4, incluindo `flowbite-react/tailwind` (`content()`/`plugin()`). Verificar: achado registrado; se incompatível, **pausar** e decidir (fallback `@config`/pin).
+- [x] 3.2 Atualizar `tailwindcss` 3→4, `postcss` e `autoprefixer`; ajustar `postcss.config.mjs` para `@tailwindcss/postcss` e adotar `@config` no `globals.css`/`tailwind.config.ts`. Verificar: `npm run build` gera CSS sem erro.
+- [x] 3.3 Smoke visual de tema/componentes (variáveis CSS + Flowbite) em login, home e planning. Verificar: cores/tema e componentes renderizam como antes.
 
 ## 4. Libs isoladas (Fase 3)
 
