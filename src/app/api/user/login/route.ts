@@ -3,7 +3,7 @@ import UserModel, { dataMongoUser } from "@/models/userModel";
 import connectDB from "@/dbConfig/dbConfig";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { ObjectId } from "mongoose";
 
 connectDB();

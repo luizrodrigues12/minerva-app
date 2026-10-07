@@ -1,6 +1,6 @@
 import UserModel, { dataMongoUser } from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { validatePassword } from "@/utils/regex";
 
 type BodyType = {

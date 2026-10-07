@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import UserModel, { AlunoObj, dataMongoUser } from "@/models/userModel";
 import connectDB from "@/dbConfig/dbConfig";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { capitalize } from "@/utils/stringManipulation";
 
 connectDB();
